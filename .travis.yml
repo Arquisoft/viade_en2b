@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - 12.14.0
+cache:
+  directories:
+  - node_modules
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y install ruby openjdk-8-jre
+  - sudo gem install asciidoctor asciidoctor-diagram
+script:
+  - npm install -g codecov
+  - npm test && codecov
+  - npm run build
+  - npm run docs
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $github_token
+  local_dir: build
+  on:
+    branch: master
