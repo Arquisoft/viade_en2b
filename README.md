@@ -8,6 +8,8 @@ This repository contains a skeleton of the VIADE project.
 
 Pablo González González
 
+This change is in the new_feature branch
+
 This project is an assignment for the [Software Architecture course](https://arquisoft.github.io/) following [these requirements](https://labra.solid.community/public/SoftwareArchitecture/AssignmentDescription/).
 
 The app is deployed at [https://arquisoft.github.io/viade_en2b/](https://arquisoft.github.io/viade_en2b/) which also contains a [technical documentation](https://arquisoft.github.io/viade_en2b/docs).
