@@ -17,3 +17,30 @@ If needed you can subdivide them into
 technical constraints, organizational and political constraints and
 conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
 ****
+
+=== Technical constraints
+
+[options="header",cols="1,2"]
+|===
+|Constraint|Explanation
+| _<Constraint-1>_ | _<Explanation-1>_
+| _<Constraint-2>_ | _<Explanation-2>_
+|===
+
+=== Organizational constraints
+
+[options="header",cols="1,2"]
+|===
+|Constraint|Explanation
+| _<Constraint-1>_ | _<Explanation-1>_
+| _<Constraint-2>_ | _<Explanation-2>_
+|===
+
+=== Political constraints and conventions
+
+[options="header",cols="1,2"]
+|===
+|Constraint|Explanation
+| _<Constraint-1>_ | _<Explanation-1>_
+| _<Constraint-2>_ | _<Explanation-2>_
+|===
