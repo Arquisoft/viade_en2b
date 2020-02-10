@@ -1,8 +1,6 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
-
-
-[role="arc42help"]
+This is the scope and the context of the application
 ****
 .Contents
 System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
