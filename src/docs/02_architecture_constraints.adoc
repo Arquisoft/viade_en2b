@@ -27,7 +27,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 | _<Constraint-2>_ | _<Explanation-2>_
 |===
 
-=== Organizational constraints
+=== Organizational and political constraints
 
 [options="header",cols="1,2"]
 |===
@@ -36,7 +36,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 | _<Constraint-2>_ | _<Explanation-2>_
 |===
 
-=== Political constraints and conventions
+=== Conventions
 
 [options="header",cols="1,2"]
 |===
