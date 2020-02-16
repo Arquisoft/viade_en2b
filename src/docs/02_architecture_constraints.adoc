@@ -27,7 +27,6 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 | React framework | React is the framework that will be used to implement the application. The architecture of the application has to be adapted to the inner workings of the Javascript library (components, routing, rendering...).
 | Interoperability between similar webapps | The design for the data saving and retrieving has to be thoughtfully taken care of such that a user can switch between similar apps without having to modify their data (using of Solid, W3C standards, etc.).
 | Test-Driven Development | Any functionality added must be constantly and thoroughly tested by the development team, making use of the testing tools available (Cucumber, Travis, Codecov).
-| Documentation | The project's architecture must be documented in AsciiDoc format following the arc42 templates.
 |===
 
 === Organizational and political constraints
@@ -43,7 +42,9 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 
 [options="header",cols="1,2"]
 |===
-|Constraint|Explanation
-| _<Constraint-1>_ | _<Explanation-1>_
-| _<Constraint-2>_ | _<Explanation-2>_
+| Constraint | Explanation
+| Linked Data | The project has to make use of linked data principles and guidelines, following the Solid specifications.
+| W3C Standards | The architecture of the project has to comply with as many web standards as possible, as stated in the Solid specifications.
+| React best practices | Guidelines and advices for React should be followed to ensure an easily testable and fixable application. 
+| Documentation | The project's architecture must be documented in AsciiDoc format following the arc42 templates.
 |===
