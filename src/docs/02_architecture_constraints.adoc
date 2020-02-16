@@ -34,8 +34,9 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 [options="header",cols="1,2"]
 |===
 |Constraint|Explanation
-| _<Constraint-1>_ | _<Explanation-1>_
-| _<Constraint-2>_ | _<Explanation-2>_
+| Short development time | Due to the nature of the course, the development time for the "finished" product is extremely small, consisting only of seven weeks.
+| Almost inexistent experience | The team has hardly any experience with the technologies planned for use. This severely limits the productiveness of each member, and the team.
+| Concurrent projects | Many teams will be working within the same time frame on different apps, all with the same expected functionality. This means that coordination in creating a common vocabulary will be crucial for the satisfactory development of this, and every other similar product.
 |===
 
 === Conventions
@@ -46,5 +47,6 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 | Linked Data | The project has to make use of linked data principles and guidelines, following the Solid specifications.
 | W3C Standards | The architecture of the project has to comply with as many web standards as possible, as stated in the Solid specifications.
 | React best practices | Guidelines and advices for React should be followed to ensure an easily testable and fixable application. 
+| UI Design | The design of the user interface must feel intuitive for people new to the app. This means following current standards of interface, color and icon design.
 | Documentation | The project's architecture must be documented in AsciiDoc format following the arc42 templates.
 |===
