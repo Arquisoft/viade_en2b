@@ -41,11 +41,11 @@ image:BusinessContext.png["BusinessContext Diagram"]
 Our applcation will be a web application as well as a mobile application.
 In order to make it decentralized all user's data will be saved in each user's own Solid Pod.
 
-*Technical interfaces:
-**Solid
-**Javascript
-**React navite
-**Map api
+* Technical interfaces:
+** Solid
+** Javascript
+** React navite
+** Map api
 
 [role="arc42help"]
 ****
