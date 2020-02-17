@@ -22,3 +22,18 @@ Motivate what you have decided and why you decided that way,
 based upon your problem statement, the quality goals and key constraints.
 Refer to details in the following sections.
 ****
+
+=== Technology decisions
+
+The following technologies are the ones used in the project:
+
+* **React Native and React**. The application is hybrid, with a focus in mobile devices and similars, but still having a web-oriented version.
+* **Solid React Components**. A link:https://github.com/solid/react-components[library specifically designed to use Solid in React], it helps with the integration of Solid functionality in the application.
+* **Leaflet**. Javascript library used for the management of the geogrphical-related data, as well as displaying maps and routes.
+* **LDFlex**. This library will ease the connection between the application data and user's pod data, specifically in the operations of saving, retrieving and interconnecting data.
+
+=== Decomposition of the system
+
+* The system will the divided in interrelated high-level modules.
+* Each module will contain several components (or sub-modules, in some case), which will be independent from any component outside of their module.
+* The only connections between the modules will be user data moving from one place to another, through middle "facade" classes. The components in the modules will not notice the data moving, only when they have data available.
