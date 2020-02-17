@@ -3,11 +3,13 @@
 
 [role="arc42help"]
 ****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
+This is a decentralized Routes Management Proyect based on Solid and React technologies.Based on a decentralized network,so there is not
+a unique central server where all the personal data is stored and classified. All the data is stored in the users' PODS, and each user
+knows if the application has access to their data. This proyect aims to :
 
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
+* Provide the users a Well-formed application.
+* Be Reliable, Operable, Functional Suitable and Transferable
+* Have different Stakeholders: Users, Developers, SOLID and React Developers...
 ****
 
 === Requirements Overview
@@ -73,3 +75,4 @@ Table with role names, person names, and their expectations with respect to the 
 | _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
 | _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
 |===
+vb
