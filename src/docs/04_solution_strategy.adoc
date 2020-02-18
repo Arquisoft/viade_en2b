@@ -27,13 +27,24 @@ Refer to details in the following sections.
 
 The following technologies are the ones used in the project:
 
-* **React Native and React**. The application is hybrid, with a focus in mobile devices and similars, but still having a web-oriented version.
-* **Solid React Components**. A link:https://github.com/solid/react-components[library specifically designed to use Solid in React], it helps with the integration of Solid functionality in the application.
-* **Leaflet**. Javascript library used for the management of the geogrphical-related data, as well as displaying maps and routes.
+* **React Native and React**. The application is hybrid, with a focus in mobile devices and similars, but still having a web-oriented version. Although the workload is considerably higher because effectively two different applications have to be developed, it was decided this was the best approach to tackle the expected results.
+* **Solid React Components**. A link:https://github.com/solid/react-components[library specifically designed to use Solid in React], it helps with the integration of Solid functionality in the application. It helps the development of the part of the application that deals with the data, and time is a very valuable resource for this project.
+* **Leaflet**. Javascript library used for the management of the geogrphical-related data, as well as displaying maps and routes. Considered the best option by the team, because is easy to use, many resources are available to check out, and is highly customisable in the interface part.
 * **LDFlex**. This library will ease the connection between the application data and user's pod data, specifically in the operations of saving, retrieving and interconnecting data.
 
 === Decomposition of the system
 
-* The system will the divided in interrelated high-level modules.
-* Each module will contain several components (or sub-modules, in some case), which will be independent from any component outside of their module.
+* The system will be divided in interrelated high-level modules.
+* Each module will contain several components (or sub-modules, in some cases), which will be independent from any component outside of their module.
 * The only connections between the modules will be user data moving from one place to another, through middle "facade" classes. The components in the modules will not notice the data moving, only when they have data available.
+
+This module and component-oriented design will make the division of the development work much easier, and the using of facades for data accessing decouples the interface from the data, somewhat similar to a MVC layout, keeping cohesion; although a drawback that will have to be taken into account is the independent development of components, which can obfuscate the team if the interconnection between components and modules is not considered when developing and testing.
+
+=== Decisions on how to achieve quality goals
+
+* **Heavy testing**. Test-driven development is a must to achieve any form of quality. When creating user stories, as many testing scenarios as possible will accompany them to ensure what the new functionality must achieve and what it should not do. This will lose time when creating the tasks, but it will help the agility of the development.
+
+=== Organizational decisions
+
+* The team will use user stories combined with Kanban, as well as issues and pull-requests from Github to keep a workflow; with previous experience in the degree in agile development, this semi-agile workflow will benefit more the development than a systematic one.
+* The team will be split initially into two sub-units: front-end and back-end. Because information research in Solid and React was also divided, it is the right decision to keep this division in the development process, though *it is not a complete split*, that is, each team member is not forced to work in their part, specially in critical situations where more people is needed to solve an issue.
