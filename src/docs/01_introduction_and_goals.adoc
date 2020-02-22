@@ -16,20 +16,19 @@ knows if the application has access to their data. This proyect aims to :
 
 [role="arc42help"]
 ****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+.Mandatory Requirements
+* The system will be based on a decentralized architecture wheredata storage is separated from the app.
+* Users can store their routes in their own pods.
+* Users can view the routes stored on a map.
+* The app will allow a user to share pictures, videos or     information about a route with other friends.
+* A user can get notifications when some friend shares a route with him.
+* Users can have groups of friends with whom they may want to share a route
+* It should be possible to view routes loaded by users that are using a different app, so interoperability with other route management systems should be taken into account.
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+.Optional Requirements
+* The system could work on a mobile device
+* Users can share their routes while they are doing the routes
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
 ****
 
 === Quality Goals
@@ -60,28 +59,18 @@ These quality goals are the ones which have the most importance to the major sta
 
 [role="arc42help"]
 ****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
+.Summary
+The following table describes the stakeholders of this project and what is expected from them at the beginning of the project, it will be updated as the project goes on if it is required. 
 ****
 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| _Front-End_ | _Guillermo Fernández-Campoamor Fernández_ | _Focus on the front-end side of the app_
+| _Front-End_ | _Fernando Sáenz de Santa María Modroño_ | _Focus on the front-end side of the app_
+| _Front-End_ | _Alejandro Matas Sánchez_ | _Focus on the front-end side of the app_
+| _Back-End_ | _Andrés García Celis_ | _Focus on the back-end side of the app_
+| _Back-End_ | _Clara Miranda García_ | _Focus on the back-end side of the app_
+| _Back-End_ | _Violeta Ruiz Martínez_ | _Focus on the back-end side of the app_
+| _Back-End_ | _Miguel Rodríguez Huerta_ | _Focus on the back-end side of the app_
 |===
-vb
