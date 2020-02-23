@@ -64,6 +64,18 @@ The following table describes the stakeholders of this project and what is expec
 ****
 
 [options="header",cols="1,2,2"]
+.General Stakeholders
+|===
+|Role/Name|Contact|Expectations
+| _Development_ | _Development team(see below table for details)_ | _The development of the App_
+| _Supervision_ | _Teachers of the subject_ | _Supervise the work done by the students and evaluating it as well_
+| _Helping Development Team_ | _Solid Community_ | _As a community interested in solid if the development team has a doubt and seeks for help the community is expected to help_
+| _Evaluating the final product_ | _Inrupt Supervisor_ | _As part of the inrupt challenge someone is expected to take a look to the projects created by the students_
+| _Testing the app/Give feedback_ | _Users_ | _Test the app to give some feedback to the development team to improve the app_
+|===
+
+[options="header",cols="1,2,2"]
+.Development Team
 |===
 |Role/Name|Contact|Expectations
 | _Front-End_ | _Guillermo Fernández-Campoamor Fernández_ | _Focus on the front-end side of the app_
