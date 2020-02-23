@@ -3,7 +3,7 @@
 
 
 [role="arc42help"]
-After we discussed some more the design and the goals of this proyect some quality attributes that aren't as notable or important that the ones that we are focusing on came to light. Some of this includes attributes like usability, lernability or flexibility. This three, for example, constitute an integral part of every application and will be taken into consideration in a future stage of development.
+After we discussed some more the design and the goals of this proyect some quality attributes that aren't as notable or important that the ones that we are focusing on came to light. Some of this includes attributes like usability, learnability or flexibility. This three, for example, constitute an integral part of every application and will be taken into consideration in a future stage of development.
 
 === Quality Tree
 
