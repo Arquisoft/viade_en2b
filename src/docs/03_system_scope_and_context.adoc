@@ -1,23 +1,15 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
-This is the scope and the context of the application
-****
-.Contents
-System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
+The system scope and responsibilities define what the system should do in order to fulfill its objective. Viade should have the following features:
 
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
 
-.Motivation
-The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
-
-.Form
-Various options:
-
-* Context diagrams
-
-* Lists of communication partners and their interfaces.
-****
+* The system should be based on a decentralized architecture where data storage is separated from the app.
+* Enable users to store their routes in their own pods
+* Enable users to view the routes stored on a map
+* Enable users to share pictures, videos or information about a route with other friends
+* Enable the user to receive notifications when other friends share a route with him.
+* Enable the users to for groups of friends with whom the may want to share routes
+* Enable the users to view routes loaded by users that are using a different app.
 
 
 === Business Context
