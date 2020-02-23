@@ -108,7 +108,7 @@ according the the following black box template:
 
 ****
 
-* **Purpose/Responsibility**: Viade is a route-management system that lets users create routes and share them with their friends, and is based in the Solid specifications. It is based on a layered architecture with layers connected through facades.
+* **Purpose/Responsibility**: Viade is a route-management system that lets users create routes and share them with their friends, and is based on the _Solid specifications_. It is structured as a layered-architecture webapp, with layers connected through facades.
 
 * **Contained Building Blocks**:
 ** **Interface Layer**: The layer with which the user will directly interact. It has all the components related with the user interface, and it relies on the _Control Layer_ to get any needed data to output to the user.
@@ -117,3 +117,30 @@ according the the following black box template:
 
 * **Interfaces**: 
 ** **Cache**: The cache is a component which has the sole purpose of intercepting and saving data going through the layers of the application, so the retrieving of data is faster because it is saved in memory.
+
+
+==== Level 2 - Interface Layer
+
+* **Purpose/Responsibility**: Ease the interaction between the user and the Viade system.
+
+* **Contained Building Blocks**:
+** **Login**: Bars the interaction of any potential user with the app unless they have a valid (Solid) account.
+** **MapView**: The map the user interacts with. It contains all the routes created by him and lets modify them or create new ones.
+** **Menu**: Inside the menu, a user can find many options related with notifications, file sharing and configuration.
+
+==== Level 2 - Control Layer
+
+* **Purpose/Responsibility**: Validate and process the data of the application, to be able to show to user valuable information.
+
+* **Contained Building Blocks**:
+** **Login component**: A component that offers the user the option to choose its _Pod Provider_ and login with their _WebID_.
+** **Map**: Module formed by components that process the data related to route-management.
+** **Menu**: Module containing all the components that offer the menu options.
+
+==== Level 2 - Data Access Layer
+
+* **Purpose/Responsibility**: Retrieve and save data from the authenticated user's Pod related to the functionalities of the application. This layer will receive information by the user and make use of web standards to move the needed data accordingly.
+
+* **Contained Building Blocks**:
+** **DataProcessingModule**: Module containing several components that deal with RDF data, processing it and converting it for the _Control Layer_ to be able to use it.
+** **DataAccessModule**: As the name suggests, this is the module that deals with the data. It makes **heavy use** of several libraries complying with _Linked Data_ specifications to create, save, retrieve and delete resources from the User's Pod.
