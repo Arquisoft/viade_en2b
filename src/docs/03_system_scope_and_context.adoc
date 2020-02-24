@@ -66,7 +66,6 @@ Many stakeholders make architectural decision based on the technical interfaces 
 E.g. UML deployment diagram describing channels to neighboring systems,
 together with a mapping table showing the relationships between channels and input/output.
 
-****
 
 **<Diagram or Table>**
 
