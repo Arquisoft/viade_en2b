@@ -57,7 +57,7 @@ In the best case you will get away with examples or simple signatures.
 
 ****
 
-image::images/05building-block-view_01.svg["Overview diagram"]
+image:05building-block-view_01.svg["Overview diagram"]
 
 Motivation::
 

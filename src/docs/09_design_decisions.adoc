@@ -2,8 +2,6 @@
 == Design Decisions
 
 
-[role="arc42help"]
-****
 .Main design decisions
 In this project one of the main constraints for developing the application is the use of React and SOLID technologies, and the implementation of a web view of the application.
 Taking into account these constraints we decided to develop two versions of the application, one version is a web application that can be access from the navigator, and the other version is a mobile app.
