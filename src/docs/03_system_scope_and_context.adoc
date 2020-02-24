@@ -1,5 +1,6 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
+
 The main goal of this project is to create a decentralized routes management system based on Solid, which means that
 every user has its own Pod, that is their own personal storage space, where all of their information is stored.
 The main communication partners of the applications will be the users themselves.
@@ -16,10 +17,16 @@ The domain interfaces and technical interfaces to communication partners are amo
 .Form
 Various options:
 
-* Context diagrams
+The system scope and responsibilities define what the system should do in order to fulfill its objective. Viade should have the following features:
 
-* Lists of communication partners and their interfaces.
-****
+
+* The system should be based on a decentralized architecture where data storage is separated from the app.
+* Enable users to store their routes in their own pods
+* Enable users to view the routes stored on a map
+* Enable users to share pictures, videos or information about a route with other friends
+* Enable the user to receive notifications when other friends share a route with him.
+* Enable the users to for groups of friends with whom the may want to share routes
+* Enable the users to view routes loaded by users that are using a different app.
 
 
 === Business Context
