@@ -3,73 +3,86 @@
 
 [role="arc42help"]
 ****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
+This is a decentralized Routes Management Proyect based on Solid and React technologies.Based on a decentralized network,so there is not
+a unique central server where all the personal data is stored and classified. All the data is stored in the users' PODS, and each user
+knows if the application has access to their data. This proyect aims to :
 
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
+* Provide the users a Well-formed application.
+* Be Reliable, Operable, Functional Suitable and Transferable
+* Have different Stakeholders: Users, Developers, SOLID and React Developers...
 ****
 
 === Requirements Overview
 
 [role="arc42help"]
 ****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+.Mandatory Requirements
+* The system will be based on a decentralized architecture wheredata storage is separated from the app.
+* Users can store their routes in their own pods.
+* Users can view the routes stored on a map.
+* The app will allow a user to share pictures, videos or     information about a route with other friends.
+* A user can get notifications when some friend shares a route with him.
+* Users can have groups of friends with whom they may want to share a route
+* It should be possible to view routes loaded by users that are using a different app, so interoperability with other route management systems should be taken into account.
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+.Optional Requirements
+* The system could work on a mobile device
+* Users can share their routes while they are doing the routes
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
 ****
 
 === Quality Goals
 
 [role="arc42help"]
 ****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
+The aim of this proyect is to offer the users a way to manage their own routes, following some quality goals in order to guarantee a good user experience.
+.Quality Goals Scenarios
+[width="100%",cols="4,12",options="header"]
+|=========================================================
+|Quality Goal |Scenario
 
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
+|Reliability |
+As the storage of the routes is not in a centralized server, the users can have always access to theirs and be able to manage them as the data is always on their PODs.
 
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
+|Transferability|
+The system ensures that the application is compatible with other applications that follow the same system and the users can share their routes or multimedia to other users who have a compatible application.
+
+|Functional Suitability|
+Whenever a user performs a change one of his routes or add a new one, the action must be done by the application and save on the record.
+
+|=========================================================
+These quality goals are the ones which have the most importance to the major stakeholders on this proyect.
+
 ****
 
 === Stakeholders
 
 [role="arc42help"]
 ****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
+.Summary
+The following table describes the stakeholders of this project and what is expected from them at the beginning of the project, it will be updated as the project goes on if it is required. 
 ****
 
 [options="header",cols="1,2,2"]
+.General Stakeholders
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| _Development_ | _Development team(see below table for details)_ | _The development of the App_
+| _Supervision_ | _Teachers of the subject_ | _Supervise the work done by the students and evaluating it as well_
+| _Helping Development Team_ | _Solid Community_ | _As a community interested in solid if the development team has a doubt and seeks for help the community is expected to help_
+| _Evaluating the final product_ | _Inrupt Supervisor_ | _As part of the inrupt challenge someone is expected to take a look to the projects created by the students_
+| _Testing the app/Give feedback_ | _Users_ | _Test the app to give some feedback to the development team to improve the app_
+|===
+
+[options="header",cols="1,2,2"]
+.Development Team
+|===
+|Role/Name|Contact|Expectations
+| _Front-End_ | _Guillermo Fernández-Campoamor Fernández_ | _Focus on the front-end side of the app_
+| _Front-End_ | _Fernando Sáenz de Santa María Modroño_ | _Focus on the front-end side of the app_
+| _Front-End_ | _Alejandro Matas Sánchez_ | _Focus on the front-end side of the app_
+| _Back-End_ | _Andrés García Celis_ | _Focus on the back-end side of the app_
+| _Back-End_ | _Clara Miranda García_ | _Focus on the back-end side of the app_
+| _Back-End_ | _Violeta Ruiz Martínez_ | _Focus on the back-end side of the app_
+| _Back-End_ | _Miguel Rodríguez Huerta_ | _Focus on the back-end side of the app_
 |===

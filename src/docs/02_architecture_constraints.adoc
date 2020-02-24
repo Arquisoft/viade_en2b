@@ -17,3 +17,37 @@ If needed you can subdivide them into
 technical constraints, organizational and political constraints and
 conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
 ****
+
+=== Technical constraints
+
+[options="header",cols="1,2"]
+|===
+|Constraint|Explanation
+| Solid | The application must follow the link:https://github.com/solid/solid-spec[Solid specifications] and make use of Solid pods, as well as being decentralized and follow linked data principles.
+| React framework | React is the framework that will be used to implement the application. The architecture of the application has to be adapted to the inner workings of the Javascript library (components, routing, rendering...).
+| Interoperability between similar webapps | The design for the data saving and retrieving has to be thoughtfully taken care of such that a user can switch between similar apps without having to modify their data (using of Solid, W3C standards, etc.).
+| Test-Driven Development | Any functionality added must be constantly and thoroughly tested by the development team, making use of the testing tools available (Cucumber, Travis, Codecov).
+|===
+
+=== Organizational and political constraints
+
+[options="header",cols="1,2"]
+|===
+|Constraint|Explanation
+| Short development time | Due to the nature of the course, the development time for the "finished" product is extremely small, consisting only of seven weeks.
+| Empty budget | Given that this is a student project, the budget for it is nonexistent. Team members will not be payed for their work, nor will they have access to non-free resources.
+| Almost inexistent experience | The team has hardly any experience with the technologies planned for use. This severely limits the productiveness of each member, and the team.
+| Concurrent projects | Many teams will be working within the same time frame on different apps, all with the same expected functionality. This means that coordination in creating a common vocabulary will be crucial for the satisfactory development of this, and every other similar product.
+|===
+
+=== Conventions
+
+[options="header",cols="1,2"]
+|===
+| Constraint | Explanation
+| Linked Data | The project has to make use of linked data principles and guidelines, following the Solid specifications.
+| W3C Standards | The architecture of the project has to comply with as many web standards as possible, as stated in the Solid specifications.
+| React best practices | Guidelines and advices for React should be followed to ensure an easily testable and fixable application. 
+| UI Design | The design of the user interface must feel intuitive for people new to the app. This means following current standards of interface, color and icon design.
+| Documentation | The project's architecture must be documented in AsciiDoc format following the arc42 templates.
+|===
