@@ -3,8 +3,6 @@
 
 == Deployment View
 
-[role="arc42help"]
-****
 .Content
 The deployment view describes:
 
@@ -32,12 +30,9 @@ zoom into this black box using additional deployment diagrams:
 * UML offers deployment diagrams to express that view. Use it, probably with nested diagrams,
 when your infrastructure is more complex.
 * When your (hardware) stakeholders prefer other kinds of diagrams rather than the deployment diagram, let them use any kind that is able to show nodes and channels of the infrastructure.
-****
 
 === Infrastructure Level 1
 
-[role="arc42help"]
-****
 Describe (usually in a combination of diagrams, tables, and text):
 
 *  the distribution of your system to multiple locations, environments, computers, processors, .. as well as the physical connections between them
@@ -46,41 +41,52 @@ Describe (usually in a combination of diagrams, tables, and text):
 *  the mapping of software artifacts to elements of the infrastructure
 
 For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.
-****
 
 _**<Overview Diagram>**_
 
+@startuml
+
+node "Android Phone" as android {
+    node "React Native app" as app {
+        node "Proprietary code" as owncode
+        node "SOLID library" as solidlib
+    }
+}
+
+
+node "Web browser (Chrome/Firefox)" as browser {
+    node "Web app" as webapp {
+        node "Proprietary code" as owncode2
+        node "SOLID library" as solidlib2
+    }
+}
+
+database poddb [
+    <b>Pods server</b>
+    ----
+    This can either be deployed internally,
+    or using a free web service.
+]
+
+cloud "Maps API" as map
+
+
+
+owncode --> solidlib
+owncode2 --> solidlib2
+
+solidlib --> poddb : read/write
+solidlib2 --> poddb : read
+
+owncode --> map
+owncode2 --> map
+
+@enduml
+
 Motivation::
 
-_<explanation in text form>_
+Both Native and Web applications rely on a SOLID library to get data from the pods server/database. Both use, also, the Maps API to show map data, which is then overlaid with a representation of the data collected from the pods.
 
 Quality and/or Performance Features::
 
 _<explanation in text form>_
-
-Mapping of Building Blocks to Infrastructure::
-_<description of the mapping>_
-
-
-=== Infrastructure Level 2
-
-[role="arc42help"]
-****
-Here you can include the internal structure of (some) infrastructure elements from level 1.
-
-Please copy the structure from level 1 for each selected element.
-****
-
-==== _<Infrastructure Element 1>_
-
-_<diagram + explanation>_
-
-==== _<Infrastructure Element 2>_
-
-_<diagram + explanation>_
-
-...
-
-==== _<Infrastructure Element n>_
-
-_<diagram + explanation>_

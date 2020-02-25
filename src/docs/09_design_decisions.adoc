@@ -2,25 +2,52 @@
 == Design Decisions
 
 
-[role="arc42help"]
-****
-.Contents
-Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.
+.Main design decisions
+In this project one of the main constraints for developing the application is the use of React and SOLID technologies, and the implementation of a web view of the application.
+Taking into account these constraints we decided to develop two versions of the application, one version is a web application that can be access from the navigator, and the other version is a mobile app.
 
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
+The VIADE application is an application based on the management and tracking of Routes created by the users, therefore the user would want to have the application to be accessible from anywhere. For this reason we think that is better to have a mobile version of the VIADE Application.
+As one is the constraints of the project is the mandatory development of the web-version application, we will implement the mobile-version and web-version apps. The mobile-version will have all the powerful and useful functionalities (the tracking of routes while the user is walking, take and add pictures or videos of the routes, and other functionalities that are supposed to be done on the outside. The web-version will be a reduced version of the mobile one, but still being a functional and realiable application.
+The decision of develop two application-versions might be a risky decision but following the next architecture pattern we think the risk will be lower: This pattern is the Façade Architecture pattern.
 
-Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.
+.Façade Architecture pattern
+In our case we want to develop two different versions, one for mobile and another for the web.
 
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
+We decided to follow this patterns for two reasons::
+    -We may have a lot of independent classes, so this is a nice way of diving the system into   subsystems, providing a simplified view of the whole system.
+    -As we want to develop two versions of the app, the data access and the bussiness logic should be nearly the same in both. The main difference between both versions is the presentation layer as they use different technologies (React and ReactNative, respectively).The use of this pattern
+    help us to have the same logic classes for both versions and the possible integration of both within the same project.
 
-.Form
-Various options:
+.Brief Summary
+[options="header",cols="2,2"]
+|===
+|Problem |Solution
+| App Context | Devolop of two compatible versions
+| Two Versions | Use of Façade Architecture pattern
+| Complex System| Use of Multitier architecture( Presentation tier, Business Tier, Data Access Tier  )
+|===
 
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-* ADR (architecture decision record) for every important decision
-****
+.Architectural Design
+Above is shown the first draft of the Architectural Design, followind the Façade Architecture pattern.
+
+image:WhatsApp Image 2020-02-20 at 14.34.38.jpeg[]
+[ditaa]
+----
+                   +-------------+
+                   |     Pod     |<------+
+                   |             |       |
+                   +-------------+       | user data
+                                         |
+                                         |
+                                         |
+ +--------+   +--------+----+    /---------------\
+ |        |---+             +--->| Data Access   |
+ |        |   |             |    |               |
+ |   GUI  |   |   Control   |    |               |
+ |        |   |             |    |               |
+ +---+----+   +-------------+    \---------------/
+                                        
+                          
+     
+----
+
