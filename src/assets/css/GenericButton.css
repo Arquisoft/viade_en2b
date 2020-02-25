@@ -1,0 +1,46 @@
+.buttonGenBlue {
+    display: inline-block;
+    padding: 0.5em;
+    margin: 6px;
+    color: white;
+    text-decoration-color: white;
+    border-bottom: solid 4px #ffffff;
+
+    border-radius: 10px;
+    background: #4929e7;
+    box-shadow:  1px 1px 0px #2706ce, 
+             -1px -1px 0px #ffffff;
+}
+
+.buttonGenWhiteBlue {
+    display: inline-block;
+    padding: 0.5em;
+    margin: 6px;
+    text-decoration: none;
+    
+    border-bottom: solid 4px #d3d3d3;
+
+    border-radius: 41px;
+    background: #4929e7;
+    box-shadow:  1px 1px 0px #2706ce, 
+             -1px -1px 0px #ffffff;
+}
+
+.buttonGenBlue:active {
+    -ms-transform: translateY(1px);
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);/*Move down*/
+  
+
+    border: solid 4px #4929e7;
+    box-shadow: inset 1px 1px 0px #4929e7;
+}
+
+.buttonGenWhiteBlue:active {
+    -ms-transform: translateY(1px);
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);/*Move down*/
+
+    border: solid 4px #4929e7;
+    box-shadow: inset 1px 1px 0px #4929e7;
+}
