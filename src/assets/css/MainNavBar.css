@@ -1,0 +1,21 @@
+
+
+.brandContainer:hover{
+    background-color: rgb(79, 139, 216);
+    border-left: solid 4px #ffffff;
+
+}
+button.navbar-toggle:active{
+    text-decoration: none;
+}
+span{
+    color: #ffffff;
+}
+.navbar-inverse {
+    margin-bottom: 0%;
+    background-color: rgb(102, 150, 240);
+    transition: background-color .5s;
+    color: #ffffff;
+  }
+  
+  

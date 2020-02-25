@@ -1,46 +1,63 @@
+button {
+    text-align: center;
+    color: #000;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-block;
+
+    display: inline-block;
+    margin: 0;
+    padding: 0.75rem 1rem;
+	border: 0;
+	border-radius: 0.317rem;
+	background-color: #aaa;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 700;
+
+    line-height: 1.5;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	-webkit-appearance: none;
+	-webkit-font-smoothing: antialiased;
+    
+  }
+
 .buttonGenBlue {
     display: inline-block;
     padding: 0.5em;
     margin: 6px;
     color: white;
-    text-decoration-color: white;
-    border-bottom: solid 4px #ffffff;
-
     border-radius: 10px;
-    background: #4929e7;
-    box-shadow:  1px 1px 0px #2706ce, 
-             -1px -1px 0px #ffffff;
+    background: #4f8be6;
+    box-shadow:  5px 5px 10px #4376c4, 
+             -5px -5px 10px #5ba0ff;
+}
+
+.buttonGenBlue:active {
+    border-radius: 10px;
+    background: #4f8be6;
+    box-shadow: inset 5px 5px 10px #4376c4, 
+            inset -5px -5px 10px #5ba0ff;
 }
 
 .buttonGenWhiteBlue {
     display: inline-block;
     padding: 0.5em;
     margin: 6px;
-    text-decoration: none;
-    
-    border-bottom: solid 4px #d3d3d3;
-
-    border-radius: 41px;
-    background: #4929e7;
-    box-shadow:  1px 1px 0px #2706ce, 
-             -1px -1px 0px #ffffff;
+    color: white;
+    border-radius: 10px;
+    background: #4f8be6;
+    box-shadow:  5px 5px 10px #7b9ccc, 
+             -5px -5px 10px #94b3df;
 }
 
-.buttonGenBlue:active {
-    -ms-transform: translateY(1px);
-    -webkit-transform: translateY(1px);
-    transform: translateY(1px);/*Move down*/
-  
 
-    border: solid 4px #4929e7;
-    box-shadow: inset 1px 1px 0px #4929e7;
-}
 
 .buttonGenWhiteBlue:active {
     -ms-transform: translateY(1px);
     -webkit-transform: translateY(1px);
     transform: translateY(1px);/*Move down*/
 
-    border: solid 4px #4929e7;
-    box-shadow: inset 1px 1px 0px #4929e7;
+    border: solid 4px #b9b0e7;
+    box-shadow: inset 1px 1px 0px #c0b7ee;
 }
