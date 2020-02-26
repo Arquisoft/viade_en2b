@@ -22,9 +22,9 @@ Shortly describe here the new feature...
 
 Completed:
 *   [x] Completed. Commits:
-    *    Commit 1: `commit hash`.
-    *    Commit 2: `commit hash`.
-    *    Commit 3: `commit hash`.
+      *  Commit 1: `commit hash`.
+      *  Commit 2: `commit hash`.
+      *  Commit 3: `commit hash`.
 
 ### Testing scenarios
 
