@@ -21,10 +21,10 @@ Shortly describe here the new feature...
 *   [ ] To complete...
 
 Completed:
-*    [x] Completed. Commits:
-    * Commit 1: `commit hash`.
-    * Commit 2: `commit hash`.
-    * Commit 3: `commit hash`.
+*   [x] Completed. Commits:
+    *   Commit 1: `commit hash`.
+    *   Commit 2: `commit hash`.
+    *   Commit 3: `commit hash`.
 
 ### Testing scenarios
 
