@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../../assets/css/MainNavBar.css';
 import GenericButton from './GenericButton';
 
+import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom";
+
 //I used bootstrap just not to leave a white nav bar on this commit :)
 class MainNavBar extends Component{
 	render() {
@@ -14,17 +16,17 @@ class MainNavBar extends Component{
 				        <span>| | |</span>
 			        </button>
                     <div class="brandContainer">
-				        <a class="navbar-brand" href="">
+				        <a class="navbar-brand" href="https://github.com/Arquisoft/viade_en2b">
                             <span>{this.props.companyName}</span>
                         </a>
                     </div>
 			  	</div>
-                <div class ="collapse navbar-collapse"id="myNavbar">
+                <div class ="collapse navbar-collapse" id="myNavbar">
 			        <ul class ="nav navbar-nav navbar-right">	  
                        <GenericButton 
                         className="buttonGenBlue"
                         name="buttomNavLogin"
-                        message="Log In"
+                        message=<Link to="/login" className="link">LOG IN</Link>
                         />
 			        </ul>
                 </div>
@@ -33,9 +35,7 @@ class MainNavBar extends Component{
 		);
 	  }
 
-	//  exchanger(){ Case of NOT possible
-	//	$("#img-thumbnail").text('Don`t Click me' );
-	//  }
+	
 }
 
 

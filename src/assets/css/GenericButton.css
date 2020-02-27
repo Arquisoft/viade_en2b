@@ -1,21 +1,22 @@
 button {
     text-align: center;
     color: #000;
-    text-transform: uppercase;
-    cursor: pointer;
-    display: inline-block;
 
-    display: inline-block;
-    margin: 0;
-    padding: 0.75rem 1rem;
+
+
+    width: auto;
+    height: auto;
+    margin: 15px 10px;
+    font-size: 20px;
+    padding: 10px 15px;
 	border: 0;
-	border-radius: 0.317rem;
+	border-radius: 10px;
 	background-color: #aaa;
 	color: #fff;
 	text-decoration: none;
 	font-weight: 700;
 
-    line-height: 1.5;
+    line-height: 1;
 	font-family: "Helvetica Neue", Arial, sans-serif;
 	-webkit-appearance: none;
 	-webkit-font-smoothing: antialiased;
@@ -23,9 +24,9 @@ button {
   }
 
 .buttonGenBlue {
-    display: inline-block;
-    padding: 0.5em;
-    margin: 6px;
+
+
+  
     color: white;
     border-radius: 10px;
     background: #4f8be6;
@@ -42,8 +43,8 @@ button {
 
 .buttonGenWhiteBlue {
     display: inline-block;
-    padding: 0.5em;
-    margin: 6px;
+
+  
     color: white;
     border-radius: 10px;
     background: #4f8be6;
