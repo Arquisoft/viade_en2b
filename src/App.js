@@ -1,26 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
+import GenericButton from './components/generic_components/GenericButton';
+import MainNavBar from './components/generic_components/MainNavBar';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React. Developed using Docker.
-        </a>
-      </header>
-    </div>
-  );
+import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom";
+import MainPage from './components/pages/mainPage';
+import LoginPage from './components/pages/login';
+class App extends Component {
+  render(){
+
+    return <Router>
+      <Switch>
+        <Route exact path="/" component={MainPage}/>
+        <Route exact path="/login" component={LoginPage}/>
+      </Switch>
+    </Router>
+  }
 }
 
 export default App;

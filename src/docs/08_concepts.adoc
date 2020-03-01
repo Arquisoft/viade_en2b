@@ -2,8 +2,6 @@
 == Cross-cutting Concepts
 
 
-[role="arc42help"]
-****
 .Not Yet Implemented
 As there is no final decisions about anything at the moment that belongs to this category because the development of the app hasn´t started yet, so there is not much to put in this category for now, but it will be updated as the project goes on.
 I haven´t erased the examples of this document to take a look to them when it is really needed in the near future.
@@ -51,7 +49,6 @@ Note: it might be difficult to assign individual concepts to one specific topic
 on this list.
 
 image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
-****
 
 
 === _<Concept 1>_
