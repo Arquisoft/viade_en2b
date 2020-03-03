@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../../assets/css/GenericButton.css';
-import {Link} from "react-router-dom";
+
 
 class GenericButton extends Component {
  render(){

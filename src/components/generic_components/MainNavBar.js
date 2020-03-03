@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../../assets/css/MainNavBar.css';
 import GenericButton from './GenericButton';
 
-import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom";
+import { Link} from "react-router-dom";
 
 //I used bootstrap just not to leave a white nav bar on this commit :)
 class MainNavBar extends Component{

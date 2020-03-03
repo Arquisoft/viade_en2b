@@ -1,10 +1,7 @@
 import React from 'react';
 import GenericButton from '../generic_components/GenericButton';
-import MainNavBar from '../generic_components/MainNavBar';
-import GenericText from '../generic_components/GenericText';
-import logo from '../../logo.svg';
+
 import '../../assets/css/login.css'
-import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom";
 
 const LoginPage = () => {
   return (
