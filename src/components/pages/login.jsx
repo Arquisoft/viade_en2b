@@ -4,7 +4,6 @@ import MainNavBar from '../generic_components/MainNavBar';
 import GenericText from '../generic_components/GenericText';
 import logo from '../../logo.svg';
 import '../../assets/css/login.css'
-import getUserInfo from '../getUserInfo';
 import {BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom";
 
 const LoginPage = () => {
@@ -33,7 +32,7 @@ const LoginPage = () => {
 					
 					<div class="container-login100-form-btn">
 						<GenericButton className="login100-form-btn"
-							        message="Login" onclick={"getWebId($input100.getText)"}
+							        message="Login"
 						/>
 					</div>
 
@@ -44,5 +43,4 @@ const LoginPage = () => {
     
   );
 };
-
 export default LoginPage;
