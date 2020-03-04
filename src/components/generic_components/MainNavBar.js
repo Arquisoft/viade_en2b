@@ -26,7 +26,7 @@ class MainNavBar extends Component{
                        <GenericButton 
                         className="buttonGenBlue"
                         name="buttomNavLogin"
-                        message=<Link to="/login" className="link">LOG IN</Link>
+                        message={<Link to="/login" className="link">LOG IN</Link>}
                         />
 			        </ul>
                 </div>
