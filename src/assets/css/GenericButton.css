@@ -1,0 +1,64 @@
+button {
+    text-align: center;
+    color: #000;
+
+
+
+    width: auto;
+    height: auto;
+    margin: 15px 10px;
+    font-size: 20px;
+    padding: 10px 15px;
+	border: 0;
+	border-radius: 10px;
+	background-color: #aaa;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 700;
+
+    line-height: 1;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	-webkit-appearance: none;
+	-webkit-font-smoothing: antialiased;
+    
+  }
+
+.buttonGenBlue {
+
+
+  
+    color: white;
+    border-radius: 10px;
+    background: #4f8be6;
+    box-shadow:  5px 5px 10px #4376c4, 
+             -5px -5px 10px #5ba0ff;
+}
+
+.buttonGenBlue:active {
+    border-radius: 10px;
+    background: #4f8be6;
+    box-shadow: inset 5px 5px 10px #4376c4, 
+            inset -5px -5px 10px #5ba0ff;
+}
+
+.buttonGenWhiteBlue {
+    display: inline-block;
+
+  
+    color: white;
+    border-radius: 10px;
+    background: #4f8be6;
+    box-shadow:  5px 5px 10px #7b9ccc, 
+             -5px -5px 10px #94b3df;
+}
+
+
+
+.buttonGenWhiteBlue:active {
+    -ms-transform: translateY(1px);
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);/*Move down*/
+
+    border: solid 4px #b9b0e7;
+    box-shadow: inset 1px 1px 0px #c0b7ee;
+}
