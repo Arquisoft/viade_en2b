@@ -1,0 +1,28 @@
+ul {
+    /*
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    */  
+  }
+  
+.sectionRoutes{
+    margin: 25px;
+    padding: 15px;
+    border-radius: 25px;
+    border : 12px solid rgb(25, 25, 104);
+    border-style: outset;
+    box-shadow:  3px 3px 5px #0b4191, 
+             -3px -3px 5px #2158aa;
+}
+  
+.routeListElementContainter p {
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+  
+}
+
+.sectionRoutes{
+    background-color: #f8f8f8;
+}
