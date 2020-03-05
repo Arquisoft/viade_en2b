@@ -1,8 +1,8 @@
 import React from 'react';
-import GenericButton from '../generic_components/GenericButton';
 import BurgerMenu from '../generic_components/BurgerMenu';
 
 import '../../assets/css/login.css'
+import LoginButton from '../spec_components/LoginButton';
 
 const LoginPage = () => {
   return (
@@ -33,8 +33,8 @@ const LoginPage = () => {
 
 					
 					<div className="container-login100-form-btn">
-						<GenericButton className="login100-form-btn"
-							        message="Login"
+						<LoginButton className="login100-form-btn"
+									message="Login"
 						/>
 					</div>
 
