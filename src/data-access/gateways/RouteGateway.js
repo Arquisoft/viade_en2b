@@ -1,34 +1,39 @@
-import { fetchDocument } from "tripledoc";
-
 class RouteGateway {
-    constructor(webId) {
-        this.webId = webId; // Base address of POD
-    }
-
     async findByName(name) {
         // call to ldflex to find :Route with subject #name
-        const profileDoc = await fetchDocument(webId);
-        const profile = profileDoc.getSubject(webId);
-        return profile.getAllStrings(/* https://{routesURI} + */name);
+        
     }
 
     async findAll() {
         // call to ldflex to find every :Route
+        var routes = RouteRDF.findAll();
+        // convert the routes to JSON
+        var parsedRoutes = RouteJSONtoRDF.toJSON(routes);
     }
 
     async add(route) {
         // Note: route is in GeoJSON format, or similar
         // pass the route to RouteJSONtoRDF, receive RDF object
-        // call to ldflex to add the route in the pod accordingly
+        var parsedRoute = RouteJSONtoRDF.toRDF(route);
+        // call to add the route in the pod accordingly
+        await RouteRDF.add(parsedRoute);
     }
 
     async deleteByName(name) {
-        // call to ldflex to find the route by the name
+        // call to find the route by the name
+        var route = await RouteRDF.findByName(name);
         // if any, call again to delete it
+        if(route && route.name) {
+            RouteRDF.delete(route);
+        }
     }
 
     async updateByName(name, route) {
         // call to ldflex to find route by the name
+        var route = await RouteRDF.findByName(name);
         // if any, modify it
+        if(route && route.name) {
+            RouteRDF.update(route);
+        }
     }
 }
