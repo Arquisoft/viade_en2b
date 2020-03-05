@@ -2,32 +2,32 @@ import React, { Component } from 'react';
 import '../../assets/css/MainNavBar.css';
 import GenericButton from './GenericButton';
 
-import { Link} from "react-router-dom";
-
 //I used bootstrap just not to leave a white nav bar on this commit :)
 class MainNavBar extends Component{
 	render() {
 		return (
-		  	<nav class="navbar navbar-inverse">
-		  	<div class="container-fluid">
-			  	<div class="navbar-header">
-                    <button type ="button" class="navbar-toggle" data-toggle="collapse"
+		  	<nav className="navbar navbar-inverse">
+		  	<div className="container-fluid">
+			  	<div className="navbar-header">
+                    <button type ="button" className="navbar-toggle" data-toggle="collapse"
 				     data-target="#myNavbar">
 				        <span>| | |</span>
 			        </button>
-                    <div class="brandContainer">
-				        <a class="navbar-brand" href="https://github.com/Arquisoft/viade_en2b">
+                    <div className="brandContainer">
+				        <a className="navbar-brand" href="https://github.com/Arquisoft/viade_en2b">
                             <span>{this.props.companyName}</span>
                         </a>
                     </div>
 			  	</div>
-                <div class ="collapse navbar-collapse" id="myNavbar">
-			        <ul class ="nav navbar-nav navbar-right">	  
-                       <GenericButton 
+                <div className ="collapse navbar-collapse" id="myNavbar">
+			        <ul className ="nav navbar-nav navbar-right">	  
+                   <form method="get" action="/login">
+				       <GenericButton 
                         className="buttonGenBlue"
                         name="buttomNavLogin"
-                        message=<Link to="/login" className="link">LOG IN</Link>
+                        message="Log in"
                         />
+						</form>
 			        </ul>
                 </div>
 		  	</div>
