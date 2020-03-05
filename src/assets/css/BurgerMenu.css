@@ -1,10 +1,11 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
+    margin-top: 5px;
     position: fixed;
     width: 36px;
     height: 30px;
-    left: 36px;
-    top: 80px;
+    left: 28px;
+    top: 36px;
   }
   
   /* Color/shape of burger icon bars */
@@ -14,7 +15,7 @@
   
   /* Color/shape of burger icon bars on hover*/
   .bm-burger-bars-hover {
-    background: cyan;
+    background: rgb(229, 238, 238);
   }
   
   /* Position and sizing of clickable cross button */
@@ -53,7 +54,7 @@
   /* Wrapper for item list */
   .bm-item-list {
     color: #b8b7ad;
-    padding: 0.8em;
+   
   }
   
   /* Individual item */
@@ -67,16 +68,75 @@
   }
 
  .bm-item:hover, .link{
-    color: cyan;
+    color: rgb(146, 163, 163);
     text-decoration: none;
   }
 
   .bm-item:focus, .link {
-    color: cyan;
+    color: rgb(146, 163, 163);
     text-decoration: none;
   }
   
   /* Styling of overlay */
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
+  }
+
+  .bm-menu a {
+      padding: 1em;
+      text-transform: uppercase;
+      display: block;
+      color: #ec9a29;
+      transition: background 0.3s, box-shadow 0.3s;
+      box-shadow: inset 0 -2px rgba(0, 0, 0, 0.2);
+    }
+.bm-menu a:hover{
+  color: #a8201a;
+
+  transition: 1s ease-out;
+}
+
+@keyframes colorTransition {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+  .bm-menu{
+      height: 100%;
+      padding: 0%;
+      box-sizing: border-box;
+      overflow: auto;
+      background: #373a47;
+  } 
+  nav {
+    display: block;
+  }
+  *, ::after, ::before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .fa {
+    width: 1.28571429em;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .fa:focus {
+    color: #b8b7ad;
+    font-weight: 400;
+  }
+  .bm-item-list h2 span{
+    color: #dad2d8;
+  }
+  .bm-item-list a span {
+    margin-left: 10px;
+    font-weight: 700;
+    color: #dad2d8;
   }

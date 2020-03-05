@@ -19,7 +19,7 @@ span{
 }
 .navbar-inverse {
     margin-bottom: 0%;
-    background-color: rgb(102, 150, 240);
+    background-color: #0f8b8d;
     transition: background-color .5s;
     color: #ffffff;
 }

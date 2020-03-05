@@ -29,9 +29,9 @@ button {
   
     color: white;
     border-radius: 10px;
-    background: #4f8be6;
-    box-shadow:  5px 5px 10px #4376c4, 
-             -5px -5px 10px #5ba0ff;
+    background: #265b6e;
+    box-shadow:  5px 5px 10px #214755, 
+             -5px -5px 10px #1f4452;
 }
 
 .buttonGenBlue:active {
