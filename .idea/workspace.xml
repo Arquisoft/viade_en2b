@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c1006f9-4d19-4054-96e8-9881613fa9d4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Entities/GeoCoordinate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entities/Route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/createRoutes/createSomeRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/getUserInfo.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +53,10 @@
       <option name="presentableId" value="Default" />
       <updated>1583090792783</updated>
       <workItem from="1583090803032" duration="4450000" />
-      <workItem from="1583316426598" duration="1720000" />
+      <workItem from="1583316426598" duration="3648000" />
+      <workItem from="1583408336845" duration="2514000" />
+      <workItem from="1583412403675" duration="1279000" />
+      <workItem from="1583419146428" duration="1078000" />
     </task>
     <servers />
   </component>
@@ -61,9 +64,9 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#ESLint" timestamp="1583317110761">
+    <state x="361" y="71" key="#ESLint" timestamp="1583419880737">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="71" key="#ESLint/0.0.1536.824@0.0.1536.824" timestamp="1583317110761" />
+    <state x="361" y="71" key="#ESLint/0.0.1536.824@0.0.1536.824" timestamp="1583419880737" />
   </component>
 </project>

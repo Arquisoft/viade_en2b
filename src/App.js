@@ -11,7 +11,6 @@ import LoginPage from './components/pages/login';
 class App extends Component {
 
   render(){
-    getWebId("https://migi.solid.community/");
     return <Router>
       <Switch>
         <Route exact path="/" component={MainPage}/>
