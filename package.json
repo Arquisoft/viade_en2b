@@ -4,6 +4,7 @@
   "homepage": "https://arquisoft.github.io/viade_0/",
   "private": true,
   "dependencies": {
+    "@solid/query-ldflex": "^2.10.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
