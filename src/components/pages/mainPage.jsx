@@ -14,7 +14,7 @@ const MainPage = () => {
         pageWrapId="page-wrap"
         container="outer-container"
       />
-      <main className="App-header" id="page-wrap">
+      <main className="" id="page-wrap">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
