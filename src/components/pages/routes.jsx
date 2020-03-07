@@ -3,16 +3,18 @@ import React from "react";
 import "../../assets/css/routes.css";
 
 import MainNavBar from "../generic_components/MainNavBar"; //Hamburger Menu???
-
+import BurgerMenu from '../generic_components/BurgerMenu';
 const RoutesPage = () => {
   var frutas = ["Ruta1", "Ruta2", "Ruta3", "Ruta4"];
 
   return (
-    <body className="bodyRoutes">
+    <body className="bodyRoutes" id="outer-container">
       <main>
-        <div className="App">
-        
-
+          <BurgerMenu 
+          pageWrapId="page-wrap"
+          container="outer-container"
+          />
+        <div className="App routes" id="page-wrap">
           <header className="bodyHeader"></header>
 
           <section className="sectionRoutes">

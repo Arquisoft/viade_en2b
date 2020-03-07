@@ -23,7 +23,7 @@ const LoginPage = () => {
 					</span>
 
 					<div className="wrap-input100">
-						<input className="input100" list="providers" type="text" name="provider" placeholder="Provider"/>
+						<input id="inputLogin" className="input100" list="providers" type="text" name="provider" placeholder="Provider"/>
 						<datalist id = "providers">
                             <option value="https://solid.community/"/>
                             <option value="https://inrupt.net/"/>
