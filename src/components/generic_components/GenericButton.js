@@ -3,9 +3,12 @@ import '../../assets/css/GenericButton.css';
 
 
 class GenericButton extends Component {
+    prueba = () =>{
+        console.log("Gole");
+    }
  render(){
   return (
-      <button className={this.props.className} name={this.props.name} onClick={this.props.method}>
+      <button className={this.props.className} name={this.props.name} onClick={this.prueba}>
        {this.props.message}
         
       </button>

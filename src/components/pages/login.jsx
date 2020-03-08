@@ -1,8 +1,8 @@
 import React from 'react';
-import GenericButton from '../generic_components/GenericButton';
 import BurgerMenu from '../generic_components/BurgerMenu';
 
 import '../../assets/css/login.css'
+import LoginButton from '../spec_components/LoginButton';
 
 const LoginPage = () => {
   return (
@@ -23,7 +23,7 @@ const LoginPage = () => {
 					</span>
 
 					<div className="wrap-input100">
-						<input className="input100" list="providers" type="text" name="provider" placeholder="Provider"/>
+						<input id="inputLogin" className="input100" list="providers" type="text" name="provider" placeholder="Provider"/>
 						<datalist id = "providers">
                             <option value="https://solid.community/"/>
                             <option value="https://inrupt.net/"/>
@@ -33,8 +33,8 @@ const LoginPage = () => {
 
 					
 					<div className="container-login100-form-btn">
-						<GenericButton className="login100-form-btn"
-							        message="Login"
+						<LoginButton className="login100-form-btn"
+									message="Login"
 						/>
 					</div>
 
