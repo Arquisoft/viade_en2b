@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../../assets/css/GenericButton.css';
 import GenericButton from '../generic_components/GenericButton';
 import PropTypes from 'prop-types';
+import Login from '../login/Login';
 
 class LoginButton extends Component {
     handleClick(e){
@@ -9,6 +10,7 @@ class LoginButton extends Component {
             var sr = document.getElementById("inputLogin").value;
             console.log(sr);
             //Desde este sitio se hace la llamada de login
+            
     }
     
     render () {
