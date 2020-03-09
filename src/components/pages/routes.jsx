@@ -4,8 +4,45 @@ import "../../assets/css/routes.css";
 
 
 import BurgerMenu from '../generic_components/BurgerMenu';
+const auth = require('solid-auth-client')
+const FC   = require('solid-file-client')
+const fc   = new FC( auth )
+async function loadUserRoutes(){
+    let routes = [];
+    let session = await auth.currentSession()
+    if (!session) { session = await auth.login() }
+    console.log(`Logged in as ${session.webId}.`)
+    let routesFolder =  session.webId.substring(0,session.webId.length-16)+"/public/Routes/";
+    if( await fc.itemExists(routesFolder) ){
+        console.log(routesFolder+" exists");
+        try {
+            let content = await fc.readFolder( routesFolder );
+            let files = content.files;
+
+            for(let i=0;i<files.length;i++){
+                console.log(files[i]);
+            }
+
+
+
+        }
+        catch(error) {
+            console.log("The folder couldn't be read")
+            console.log( error )         // A full error response
+            console.log( error.status )  // Just the status code of the error
+            console.log( error.message ) // Just the status code and statusText
+        }
+
+
+    }else{
+        console.log("user has no routes directory")
+    }
+
+    return routes;
+}
+loadUserRoutes();
 const RoutesPage = () => {
-  var frutas = ["Ruta1", "Ruta2", "Ruta3", "Ruta4"];
+  var frutas = ['Route 1','Route 2']
 
   return (
     <body className="bodyRoutes" id="outer-container">
