@@ -1,3 +1,5 @@
+import ReadRoute from "../../RouteManager/ReadRoute"
+import {Read} from "rdf-namespaces/dist/acl";
 export default class RouteGateway {
     findByName(name) {
     }
@@ -8,6 +10,11 @@ export default class RouteGateway {
         // convert the routes to JSON
         //var parsedRoutes = RouteJSONtoRDF.toJSON(routes);
         //return parsedRoutes;
+    }
+    read(routeFile){
+        let routeReader = new ReadRoute();
+        let routeList  = routeReader.read(routeFile);
+        return routeList;
     }
 
     add(route) {
