@@ -13,7 +13,7 @@ export default class RouteGateway {
     }
     read(routeFile){
         let routeReader = new ReadRoute();
-        let routeList  = routeReader.read(routeFile);
+        let routeList  = routeReader.readRoute(routeFile);
         return routeList;
     }
 
