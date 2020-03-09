@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import '../../assets/css/GenericButton.css';
-import {Link} from "react-router-dom";
+
 
 class GenericButton extends Component {
+    prueba = () =>{
+        console.log("Gole");
+    }
  render(){
   return (
-      <button className={this.props.className} name={this.props.name}>
+      <button className={this.props.className} name={this.props.name} onClick={this.prueba}>
        {this.props.message}
         
       </button>
