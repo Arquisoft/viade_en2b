@@ -2,7 +2,6 @@ import React from 'react';
 import BurgerMenu from '../generic_components/BurgerMenu';
 
 import '../../assets/css/login.css'
-import LoginButton from '../spec_components/LoginButton';
 import Login from '../login/Login';
 
 const LoginPage = () => {

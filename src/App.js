@@ -5,7 +5,6 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import MainPage from './components/pages/mainPage';
 import LoginPage from './components/pages/login';
-import Login from './components/login/Login';
 
 import RoutesPage from './components/pages/routes';
 class App extends Component {
