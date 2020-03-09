@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c1006f9-4d19-4054-96e8-9881613fa9d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/jsonTests/jsonTest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/BasicRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/BasicRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RouteManager/ReadRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/RouteManager/ReadRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +70,7 @@
       <workItem from="1583419146428" duration="1078000" />
       <workItem from="1583695696309" duration="7777000" />
       <workItem from="1583709052501" duration="2259000" />
-      <workItem from="1583711532127" duration="5201000" />
+      <workItem from="1583711532127" duration="6522000" />
     </task>
     <servers />
   </component>
@@ -88,21 +87,25 @@
     </state>
     <state x="591" y="208" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583748511781" />
     <state x="739" y="262" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1583709201521" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1583706430406">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1583766471279">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583766471279" />
     <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583706430406" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1583706430406">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1583766471279">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583766471279" />
     <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583706430406" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1583706430405">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1583766471279">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583766471279" />
     <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583706430405" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1583706430406">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1583766471279">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583766471279" />
     <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583706430406" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1583703040701">
       <screen x="0" y="0" width="1920" height="1040" />
