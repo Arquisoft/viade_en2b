@@ -1,20 +1,25 @@
 import React from 'react';
 
-import MainNavBar from '../generic_components/MainNavBar';
+import GenericButton from '../generic_components/GenericButton';
+
 import logo from '../../logo.svg';
 import BurgerMenu from '../generic_components/BurgerMenu';
-
+import '../../assets/css/GenericButton.css';
+import '../../assets/css/mainPage.css';
+import {Link} from "react-router-dom";
 
 const MainPage = () => {
   return (
     <div className="App" id="outer-container">
-      <MainNavBar companyName="VIADE"/>
-
       <BurgerMenu 
         pageWrapId="page-wrap"
         container="outer-container"
       />
-      <main className="" id="page-wrap">
+      <main className="main" id="page-wrap">
+        <GenericButton
+          className="buttonGenBlue loginButton"
+          message=<Link to="/login">LOGIN</Link>
+        />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
