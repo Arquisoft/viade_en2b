@@ -2,9 +2,13 @@ const auth = require('solid-auth-client')
 const FC   = require('solid-file-client')
 const fc   = new FC(  auth)
 
+
+
 async function getRoutes(){
-   //let session = await auth.currentSession()
-    //if (!session) { session = await auth.login() }
+   let session = await auth.currentSession()
+    if (!session) { session = await auth.login() }
+
+    getWebId("https://migi.solid.community/");
     //console.log(`Logged in as ${session.webId}.`)
     if( await fc.itemExists( "https://violetaruizm.inrupt.net/Public/Routes" ) ){
         let content = await fc.readFile( "https://violetaruizm.inrupt.net/Public/Routes")
