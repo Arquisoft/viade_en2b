@@ -1,6 +1,6 @@
 class GeoCoordinate{
     constructor(latitude, longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.lat = latitude;
+        this.lng = longitude;
     }
 }
