@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c1006f9-4d19-4054-96e8-9881613fa9d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Entities/BasicRoute.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RouteManager/ReadRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entities/GeoCoordinate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/GeoCoordinate.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +60,7 @@
       <workItem from="1583419146428" duration="1078000" />
       <workItem from="1583695696309" duration="7777000" />
       <workItem from="1583709052501" duration="2259000" />
-      <workItem from="1583711532127" duration="2381000" />
+      <workItem from="1583711532127" duration="3871000" />
     </task>
     <servers />
   </component>
