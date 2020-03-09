@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c1006f9-4d19-4054-96e8-9881613fa9d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/RouteManager/ReadRoute.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jsonTests/jsonTest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/BasicRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/BasicRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RouteManager/ReadRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/RouteManager/ReadRoute.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +33,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.14.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../TestJavascript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/jsonTests" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -42,6 +44,15 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Github\ASW\viade_en2b\src\jsonTests" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Github\ASW\viade_en2b\src\jsonTests" />
+      <recent name="D:\Github\ASW\viade_en2b\src\RouteManager" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -60,7 +71,7 @@
       <workItem from="1583419146428" duration="1078000" />
       <workItem from="1583695696309" duration="7777000" />
       <workItem from="1583709052501" duration="2259000" />
-      <workItem from="1583711532127" duration="3871000" />
+      <workItem from="1583711532127" duration="5201000" />
     </task>
     <servers />
   </component>
