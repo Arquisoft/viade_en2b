@@ -1,7 +1,16 @@
-.App {
-  text-align: center;
+body{
+  background: linear-gradient(-135deg, #0f8b8d, #dad2d8);
+ 
 }
 
+.App {
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+
+}
+a,p, span{
+  color: #dad2d8;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -14,7 +23,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #143642;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,6 +37,16 @@
   color: #61dafb;
 }
 
+.link {
+  color: #FFF;
+}
+.link:hover {
+   color: rgb(243, 243, 243)
+}
+
+.link:visited{
+  color: #FFF;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +55,4 @@
     transform: rotate(360deg);
   }
 }
+
