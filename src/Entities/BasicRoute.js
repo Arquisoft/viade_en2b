@@ -3,7 +3,4 @@ class Route{
         this.name = name;
         this.geoCoordinates = geoCoordinates;
     }
-     constructor(json) {
-
-     }
 }
