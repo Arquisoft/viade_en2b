@@ -1,6 +1,7 @@
 import React from "react";
 
 import "../../assets/css/routes.css";
+import Route from "../../Entities/BasicRoute"
 
 
 import BurgerMenu from '../generic_components/BurgerMenu';
@@ -8,19 +9,25 @@ const auth = require('solid-auth-client')
 const FC   = require('solid-file-client')
 const fc   = new FC( auth )
 async function loadUserRoutes(){
-    let routes = [];
-    let session = await auth.currentSession()
-    if (!session) { session = await auth.login() }
-    console.log(`Logged in as ${session.webId}.`)
+
+    let session = await auth.currentSession();
+    let popupUri = 'https://solid.community/common/popup.html';
+    if (!session || session.webId===undefined || session.webId===null)
+        session = await auth.popupLogin({ popupUri });
+    alert('Logged in as '+session.webId);
     let routesFolder =  session.webId.substring(0,session.webId.length-16)+"/public/Routes/";
+
     if( await fc.itemExists(routesFolder) ){
         console.log(routesFolder+" exists");
         try {
             let content = await fc.readFolder( routesFolder );
+
             let files = content.files;
 
             for(let i=0;i<files.length;i++){
-                console.log(files[i]);
+                let fileContent = await fc.readFile(files[i].url);
+                console.log(fileContent);
+
             }
 
 
@@ -38,7 +45,6 @@ async function loadUserRoutes(){
         console.log("user has no routes directory")
     }
 
-    return routes;
 }
 loadUserRoutes();
 const RoutesPage = () => {
