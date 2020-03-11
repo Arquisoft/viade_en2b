@@ -1,8 +1,8 @@
 import BasicRoute from "../Entities/BasicRoute"
-
+import jsonTest from "../jsonTests/jsonTest"
 class ReadRoute{
     readRoute(file){
-        let json =  JSON.parse(file);
+        let json =  JSON.parse(jsonTest);
         let i;
         let numberOfItems = json.length;
         let list = new Array[numberOfItems];
@@ -16,5 +16,4 @@ class ReadRoute{
         }
         return list;
     }
-
 }
