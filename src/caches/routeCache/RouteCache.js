@@ -1,13 +1,13 @@
-import gateway from './data-access/gateways';
+import * as RouteGateway from '../../data-access/gateways/RouteGateway';
 
-class RouteCache {
+export default class RouteCache {
     constructor() {
         this.routes = [];
     }
 
     addRoute(route) {
         if(route && !this.routes.find(obj => route.name === obj.name)) {
-            await gateway.add(route);
+            RouteGateway.add(route);
             this.routes.push(Object.assign({}, route));
         }
     }
@@ -23,7 +23,7 @@ class RouteCache {
         if(this.routes.length != 0) {
             return this.routes.slice();
         } else {
-            this.routes = await gateway.findAll();
+            this.routes = RouteGateway.findAll();
         }
     }
 
@@ -33,7 +33,7 @@ class RouteCache {
             return found;
         }
 
-        found = await gateway.findByName(route);
+        found = RouteGateway.findByName(route);
         if(found) {
             this.routes.push(found);
             this.routes.sort((r1, r2) => 
@@ -42,8 +42,3 @@ class RouteCache {
         return found; // Returns whatever is found for now.
     }
 }
-
-const instance = new RouteCache();
-Object.freeze(instance);
-
-export default instance;
