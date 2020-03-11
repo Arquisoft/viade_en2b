@@ -26,7 +26,8 @@ async function loadUserRoutes(){
 
             for(let i=0;i<files.length;i++){
                 let fileContent = await fc.readFile(files[i].url);
-                console.log(fileContent);
+                let json =  JSON.parse(fileContent);
+                console.log(json);
 
             }
 
