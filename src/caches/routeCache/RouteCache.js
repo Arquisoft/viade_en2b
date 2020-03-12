@@ -13,18 +13,15 @@ export default class RouteCache {
     }
 
     deleteRoute(route) {
-        let found = this.routes.find(obj => route.name === obj.name);
-        if(found) {
-            // TODO
-        }
+        this.routes = this.routes.filter(obj => route.name !== obj.name);
+        RouteGateway.deleteByName(route.name);
     }
 
     getRoutes() {
-        if(this.routes.length != 0) {
-            return this.routes.slice();
-        } else {
+        if(this.routes.length == 0) {
             this.routes = RouteGateway.findAll();
         }
+        return this.routes.slice();
     }
 
     getSelected(route) {

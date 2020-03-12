@@ -7,6 +7,7 @@ export function findAll() {
     // convert the routes to JSON
     //var parsedRoutes = RouteJSONtoRDF.toJSON(routes);
     //return parsedRoutes;
+    return new Array();
 }
 
 export function add(route) {
