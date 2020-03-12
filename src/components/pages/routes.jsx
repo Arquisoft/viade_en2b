@@ -2,11 +2,15 @@ import React from "react";
 import "../../assets/css/routes.css";
 import BurgerMenu from '../generic_components/BurgerMenu';
 import RouteGateway from '../../data-access/gateways/RouteGateway'
-let gateway = new RouteGateway();
-let routes = gateway.findAll();
+const gateway = new RouteGateway();
 
 const RoutesPage = () => {
-  var frutas = ["Route 1","Route 2","Route 3"];
+
+
+
+var frutas = ["Route 1","Route 2","Route 3","Route 4"];
+
+
 
   return (
     <body className="bodyRoutes" id="outer-container">

@@ -39,7 +39,9 @@ export default class RoutesLoader{
             console.log("user has no routes directory")
         }
 
-        return this.jsonToEntity(this.routesToJson(routes));
+       let rou =  this.jsonToEntity(this.routesToJson(routes));
+        console.log("rou length : "+rou.length);
+        return rou;
 
     }
 

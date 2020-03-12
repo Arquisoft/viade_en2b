@@ -5,17 +5,22 @@ export default class RouteGateway {
     findByName(name) {
     }
 
-    findAll() {
+       findAll() {
         // call to ldflex to find every :Route
         //var routes = RouteRDF.findAll();
         // convert the routes to JSON
         //var parsedRoutes = RouteJSONtoRDF.toJSON(routes);
         //return parsedRoutes;
-        let routesLoader = new RoutesLoader();
-       return routesLoader.loadUserRoutesFiles();
-
+         //
+          let routesLoader = new RoutesLoader();
+          let loadedRoutes =   routesLoader.loadUserRoutesFiles().bind(this);
+          console.log("Loaded routes length: "+loadedRoutes.length);
+          return loadedRoutes;
 
     }
+
+
+
    /* read(routeFile){
         let routeReader = new ReadRoute();
         let routeList  = routeReader.readRoute(routeFile);
