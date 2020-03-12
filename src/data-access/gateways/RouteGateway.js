@@ -10,6 +10,12 @@ export function findAll() {
     return new Array();
 }
 
+export function read(routeFile) {
+    let routeReader = new ReadRoute();
+    let routeList  = routeReader.readRoute(routeFile);
+    return routeList;
+}
+
 export function add(route) {
     // Note: route is in GeoJSON format, or similar
     // pass the route to RouteJSONtoRDF, receive RDF object
