@@ -40,7 +40,7 @@ export default class RoutesLoader{
         }
 
        let rou =  this.jsonToEntity(this.routesToJson(routes));
-        console.log("rou length : "+rou.length);
+
         return rou;
 
     }

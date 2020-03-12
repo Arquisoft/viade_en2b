@@ -13,7 +13,7 @@ export default class RouteGateway {
         //return parsedRoutes;
          //
           let routesLoader = new RoutesLoader();
-          let loadedRoutes =   routesLoader.loadUserRoutesFiles().bind(this);
+          let loadedRoutes =   routesLoader.loadUserRoutesFiles();
           console.log("Loaded routes length: "+loadedRoutes.length);
           return loadedRoutes;
 

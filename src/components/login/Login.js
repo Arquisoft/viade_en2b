@@ -1,6 +1,6 @@
 import React from 'react'
 import { LoggedIn, LoggedOut} from '@solid/react';
-import "../../RouteManager/ListUserRoutes.js"
+
 
 function Login() {
     const auth = require('solid-auth-client');
