@@ -2,7 +2,7 @@ import React from 'react';
 import BurgerMenu from '../generic_components/BurgerMenu';
 
 import '../../assets/css/login.css'
-import LoginButton from '../spec_components/LoginButton';
+import Login from '../login/Login';
 
 const LoginPage = () => {
   return (
@@ -32,18 +32,22 @@ const LoginPage = () => {
 					</div>
 
 					
-					<div className="container-login100-form-btn">
+					{/* <div className="container-login100-form-btn">
 						<LoginButton className="login100-form-btn"
 									message="Login"
 						/>
-					</div>
+						<Login></Login>
+					</div> */}
 
 				</form>
+
+				<div className="login100-form validate-form">
+						<Login></Login>
+				</div>
 			</div>
 		</div>
 	</div>
     
   );
 };
-
 export default LoginPage;

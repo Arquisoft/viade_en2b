@@ -1,0 +1,63 @@
+[
+{
+	"name" : "Oviedo",
+	"itinerary" [
+		{
+		"@type" : "GeoCoordinates"
+		"latitude" : "45.6768",
+		"longitude" : "47.7665"
+		},
+		{
+		"@type" : "GeoCoordinates"
+		"latitude" : "45.6768",
+		"longitude" : "47.7665"
+		}
+	]
+},
+
+{
+	"name" : "Gijon",
+	"itinerary" [
+		{
+		"@type" : "GeoCoordinates"
+		"latitude" : "85.6768",
+		"longitude" : "77.7665"
+		},
+		{
+		"@type" : "GeoCoordinates"
+		"latitude" : "105.6768",
+		"longitude" : "127.7665"
+		}
+	]
+},
+{
+	"name" : "Llanes",
+	"itinerary" [
+		{
+		"@type" : "GeoCoordinates"
+		"latitude" : "150.6768",
+		"longitude" : "157.7665"
+		},
+		{
+		"@type" : "GeoCoordinates"
+		"latitude" : "170.6768",
+		"longitude" : "170s.7665"
+		}
+	]
+},
+{
+	"name" : "Madrid",
+	"itinerary" [
+		{
+		"@type" : "GeoCoordinates"
+		"latitude" : "145.6768",
+		"longitude" : "167.7665"
+		},
+		{
+		"@type" : "GeoCoordinates"
+		"latitude" : "189.6768",
+		"longitude" : "190.7665"
+		}
+	]
+}
+]

@@ -2,7 +2,7 @@ import React from "react";
 
 import "../../assets/css/routes.css";
 
-import MainNavBar from "../generic_components/MainNavBar"; //Hamburger Menu???
+
 import BurgerMenu from '../generic_components/BurgerMenu';
 const RoutesPage = () => {
   var frutas = ["Ruta1", "Ruta2", "Ruta3", "Ruta4"];
