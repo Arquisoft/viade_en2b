@@ -16,10 +16,12 @@ const MainPage = () => {
         container="outer-container"
       />
       <main className="main" id="page-wrap">
-        <GenericButton
-          className="buttonGenBlue loginButton"
-          message=<Link to="/login">LOGIN</Link>
-        />
+        <Link to="/login">
+          <GenericButton
+            className="buttonGenBlue loginButton"
+            message="Login"
+          />
+        </Link>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.

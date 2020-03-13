@@ -22,28 +22,13 @@ const LoginPage = () => {
 						Pod Login
 					</span>
 
-					<div className="wrap-input100">
-						<input id="inputLogin" className="input100" list="providers" type="text" name="provider" placeholder="Provider"/>
-						<datalist id = "providers">
-                            <option value="https://solid.community/"/>
-                            <option value="https://inrupt.net/"/>
-                        </datalist>
-                        <span className="focus-input100"></span>
-					</div>
-
-					
-					{/* <div className="container-login100-form-btn">
-						<LoginButton className="login100-form-btn"
-									message="Login"
-						/>
+								
+					 
 						<Login></Login>
-					</div> */}
+				
 
 				</form>
 
-				<div className="login100-form validate-form">
-						<Login></Login>
-				</div>
 			</div>
 		</div>
 	</div>
