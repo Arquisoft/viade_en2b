@@ -4,6 +4,7 @@ import GenericButton from '../generic_components/GenericButton';
 
 import logo from '../../logo.svg';
 import BurgerMenu from '../generic_components/BurgerMenu';
+import FloatingButton from "../generic_components/FloatingButton"
 import '../../assets/css/GenericButton.css';
 import '../../assets/css/mainPage.css';
 import {Link} from "react-router-dom";
@@ -16,6 +17,7 @@ const MainPage = () => {
         container="outer-container"
       />
       <main className="main" id="page-wrap">
+      <FloatingButton/>
         <GenericButton
           className="buttonGenBlue loginButton"
           message=<Link to="/login">LOGIN</Link>
