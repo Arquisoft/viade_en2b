@@ -45,7 +45,6 @@
     ]
   },
   "devDependencies": {
-    "shx": "^0.3.2",
-    "solid-auth-client": "^2.4.1"
+    "shx": "^0.3.2"
   }
 }
