@@ -1,5 +1,5 @@
 function getKey() {
-	return "AIzaSyAQ9VqyZeJh5Duq3-iywYe1ED-G0eB4Ync";
+	return "AIzaSyArkTZgYLh1xaZOOLx6hXQccicYJZGK1uQ";
 }
 
 export default getKey;

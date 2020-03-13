@@ -2,7 +2,6 @@ import React from 'react';
 
 import GenericButton from '../generic_components/GenericButton';
 
-import logo from 'logo.svg';
 import BurgerMenu from 'components/generic_components/BurgerMenu';
 import 'assets/css/GenericButton.css';
 import 'assets/css/mainPage.css';
