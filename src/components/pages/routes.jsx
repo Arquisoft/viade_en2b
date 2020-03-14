@@ -1,17 +1,35 @@
 import React from "react";
 import "../../assets/css/routes.css";
+
 import BurgerMenu from '../generic_components/BurgerMenu';
 import RouteGateway from '../../data-access/gateways/RouteGateway'
 const gateway = new RouteGateway();
-
-const RoutesPage = () => {
 
 
 
 var frutas = ["Route 1","Route 2","Route 3","Route 4"];
 
 
+import Route from '../../Entities/Route';
 
+import {Link} from "react-router-dom";
+
+import BurgerMenu from '../generic_components/BurgerMenu';
+class RoutesPage extends React.Component {
+  render(){
+
+    var route = new Route('nombreRuta','itinerario');
+
+    var routes = [];
+
+    routes.push(route)
+
+    var sd = localStorage.getItem('md');
+    console.log(sd);
+
+
+  var frutas = ["Ruta1", "Ruta2", "Ruta3", "Ruta4"];
+  window.value  = 3;
   return (
     <body className="bodyRoutes" id="outer-container">
       <main>
@@ -32,14 +50,15 @@ var frutas = ["Route 1","Route 2","Route 3","Route 4"];
               />
             </div>
             <ul>
-              {frutas.map((item, index) => {
+              {routes.map((item, index) => {
                 return (
                   <li key={index}>
                     <div className="routeListElementContainter">
-                      <p>
-                        {" "}
-                        {item} nº {index + 1} in the list
-                      </p>
+                      <Link className="linkRoute" to="/"
+                       onClick={localStorage.setItem('route',JSON.stringify(item))
+                      }>
+                        {item.name} nº {index + 1} in the list
+                      </Link>
                     </div>
                   </li>
                 );
@@ -50,6 +69,7 @@ var frutas = ["Route 1","Route 2","Route 3","Route 4"];
       </main>
     </body>
   );
-};
+}
+}
 
 export default RoutesPage;

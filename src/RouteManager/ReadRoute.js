@@ -1,6 +1,6 @@
 import BasicRoute from "../Entities/BasicRoute"
 import jsonTest from "../jsonTests/jsonTest"
-class ReadRoute{
+export default class ReadRoute{
     readRoute(file){
         let json =  JSON.parse(jsonTest);
         let i;
