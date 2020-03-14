@@ -1,5 +1,5 @@
 import React from "react";
-import {Map, Polyline, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
+import {Map, Polyline, Marker, GoogleApiWrapper} from 'google-maps-react';
 import getStyle from './MapStyles.js';
 import getKey from 'ApiKey.js';
 
