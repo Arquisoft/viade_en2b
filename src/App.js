@@ -8,8 +8,9 @@ import LoginPage from './components/pages/login';
 
 import RoutesPage from './components/pages/routes';
 class App extends Component {
-
   render(){
+    // document.documentElement.setAttribute('data-theme', 'dark');
+    
     return <Router>
       <Switch>
         <Route exact path="/" component={MainPage}/>

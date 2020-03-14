@@ -17,8 +17,8 @@ const MainPage = () => {
       />
       <main className="main" id="page-wrap">
         <GenericButton
-          className="buttonGenBlue loginButton"
-          message=<Link to="/login">LOGIN</Link>
+          className="buttonGeneric loginButton"
+          message=<Link to="/login">LOG IN</Link>
         />
         <MapContainer/>  
       </main>
