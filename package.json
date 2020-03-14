@@ -20,9 +20,6 @@
     "solid-auth-client": "^2.4.1",
     "@solid/react": "^1.8.0",
     "react-burger-menu": "^2.6.13",
-    "react-router-dom": "^5.1.2",
-    "rdf-namespaces": "^1.8.0",
-    "prop-types": "^15.7.2",
     "tripledoc": "^4.2.2"
   },
   "scripts": {
