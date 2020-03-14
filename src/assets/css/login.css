@@ -20,6 +20,8 @@
 
 .login100-form-btn{
     background: #c4995e;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 datalist{
@@ -74,4 +76,9 @@ datalist{
 	
 	-webkit-appearance: none;
 	-webkit-font-smoothing: antialiased;
+}
+
+.LoggetOut{
+    margin: 0px;
+    padding: 0px;
 }

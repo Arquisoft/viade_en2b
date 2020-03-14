@@ -9,7 +9,12 @@ import '../../assets/css/GenericButton.css';
 import '../../assets/css/mainPage.css';
 import {Link} from "react-router-dom";
 
-const MainPage = () => {
+
+class MainPage extends React.Component{
+  render(){
+  localStorage.setItem('md','ds');
+  var ruta = JSON.parse(localStorage.getItem('route'));
+  console.log(ruta.name);
   return (
     <div className="App" id="outer-container">
       <BurgerMenu 
@@ -37,6 +42,7 @@ const MainPage = () => {
       </main>
     </div>
   );
-};
+}
+}
 
 export default MainPage;
