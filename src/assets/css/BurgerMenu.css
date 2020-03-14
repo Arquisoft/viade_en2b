@@ -1,21 +1,29 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
     margin-top: 5px;
-    position: fixed;
-    width: 36px;
+    position: absolute;
+    width: 46px;
     height: 30px;
     left: 28px;
     top: 36px;
+    
+    border-radius: 10px;
+    background-color: var(--bg-color);
+    box-shadow:  -5px -5px 9px var(--shadow-up),
+                  5px 5px 9px var(--shadow-down);
   }
   
   /* Color/shape of burger icon bars */
   .bm-burger-bars {
-    background: whitesmoke;
+    background: var(--font-color);
+    border-radius: 10px;
+    margin: auto;
+    width: 70%;
   }
   
   /* Color/shape of burger icon bars on hover*/
   .bm-burger-bars-hover {
-    background: rgb(229, 238, 238);
+    background: var(--font-color-hover);
   }
   
   /* Position and sizing of clickable cross button */
