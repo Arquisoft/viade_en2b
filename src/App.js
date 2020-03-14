@@ -3,14 +3,16 @@ import React, {Component} from 'react';
 import './App.css';
 
 
+
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import MainPage from './components/pages/mainPage';
 import LoginPage from './components/pages/login';
 
 import RoutesPage from './components/pages/routes';
 class App extends Component {
-
   render(){
+    // document.documentElement.setAttribute('data-theme', 'dark');
+    
     return <Router>
       <Switch>
         <Route exact path="/" component={MainPage}/>
@@ -21,8 +23,11 @@ class App extends Component {
     </Router>
 
   }
-
 }
 
+
+
+
 export default App;
+
 
