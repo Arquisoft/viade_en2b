@@ -16,17 +16,20 @@ import RoutesLoader from '../../RouteManager/ListUserRoutes'
 
 
 class RoutesPage extends React.Component {
-  
+  selectedOne;
+  setRoute(route){
+      this.selectedOne = route;
+    }
   render(){
     var loader = new RoutesLoader();
     var rutas;
     loader.loadUserRoutesFiles();
     rutas = JSON.parse(localStorage.getItem('rutas'));
     console.log(rutas);
-
-    console.log(JSON.stringify(rutas[0]))
-    localStorage.setItem('route',JSON.stringify(rutas[0]))
- 
+    
+    //console.log(JSON.stringify(rutas[0]))
+   // localStorage.setItem('route',JSON.stringify(rutas[0]))
+    
     return (
     <div className="bodyRoutes" id="outer-container">
       <main>
@@ -47,12 +50,12 @@ class RoutesPage extends React.Component {
               />
             </div>
             <ul>
-              {rutas.map((item, index) => {
+              {rutas.map((item, index)=>{
                 return (
-                  <li key={index}>
+                  <li id={"route"+index} key={index}>
                     <div className="routeListElementContainter">
                       <Link className="linkRoute" to="/"
-                      onClick={localStorage.setItem('route',JSON.stringify(rutas[index-1]))}
+                      onClick={e=>{localStorage.setItem('route',JSON.stringify(rutas[index]))}}
                       >
                         Ruta {item.name}
                       </Link>

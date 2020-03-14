@@ -5,6 +5,11 @@ import getKey from 'ApiKey.js';
 
  
 export class MapContainer extends React.Component {
+
+  
+  rutaSeleccionada = JSON.parse(localStorage.getItem('route'));
+  puntos  = this.rutaSeleccionada.geoCoordinates
+ 
   center={lat: 43.362448, lng: -5.849005}
   route = [{lat: 43.361778, lng: -5.848008}, {lat: 43.363836, lng: -5.851059}, {lat: 43.363174, lng: -5.852273}]
   zoom = 15
@@ -12,6 +17,21 @@ export class MapContainer extends React.Component {
   setZoom(zoom) { this.zoom = zoom }
   
   render() {
+    
+    var ruta = [];
+    if(typeof(this.rutaSeleccionada) !== "undefined"){
+      this.puntos.map((punto)=>{
+        ruta.push({
+          lat: parseFloat(punto.latitude),
+          lng: parseFloat(punto.longitude)
+        });
+      })
+     console.log(ruta);
+     console.log(this.route);
+     this.route = ruta;
+
+    }
+    
     if(this.route.length!==0) {
       this.center=this.route[Math.floor(this.route.length/2)];
     }

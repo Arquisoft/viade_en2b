@@ -1,0 +1,15 @@
+{
+	"name" : "Gijon pero bien",
+	"itinerary" :[
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : 45.6768,
+		"longitude" : 47.7665
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : 5.6768,
+		"longitude" : 47.7665
+		}
+	]
+}
