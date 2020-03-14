@@ -8,7 +8,12 @@ import 'assets/css/mainPage.css';
 import MapContainer from 'components/map_components/MapContainer.js';
 import {Link} from 'react-router-dom';
 
-const MainPage = () => {
+
+class MainPage extends React.Component{
+  render(){
+  localStorage.setItem('md','ds');
+  var ruta = JSON.parse(localStorage.getItem('route'));
+  console.log(ruta.name);
   return (
     <div className="App" id="outer-container">
       <BurgerMenu 
@@ -16,6 +21,7 @@ const MainPage = () => {
         container="outer-container"
       />
       <main className="main" id="page-wrap">
+      <FloatingButton/>
         <GenericButton
           className="buttonGeneric loginButton"
           message=<Link to="/login">LOG IN</Link>
@@ -24,6 +30,7 @@ const MainPage = () => {
       </main>
     </div>
   );
-};
+}
+}
 
 export default MainPage;
