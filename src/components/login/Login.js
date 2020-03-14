@@ -1,6 +1,7 @@
 import React from 'react'
 import { LoggedIn, LoggedOut} from '@solid/react';
 
+
 function Login() {
     const auth = require('solid-auth-client');
 
@@ -26,6 +27,7 @@ async function popup(auth) {
     if (!session)
         session = await auth.popupLogin({ popupUri });
     alert(`Logged in as ${session.webId}`);
+
 }
 
 export default Login
