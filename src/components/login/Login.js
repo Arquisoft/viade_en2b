@@ -2,6 +2,7 @@ import React from 'react'
 import { LoggedIn, LoggedOut } from '@solid/react';
 import { AudioObject } from 'rdf-namespaces/dist/schema';
 
+
 function Login() {
     const auth = require('solid-auth-client');
 
@@ -37,6 +38,7 @@ async function popup(e, auth) {
     if (!session)
         session = await auth.popupLogin({ popupUri });
     alert(`Logged in as ${session.webId}`);
+
 }
 
 export default Login

@@ -1,15 +1,19 @@
+
+import ReadRoute from "../../RouteManager/ReadRoute"
+import RoutesLoader from "../../RouteManager/ListUserRoutes"
+import {Read} from "rdf-namespaces/dist/acl";
+
 import ReadRoute from '../RouteManager/ReadRoute'
+
 
 export function findByName(name) {
 }
 
 export function findAll() {
-    // call to ldflex to find every :Route
-    //var routes = RouteRDF.findAll();
-    // convert the routes to JSON
-    //var parsedRoutes = RouteJSONtoRDF.toJSON(routes);
-    //return parsedRoutes;
-    return new Array();
+    let routesLoader = new RoutesLoader();
+    let loadedRoutes =   routesLoader.loadUserRoutesFiles();
+    console.log("Loaded routes length: "+loadedRoutes.length);
+    return loadedRoutes;
 }
 
 export function read(routeFile) {
