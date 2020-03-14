@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 /.vs
+/.idea
+
 
 # testing
 /coverage
@@ -25,4 +27,4 @@ yarn-debug.log*
 yarn-error.log*
 
 
-.idea/
+
