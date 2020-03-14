@@ -1,0 +1,15 @@
+{
+	"name" : "Oviedo",
+	"itinerary" :[
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "45.6768",
+		"longitude" : "47.7665"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "45.6768",
+		"longitude" : "47.7665"
+		}
+	]
+}
