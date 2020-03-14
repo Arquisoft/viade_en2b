@@ -35,6 +35,11 @@
 		"@type" : "GeoCoordinates",
 		"latitude" : "43.365050",
 		"longitude" : "-5.852853"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "43.366150",
+		"longitude" : "-5.854548"
 		}
 	]
 }
