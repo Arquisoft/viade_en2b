@@ -1,9 +1,19 @@
 import BasicRoute from "../Entities/BasicRoute"
-
-class ReadRoute{
+import jsonTest from "../jsonTests/jsonTest"
+export default class ReadRoute{
     readRoute(file){
-        let json =  JSON.parse(file);
-        let basicRoute = new BasicRoute(json.name, json.itirenary);
+        let json =  JSON.parse(jsonTest);
+        let i;
+        let numberOfItems = json.length;
+        let list = new Array[numberOfItems];
+        for(i in json){
+            list.add(new BasicRoute(i.name, i.itirenary));
+        }
+        let j;
+        for(j in list){
+            console.log(j.name);
+            console.log(j.itirenary);
+        }
+        return list;
     }
-
 }
