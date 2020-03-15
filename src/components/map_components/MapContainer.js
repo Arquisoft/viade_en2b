@@ -20,7 +20,7 @@ export class MapContainer extends React.Component {
     
     var ruta = [];
     if(typeof(this.rutaSeleccionada) !== "undefined"){
-      this.puntos.map((punto)=>{
+      this.puntos.forEach((punto)=>{
         ruta.push({
           lat: parseFloat(punto.latitude),
           lng: parseFloat(punto.longitude)
