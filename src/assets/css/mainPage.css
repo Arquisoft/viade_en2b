@@ -1,0 +1,10 @@
+.loginButton{
+    position:absolute;
+    z-index: 10;
+    
+    top: 20px;
+    right:20px;
+    width: 6em;
+    
+    font-size: 22px;
+}
