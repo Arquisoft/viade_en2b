@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import './App.css';
-import {HashRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import MainPage from './components/pages/mainPage';
 import LoginPage from './components/pages/login';
 
