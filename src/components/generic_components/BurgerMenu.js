@@ -18,15 +18,15 @@ class BurgerMenu extends Component {
         <h2 className="bm-item" tabIndex="0"><i className="fa fa-fw fa-inbox fa-2x"></i>
           <span>ViAde</span>
         </h2>
-            <a id="home" className="menu-item" href="/">
+            <a id="home" className="menu-item" href="/viade_en2b/#/">
               <i className="fa fa-fw fas fa-home"></i>
               <span>Home</span>
             </a>
-            <a id="add-route" className="menu-item" href="/">
+            <a id="add-route" className="menu-item" href="/viade_en2b/#/">
               <i className="fa fa-fw far fa-map"></i>
               <span>Add route</span>
             </a>
-            <a id="list-routes" className="menu-item" href="/routes">
+            <a id="list-routes" className="menu-item" href="/viade_en2b/#/routes">
               <i className="fa fa-fw far fa-list-alt"></i>
               <span>List Routes</span>
             </a>

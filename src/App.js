@@ -13,8 +13,8 @@ class App extends Component {
     return <Router>
         <Route path="/" component={MainPage}/>
         {/* <Route exact path="/login" component={Login}/> */}
-        <Route path="/viade_en2b/login" component={LoginPage}/>
-        <Route path="/viade_en2b/routes" component={RoutesPage}/>
+        <Route path="/login" component={LoginPage}/>
+        <Route path="/routes" component={RoutesPage}/>
     </Router>
 
   }
