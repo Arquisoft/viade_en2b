@@ -15,10 +15,10 @@ class App extends Component {
     
     return <Router>
       <Switch>
-        <Route exact path="https://arquisoft.github.io/viade_en2b/" component={MainPage}/>
+        <Route exact path="/" component={MainPage}/>
         {/* <Route exact path="/login" component={Login}/> */}
-        <Route exact path="https://arquisoft.github.io/viade_en2b/login" component={LoginPage}/>
-        <Route exact path="https://arquisoft.github.io/viade_en2b/routes" component={RoutesPage}/>
+        <Route exact path="/login" component={LoginPage}/>
+        <Route exact path="/routes" component={RoutesPage}/>
       </Switch>
     </Router>
 
