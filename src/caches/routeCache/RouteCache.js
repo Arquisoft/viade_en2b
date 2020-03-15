@@ -21,7 +21,6 @@ export default class RouteCache {
         if(this.routes.length == 0) {
             this.routes = RouteGateway.findAll();
         }
-        return this.routes.slice();
     }
 
     getSelected(route) {

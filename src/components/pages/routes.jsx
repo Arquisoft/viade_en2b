@@ -1,14 +1,37 @@
 import React from "react";
-
 import "../../assets/css/routes.css";
 
-
 import BurgerMenu from '../generic_components/BurgerMenu';
-const RoutesPage = () => {
-  var frutas = ["Ruta1", "Ruta2", "Ruta3", "Ruta4"];
+//import RouteGateway from '../../data-access/gateways/RouteGateway'
 
-  return (
-    <body className="bodyRoutes" id="outer-container">
+
+import {Link} from "react-router-dom";
+//const gateway = new RouteGateway();
+
+import RoutesLoader from '../../RouteManager/ListUserRoutes'
+
+//var frutas = ["Route 1","Route 2","Route 3","Route 4"];
+
+
+
+
+class RoutesPage extends React.Component {
+  selectedOne;
+  setRoute(route){
+      this.selectedOne = route;
+    }
+  render(){
+    var loader = new RoutesLoader();
+    var rutas;
+    loader.loadUserRoutesFiles();
+    rutas = JSON.parse(localStorage.getItem('rutas'));
+    console.log(rutas);
+    
+    //console.log(JSON.stringify(rutas[0]))
+   // localStorage.setItem('route',JSON.stringify(rutas[0]))
+    
+    return (
+    <div className="bodyRoutes" id="outer-container">
       <main>
           <BurgerMenu 
           pageWrapId="page-wrap"
@@ -18,33 +41,37 @@ const RoutesPage = () => {
           <header className="bodyHeader"></header>
 
           <section className="sectionRoutes">
-            <div class="active-purple-3 active-purple-4 mb-4">
+            <div className="active-purple-3 active-purple-4 mb-4">
               <input
-                class="form-control"
+                className="form-control"
                 type="text"
                 placeholder="Search"
                 aria-label="Search"
               />
             </div>
             <ul>
-              {frutas.map((item, index) => {
+              {rutas.map((item, index)=>{
                 return (
-                  <li key={index}>
+                  <li id={"route"+index} key={index}>
                     <div className="routeListElementContainter">
-                      <p>
-                        {" "}
-                        {item} nº {index + 1} in the list
-                      </p>
+                      <Link className="linkRoute" to="/"
+                      onClick={e=>{localStorage.setItem('route',JSON.stringify(rutas[index]))}}
+                      >
+                        Ruta {item.name}
+                      </Link>
                     </div>
                   </li>
                 );
               })}
+              
+              
             </ul>
           </section>
         </div>
       </main>
-    </body>
+    </div>
   );
-};
+}
+}
 
 export default RoutesPage;
