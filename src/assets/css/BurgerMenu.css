@@ -127,6 +127,10 @@
     box-sizing: border-box;
   }
 
+  .menu-item:active{
+    background-color: #21232b;
+  }
+
   .fa {
     width: 1.28571429em;
     display: inline-block;

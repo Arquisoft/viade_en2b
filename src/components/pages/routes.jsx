@@ -22,9 +22,11 @@ class RoutesPage extends React.Component {
     }
   render(){
     var loader = new RoutesLoader();
-    var rutas;
+    var rutas=[];
     loader.loadUserRoutesFiles();
-    rutas = JSON.parse(localStorage.getItem('rutas'));
+    var nullableRutas = localStorage.getItem('rutas');
+    if(nullableRutas!=null)
+      rutas = JSON.parse(nullableRutas);
     console.log(rutas);
     
     //console.log(JSON.stringify(rutas[0]))
