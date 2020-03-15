@@ -9,7 +9,7 @@ export default class RoutesLoader{
         let popupUri = 'https://solid.community/common/popup.html';
         if (!session || session.webId === undefined || session.webId === null)
             session = await auth.popupLogin({popupUri});
-        alert('Logged in as ' + session.webId);
+        //alert('Logged in as ' + session.webId);
         let routesFolder = session.webId.substring(0, session.webId.length - 16) + "/public/Routes/";
 
         if (await fc.itemExists(routesFolder)) {
@@ -40,8 +40,8 @@ export default class RoutesLoader{
         }
 
        let rou =  this.jsonToEntity(this.routesToJson(routes));
-
-        return rou;
+       localStorage.setItem('rutas', JSON.stringify(rou));
+       return rou;
 
     }
 

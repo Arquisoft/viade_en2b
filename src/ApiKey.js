@@ -6,7 +6,7 @@
 */
 
 function getKey() {
-	return "AIzaSyArkTZgYLh1xaZOOLx6hXQccicYJZGK1uQ";
+	return "AIzaSyBgV1zy9YSvClMQloue9b7pdd0sSfB8W9o";
 }
 
 export default getKey;
