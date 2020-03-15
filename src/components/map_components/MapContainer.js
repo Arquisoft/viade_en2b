@@ -25,6 +25,7 @@ export class MapContainer extends React.Component {
           lat: parseFloat(punto.latitude),
           lng: parseFloat(punto.longitude)
         });
+        return;
       })
      console.log(ruta);
      console.log(this.route);
