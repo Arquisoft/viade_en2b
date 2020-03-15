@@ -11,10 +11,10 @@ class App extends Component {
     // document.documentElement.setAttribute('data-theme', 'dark');
     
     return <Router>
-        <Route exact path="/" component={MainPage}/>
+        <Route path="/" component={MainPage}/>
         {/* <Route exact path="/login" component={Login}/> */}
-        <Route exact path="/viade_en2b/login" component={LoginPage}/>
-        <Route exact path="/viade_en2b/routes" component={RoutesPage}/>
+        <Route path="/viade_en2b/login" component={LoginPage}/>
+        <Route path="/viade_en2b/routes" component={RoutesPage}/>
     </Router>
 
   }
