@@ -11,6 +11,13 @@ export function GetUserFriends(){
     return friends;
 }
 
+export function GetUserFriendsName(){
+    let friendsName = GetUserFriends();
+    
+    const friends = useLDflexList('user.friends.name');
+    return friends;
+}
+
 export function GetNumberOfFriends(){
     const name = useLDflexValue('user.firstName') || 'unknown';
     const friends = useLDflexList('user.friends');

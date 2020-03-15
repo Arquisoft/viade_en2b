@@ -1,5 +1,7 @@
 import React from 'react';
 import {useLDflexList} from '@solid/react';
+import { GetUserName, GetUserFriends, GetNumberOfFriends, GetUserFriendsName} from '../../data-access/UserData';
+
 
 /** Displays a list of items matching a Solid LDflex expression. */
 export default function List({

@@ -1,6 +1,6 @@
 import React from 'react'
 import { LoggedIn, LoggedOut} from '@solid/react';
-import { GetUserName, GetUserFriends, GetNumberOfFriends} from '../../data-access/UserData';
+import { GetUserName, GetUserFriends, GetNumberOfFriends, GetUserFriendsName} from '../../data-access/UserData';
 import List from '../generic_components/List';
 
 function Login() {
