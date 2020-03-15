@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 
 import './App.css';
-import {HashRouter as Router, Route} from "react-router-dom";
+import {HashRouter as Router, Route,Switch} from "react-router-dom";
 import MainPage from './components/pages/mainPage';
 import LoginPage from './components/pages/login';
 
@@ -11,10 +11,14 @@ class App extends Component {
     // document.documentElement.setAttribute('data-theme', 'dark');
     
     return <Router>
-        <Route path="/" component={MainPage}/>
+    <Fragment>
+      <Switch>
+        <Route exact path="/" component={MainPage}/>
         {/* <Route exact path="/login" component={Login}/> */}
-        <Route path="/login" component={LoginPage}/>
-        <Route path="/routes" component={RoutesPage}/>
+        <Route exact path="/login" component={LoginPage}/>
+        <Route exact path="/routes" component={RoutesPage}/>
+      </Switch>
+    </Fragment>
     </Router>
 
   }
