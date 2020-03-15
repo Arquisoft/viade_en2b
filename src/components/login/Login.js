@@ -1,6 +1,7 @@
 import React from 'react'
 import { LoggedIn, LoggedOut} from '@solid/react';
-import { GetUserName } from '../../data-access/UserData';
+import { GetUserName, GetUserFriends, GetNumberOfFriends} from '../../data-access/UserData';
+import List from '../generic_components/List';
 
 function Login() {
     const auth = require('solid-auth-client');
@@ -15,7 +16,9 @@ function Login() {
             </LoggedOut>
             <LoggedIn>
                 <button onClick={() => logout(auth)}>Log out</button>
-                <p>{GetUserName()}</p>
+                
+                <List src={GetUserFriends()}/>
+                
             </LoggedIn>
             
         </div>

@@ -6,11 +6,12 @@ export function GetUserName() {
     return name.value;
 }
 
-function GetUserFriends(){
+export function GetUserFriends(){
     const friends = useLDflexList('user.friends');
+    return friends;
 }
 
-function GetNumberOfFriends(){
+export function GetNumberOfFriends(){
     const name = useLDflexValue('user.firstName') || 'unknown';
     const friends = useLDflexList('user.friends');
     return friends.length;
