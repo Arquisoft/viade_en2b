@@ -1,6 +1,6 @@
 import React from 'react'
 import { LoggedIn, LoggedOut} from '@solid/react';
-import { GetUserName, GetUserFriends, GetNumberOfFriends, GetUserFriendsName} from '../../data-access/UserData';
+import { GetUserName, GetUserFriends, GetNumberOfFriends, GetUserWebId} from '../../data-access/UserData';
 import List from '../generic_components/List';
 
 
@@ -27,10 +27,8 @@ function Login() {
                 <button className="login100-form-btn" onClick={(e) => popup(e, auth)}>Log In</button>
             </LoggedOut>
             <LoggedIn>
-                <button onClick={() => logout(auth)}>Log out</button>
-                
-                <List src={GetUserFriends()}/>
-                
+                <button onClick={() => logout(auth)}>Log out</button>                
+                <List src={GetUserWebId()}/>                
             </LoggedIn>
             
         </div>

@@ -6,16 +6,16 @@ export function GetUserName() {
     return name.value;
 }
 
+
 export function GetUserFriends(){
     const friends = useLDflexList('user.friends');
     return friends;
 }
 
-export function GetUserFriendsName(){
-    let friendsName = GetUserFriends();
-    
-    const friends = useLDflexList('user.friends.name');
-    return friends;
+export async function GetUserWebId(){
+    const auth = require('solid-auth-client');
+    let session = await auth.currentSession();
+    return session.webId;
 }
 
 export function GetNumberOfFriends(){
