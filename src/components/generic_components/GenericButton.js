@@ -8,7 +8,7 @@ class GenericButton extends Component {
     }
  render(){
   return (
-      <button className={this.props.className} name={this.props.name} onClick={this.prueba}>
+      <button className={this.props.className} name={this.props.name} onClick={this.props.onClick}>
        {this.props.message}
         
       </button>

@@ -42,7 +42,7 @@ class BurgerMenu extends Component {
               <i className="fa fa-fw fas far fa-address-card"></i>
               <span>Contact</span>
             </Link>
-            <Link onClick={ this.showSettings } className="menu-item--small" href="/">
+            <Link onClick={ this.showSettings } className="menu-item--small" to="/">
               <i className="fa fa-fw fas fa-cog"></i>
               <span>Settings</span>
             </Link>
