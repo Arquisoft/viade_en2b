@@ -21,7 +21,7 @@ class MainPage extends React.Component{
         container="outer-container"
       />
       <main className="main" id="page-wrap">
-      <FloatingButton/>
+        <FloatingButton/>
         <GenericButton
           className="buttonGeneric loginButton"
           message=<Link to="/login">LOG IN</Link>

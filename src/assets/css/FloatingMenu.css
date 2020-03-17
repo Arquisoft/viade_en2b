@@ -1,28 +1,30 @@
 .rtf--mb{
-  margin-right:0;
-  margin-left:0;
-  background-color: cyan;
-  position: relative;
-  overflow: hidden;
-  
-  border-radius: 149px;
-  background-color: var(--bg-color);
-  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.60);
+      margin-right:0;
+      margin-left:0;
+      position: relative;
+      overflow: hidden;
+      
+      border-radius: 30px;
+      background: var(--bg-color);
+      box-shadow:  -11px -11px 22px var(--shadow-up),
+                    11px 11px 22px var(--shadow-down);
+      
   }
   
   .rtf--ab{
-    margin-right:75px;
-      background-color: rgba(0, 255, 255, 0.555);
+      margin-right:75px;
       position: relative;
       overflow: hidden;
-  
-      border-radius: 149px;
-      background-color: var(--bg-color);
-      box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.60);
+
+      background: var(--bg-color);
+      box-shadow:  -11px -11px 22px var(--shadow-up),
+                    11px 11px 22px var(--shadow-down);
   }
   
   .rtf--ab:hover{
-      background-color: rgb(190, 190, 190);
+      background: var(--bg-color);
+      box-shadow:  -11px -11px 22px var(--shadow-up),
+                    11px 11px 22px var(--shadow-down);
   }
   
   .rtf--ab::after, .rtf--mb::after {
@@ -30,7 +32,7 @@
       content: "";
       position: absolute;
       border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.333);
+      background-color: rgba(0, 0, 0, 0.25);
       
       width: 100px;
       height: 100px;
@@ -56,15 +58,15 @@
       }
       to {
         opacity: 0;
-        transform: scale(10);
+        transform: scale(1);
       }
     }
   
   .fafab{
-    color: rgba(0, 0, 0);
+    color: var(--font-color);
     }
   .fa-circle{
-    color: rgb(202, 54, 54);
+    color: #B54A4A;
   }
   
   

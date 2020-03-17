@@ -1,27 +1,26 @@
 button {
     text-align: center;
-    color: #000;
     width: auto;
     height: auto;
     margin: 15px 10px;
     font-size: 20px;
     padding: 10px 15px;
-	border: 0;
-	border-radius: 10px;
-	background-color: var(--bg-color);
-	color: #fff;
-	text-decoration: none;
-	font-weight: 700;
 
+    border: 0;
+    border-radius: 10px;
+    background-color: var(--bg-color);
+    text-decoration: none;
+    
     line-height: 1;
-	font-family: Muli, Verdana, Arial, sans-serif;
-	-webkit-appearance: none;
-	-webkit-font-smoothing: antialiased;
+    
+    font-family: Muli, Verdana, Arial, sans-serif;
+    font-weight: 700;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
     
   }
 
 .buttonGeneric {
-    color: white;
     border-radius: 30px;
     background: var(--bg-color);
     box-shadow:  -11px -11px 22px var(--shadow-up),
