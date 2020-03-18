@@ -6,6 +6,8 @@ const mockGatewayFindAll = jest.spyOn(RouteGateway, 'findAll');
 const mockGatewayFind = jest.spyOn(RouteGateway, 'findByName');
 const mockGatewayDelete = jest.spyOn(RouteGateway, 'deleteByName');
 
+mockGatewayFindAll.mockImplementation(() => new Array());
+
 var dummyRoute1 = {
     name: 'route1',
     points: [
