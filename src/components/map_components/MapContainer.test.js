@@ -23,4 +23,4 @@ test('TestExistance of button', () => {
     wrapper.simulate('click');
     expect(mockLogout).toHaveBeenCalled();
 });
-*/
+*/  

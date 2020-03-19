@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import getStyle from "./MapStyles.js";
-import MapContainer from "./MapContainer";
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow, mount } from 'enzyme';
 import {expects} from "rdf-namespaces/dist/hydra";
+
 
 
 test('isCorreclyCalled', ()=>{
