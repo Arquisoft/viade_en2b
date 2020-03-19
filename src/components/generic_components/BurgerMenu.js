@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { slide as Menu } from 'react-burger-menu';
+
 import {HashRouter as Router, Link} from "react-router-dom";
 import '../../assets/css/BurgerMenu.css'
 
@@ -17,7 +18,7 @@ class BurgerMenu extends Component {
         <h2 className="bm-item" tabIndex="0"><i className="fa fa-fw fa-inbox fa-2x"></i>
           <span>ViAde</span>
         </h2>
-         <Router>            
+        <Router>
             <Link id="home" className="menu-item" to="/">
               <i className="fa fa-fw fas fa-home"></i>
               <span>Home</span>
@@ -46,8 +47,7 @@ class BurgerMenu extends Component {
             <Link id="contact" className="menu-item" to="/">
               <i className="fa fa-fw fas far fa-address-card"></i>
               <span>Contact</span>
-            </Link>
-          
+            </Link>      
             <Link id="settings" className="menu-item--small" to="/">
               <i className="fa fa-fw fas fa-cog"></i>
               <span>Settings</span>
