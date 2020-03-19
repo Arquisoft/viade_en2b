@@ -1,6 +1,13 @@
 import Route from "../Entities/BasicRoute"
 
 export default class DeleteUserRoute{
+    /**
+     * Deletes a route by name
+     * Returns true if the route was found and deleted it
+     * Returns false if it does not exist.
+     * 
+     * @param {*} routeName 
+     */
     async delteRoute(routeName) {
         const auth = require('solid-auth-client')
         const FC = require('solid-file-client')
@@ -35,10 +42,8 @@ export default class DeleteUserRoute{
                         fc.delete(urlRoute);
                         return true;
                     }  
-                    return false;        
-                    
+                    return false;                            
                 }
-
 
             } catch (error) {
                 console.log("The folder couldn't be read")
