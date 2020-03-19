@@ -1,10 +1,10 @@
 import React from 'react'
 import { LoggedIn, LoggedOut } from '@solid/react';
-
-
+import DeleteUserRoute from '../../RouteManager/DeleteUserRoute';
 
 function Login() {
     const auth = require('solid-auth-client');
+    var deleter = new DeleteUserRoute();
 
     function logout(e, auth) {
         e.preventDefault();
@@ -26,6 +26,8 @@ function Login() {
             </LoggedOut>
             <LoggedIn>
                 <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>
+                
+                <button className="delete-form-btn" onClick={(e) => deleter.delteRoute('Madrid')}>Log out</button>
             </LoggedIn>
         </div>
     )
