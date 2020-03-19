@@ -27,8 +27,7 @@ export default {
         found = RouteGateway.findByName(route);
         if(found) {
             this.routes.push(found);
-            this.routes.sort((r1, r2) => 
-                    r1.name > r2.name ? 1 : (r1.name < r2.name ? -1 : 0));
+            this.routes.sort((r1, r2) => r1.name > r2.name ? 1 : (r1.name < r2.name ? -1 : 0));
         }
         return found; // Returns whatever is found for now.
     }

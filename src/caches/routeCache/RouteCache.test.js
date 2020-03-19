@@ -6,7 +6,11 @@ const mockGatewayFindAll = jest.spyOn(RouteGateway, 'findAll');
 const mockGatewayFind = jest.spyOn(RouteGateway, 'findByName');
 const mockGatewayDelete = jest.spyOn(RouteGateway, 'deleteByName');
 
+mockGatewayFind.mockImplementation(() => dummyRoute1);
 mockGatewayFindAll.mockImplementation(() => new Array());
+
+const mockCacheRoutesPush = jest.spyOn(RouteCache.routes, 'push');
+const mockCacheRoutesSort = jest.spyOn(RouteCache.routes, 'sort');
 
 var dummyRoute1 = {
     name: 'route1',
@@ -83,9 +87,13 @@ test('get a route in the cache', () => {
 });
 
 test('get a route not in the cache', () => {
+    RouteCache.routes.push(dummyRoute2);
     RouteCache.getSelected(dummyRoute1);
 
     expect(mockGatewayFind).toHaveBeenCalled();
+    expect(RouteCache.routes).toContain(dummyRoute1);
+    expect(RouteCache.routes).not.toEqual([dummyRoute2, dummyRoute1]);
+    expect(RouteCache.routes).toEqual([dummyRoute1, dummyRoute2]);
 });
 
 test('delete a route in the cache', () => {
