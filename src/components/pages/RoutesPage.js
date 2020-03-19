@@ -16,10 +16,7 @@ import RoutesLoader from '../../RouteManager/ListUserRoutes'
 
 
 class RoutesPage extends React.Component {
-  selectedOne;
-  setRoute(route){
-      this.selectedOne = route;
-    }
+
   render(){
     var loader = new RoutesLoader();
     var rutas=[];
@@ -27,11 +24,6 @@ class RoutesPage extends React.Component {
     var nullableRutas = localStorage.getItem('rutas');
     if(nullableRutas!=null)
       rutas = JSON.parse(nullableRutas);
-    console.log(rutas);
-    
-    //console.log(JSON.stringify(rutas[0]))
-   // localStorage.setItem('route',JSON.stringify(rutas[0]))
-    
     return (
     <div className="bodyRoutes" id="outer-container">
       <main>
@@ -64,9 +56,7 @@ class RoutesPage extends React.Component {
                     </div>
                   </li>
                 );
-              })}
-              
-              
+              })} 
             </ul>
           </section>
         </div>
