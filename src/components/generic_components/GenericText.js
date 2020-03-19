@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import '../../assets/css/GenericText.css';
-import { ProviderLogin } from "@inrupt/solid-react-components";
-import { AuthButton } from '@solid/react';
+
 
 class GenericText extends Component {
  render(){

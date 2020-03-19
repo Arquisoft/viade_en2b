@@ -8,7 +8,6 @@ class LoginButton extends Component {
     handleClick(e){
             e.preventDefault();
             var sr = document.getElementById("inputLogin").value;
-            console.log(sr);
             //Desde este sitio se hace la llamada de login
             
     }
