@@ -14,14 +14,14 @@ test('MainPage',()=>{
 /////////////////////////
 
 test('Render Correct',()=>{
-    const main = shallow(<MainPage/>);
+    const main = mount(<MainPage/>);
     expect(main).toMatchSnapshot();
 });
 
 /////////////////////////
 
 test('Render Map is Correct',()=>{
-    const main = shallow(<MainPage/>);
+    const main = mount(<MainPage/>);
 
     expect(main.find('MapContainer')).toBeDefined();
 });
@@ -29,7 +29,7 @@ test('Render Map is Correct',()=>{
 /////////////////////////
 
 test('Render HamburgerMenu is Correct',()=>{
-    const main = shallow(<MainPage/>);
+    const main = mount(<MainPage/>);
 
     expect(main.find('BurgerMenu').exists()).toBe(true);
 });
@@ -37,7 +37,7 @@ test('Render HamburgerMenu is Correct',()=>{
 /////////////////////////
 
 test('Render FloatingButton is Correct',()=>{
-    const main = shallow(<MainPage/>);
+    const main = mount(<MainPage/>);
 
     expect(main.find('FloatingButton').exists()).toBe(true);
 });
@@ -45,7 +45,7 @@ test('Render FloatingButton is Correct',()=>{
 ////////////////////////
 
 test('Login redirect Button',()=>{
-    const main = shallow(<MainPage/>);
+    const main = mount(<MainPage/>);
 
     expect(main.find('GenericButton').props('message').to).not.toBe("");
 });
@@ -60,11 +60,11 @@ test('',()=>{
     expect(spy).toHaveBeenCalledTimes(1);
 });*/
 ///////////////////////
-/*
+
 test('BurgerMenu change view',()=>{
-    const main = shallow(<MainPage/>);
+    const main = mount(<MainPage/>);
 
     const sideMenu = main.find('BurgerMenu');
 
-    expect(sideMenu.find('#list-routes').props().href).toBe("/routes");
-});*/
+    expect(sideMenu.find('#list-routes').at(1).props().href).toBe("#/routes");
+});

@@ -21,12 +21,7 @@ const LoginPage = () => {
 					<span className="login100-form-title">
 						Pod Login
 					</span>
-
-								
-					 
 						<Login></Login>
-				
-
 				</form>
 
 			</div>
