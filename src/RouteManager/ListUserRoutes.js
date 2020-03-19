@@ -68,7 +68,7 @@ export default class RoutesLoader{
         for(let i = 0;i<routes.length;i++){
             try {
                 console.log(routes[i]);
-               let name = routes[i].name;
+                let name = routes[i].name;
                 let it =routes[i].itinerary;
                 let route = new Route(name,it);
                 entRoutes.push(route);
@@ -77,9 +77,7 @@ export default class RoutesLoader{
             }catch (e) {
                 console.log("Route "+i+" couldn't be parsed because the format is wrong");
                 console.log(e);
-
             }
-
         }
 
         return entRoutes;
