@@ -3,7 +3,7 @@ import Route from "../Entities/BasicRoute"
 export default class DeleteUserRoute{
     /**
      * Deletes a route by name
-     * Returns true if the route was found and deleted it
+     * Returns true if the route was found and deleted
      * Returns false if it does not exist.
      * 
      * @param {*} routeName 
@@ -41,7 +41,7 @@ export default class DeleteUserRoute{
                     //Check if the route retrieved has the same name than the one we're looking for
                     if(routeName === nameRoutes){
                         fc.delete(urlRoute);
-                        deleteRouteFromStorage();
+                        this.deleteRouteFromStorage(routeName);
                         return true;
                     }                                                  
                 }
@@ -60,15 +60,16 @@ export default class DeleteUserRoute{
 
     }
 
-    
-    async deleteRouteByUrl(routeUrl) {
+    /**
+     * Deletes a route by the URL
+     * @param {} urlProvided 
+     */
+    async deleteRouteByUrl(urlProvided) {
         const auth = require('solid-auth-client')
         const FC = require('solid-file-client')
         const fc = new FC(auth)
 
-        //to delete
         
-
         let session = await auth.currentSession();
         let popupUri = 'https://solid.community/common/popup.html';
         if (!session || session.webId === undefined || session.webId === null)
@@ -85,17 +86,12 @@ export default class DeleteUserRoute{
                 let files = content.files;
 
                 for (let i = 0; i < files.length; i++) {
-                    let urlRoute = files[i].url;
-                   
-                    
-                    //Getting the name to erase it
-                    let aux = urlRoute.split('/');
-                    let nameRoutes = aux[aux.length-1];
-                    
-                    //Check if the route retrieved has the same name than the one we're looking for
-                    if(routeName === nameRoutes){
-                        fc.delete(urlRoute);
-                        deleteRouteFromStorage();
+                    let urlFromPod = files[i].url;
+                                       
+                    //Check if the url retrieved is the same than the one we're looking for
+                    if(urlProvided === urlFromPod){
+                        fc.delete(urlFromPod);
+                        //deleteRouteFromStorage();
                         return true;
                     }                                                  
                 }
@@ -115,7 +111,16 @@ export default class DeleteUserRoute{
     }
 
     deleteRouteFromStorage(route){
-        //
+        let routes = localStorage.getItem('rutasEntidad');
+        console.log('LOCALSTORAGE');
+        //Right now we have a JSON file of the entities
+        for(let i=0; i<routes.length ; i++){
+            console.log('INSIDE');
+            let route = routes.getItem(0);
+            console.log(route);
+        }
+        //route -> URL, nombre ??
+        localStorage.removeItem(route);
     }
 
 
