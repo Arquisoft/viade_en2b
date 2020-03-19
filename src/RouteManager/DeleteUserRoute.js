@@ -13,6 +13,9 @@ export default class DeleteUserRoute{
         const FC = require('solid-file-client')
         const fc = new FC(auth)
 
+        //to delete
+        routeName = routeName + ".json";
+
         let session = await auth.currentSession();
         let popupUri = 'https://solid.community/common/popup.html';
         if (!session || session.webId === undefined || session.webId === null)
@@ -34,16 +37,14 @@ export default class DeleteUserRoute{
                     //Getting the name to erase it
                     let aux = urlRoute.split('/');
                     let nameRoutes = aux[aux.length-1];
-                    console.log(nameRoutes);
-
-                    routeName = routeName + ".json";
+                    
                     //Check if the route retrieved has the same name than the one we're looking for
                     if(routeName === nameRoutes){
                         fc.delete(urlRoute);
                         return true;
-                    }  
-                    return false;                            
+                    }                                                  
                 }
+                return false;
 
             } catch (error) {
                 console.log("The folder couldn't be read")
