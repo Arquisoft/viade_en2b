@@ -34,3 +34,23 @@ test('Check Route Link',()=>{
     routes.rutas = (JSON.parse(rutaJSON));
     expect(routes.rutas).not.toBeUndefined();
 });
+
+/////////////////////////
+
+test('Check Route not null',()=>{
+    const routes = mount(<RoutesPage/>);
+    const rutaJSON = '{	"name" : "Oviedo","itinerary" :[{"@type" : "GeoCoordinates", "latitude" : "43.362070", "longitude" : "-5.846307" },{"@type" : "GeoCoordinates",	"latitude" : "43.361778","longitude" : "-5.848008"}] }';
+    routes.rutas = (JSON.parse(rutaJSON));
+    expect(routes.rutas).not.toBeNull();
+});
+
+test('Not Session Correct',()=>{
+  
+    const login = mount(<RoutesPage/>);
+    const link = login.find('Link')
+    
+    link.at(6).simulate('click');
+
+    expect(link.exists()).toBeTruthy();
+
+});
