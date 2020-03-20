@@ -7,7 +7,7 @@ import Login from '../login/Login';
 class LoginButton extends Component {
     handleClick(e){
             e.preventDefault();
-            var sr = document.getElementById("inputLogin").value;
+            //var sr = document.getElementById("inputLogin").value;
             //Desde este sitio se hace la llamada de login
             
     }
