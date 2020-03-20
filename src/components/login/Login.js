@@ -26,7 +26,6 @@ function Login() {
             </LoggedOut>
             <LoggedIn>
                 <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
-                <button className="delete-form-btn" onClick={(e) => deleter.deleteRouteByName('Rusia')}>Log out</button>
             </LoggedIn>
         </div>
     )

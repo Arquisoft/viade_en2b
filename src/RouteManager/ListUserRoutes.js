@@ -1,4 +1,6 @@
 import Route from "../Entities/BasicRoute"
+import RouteCache from "../caches/routeCache/RouteCache"
+
 export default class RoutesLoader{
     async loadUserRoutesFiles() {
         const auth = require('solid-auth-client')
@@ -41,7 +43,7 @@ export default class RoutesLoader{
 
        let rou =  this.jsonToEntity(this.routesToJson(routes));
        localStorage.setItem('rutas', JSON.stringify(rou));
-       localStorage.setItem('rutasEntidad', this.jsonToEntity(this.routesToJson(routes)));
+       
        return rou;
 
     }

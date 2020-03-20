@@ -12,7 +12,7 @@ export default class RouteCache {
         }
     }
 
-    deleteRoute(route) {
+    deleteRouteByName(route) {
         this.routes = this.routes.filter(obj => route.name !== obj.name);
         RouteGateway.deleteByName(route.name);
     }

@@ -1,4 +1,5 @@
 import Route from "../Entities/BasicRoute"
+import RouteCache from "../caches/routeCache/RouteCache"
 
 export default class DeleteUserRoute{
     /**
@@ -40,7 +41,9 @@ export default class DeleteUserRoute{
                     
                     //Check if the route retrieved has the same name than the one we're looking for
                     if(routeName === nameRoutes){
+                        //DELETING FROM POD
                         fc.delete(urlRoute);
+                        //DELETING FROM CACHE
                         this.deleteRouteFromStorage(routeName);
                         return true;
                     }                                                  
@@ -110,20 +113,14 @@ export default class DeleteUserRoute{
 
     }
 
-    deleteRouteFromStorage(route){
-        let routes = localStorage.getItem('rutasEntidad');
-        console.log('LOCALSTORAGE');
-        //Right now we have a JSON file of the entities
-        for(let i=0; i<routes.length ; i++){
-            console.log('INSIDE');
-            let route = routes.getItem(0);
-            console.log(route);
-        }
-        //route -> URL, nombre ??
-        localStorage.removeItem(route);
+    /**
+     * Auxiliar method that calls to the delete on the RouteChache.js
+     * @param {} routeName 
+     */
+    deleteRouteFromStorage(routeName){        
+        let route = new RouteCache();//Should be changed to RouteCache.getInstance();      
+        route.deleteRouteByName(routeName);
     }
-
-
 }
 
 
