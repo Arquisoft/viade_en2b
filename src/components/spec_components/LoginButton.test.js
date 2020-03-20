@@ -41,3 +41,16 @@ test('Test Message Button',()=>{
 test('Test NotMessage Button',()=>{
     expect(buttonTest2.props.message).not.toBe("Macrohard Onfire");
 });
+
+/////////////////////////
+test('Click Correct',()=>{
+    const mockFunc = jest.fn();
+    
+    const login = mount(<LoginButton click={mockFunc}/>);
+    const submit = login.find('button');
+ 
+    submit.simulate('click');
+
+    expect(mockFunc).toHaveBeenCalled();
+
+});
