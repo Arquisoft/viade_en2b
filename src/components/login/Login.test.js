@@ -32,3 +32,19 @@ test('Not Session Correct',()=>{
     expect(submit.exists()).toBeTruthy();
 
 });
+
+test('Not Session Correct 2',()=>{
+   const event = { preventDefault: () => {} };
+   const open = window.open;
+   const spyNotWare = jest.spyOn(event,'preventDefault')
+    const login = mount(<Login/>);
+    const submit = login.find('LoggedIn').find('.login100-form-btn');
+    expect(submit.exists()).toBeFalsy();
+
+    const submitIn = login.find('LoggedOut').find('.login100-form-btn');
+ 
+    submitIn.simulate('click');
+
+    expect(submitIn.exists()).toBeTruthy();
+
+});
