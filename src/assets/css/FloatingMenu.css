@@ -1,0 +1,70 @@
+.rtf--mb{
+  margin-right:0;
+  margin-left:0;
+  background-color: cyan;
+  position: relative;
+  overflow: hidden;
+  
+  border-radius: 149px;
+  background-color: var(--bg-color);
+  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.60);
+  }
+  
+  .rtf--ab{
+    margin-right:75px;
+      background-color: rgba(0, 255, 255, 0.555);
+      position: relative;
+      overflow: hidden;
+  
+      border-radius: 149px;
+      background-color: var(--bg-color);
+      box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.60);
+  }
+  
+  .rtf--ab:hover{
+      background-color: rgb(190, 190, 190);
+  }
+  
+  .rtf--ab::after, .rtf--mb::after {
+      display: none;
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.333);
+      
+      width: 100px;
+      height: 100px;
+      margin-top: -50px;
+      margin-left: -50px;
+      
+      /* Center the ripple */
+      top: 50%;
+      left: 50%;
+    
+      animation: ripple 1s;
+      opacity: 0;
+    }
+  
+    .rtf--ab:focus:not(:active)::after, .rtf--mb:focus:not(:active)::after {
+      display: block;
+    }
+    
+    @keyframes ripple {
+      from {
+        opacity: 1;
+        transform: scale(0);
+      }
+      to {
+        opacity: 0;
+        transform: scale(10);
+      }
+    }
+  
+  .fafab{
+    color: rgba(0, 0, 0);
+    }
+  .fa-circle{
+    color: rgb(202, 54, 54);
+  }
+  
+  

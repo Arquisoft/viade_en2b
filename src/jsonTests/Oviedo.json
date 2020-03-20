@@ -1,0 +1,45 @@
+{
+	"name" : "Oviedo",
+	"itinerary" :[
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "43.362070",
+		"longitude" : "-5.846307"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "43.361778",
+		"longitude" : "-5.848008"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "43.363299",
+		"longitude" : "-5.850272"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "43.362651",
+		"longitude" : "-5.851747"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "43.363174",
+		"longitude" : "-5.852273"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "43.364937",
+		"longitude" : "-5.853947"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "43.365050",
+		"longitude" : "-5.852853"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "43.366150",
+		"longitude" : "-5.854548"
+		}
+	]
+}

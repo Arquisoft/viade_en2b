@@ -1,0 +1,45 @@
+{
+	"name" : "Rusia",
+	"itinerary" :[
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "55.754406",
+		"longitude" : "37.624445"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "55.756569",
+		"longitude" : "37.630056"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "55.759437",
+		"longitude" : "37.626008"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "55.760083",
+		"longitude" : "37.627107"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "55.758453",
+		"longitude" : "37.629360"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "55.757203",
+		"longitude" : "37.631581"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "55.757559",
+		"longitude" : "37.634220"
+		},
+		{
+		"@type" : "GeoCoordinates",
+		"latitude" : "55.756013",
+		"longitude" : "37.635314"
+		}
+	]
+}
