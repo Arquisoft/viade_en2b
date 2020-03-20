@@ -44,13 +44,29 @@ test('Check Route not null',()=>{
     expect(routes.rutas).not.toBeNull();
 });
 
-test('Not Session Correct',()=>{
+test('Linking menu',()=>{
   
-    const login = mount(<RoutesPage/>);
-    const link = login.find('Link')
+    const routes = mount(<RoutesPage/>);
+    const link = routes.find('Link')
     
     link.at(6).simulate('click');
 
     expect(link.exists()).toBeTruthy();
+
+});
+
+test('Check Route listing',()=>{
+    const rutaJSON = '{	"name" : "Oviedo","itinerary" :[{"@type" : "GeoCoordinates", "latitude" : "43.362070", "longitude" : "-5.846307" },{"@type" : "GeoCoordinates",	"latitude" : "43.361778","longitude" : "-5.848008"}] }';
+    var rutas = [];
+    rutas.push((JSON.parse(rutaJSON)));
+
+    const routes = mount(<RoutesPage defaultRuta={rutas}/>);
+    
+    expect(routes.rutas).not.toBeNull();
+
+    const ruta = routes.find('#route0')
+    ruta.simulate('click');
+    expect(ruta.exists()).toBeTruthy();
+
 
 });
