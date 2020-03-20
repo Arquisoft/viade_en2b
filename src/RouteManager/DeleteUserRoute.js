@@ -44,7 +44,7 @@ export default class DeleteUserRoute{
                         //DELETING FROM POD
                         fc.delete(urlRoute);
                         //DELETING FROM CACHE
-                        this.deleteRouteFromStorage(routeName);
+                       // this.deleteRouteFromStorage(routeName);
                         return true;
                     }                                                  
                 }
