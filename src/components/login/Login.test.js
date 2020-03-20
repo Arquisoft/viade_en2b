@@ -20,3 +20,15 @@ test('Render Correct',()=>{
 
 ////////////////////////
 
+test('Not Session Correct',()=>{
+   const event = { preventDefault: () => {} };
+   const open = window.open;
+   const spyNotWare = jest.spyOn(event,'preventDefault')
+    const login = mount(<Login/>);
+    const submit = login.find('LoggedOut').find('.login100-form-btn');
+ 
+    submit.simulate('click');
+
+    expect(submit.exists()).toBeTruthy();
+
+});
