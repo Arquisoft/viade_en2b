@@ -1,5 +1,4 @@
 import Route from "../Entities/BasicRoute"
-import RouteCache from "../caches/routeCache/RouteCache"
 
 export default class RoutesLoader{
     async loadUserRoutesFiles() {
@@ -23,7 +22,6 @@ export default class RoutesLoader{
 
                 for (let i = 0; i < files.length; i++) {
                     let fileContent = await fc.readFile(files[i].url);
-                    //console.log(fileContent);
                     routes.push(fileContent);
 
                 }

@@ -1,4 +1,4 @@
-import Route from "../Entities/BasicRoute"
+
 import RouteCache from "../caches/routeCache/RouteCache"
 
 export default class DeleteUserRoute{
