@@ -3,24 +3,16 @@ import { useLDflexValue, useLDflexList } from '@solid/react';
 const { default: data } = require('@solid/query-ldflex');
 
 
+/**
+ * Functions for retrieving data from the user autenticated.
+ */
 
 export function GetUserName() {
   const name = useLDflexValue('user.name') || 'unknown';
   return name.value;
 }
 
-export async function GetSepcificName(webId) {
-  const personName = await webId.name;
-  try{
-    const toReturn = personName.value;
-    return toReturn;
-  } catch (TypeError ){
-    return console.log("There was some kind of problem");
-  }
-}
-
-
-export async function GetUserProfileImage(webId) {
+export async function GetUserProfileImage() {
   const photo = useLDflexValue('user.vcard_hasPhoto') || 'unknown';
   return photo.value;    
 };
@@ -44,8 +36,8 @@ export async function GetUserFriends() {
 
     const ruben = data[friendWebId];
     console.log('FRIEND:'+ruben);
-    console.log('NAME:'+ await GetSepcificName(ruben));
-    friendsNamesArray.push('NAME:'+ await GetSepcificName(ruben));
+    console.log('NAME:'+ await GetSpecificName(ruben));
+    friendsNamesArray.push('NAME:'+ await GetSpecificName(ruben));
   });
   
 
@@ -63,4 +55,27 @@ export function GetNumberOfFriends() {
   const friends = useLDflexList('user.friends');
   return friends.length;
 }
+
+/**
+ * Functions for retrieving data from specific users. 
+ */
+
+export async function GetSpecificName(webId) {
+  const personName = await webId.name;
+  try{
+    return personName.value;
+  } catch (TypeError ){
+    return console.log("There was some problem retrieving the name of the user:"+webId);
+  }
+}
+
+
+export async function GetSpecificProfileImage(webId) {
+  const photo = await webId.vcard_hasPhoto;     
+  try{
+    return photo.value;
+  } catch (TypeError ){
+    return console.log("There was some problem retrieving the profile picture of the user:"+webId);
+  } 
+};
 
