@@ -2,7 +2,7 @@
 import Route from "../entities/Route"
 import GeoCoordinate from "../entities/GeoCoordinate"
 import Item from "../entities/Item"
-import Itirenary from "../entities/Itirenary"
+import Itirenary from "../Entities/Itinerary"
 import CreateRoute from "../RouteManager/CreateRoute.js"
 
 function createSomeRoutes() {
