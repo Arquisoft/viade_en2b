@@ -15,12 +15,11 @@ export default class MapRoute extends React.Component {
 	
 	render() {
 	  return(
-		<Polyline
+		<Polyline/>//'Polyline'
 		  paths={this.triangleCoords}
 		  strokeColor="#FF0000"
 		  strokeOpacity={1}
 		  strokeWeight={2} />
-		  
 	  )
 	}
 }
