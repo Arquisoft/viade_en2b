@@ -24,3 +24,49 @@ test('TestExistance of button', () => {
     expect(mockLogout).toHaveBeenCalled();
 });
 */  
+test('isContainerMapNotNull', ()=>{
+    const main = mount(<MapContainer/>);
+    
+    expect(main).not.toBeNull();
+});
+
+test('stringRutaNotNull', ()=>{
+    const main = mount(<MapContainer/>);
+
+    expect(main.props.stringRuta).not.toBeNull();
+});
+
+
+test('rutaSeleccionadaNotNull', ()=>{
+    const main = mount(<MapContainer/>);
+
+    expect(main.props.rutaSeleccionada).not.toBeNull();
+});
+
+test('routeNotNull', ()=>{
+    const main = mount(<MapContainer/>);
+
+    expect(main.props.route).not.toBeNull();
+});
+
+test('Zoom False',()=>{
+    const maps = mount(<MapContainer/>);
+    const submit = maps.find('Map');
+    expect(maps.props.zoomControl).toBeFalsy();
+
+})
+
+test('polylineIsNotNull', ()=>{
+    const main = mount(<MapContainer/>);
+    expect(main.find('Polyline')).not.toBeNull();
+});
+
+test('markerIsNotNull', ()=>{
+    const main = mount(<MapContainer/>);
+    expect(main.find('Marker')).not.toBeNull();
+});
+
+test('mapIsNotNull', ()=>{
+    const main = mount(<MapContainer/>);
+    expect(main.find('Map')).not.toBeNull();
+});
