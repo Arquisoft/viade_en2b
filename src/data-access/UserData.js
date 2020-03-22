@@ -1,4 +1,5 @@
 import { useLDflexValue, useLDflexList } from '@solid/react';
+import Friend from '../Entities/Friend';
 
 const { default: data } = require('@solid/query-ldflex');
 
@@ -10,51 +11,54 @@ const { default: data } = require('@solid/query-ldflex');
 export function GetUserName() {
   const name = useLDflexValue('user.name') || 'unknown';
   return name.value;
-}
+};
 
 export async function GetUserProfileImage() {
   const photo = useLDflexValue('user.vcard_hasPhoto') || 'unknown';
   return photo.value;    
 };
 
+/**
+ * Function that retrieves the user list of the user autenticated
+ * @returns Friend[]: array of "Friend" entity.
+ * 
+ * For using this method the GetUserFriends the component List was
+ * added in generic_components. An example using this List is
+ * <List src={GetUserFriends()}></List>
+ */
 export async function GetUserFriends() {
   const friends = useLDflexList('user.friends');
-  
-  let friendsArray = [];
-  let friendsNamesArray = [];
-  
-  console.log('HEY');
-  
-  console.log(friends.length);
-  for(let i =0; i<i.length; i++){
+  let friendsAux = [];
 
-  }
+
+  //For each value (LDflexValue) in friends(LDflexValue [])
   friends.forEach(async friendLDflexValue =>{
     
-    let friendWebId = friendLDflexValue.value;
-    friendsArray.push(friendWebId);
+    let friendWebIdLDflexValue = friendLDflexValue.value;
+    const webId = data[friendWebIdLDflexValue];
 
-    const ruben = data[friendWebId];
-    console.log('FRIEND:'+ruben);
-    console.log('NAME:'+ await GetSpecificName(ruben));
-    friendsNamesArray.push('NAME:'+ await GetSpecificName(ruben));
-  });
-  
+    //Use the await to retrieve the data from the Promise object.
+    const name = await GetSpecificName(webId);
+    const profilePic = await GetSpecificProfileImage(webId);
 
-  return friendsNamesArray;
-}
+    let friendAux = new Friend(webId, name, profilePic);
+    friendAux.toString();
+    friendsAux.push(friendAux);
+  });  
+  return friendsAux;
+};
 
 export async function GetUserWebId() {
   const auth = require('solid-auth-client');
   let session = await auth.currentSession();
   return session.webId;
-}
+};
 
 export function GetNumberOfFriends() {
   const name = useLDflexValue('user.firstName') || 'unknown';
   const friends = useLDflexList('user.friends');
   return friends.length;
-}
+};
 
 /**
  * Functions for retrieving data from specific users. 
@@ -67,7 +71,7 @@ export async function GetSpecificName(webId) {
   } catch (TypeError ){
     return console.log("There was some problem retrieving the name of the user:"+webId);
   }
-}
+};
 
 
 export async function GetSpecificProfileImage(webId) {
