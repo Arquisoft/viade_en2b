@@ -1,10 +1,8 @@
 import React from 'react'
 import { LoggedIn, LoggedOut } from '@solid/react';
-import DeleteUserRoute from '../../RouteManager/DeleteUserRoute';
 
 function Login() {
     const auth = require('solid-auth-client');
-    var deleter = new DeleteUserRoute();
 
     function logout(e, auth) {
         e.preventDefault();
