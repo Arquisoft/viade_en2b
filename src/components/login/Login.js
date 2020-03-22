@@ -1,8 +1,5 @@
 import React from 'react'
 import { LoggedIn, LoggedOut } from '@solid/react';
-import List from '../generic_components/List';
-
-
 
 function Login() {
     const auth = require('solid-auth-client');
