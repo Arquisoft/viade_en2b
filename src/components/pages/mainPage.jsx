@@ -21,11 +21,11 @@ class MainPage extends React.Component{
         container="outer-container"
       />
       <main className="main" id="page-wrap">
-        <FloatingButton/>
         <GenericButton
           className="buttonGeneric loginButton"
           message=<Link to="/login">LOG IN</Link>
         />
+        <FloatingButton/>
         <MapContainer/>  
       </main>
     </div>

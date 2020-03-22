@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { slide as Menu } from 'react-burger-menu';
 
 import {Link} from "react-router-dom";
-import '../../assets/css/BurgerMenu.css'
+import 'assets/css/BurgerMenu.css'
 
 class BurgerMenu extends Component {
   showSettings (event) {
