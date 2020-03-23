@@ -1,4 +1,5 @@
 import Route from "../Entities/BasicRoute"
+
 export default class RoutesLoader{
     async loadUserRoutesFiles() {
         const auth = require('solid-auth-client')
@@ -13,7 +14,7 @@ export default class RoutesLoader{
         let routesFolder = session.webId.substring(0, session.webId.length - 16) + "/public/Routes/";
 
         if (await fc.itemExists(routesFolder)) {
-            console.log(routesFolder + " exists");
+            //console.log(routesFolder + " exists");
             try {
                 let content = await fc.readFolder(routesFolder);
 
@@ -21,7 +22,6 @@ export default class RoutesLoader{
 
                 for (let i = 0; i < files.length; i++) {
                     let fileContent = await fc.readFile(files[i].url);
-                    console.log(fileContent);
                     routes.push(fileContent);
 
                 }
@@ -41,6 +41,7 @@ export default class RoutesLoader{
 
        let rou =  this.jsonToEntity(this.routesToJson(routes));
        localStorage.setItem('rutas', JSON.stringify(rou));
+       
        return rou;
 
     }
@@ -54,11 +55,8 @@ export default class RoutesLoader{
             jsonRoutes.push(route);}
             catch (e) {
                 console.log("Route "+i+" couldn't be transformed to json because the format is wrong");
-
-            }
-
+           }
         }
-
         return jsonRoutes;
     }
 
@@ -77,9 +75,7 @@ export default class RoutesLoader{
             }catch (e) {
                 console.log("Route "+i+" couldn't be parsed because the format is wrong");
                 console.log(e);
-
             }
-
         }
 
         return entRoutes;
