@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Icon, Card, Image } from 'semantic-ui-react'
+import {HashRouter as Router, Link} from "react-router-dom";
 
 class CardLayout extends Component{
   render(){
@@ -16,10 +17,12 @@ class CardLayout extends Component{
                     <Card.Description>{this.props.description}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                <a href={this.props.link}>
-                    <Icon name='user' />
-                    {this.props.numberOfFriends}
-                </a>
+                <Router>
+                    <Link to={this.props.link}>
+                        <Icon name='user' />
+                        {this.props.numberOfFriends}
+                    </Link>
+                </Router>
                 </Card.Content>
             </Card>
         </div>
