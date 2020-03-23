@@ -22,12 +22,14 @@ class MainPage extends React.Component{
       />
       <main className="main" id="page-wrap">
       <FloatingButton/>
-      
-        <GenericButton
-          className="buttonGeneric loginButton"
-          message=<Router><Link to="/login">LOG IN</Link></Router>
-        />
-     
+      <Router>
+        <Link to="/login">
+          <GenericButton
+            className="buttonGeneric loginButton"
+            message="LOG IN"
+          />
+        </Link>
+      </Router>
         <MapContainer/>  
       </main>
     </div>
