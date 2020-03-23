@@ -1,6 +1,6 @@
 import React from "react";
 import "../../assets/css/routes.css";
-
+import CustomLoader from 'components/generic_components/CustomLoader';
 import BurgerMenu from '../generic_components/BurgerMenu';
 //import RouteGateway from '../../data-access/gateways/RouteGateway'
 
@@ -32,6 +32,7 @@ class RoutesPage extends React.Component {
   }
   viewLoaded = routes =>{
     return(
+     
       <div className="bodyRoutes" id="outer-container">
       <main>
           <BurgerMenu 
@@ -40,8 +41,8 @@ class RoutesPage extends React.Component {
           />
         <div className="App routes" id="page-wrap">
           <header className="bodyHeader"></header>
-
           <section className="sectionRoutes">
+            
             <div className="active-purple-3 active-purple-4 mb-4">
               <input
                 className="form-control"
@@ -74,6 +75,13 @@ class RoutesPage extends React.Component {
     </div>
     );
     }
+  viewCharge = ()=>{
+    return(
+      <div className="bodyRoutes" id="outer-container">
+        <CustomLoader/>
+       </div>
+    );
+  }
   render(){
     const {loading} = this.state;
   //  loader.loadUserRoutesFiles();
@@ -82,7 +90,7 @@ class RoutesPage extends React.Component {
  //     rutas = JSON.parse(nullableRutas);
     return ( 
       <React.Fragment>
-        {loading ? "Loading..." : this.viewLoaded(this.state.routes)}
+        {loading ? <CustomLoader/> : this.viewLoaded(this.state.routes)}
       </React.Fragment>
   );
 }

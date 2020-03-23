@@ -3,6 +3,7 @@ import {Map, Polyline, Marker, GoogleApiWrapper} from 'google-maps-react';
 import getStyle from './MapStyles.js';
 import getKey from 'ApiKey.js';
 import * as cache from 'caches/routeCache/RouteCache'
+import CustomLoader from 'components/generic_components/CustomLoader';
 
 export class MapContainer extends React.Component {
 
@@ -83,7 +84,7 @@ export class MapContainer extends React.Component {
     const {loading} = this.state;
     return(
       <React.Fragment>
-        {loading ? "Loading..." : this.viewLoaded(this.state.route)}
+        {loading ? <CustomLoader/> : this.viewLoaded(this.state.route)}
       </React.Fragment>
     );
   }

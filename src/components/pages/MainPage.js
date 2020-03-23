@@ -11,9 +11,6 @@ import {HashRouter as Router,Link} from 'react-router-dom';
 
 class MainPage extends React.Component{
   render(){
-
-  //var ruta = JSON.parse(localStorage.getItem('route'));
-  //console.log(ruta);
   return (
     <div className="App" id="outer-container">
       <BurgerMenu 
