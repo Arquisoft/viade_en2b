@@ -2,10 +2,10 @@ import React, {Component, Fragment} from 'react';
 
 import './App.css';
 import {HashRouter as Router, Route,Switch} from "react-router-dom";
-import MainPage from './components/pages/mainPage';
-import LoginPage from './components/pages/login';
+import MainPage from './components/pages/MainPage';
+import LoginPage from './components/pages/LoginPage';
 
-import RoutesPage from './components/pages/routes';
+import RoutesPage from './components/pages/RoutesPage';
 class App extends Component {
   render(){
     // document.documentElement.setAttribute('data-theme', 'dark');

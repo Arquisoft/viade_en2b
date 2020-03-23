@@ -40,5 +40,4 @@ async function popup(e, auth) {
 
 }
 
-
-export default Login
+export default Login;
