@@ -6,7 +6,7 @@ import BurgerMenu from 'components/generic_components/BurgerMenu';
 import 'assets/css/GenericButton.css';
 import 'assets/css/mainPage.css';
 import MapContainer from 'components/map_components/MapContainer.js';
-import {Link} from 'react-router-dom';
+import {HashRouter as Router,Link} from 'react-router-dom';
 
 
 class MainPage extends React.Component{
@@ -22,10 +22,12 @@ class MainPage extends React.Component{
       />
       <main className="main" id="page-wrap">
       <FloatingButton/>
+      
         <GenericButton
           className="buttonGeneric loginButton"
-          message=<Link to="/login">LOG IN</Link>
+          message=<Router><Link to="/login">LOG IN</Link></Router>
         />
+     
         <MapContainer/>  
       </main>
     </div>

@@ -5,7 +5,7 @@ import BurgerMenu from '../generic_components/BurgerMenu';
 //import RouteGateway from '../../data-access/gateways/RouteGateway'
 
 
-import {Link} from "react-router-dom";
+import {HashRouter as Router, Link} from "react-router-dom";
 //const gateway = new RouteGateway();
 
 import RoutesLoader from '../../RouteManager/ListUserRoutes'
@@ -16,22 +16,18 @@ import RoutesLoader from '../../RouteManager/ListUserRoutes'
 
 
 class RoutesPage extends React.Component {
-  selectedOne;
-  setRoute(route){
-      this.selectedOne = route;
-    }
+
   render(){
     var loader = new RoutesLoader();
-    var rutas=[];
+    var rutas;
+    if(this.props.defaultRuta!=null)
+      rutas=this.props.defaultRuta;
+    else
+      rutas = [];
     loader.loadUserRoutesFiles();
     var nullableRutas = localStorage.getItem('rutas');
     if(nullableRutas!=null)
       rutas = JSON.parse(nullableRutas);
-    console.log(rutas);
-    
-    //console.log(JSON.stringify(rutas[0]))
-   // localStorage.setItem('route',JSON.stringify(rutas[0]))
-    
     return (
     <div className="bodyRoutes" id="outer-container">
       <main>
@@ -56,17 +52,17 @@ class RoutesPage extends React.Component {
                 return (
                   <li id={"route"+index} key={index}>
                     <div className="routeListElementContainter">
-                      <Link className="linkRoute" to="/"
-                      onClick={e=>{localStorage.setItem('route',JSON.stringify(rutas[index]))}}
-                      >
-                        Ruta {item.name}
-                      </Link>
+                      <Router>
+                        <Link className="linkRoute" to="/"
+                        onClick={e=>{localStorage.setItem('route',JSON.stringify(rutas[index]))}}
+                        >
+                          Ruta {item.name}
+                        </Link>
+                      </Router>
                     </div>
                   </li>
                 );
-              })}
-              
-              
+              })} 
             </ul>
           </section>
         </div>
