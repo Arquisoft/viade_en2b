@@ -2,6 +2,7 @@ import * as RouteGateway from '../../data-access/gateways/RouteGateway';
 
 export default {
     routes: [],
+    selected: null,
     addRoute(route) {
         if(route && !this.routes.find(obj => route.name === obj.name)) {
             RouteGateway.add(route);
@@ -21,12 +22,13 @@ export default {
         }
         return this.routes;
     }, 
-    getSelected(route) {
+    setSelected(route) {
         console.table(this.routes);
         let found = this.routes.find(obj => route.name === obj.name);
         console.log(found);
         if(found) {
-            return found;
+            this.selected = found;
+            return;
         }
 
         found = RouteGateway.findByName(route);
@@ -34,6 +36,9 @@ export default {
             this.routes.push(found);
             this.routes.sort((r1, r2) => r1.name > r2.name ? 1 : (r1.name < r2.name ? -1 : 0));
         }
-        return found; // Returns whatever is found for now.
+        this.selected = found;
+    }, 
+    getSelected() {
+        return this.selected;
     }
 }

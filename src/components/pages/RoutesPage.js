@@ -58,7 +58,7 @@ class RoutesPage extends React.Component {
                     <div className="routeListElementContainter">
                       <Router>
                         <Link className="linkRoute" to="/"
-                        onClick={e=>{cache.default.getSelected(routes[index])}}
+                        onClick={e=>{cache.default.setSelected(routes[index])}}
                         >
                           Ruta {item.name}
                         </Link>
