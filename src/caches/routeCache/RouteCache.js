@@ -13,16 +13,18 @@ export default {
         this.routes = this.routes.filter(obj => route.name !== obj.name);
         RouteGateway.deleteByName(route.name);
     }, 
-    getRoutes() {
+    async getRoutes() {
         if(this.routes.length === 0) {
-            this.routes = RouteGateway.findAll();
+            this.routes = await RouteGateway.findAll()
+                            .then(list => list);
             console.log(this.routes)
         }
         return this.routes;
     }, 
     getSelected(route) {
-        console.log("Herre " +this.routes)
+        console.table(this.routes);
         let found = this.routes.find(obj => route.name === obj.name);
+        console.log(found);
         if(found) {
             return found;
         }
