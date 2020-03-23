@@ -2,7 +2,7 @@ import React from "react";
 import {Map, Polyline, Marker, GoogleApiWrapper} from 'google-maps-react';
 import getStyle from './MapStyles.js';
 import getKey from 'ApiKey.js';
-
+import * as cache from 'caches/routeCache/RouteCache'
  
 export class MapContainer extends React.Component {
 

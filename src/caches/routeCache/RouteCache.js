@@ -9,16 +9,19 @@ export default {
         }
     }, 
     deleteRoute(route) {
+        
         this.routes = this.routes.filter(obj => route.name !== obj.name);
         RouteGateway.deleteByName(route.name);
     }, 
     getRoutes() {
-        if(this.routes.length == 0) {
+        if(this.routes.length === 0) {
             this.routes = RouteGateway.findAll();
+            console.log(this.routes)
         }
-        return this.routes.slice();
+        return this.routes;
     }, 
     getSelected(route) {
+        console.log("Herre " +this.routes)
         let found = this.routes.find(obj => route.name === obj.name);
         if(found) {
             return found;

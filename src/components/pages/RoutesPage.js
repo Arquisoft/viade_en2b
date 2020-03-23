@@ -8,28 +8,31 @@ import BurgerMenu from '../generic_components/BurgerMenu';
 import {HashRouter as Router, Link} from "react-router-dom";
 //const gateway = new RouteGateway();
 
-import RoutesLoader from '../../RouteManager/ListUserRoutes'
-
 //var frutas = ["Route 1","Route 2","Route 3","Route 4"];
 
-
+import * as cache from 'caches/routeCache/RouteCache'
 
 
 class RoutesPage extends React.Component {
 
-  render(){
-    var loader = new RoutesLoader();
-    var rutas;
-    if(this.props.defaultRuta!=null)
-      rutas=this.props.defaultRuta;
-    else
-      rutas = [];
-    loader.loadUserRoutesFiles();
-    var nullableRutas = localStorage.getItem('rutas');
-    if(nullableRutas!=null)
-      rutas = JSON.parse(nullableRutas);
-    return (
-    <div className="bodyRoutes" id="outer-container">
+  constructor(props){
+    super(props);
+  
+  this.state = {
+    loading: true,
+    routes: ""
+  };
+}
+
+  componentDidMount() {
+    cache.default.getRoutes(this.state.routes).then(rutas => {
+      this.setState({ loading: false, routes: rutas });
+    });
+
+  }
+  viewLoaded = routes =>{
+    return(
+      <div className="bodyRoutes" id="outer-container">
       <main>
           <BurgerMenu 
           pageWrapId="page-wrap"
@@ -48,13 +51,14 @@ class RoutesPage extends React.Component {
               />
             </div>
             <ul>
-              {rutas.map((item, index)=>{
+              {console.log(routes)}
+              {routes.map((item, index)=>{
                 return (
                   <li id={"route"+index} key={index}>
                     <div className="routeListElementContainter">
                       <Router>
                         <Link className="linkRoute" to="/"
-                        onClick={e=>{localStorage.setItem('route',JSON.stringify(rutas[index]))}}
+                        onClick={e=>{cache.default.getSelected(routes[index])}}
                         >
                           Ruta {item.name}
                         </Link>
@@ -68,6 +72,18 @@ class RoutesPage extends React.Component {
         </div>
       </main>
     </div>
+    );
+    }
+  render(){
+    const {loading} = this.state;
+  //  loader.loadUserRoutesFiles();
+ //   var nullableRutas = localStorage.getItem('rutas');
+ //   if(nullableRutas!=null)
+ //     rutas = JSON.parse(nullableRutas);
+    return ( 
+      <React.Fragment>
+        {loading ? "Loading..." : this.viewLoaded(this.state.routes)}
+      </React.Fragment>
   );
 }
 }
