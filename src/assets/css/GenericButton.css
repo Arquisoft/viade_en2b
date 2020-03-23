@@ -24,7 +24,7 @@ button {
     border-radius: 30px;
     background: var(--bg-color);
     box-shadow:  -11px -11px 22px var(--shadow-up),
-                  11px 11px 22px var(--shadow-down);
+                  2px 2px 22px var(--shadow-down);
 }
 
 .buttonGeneric:active {

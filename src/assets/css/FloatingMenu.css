@@ -1,72 +1,70 @@
 .rtf--mb{
-      margin-right:0;
-      margin-left:0;
-      position: relative;
-      overflow: hidden;
-      
-      border-radius: 30px;
-      background: var(--bg-color);
-      box-shadow:  -11px -11px 22px var(--shadow-up),
-                    11px 11px 22px var(--shadow-down);
-      
-  }
-  
-  .rtf--ab{
-      margin-right:75px;
-      position: relative;
-      overflow: hidden;
+    margin-right:0;
+    margin-left:0;
+    position: relative;
+    overflow: hidden;
+    
+    border-radius: 30px;
+    background: var(--bg-color);
+    box-shadow:  -11px -11px 22px var(--shadow-up),
+                  11px 11px 22px var(--shadow-down);
+    
+}
 
-      background: var(--bg-color);
-      box-shadow:  -11px -11px 22px var(--shadow-up),
-                    11px 11px 22px var(--shadow-down);
-  }
-  
-  .rtf--ab:hover{
-      background: var(--bg-color);
-      box-shadow:  -11px -11px 22px var(--shadow-up),
-                    11px 11px 22px var(--shadow-down);
-  }
-  
-  .rtf--ab::after, .rtf--mb::after {
-      display: none;
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.25);
-      
-      width: 100px;
-      height: 100px;
-      margin-top: -50px;
-      margin-left: -50px;
-      
-      /* Center the ripple */
-      top: 50%;
-      left: 50%;
+.rtf--ab{
+    margin-right: 22px;
+    position: relative;
+    overflow: hidden;
+
+    background: var(--bg-color);
+    box-shadow:  -11px -11px 22px var(--shadow-up),
+                  11px 11px 22px var(--shadow-down);
+}
+
+.rtf--ab:hover{
+    background: var(--bg-color);
+    box-shadow:  -11px -11px 22px var(--shadow-up),
+                  11px 11px 22px var(--shadow-down);
+}
+
+.rtf--ab::after, .rtf--mb::after {
+    display: none;
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.25);
     
-      animation: ripple 1s;
+    width: 100px;
+    height: 100px;
+    
+    /* Center the ripple */
+    top: 50%;
+    left: 50%;
+  
+    animation: ripple 1s;
+    opacity: 0;
+  }
+
+  .rtf--ab:focus:not(:active)::after, .rtf--mb:focus:not(:active)::after {
+    display: block;
+  }
+  
+  @keyframes ripple {
+    from {
+      opacity: 1;
+      transform: scale(0);
+    }
+    to {
       opacity: 0;
+      transform: scale(1);
     }
-  
-    .rtf--ab:focus:not(:active)::after, .rtf--mb:focus:not(:active)::after {
-      display: block;
-    }
-    
-    @keyframes ripple {
-      from {
-        opacity: 1;
-        transform: scale(0);
-      }
-      to {
-        opacity: 0;
-        transform: scale(1);
-      }
-    }
-  
-  .fafab{
-    color: var(--font-color);
-    }
-  .fa-circle{
-    color: #B54A4A;
   }
+
+.fafab{
+  color: var(--font-color);
+  }
+.fa-circle{
+  color: #B54A4A;
+}
   
   
