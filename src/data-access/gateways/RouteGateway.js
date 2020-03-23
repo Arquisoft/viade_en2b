@@ -1,7 +1,4 @@
-
-import ReadRoute from "../../RouteManager/ReadRoute"
-import RoutesLoader from "../../RouteManager/ListUserRoutes"
-import DeleteUserRoute from "../../RouteManager/DeleteUserRoute"
+import RoutesLoader from "RouteManager/ListUserRoutes"
 import {Read} from "rdf-namespaces/dist/acl";
 
 
