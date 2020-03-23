@@ -1,6 +1,6 @@
 import RoutesLoader from "RouteManager/ListUserRoutes";
 import {Read} from "rdf-namespaces/dist/acl";
-import DeleteUserRoute from "../../RouteManager";
+import DeleteUserRoute from "../../RouteManager/DeleteUserRoute";
 
 
 export function findByName(name) {
