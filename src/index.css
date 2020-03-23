@@ -7,6 +7,9 @@
     --font-color: #686868;
     --font-color-hover: #5C785C;
     
+    --icon-color: #FF0088;
+    --icon-color-hover: #FF8888;
+    
     --bg-color: #ebebeb;
     --bg-color-pressed: #d4d4d4;
     --shadow-up: #ffffff;
@@ -21,6 +24,9 @@
     
     --font-color: #e1e1ff;
     --font-color-hover: #ffffff;
+    
+    --icon-color: #FF0088;
+    --icon-color-hover: #FF8888;
     
     --bg-color: #161625;
     --bg-color-pressed: #AAAAAA;
@@ -44,6 +50,7 @@
 body, html {
 	height: 100%;
 	font-family: sans-serif;
+  background-color: var(--bg-color);
 }
 
 /*---------------------------------------------*/
@@ -58,6 +65,8 @@ a {
 
 a:focus {
 	outline: none !important;
+  color: var(--font-color-hover);
+	text-decoration: none;
 }
 
 a:hover {
