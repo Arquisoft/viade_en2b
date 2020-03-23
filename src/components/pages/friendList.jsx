@@ -9,7 +9,7 @@ class FriendsPage extends React.Component {
   render(){
 
     let friendos = [{
-      image: 'https://react.semantic-ui.com/images/avatar/large/matthew.png',
+      image: '/images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
       description: "Testing the props and all shit",
