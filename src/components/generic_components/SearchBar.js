@@ -4,9 +4,6 @@ import 'assets/css/SearchBar.css';
 export default class SearchBar extends React.Component{
 
     render(){
-        function myFunction() {
-           
-        }
         return (
         <input 
             type="text" 

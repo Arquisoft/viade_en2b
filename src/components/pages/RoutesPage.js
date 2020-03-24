@@ -4,8 +4,8 @@ import CustomLoader from 'components/generic_components/CustomLoader';
 import BurgerMenu from '../generic_components/BurgerMenu';
 //import RouteGateway from '../../data-access/gateways/RouteGateway'
 import SearchBar from '../generic_components/SearchBar';
+import CardLayout from '../generic_components/Card';
 
-import {HashRouter as Router, Link} from "react-router-dom";
 //const gateway = new RouteGateway();
 
 //var frutas = ["Route 1","Route 2","Route 3","Route 4"];
@@ -64,15 +64,18 @@ class RoutesPage extends React.Component {
             <ul className="listRoute">
               {filteredRoutes.map((item, index)=>{
                 return (
-                  <li id={"route"+index} key={index}>
+                  <li id={"route"+index} key={index} class="liRoute">
                     <div className="routeListElementContainter">
-                      <Router>
-                        <Link className="linkRoute" to="/"
-                        onClick={e=>{cache.default.setSelected(routes[index])}}
-                        >
-                          {item.name}
-                        </Link>
-                      </Router>
+                      <CardLayout
+                        header={item.name}
+                        image="/images/daddy.png"
+                        link = "/"
+                        className="linkRoute"
+                        description="Well, it should be a description..."
+                        action={e=>{cache.default.setSelected(routes[index])}}
+                        iconName='send'
+                      />
+                     
                     </div>
                   </li>
                 );
