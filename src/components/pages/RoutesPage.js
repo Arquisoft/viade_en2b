@@ -3,7 +3,7 @@ import "../../assets/css/routes.css";
 import CustomLoader from 'components/generic_components/CustomLoader';
 import BurgerMenu from '../generic_components/BurgerMenu';
 //import RouteGateway from '../../data-access/gateways/RouteGateway'
-
+import SearchBar from '../generic_components/SearchBar';
 
 import {HashRouter as Router, Link} from "react-router-dom";
 //const gateway = new RouteGateway();
@@ -20,10 +20,13 @@ class RoutesPage extends React.Component {
   
   this.state = {
     loading: true,
-    routes: ""
+    routes: "",
+    search: ''
   };
 }
-
+  updateSearch(event){
+    this.setState({search: event.target.value.substr(0,20)});
+  }
   componentDidMount() {
     cache.default.getRoutes(this.state.routes).then(rutas => {
       this.setState({ loading: false, routes: rutas });
@@ -31,8 +34,19 @@ class RoutesPage extends React.Component {
 
   }
   viewLoaded = routes =>{
+   /* function search(){
+        var value = document.getElementById("myInput").value;
+        routes = routes.filter(item=>
+          item.name.search(value)<0
+        );
+      }
+    */
+    let filteredRoutes = routes.filter(ruta=>{
+          return ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase())!==-1;
+      }
+    );
     return(
-     
+      
       <div className="bodyRoutes" id="outer-container">
       <main>
           <BurgerMenu 
@@ -43,17 +57,12 @@ class RoutesPage extends React.Component {
           <header className="bodyHeader"></header>
           <section className="sectionRoutes">
             
-            <div className="active-purple-3 active-purple-4 mb-4">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Search"
-                aria-label="Search"
-              />
-            </div>
-            <ul>
-              {console.log(routes)}
-              {routes.map((item, index)=>{
+            <SearchBar value={this.state.search} 
+                       action={this.updateSearch.bind(this)} 
+                       list="listRoute"
+            />
+            <ul className="listRoute">
+              {filteredRoutes.map((item, index)=>{
                 return (
                   <li id={"route"+index} key={index}>
                     <div className="routeListElementContainter">
@@ -61,7 +70,7 @@ class RoutesPage extends React.Component {
                         <Link className="linkRoute" to="/"
                         onClick={e=>{cache.default.setSelected(routes[index])}}
                         >
-                          Ruta {item.name}
+                          {item.name}
                         </Link>
                       </Router>
                     </div>
