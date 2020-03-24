@@ -34,7 +34,7 @@ class BurgerMenu extends Component {
               <span>List Routes</span>
             </Link>
           
-            <Link id="list-friends" className="menu-item" to="/">
+            <Link id="list-friends" className="menu-item" to="/friends-list">
               <i className="fa fa-fw fas fa-users"></i>
               <span>List Friends</span>
             </Link>

@@ -4,6 +4,7 @@ import './App.css';
 import {HashRouter as Router, Route,Switch} from "react-router-dom";
 import MainPage from './components/pages/MainPage';
 import LoginPage from './components/pages/LoginPage';
+import FriendsPage from './components/pages/FriendList';
 
 import RoutesPage from './components/pages/RoutesPage';
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
         {/* <Route exact path="/login" component={Login}/> */}
         <Route exact path="/login" component={LoginPage}/>
         <Route exact path="/routes" component={RoutesPage}/>
+        <Route exact path="/friends-list" component={FriendsPage}/>
       </Switch>
     </Fragment>
     </Router>
