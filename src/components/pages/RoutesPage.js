@@ -64,7 +64,7 @@ class RoutesPage extends React.Component {
             <ul className="listRoute">
               {filteredRoutes.map((item, index)=>{
                 return (
-                  <li id={"route"+index} key={index} class="liRoute">
+                  <li id={"route"+index} key={index} className="liRoute">
                     <div className="routeListElementContainter">
                       <CardLayout
                         header={item.name}

@@ -10,7 +10,6 @@ export default {
         }
     }, 
     deleteRoute(route) {
-        
         this.routes = this.routes.filter(obj => route.name !== obj.name);
         RouteGateway.deleteByName(route.name);
     }, 
@@ -38,7 +37,11 @@ export default {
         }
         this.selected = found;
     }, 
-    async getSelected() {
+    getSelected() {
         return this.selected;
+    },
+    clear() {
+        this.routes = [];
+        this.selected = null;
     }
 }

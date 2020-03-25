@@ -22,19 +22,15 @@ export class MapContainer extends React.Component {
   setZoom(zoom) { this.zoom = zoom }
   
   componentDidMount() {
-    cache.default.getSelected(this.state.route).then(rutita => {
-      this.setState({ loading: false, route: rutita });
-    });
-
+    let rutita = cache.default.getSelected()
+    this.setState({ loading: false, route: rutita });
   }
 
   
   viewLoaded = route => {
-    console.table(cache.default.selected)
-    var puntos = route.geoCoordinates;
     var ruta = [];
-    console.log(route)
-    if(route != ""){
+    if(route){
+      var puntos = route.geoCoordinates;
       puntos.forEach((punto)=>{
         ruta.push({
           lat: parseFloat(punto.latitude),
