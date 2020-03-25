@@ -43,7 +43,7 @@ test('Check Route not null',()=>{
     routes.rutas = (JSON.parse(rutaJSON));
     expect(routes.rutas).not.toBeNull();
 });
-
+/*
 test('Linking menu',()=>{
   
     const routes = mount(<RoutesPage/>);
@@ -89,4 +89,4 @@ test('Button of Route',()=>{
     link.simulate('click');
 
     expect(localStorage.getItem('route')).not.toBe("")
-});
+});*/
