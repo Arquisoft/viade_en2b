@@ -1,15 +1,19 @@
-import Route from "../Entities/BasicRoute"
+import Route from "../Entities/BasicRoute";
 
-export default class RoutesLoader{
-    async loadUserRoutesFiles() {
+export default class RoutesLoader {
+    async loadUserRoutesFiles(callback) {
+
         const auth = require('solid-auth-client')
         const FC = require('solid-file-client')
         const fc = new FC(auth)
         let routes = [];
         let session = await auth.currentSession();
         let popupUri = 'https://solid.community/common/popup.html';
-        if (!session || session.webId === undefined || session.webId === null)
-            session = await auth.popupLogin({popupUri});
+        if (!session || session.webId === undefined || session.webId === null) {
+            callback();
+            return [];
+        }
+        //session = await auth.popupLogin({popupUri});
         //alert('Logged in as ' + session.webId);
         let routesFolder = session.webId.substring(0, session.webId.length - 16) + "/public/Routes/";
 
