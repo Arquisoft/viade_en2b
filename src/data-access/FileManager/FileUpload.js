@@ -1,12 +1,8 @@
-import JSZip from 'jszip';
-import { FileItem, FolderItem, Item } from './Item';
-import FileCache from 'caches/routeCache/FileCache';
-import config from './../config';
 import * as auth from 'solid-auth-client';
 import SolidFileClient from 'solid-file-client';
+import mime from 'mime';
 
 const fileClient = new SolidFileClient(auth, { enableLogging: true });
-const cache = new FileCache();
 
 const handleFetchError = async (error) => {
     let detailedErrorMessage = '';
@@ -49,20 +45,28 @@ const handleFetchError = async (error) => {
 }
 
 export const uploadFiles = async (path, fileList) => {
-    path = fixPath(path);
+    let session = await auth.currentSession();
+    if (!session || session.webId === undefined || session.webId === null) {
+        throw new Error("You are not logged in.");
+    }
 
     if (!fileList.length) {
         return Promise.reject('No files to upload');
     }
-    const promises = Array.from(fileList).map(file => {
-      const contentType = file.type || guessContentType(file.name, file)
-      return updateFile(path, file.name, file, file.type)
-    });
-    return Promise.all(promises).catch(handleFetchError);
+
+    path = fixPath(session.webId.split("profile")[0]);
+    let validFile = validContentType(file);
+    if (validFile) {
+        const promises = Array.from(fileList).map(file => {
+            return updateFile(path, file.name, file, mime.getExtension(file.name));
+        });
+        return Promise.all(promises).catch(handleFetchError);
+    }
 };
 
 const updateFile = (path, fileName, content, contentType) => {
     path = fixPath(path);
+    path = path.endsWith('/') ? path : `${path}/`;
     return fileClient.putFile(`${path}${fileName}`, content, contentType)
         .catch(handleFetchError);
 };
@@ -71,6 +75,10 @@ const fixPath = (path) => {
     if (path === "")
         return path;
     return ('/' + path).replace(/\/\//g, '/');
+};
+
+const validContentType = (file) => {
+    return isImage(file.name) || isVideo(file.name);
 };
 
 const fileItem = {
