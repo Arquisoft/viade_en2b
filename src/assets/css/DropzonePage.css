@@ -1,6 +1,6 @@
 .dropzonePage {
     text-align: center;
-    background-color: rgb(206, 213, 223);
+    background-color: rgb(177, 207, 250);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -10,7 +10,7 @@
   }
   
   .Card {
-    background-color: white;
+    background-color: rgb(214, 214, 251);
     padding: 64px;
     display: flex;
     align-items: flex-start;

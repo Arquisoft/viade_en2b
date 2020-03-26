@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import '../../assets/css/Dropzone.css'
-
+import MultimediaViewer from './MultimediaViewer';
 class Dropzone extends Component {
   constructor(props) {
     super(props);
-    this.state = { hightlight: false };
+    this.state = { hightlight: false, 
+                   files: []};
     this.fileInputRef = React.createRef();
-
+    
     this.openFileDialog = this.openFileDialog.bind(this);
     this.onFilesAdded = this.onFilesAdded.bind(this);
     this.onDragOver = this.onDragOver.bind(this);
     this.onDragLeave = this.onDragLeave.bind(this);
     this.onDrop = this.onDrop.bind(this);
   }
+
+    
 
   openFileDialog() {
     if (this.props.disabled) return;
@@ -25,6 +28,8 @@ class Dropzone extends Component {
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
       this.props.onFilesAdded(array);
+      console.log("FILE ADDED BY CLICKING");
+      this.setState({files: array});
     }
   }
 
@@ -33,11 +38,11 @@ class Dropzone extends Component {
 
     if (this.props.disabled) return;
 
-    this.setState({ hightlight: true });
+     this.setState({highlight: true});
   }
 
   onDragLeave() {
-    this.setState({ hightlight: false });
+     this.setState({highlight: false});
   }
 
   onDrop(event) {
@@ -49,8 +54,10 @@ class Dropzone extends Component {
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
       this.props.onFilesAdded(array);
+      console.log("FILE ADDED BY DROPPING");
+       this.setState({files: array});
     }
-    this.setState({ hightlight: false });
+    this.setState({highlight: false});
   }
 
   fileListToArray(list) {
@@ -63,6 +70,7 @@ class Dropzone extends Component {
 
   render() {
     return (
+      <React.Fragment>
       <div
         className={`Dropzone ${this.state.hightlight ? 'Highlight' : ''}`}
         onDragOver={this.onDragOver}
@@ -85,6 +93,8 @@ class Dropzone extends Component {
         />
         <span>Upload Files</span>
       </div>
+      <MultimediaViewer files={this.state.files}/>
+      </React.Fragment>
     )
   }
 }
