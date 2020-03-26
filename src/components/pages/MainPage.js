@@ -11,9 +11,6 @@ import {HashRouter as Router,Link} from 'react-router-dom';
 
 class MainPage extends React.Component{
   render(){
-
-  //var ruta = JSON.parse(localStorage.getItem('route'));
-  //console.log(ruta);
   return (
     <div className="App" id="outer-container">
       <BurgerMenu 
@@ -22,12 +19,14 @@ class MainPage extends React.Component{
       />
       <main className="main" id="page-wrap">
       <FloatingButton/>
-      
-        <GenericButton
-          className="buttonGeneric loginButton"
-          message=<Router><Link to="/login">LOG IN</Link></Router>
-        />
-     
+      <Router>
+        <Link to="/login">
+          <GenericButton
+            className="buttonGeneric loginButton"
+            message="LOG IN"
+          />
+        </Link>
+      </Router>
         <MapContainer/>  
       </main>
     </div>
