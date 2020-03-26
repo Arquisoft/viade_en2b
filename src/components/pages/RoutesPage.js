@@ -30,12 +30,12 @@ class RoutesPage extends React.Component {
     this.setState({ search: event.target.value.substr(0, 20) });
   }
   componentDidMount() {
-    cache.default.getRoutes(this.handleClick).then(rutas => {
+    cache.default.getRoutes(this.handleSession).then(rutas => {
       this.setState({ loading: false, routes: rutas });
     });
   }
     
-  handleClick = () => {
+  handleSession = () => {
     this.props.history.push("/login");
   }
 
