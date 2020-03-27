@@ -3,7 +3,7 @@ import {Polyline} from 'google-maps-react';
 
 
 export default class MapRoute extends React.Component {
-	
+
 	constructor() {
 		super()
 		this.triangleCoords = [
@@ -20,7 +20,6 @@ export default class MapRoute extends React.Component {
 		  strokeColor="#FF0000"
 		  strokeOpacity={1}
 		  strokeWeight={2} />
-		  
 	  )
 	}
 }

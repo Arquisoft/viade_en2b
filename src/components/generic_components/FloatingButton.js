@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import { Fab, Action } from 'react-tiny-fab';
 import 'react-tiny-fab/dist/styles.css';
 
-import '../../assets/css/FloatingMenu.css'
+import 'assets/css/FloatingMenu.css'
 
 class FloatingButton extends Component {
 render () {
