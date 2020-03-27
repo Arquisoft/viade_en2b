@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 
-import './App.css';
 import {HashRouter as Router, Route,Switch} from "react-router-dom";
 import MainPage from './components/pages/MainPage';
 import LoginPage from './components/pages/LoginPage';
@@ -32,5 +31,3 @@ class App extends Component {
 
 
 export default App;
-
-

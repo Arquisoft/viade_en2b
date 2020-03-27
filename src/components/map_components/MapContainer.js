@@ -7,45 +7,35 @@ import CustomLoader from 'components/generic_components/CustomLoader';
 
 export class MapContainer extends React.Component {
 
-  constructor(props){
-      super(props);
-  
-  this.state = {
-    loading: true,
-    route: ""
-    };
-  }
-  center={lat: 43.362448, lng: -5.849005}
-  route = [{lat: 43.361778, lng: -5.848008}, {lat: 43.363836, lng: -5.851059}, {lat: 43.363174, lng: -5.852273}]
+  center={lat: 43.354854, lng: -5.851186}
+  route = []
   zoom = 15
   
   setZoom(zoom) { this.zoom = zoom }
   
-  componentDidMount() {
-    let rutita = cache.default.getSelected()
-    this.setState({ loading: false, route: rutita });
-  }
-
-  
-  viewLoaded = route => {
-    var ruta = [];
-    if(route){
-      var puntos = route.geoCoordinates;
-      puntos.forEach((punto)=>{
-        ruta.push({
-          lat: parseFloat(punto.latitude),
-          lng: parseFloat(punto.longitude)
-        });
-      })
-     console.log(puntos)
-     route = ruta;
-     console.log(route)
-    }else{
-     route =  this.route;
+  render() {
+    var stringRuta =  localStorage.getItem('route');
+    var rutaSeleccionada;
+    
+    if(stringRuta!=null){
+       rutaSeleccionada = JSON.parse(localStorage.getItem('route'));
+       var puntos = rutaSeleccionada.geoCoordinates;
+       var ruta = [];
+    
+      if(typeof(rutaSeleccionada) !== "undefined"){
+        puntos.forEach((punto)=>{
+          ruta.push({
+            lat: parseFloat(punto.latitude),
+            lng: parseFloat(punto.longitude)
+          });
+        })
+       
+       this.route = ruta;
+      }
     }
     
-    if(route.length!==0) {
-      this.center=route[Math.floor(route.length/2)];
+    if(this.route.length!==0) {
+      this.center=this.route[Math.floor(this.route.length/2)];
     }
     
     return ( <Map
@@ -59,7 +49,7 @@ export class MapContainer extends React.Component {
       initialCenter={this.center}
     >
     <Polyline
-      path={route}
+      path={this.route}
       strokeColor="#717171"
       strokeOpacity={1}
       strokeWeight={0.4*this.zoom}
@@ -68,7 +58,7 @@ export class MapContainer extends React.Component {
       <Marker
         title={'Start of route'}
         name={'Start of route'}
-        position={route[0]}
+        position={this.route[0]}
         opacity={1}
         icon={"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Media_Viewer_Icon_-_Location.svg/35px-Media_Viewer_Icon_-_Location.svg.png"}
       />
