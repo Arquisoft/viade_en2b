@@ -1,11 +1,8 @@
 import React from 'react'
 import { LoggedIn, LoggedOut } from '@solid/react';
 
-
-
 function Login() {
     const auth = require('solid-auth-client');
-
     function logout(e, auth) {
         e.preventDefault();
         auth.logout();
@@ -25,8 +22,9 @@ function Login() {
                 <button className="login100-form-btn" onClick={(e) => popup(e, auth)}>Log In</button>
             </LoggedOut>
             <LoggedIn>
-                <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>
+                <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
             </LoggedIn>
+
         </div>
     )
 }
@@ -34,11 +32,11 @@ function Login() {
 async function popup(e, auth) {
     e.preventDefault();
     let session = await auth.currentSession();
-    let popupUri = 'https://solid.community/common/popup.html';
+   let popupUri = 'https://solid.community/common/popup.html';
     if (!session)
         session = await auth.popupLogin({ popupUri });
     alert(`Logged in as ${session.webId}`);
 
 }
 
-export default Login
+export default Login;

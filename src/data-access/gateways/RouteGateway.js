@@ -1,7 +1,6 @@
-
-import ReadRoute from "../../RouteManager/ReadRoute"
-import RoutesLoader from "../../RouteManager/ListUserRoutes"
+import RoutesLoader from "RouteManager/ListUserRoutes";
 import {Read} from "rdf-namespaces/dist/acl";
+import DeleteUserRoute from "../../RouteManager/DeleteUserRoute";
 
 
 export function findByName(name) {
@@ -29,12 +28,15 @@ export function add(route) {
 }
 
 export function deleteByName(name) {
-    // call to find the route by the name
-    //var route = await RouteRDF.findByName(name);
-    // if any, call again to delete it
-    //if(route && route.name) {
-    //    RouteRDF.delete(route);
-    //}
+    let routesDeleter = new DeleteUserRoute();
+    if(routesDeleter.deleteRouteByName(name)){return true;}
+    return false;
+}
+
+export function deleteByUrl(url) {
+    let routesDeleter = new DeleteUserRoute();
+    if(routesDeleter.deleteRouteByUrl(url)){return true;}
+    return false;
 }
 
 export function updateByName(name, route) {

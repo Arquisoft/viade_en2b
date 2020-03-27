@@ -1,4 +1,4 @@
-class Itirenary{
+export default class Itirenary{
     constructor(numberOfItems, itemList) {
         this.numberOfItems = numberOfItems;
         this.itemList = itemList;
