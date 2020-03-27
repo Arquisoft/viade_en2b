@@ -2,8 +2,9 @@ import React from "react";
 import {Map, Polyline, Marker, GoogleApiWrapper} from 'google-maps-react';
 import getStyle from './MapStyles.js';
 import getKey from 'ApiKey.js';
+import * as cache from 'caches/routeCache/RouteCache'
+import CustomLoader from 'components/generic_components/CustomLoader';
 
- 
 export class MapContainer extends React.Component {
 
   center={lat: 43.354854, lng: -5.851186}
@@ -62,6 +63,15 @@ export class MapContainer extends React.Component {
         icon={"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Media_Viewer_Icon_-_Location.svg/35px-Media_Viewer_Icon_-_Location.svg.png"}
       />
     </Map>
+    );
+  }
+
+  render(){
+    const {loading} = this.state;
+    return(
+      <React.Fragment>
+        {loading ? <CustomLoader/> : this.viewLoaded(this.state.route)}
+      </React.Fragment>
     );
   }
 }

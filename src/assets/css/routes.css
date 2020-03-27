@@ -14,7 +14,7 @@ ul {
   box-shadow:  -11px -11px 22px var(--shadow-up),
                 2px 2px 22px var(--shadow-down);
 }
-  
+
 .routeListElementContainter p {
   display: inline-block;
   text-align: center;
@@ -23,6 +23,11 @@ ul {
 
 .sectionRoutes p, .sectionRoutes span, .sectionRoutes a{
   color: black;
+}
+
+.liRoute{
+  padding: 5px;
+  border-radius: 50px;
 }
 
 .routes{
