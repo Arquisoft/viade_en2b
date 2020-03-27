@@ -43,6 +43,31 @@ test('Check Route not null',()=>{
     routes.rutas = (JSON.parse(rutaJSON));
     expect(routes.rutas).not.toBeNull();
 });
+
+test('Search',()=>{
+     const routes = mount(<RoutesPage/>);
+     
+     routes.setState({search:'Hola'});
+
+    beforeEach(() => {
+        routes.setState({routes:["Ruta1","Ruta2"]});
+        const loader = routes.find('CustomLoader');
+        expect(loader.exists()).toBeTruthy();
+
+        const viewCharge = routes.find('viewCharge');
+        expect(viewCharge.find('CustomLoader').exists()).toBeTruthy();
+        
+    });
+    afterEach(()=>{
+        const card = routes.find('CardLayout');
+        const link = card.find('Link');
+        link.at(6).simulate('click');
+        expect(link.exists()).toBeTruthy();
+    });
+   
+   
+});
+
 /*
 test('Linking menu',()=>{
   
