@@ -5,10 +5,14 @@ export default class RouteFile {
     }
 
     addFilePath(path) {
-        this.filePaths = [...this.filePaths, path];
+        if(!this.filePaths.includes(path)) {
+            this.filePaths = [...this.filePaths, path];
+        } else {
+            throw new Error(`The path "${path}" is already in the cache.`);
+        }
     }
 
     removeFilePath(path) {
-        this.filePaths.filter(fp => fp === path)
+        this.filePaths = this.filePaths.filter(fp => fp !== path);
     }
 }

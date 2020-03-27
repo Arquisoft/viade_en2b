@@ -2,13 +2,16 @@ import RouteFile from 'Entities/RouteFile';
 import * as FileGateway from 'data-access/gateways/FileGateway'
 
 export default {
-    filePaths = [],
+    filePaths: [],
     addFile(route, path) {
         let found = this.filePaths.find(rf => rf.routePath === route.name);
         if(found) {
-            found.addFilePath(path);
-
-            FileGateway.uploadFile(found.routePath, path);
+            try {
+                found.addFilePath(path);
+                FileGateway.uploadFile(found.routePath, path);
+            } catch(err) {
+                console.log(err);
+            }
         } else {
             let filesMap = new RouteFile(route.name, path);
             filesMap.addFilePath(path);
