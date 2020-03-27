@@ -1,5 +1,5 @@
 import RoutesLoader from "RouteManager/ListUserRoutes";
-import {Read} from "rdf-namespaces/dist/acl";
+//import {Read} from "rdf-namespaces/dist/acl"; -->Comment to avoid unused
 import DeleteUserRoute from "../../RouteManager/DeleteUserRoute";
 
 
@@ -8,15 +8,16 @@ export function findByName(name) {
 
 export function findAll() {
     let routesLoader = new RoutesLoader();
-    let loadedRoutes =   routesLoader.loadUserRoutesFiles();
+    let loadedRoutes = routesLoader.loadUserRoutesFiles();
+    console.log(loadedRoutes)
     console.log("Loaded routes length: "+loadedRoutes.length);
     return loadedRoutes;
 }
 
 export function read(routeFile) {
-    let routeReader = new ReadRoute();
-    let routeList  = routeReader.readRoute(routeFile);
-    return routeList;
+   // let routeReader = new ReadRoute();
+   // let routeList  = routeReader.readRoute(routeFile);
+  //  return routeList;
 }
 
 export function add(route) {
