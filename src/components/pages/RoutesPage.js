@@ -2,17 +2,10 @@ import React from "react";
 import "../../assets/css/routes.css";
 import CustomLoader from 'components/generic_components/CustomLoader';
 import BurgerMenu from '../generic_components/BurgerMenu';
-//import RouteGateway from '../../data-access/gateways/RouteGateway'
 import SearchBar from '../generic_components/SearchBar';
 import CardLayout from '../generic_components/Card';
 
-import { withRouter } from "react-router-dom";
-
-//const gateway = new RouteGateway();
-
-//var frutas = ["Route 1","Route 2","Route 3","Route 4"];
-
-import * as cache from 'caches/routeCache/RouteCache'
+import cache from 'caches/routeCache/RouteCache';
 
 
 class RoutesPage extends React.Component {
@@ -30,26 +23,19 @@ class RoutesPage extends React.Component {
     this.setState({ search: event.target.value.substr(0, 20) });
   }
   componentDidMount() {
-    cache.default.getRoutes(this.handleSession).then(rutas => {
+    cache.getRoutes(this.handleSession).then(rutas => {
       this.setState({ loading: false, routes: rutas });
     });
   }
     
   handleSession = () => {
-    this.props.history.push("/login");
+    this.props.history.push('/login');
   }
 
   viewLoaded = routes => {
-    /* function search(){
-         var value = document.getElementById("myInput").value;
-         routes = routes.filter(item=>
-           item.name.search(value)<0
-         );
-       }
-     */
-    let filteredRoutes = routes.filter(ruta => {
-      return ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    }
+      let filteredRoutes = routes.filter(ruta => {
+        return ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+      }
     );
     return (
 
@@ -78,7 +64,7 @@ class RoutesPage extends React.Component {
                           link="/"
                           className="linkRoute"
                           description="Well, it should be a description..."
-                          action={e => { cache.default.setSelected(routes[index]) }}
+                          action={e => { cache.setSelected(routes[index]) }}
                           iconName='send'
                         />
 
@@ -102,10 +88,6 @@ class RoutesPage extends React.Component {
   }
   render() {
     const { loading } = this.state;
-    //  loader.loadUserRoutesFiles();
-    //   var nullableRutas = localStorage.getItem('rutas');
-    //   if(nullableRutas!=null)
-    //     rutas = JSON.parse(nullableRutas);
     return (
       <React.Fragment>
         {loading ? <CustomLoader /> : this.viewLoaded(this.state.routes)}
@@ -114,4 +96,4 @@ class RoutesPage extends React.Component {
   }
 }
 
-export default withRouter(RoutesPage);
+export default RoutesPage;
