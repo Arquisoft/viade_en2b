@@ -58,16 +58,17 @@ export const uploadFiles = async (path, fileList) => {
     let validFile = validContentType(file);
     if (validFile) {
         const promises = Array.from(fileList).map(file => {
-            return updateFile(path, file.name, file, mime.getExtension(file.name));
+            let buildPath = `${path}viade/resources/${file.name}`;
+            updateFile(buildPath, file, mime.getExtension(file.name));
+            return buildPath;
         });
         return Promise.all(promises).catch(handleFetchError);
     }
 };
 
-const updateFile = (path, fileName, content, contentType) => {
+const updateFile = (path, content, contentType) => {
     path = fixPath(path);
-    path = path.endsWith('/') ? path : `${path}/`;
-    return fileClient.putFile(`${path}${fileName}`, content, contentType)
+    return fileClient.putFile(path, content, contentType)
         .catch(handleFetchError);
 };
 
@@ -78,7 +79,7 @@ const fixPath = (path) => {
 };
 
 const validContentType = (file) => {
-    return isImage(file.name) || isVideo(file.name);
+    return fileItem.isImage(file.name) || fileItem.isVideo(file.name);
 };
 
 const fileItem = {

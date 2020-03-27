@@ -1,18 +1,22 @@
 export default class RouteFile {
-    constructor(routePath, filePaths) {
+    constructor(routePath, files) {
         this.routePath = routePath;
-        this.filePaths = [...filePaths];
+        this.files = [...files];
+    }
+
+    hasPath(path) {
+        return this.files.includes(path);
     }
 
     addFilePath(path) {
-        if(!this.filePaths.includes(path)) {
-            this.filePaths = [...this.filePaths, path];
+        if(!this.files.includes(path)) {
+            this.files = [...this.files, path];
         } else {
             throw new Error(`The path "${path}" is already in the cache.`);
         }
     }
 
     removeFilePath(path) {
-        this.filePaths = this.filePaths.filter(fp => fp !== path);
+        this.files = this.files.filter(fp => fp !== path);
     }
 }
