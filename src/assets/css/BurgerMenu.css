@@ -162,3 +162,90 @@ nav {
 .bm-item-list a span:hover {
   color: var(--font-color-hover);
 }
+
+
+/* TOGGLE SWITCH - By W3Schools (lightly edited) - https://www.w3schools.com/howto/howto_css_switch.asp*/
+
+/* The switch - the box around the slider */
+.switch {
+ position: relative;
+ margin-left: 20px;
+ display: inline-block;
+ width: 50px;
+ height: 1em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+ opacity: 0;
+ width: 0;
+ height: 0;
+}
+
+/* The slider */
+.slider {
+ position: absolute;
+ cursor: pointer;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background-color: var(--primary-color);
+ -webkit-transition: .4s;
+ transition: .4s;
+}
+
+.slider:before {
+ position: absolute;
+ content: "";
+ height: 13px;
+ width: 13px;
+ left: 4px;
+ bottom: 4px;
+ background-color: var(--bg-color);
+ -webkit-transition: .4s;
+ transition: .4s;
+}
+
+input:checked + .slider {
+ background-color: var(--secondary-color);
+}
+
+input:checked + .slider:before {
+ -webkit-transform: translateX(28px);
+ -ms-transform: translateX(28px);
+ transform: translateX(28px);
+}
+
+/* Rounded sliders */
+.slider.round {
+ border-radius: 34px;
+}
+
+.slider.round:before {
+ border-radius: 50%;
+}
+
+/* Make the div look the same as the other menu items */
+
+#lightmode {
+  padding: 1em 1em 1em 2.30em;
+  text-transform: uppercase;
+  display: block;
+  color: var(--icon-color);
+  transition: background 0.3s, box-shadow 0.3s;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+div .menu-item :hover {
+  color: var(--font-color-hover);
+}
+
+.toggle {
+  margin-left: 10px;
+  font-weight: 700;
+  color: var(--font-color);
+}
