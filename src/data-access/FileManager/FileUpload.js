@@ -44,7 +44,7 @@ const handleFetchError = async (error) => {
     throw new Error((displayErrorMessage) ? displayErrorMessage : detailedErrorMessage);
 }
 
-export const uploadFiles = async (path, fileList) => {
+export const uploadFiles = async (fileList) => {
     let session = await auth.currentSession();
     if (!session || session.webId === undefined || session.webId === null) {
         throw new Error("You are not logged in.");
@@ -54,15 +54,19 @@ export const uploadFiles = async (path, fileList) => {
         return Promise.reject('No files to upload');
     }
 
-    path = fixPath(session.webId.split("profile")[0]);
-    let validFile = validContentType(file);
-    if (validFile) {
+    let path = fixPath(session.webId.split("profile")[0]);
+    let validFiles = validContentType(fileList);
+    if (validFiles) {
         const promises = Array.from(fileList).map(file => {
             let buildPath = `${path}viade/resources/${file.name}`;
-            updateFile(buildPath, file, mime.getExtension(file.name));
-            return buildPath;
+            return updateFile(buildPath, file, file.type||mime.getExtension(file.name))
+                .then(() => {
+                    return buildPath;
+                });
         });
         return Promise.all(promises).catch(handleFetchError);
+    } else {
+        return Promise.reject('All files must be images or videos.');
     }
 };
 
@@ -75,11 +79,16 @@ const updateFile = (path, content, contentType) => {
 const fixPath = (path) => {
     if (path === "")
         return path;
-    return ('/' + path).replace(/\/\//g, '/');
+    return path.replace(/\/\//g, '/');
 };
 
-const validContentType = (file) => {
-    return fileItem.isImage(file.name) || fileItem.isVideo(file.name);
+const validContentType = (fileList) => {
+    fileList.forEach(file => {
+        if(!(fileItem.isImage(file.name) || fileItem.isVideo(file.name))) {
+            return false;
+        }
+    });
+    return true;
 };
 
 const fileItem = {

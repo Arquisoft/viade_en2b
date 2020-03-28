@@ -3,24 +3,23 @@ import * as FileGateway from 'data-access/gateways/FileGateway'
 
 export default {
     filePaths: [],
-    addFile(route, files) {
+    addFiles(route, files) {
         let found = this.filePaths.find(rf => rf.routePath === route.name);
-        console.log(found);
         try {
             if(found) {
-                let paths = FileGateway.uploadFiles(found.routePath, files);
-                paths.forEach(path => {
-                    try {
-                        found.addFilePath(path);
-                    } catch(err) {}
-                });
-                console.log(this.filePaths);
+                FileGateway.uploadFiles(found.routePath, files)
+                    .then(paths => paths.forEach(path => {
+                            try {
+                                found.addFilePath(path);
+                            } catch(err) {}
+                        }
+                    ));
             } else {
                 let filesMap = new RouteFile(route.name, []);
                 this.filePaths = [...this.filePaths, filesMap];
 
-                let paths = FileGateway.uploadFiles(filesMap.routePath, files);
-                paths.forEach(path => filesMap.addFilePath(path));
+                FileGateway.uploadFiles(filesMap.routePath, files)
+                    .then(paths => paths.forEach(path => filesMap.addFilePath(path)));
             }
         } catch(err) {
             console.log(err);

@@ -4,7 +4,7 @@ import * as FileGateway from 'data-access/gateways/FileGateway';
 const mockGatewayUpload = jest.spyOn(FileGateway, 'uploadFiles');
 const mockGatewayRemove = jest.spyOn(FileGateway, 'removeFile');
 
-mockGatewayUpload.mockImplementation((routePath, fileList) => {
+mockGatewayUpload.mockImplementation(async (routePath, fileList) => {
     return fileList.map(file => `path/${file.name}`);
 });
 
@@ -42,10 +42,9 @@ beforeEach(() => {
     mockGatewayRemove.mockClear();
 });
 
-test('add files not in the cache', () => {
-    console.log('start test 1');
-    FileCache.addFile(dummyRoute1, dummyFileList);
-    FileCache.addFile(dummyRoute2, dummyFileList);
+test('add files not in the cache', async () => {
+    FileCache.addFiles(dummyRoute1, dummyFileList);
+    FileCache.addFiles(dummyRoute2, dummyFileList);
 
     expect(mockGatewayUpload).toHaveBeenCalled();
     expect(FileCache.filePaths.length).toBe(2);
@@ -56,9 +55,8 @@ test('add files not in the cache', () => {
 });
 
 test('add files in the cache', () => {
-    console.log('start test 2');
-    FileCache.addFile(dummyRoute1, dummyFileList);
-    FileCache.addFile(dummyRoute1, dummyFileList);
+    FileCache.addFiles(dummyRoute1, dummyFileList);
+    FileCache.addFiles(dummyRoute1, dummyFileList);
 
     expect(mockGatewayUpload).toHaveBeenCalled();
     expect(FileCache.filePaths.length).toBe(1);

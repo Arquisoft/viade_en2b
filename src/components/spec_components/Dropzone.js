@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import '../../assets/css/Dropzone.css'
 import MultimediaViewer from './MultimediaViewer';
+
+import cache from 'caches/fileCache/FileCache';
+
 class Dropzone extends Component {
   constructor(props) {
     super(props);
@@ -21,10 +24,10 @@ class Dropzone extends Component {
     if (this.props.disabled) return;
     const files = this.state.files;
     if (this.state.files) {
+      cache.addFiles({name:'route1'}, [...files]);
       this.props.onUpload(files);
     }
     this.setState({highlight: false});
-    
   } 
 
   openFileDialog() {
