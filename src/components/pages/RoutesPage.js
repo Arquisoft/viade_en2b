@@ -28,7 +28,7 @@ class RoutesPage extends React.Component {
     this.setState({search: event.target.value.substr(0,20)});
   }
   componentDidMount() {
-    cache.default.getRoutes(this.state.routes).then(rutas => {
+    cache.default.getRoutes().then(rutas => {
       this.setState({ loading: false, routes: rutas });
     });
 
