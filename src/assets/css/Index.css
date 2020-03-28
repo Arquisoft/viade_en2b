@@ -1,6 +1,8 @@
 /*//////////////////////////////////////////////////////////////////
 [CSS VARIABLES]*/
 :root {
+    --border-radius: 25px;
+    
     --primary-color: #939598;
     --secondary-color: #5C785C;
     
@@ -12,10 +14,15 @@
     
     --bg-color: #ebebeb;
     --bg-color-pressed: #d4d4d4;
-    --shadow-up: #ffffff;
-    --shadow-down: #c8c8c8;
+    
     
     --heading-color: #292922;
+    
+    --shadow-color-up: #ffffff;
+    --shadow-color-down: #c8c8c8;
+    
+    --box-shadow-up: -8px -8px 16px var(--shadow-color-up);
+    --box-shadow-down: 8px 8px 16px var(--shadow-color-down);
 }
 
 [data-theme="dark"] {
@@ -35,7 +42,6 @@
     
     --heading-color: #818cab;
 }
-
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -127,34 +133,13 @@ textarea:-ms-input-placeholder { color: #999999; }
 
 /*---------------------------------------------*/
 button {
-	outline: none !important;
+	outline: none;
 	border: none;
 	background: transparent;
 }
 
 button:hover {
 	cursor: pointer;
-}
-
-iframe {
-	border: none !important;
-}
-
-
-/*//////////////////////////////////////////////////////////////////
-[ Utility ]*/
-.txt1 {
-  font-family: Poppins-Regular;
-  font-size: 13px;
-  line-height: 1.5;
-  color: #999999;
-}
-
-.txt2 {
-  font-family: Poppins-Regular;
-  font-size: 13px;
-  line-height: 1.5;
-  color: #666666;
 }
 
 
@@ -164,70 +149,6 @@ iframe {
 .limiter {
   width: 100%;
   margin: 0 auto;
-}
-
-.container-login100 {
-  width: 100%;  
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  background: #9053c7;
-  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
-}
-
-.wrap-login100 {
-  width: 960px;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 177px 130px 33px 95px;
-}
-
-/*------------------------------------------------------------------
-[  ]*/
-.login100-pic {
-  width: 316px;
-}
-
-.login100-pic img {
-  max-width: 100%;
-}
-
-
-/*------------------------------------------------------------------
-[  ]*/
-.login100-form {
-  width: 290px;
-}
-
-.login100-form-title {
-  font-family: Poppins-Bold;
-  font-size: 24px;
-  color: #333333;
-  line-height: 1.2;
-  text-align: center;
-
-  width: 100%;
-  display: block;
-  padding-bottom: 54px;
 }
 
 
@@ -249,7 +170,7 @@ iframe {
   width: 100%;
   background: #e6e6e6;
   height: 50px;
-  border-radius: 25px;
+  border-radius: var(--border-radius);
   padding: 0 30px 0 68px;
 }
 
@@ -259,13 +180,12 @@ iframe {
 .focus-input100 {
   display: block;
   position: absolute;
-  border-radius: 25px;
+  border-radius: var(--border-radius);
   bottom: 0;
   left: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
-  box-shadow: 0px 0px 0px 0px;
   color: rgba(87,184,70, 0.8);
 }
 
@@ -298,7 +218,7 @@ iframe {
   display: flex;
   align-items: center;
   position: absolute;
-  border-radius: 25px;
+  border-radius: var(--border-radius);
   bottom: 0;
   left: 0;
   width: 100%;
@@ -341,7 +261,7 @@ iframe {
 
   width: 100%;
   height: 50px;
-  border-radius: 25px;
+  border-radius: var(--border-radius);
   background: #57b846;
   display: -webkit-box;
   display: -webkit-flex;

@@ -3,37 +3,67 @@
     background: var(--bg-color);
 }
 
-.wrap-login100{
-    background-color: var(--bg-color);
-    border-radius: 20px;
-    padding: 150px 130px 150px 95px;
-    
-    box-shadow:  -11px -11px 22px var(--shadow-up),
-                  2px 2px 22px var(--shadow-down);
+.wrap-login100 {
+  width: 960px;
+  border-radius: 10px;
+  overflow: hidden;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  background-color: var(--bg-color);
+  border-radius: var(--border-radius);
+  padding: 150px 130px 150px 95px;
+  
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down);
 }
 
-/* Unused? */
-.loginContainer{
-    width: 20%;
-    height: 500px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 20px;
+.container-login100 {
+  width: 100%;  
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: var(--bg-color);
+}
+
+.login100-form {
+  width: 290px;
 }
 
 .login100-form-title {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    
-    color: var(--font-color);
+  font-size: 24px;
+  line-height: 1.2;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  
+  color: var(--font-color);
+  
+  
+  display: block;
+  padding-bottom: 54px;
 }
 
 .login100-form-btn {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     
     background: var(--bg-color);
-    box-shadow:  -11px -11px 22px var(--shadow-up),
-                  2px 2px 22px var(--shadow-down);
+    box-shadow:  var(--box-shadow-up),
+                  var(--box-shadow-down);
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 30px;
@@ -54,6 +84,7 @@ datalist{
     border-radius: 20px;
 }
 
+/*TODO: this is ugly af*/
 .active-purple-4 input[type=text]:focus:not([readonly]) {
   border: 1px solid     var(--primary-color);
   box-shadow: 0 0 0 1px var(--primary-color);
@@ -127,8 +158,15 @@ datalist{
 	-webkit-font-smoothing: antialiased;
 }
 
-/* loggedOut? */
 .LoggetOut{
   margin: 0px;
   padding: 0px;
+}
+
+.login100-pic {
+  width: 316px;
+}
+
+.login100-pic img {
+  max-width: 100%;
 }

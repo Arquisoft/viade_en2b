@@ -1,5 +1,5 @@
 
-#myInput {
+#searchBar {
     background-image: url('/images/searchicon.png');
     background-position: 10px 12px;
     background-repeat: no-repeat;
@@ -8,11 +8,14 @@
     padding: 12px 20px 12px 40px;
   
     margin-bottom: 12px;
-    border : 3px solid #396474;
+    
+    /* border: var(--font-color) 1px solid; */
+    border-radius: var(--border-radius);
+    
+    box-shadow:  var(--box-shadow-up),
+                  var(--box-shadow-down);
   }
-  #myInput:active{
-    border : 3px solid #396474;
-  }
+  
   #myUL {
     list-style-type: none;
     padding: 0;

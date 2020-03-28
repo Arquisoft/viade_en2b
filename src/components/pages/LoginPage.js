@@ -1,7 +1,7 @@
 import React from 'react';
 import BurgerMenu from '../generic_components/BurgerMenu';
 
-import '../../assets/css/login.css'
+import 'assets/css/Login.css'
 import Login from '../login/Login';
 
 const LoginPage = () => {

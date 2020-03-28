@@ -6,6 +6,7 @@ import LoginPage from './components/pages/LoginPage';
 import FriendsPage from './components/pages/FriendList';
 import DropzonePage from './components/pages/DropzonePage';
 import RoutesPage from './components/pages/RoutesPage';
+import './App.css';
 
 class App extends Component {
   render(){

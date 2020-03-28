@@ -9,8 +9,8 @@
   
   border-radius: 10px;
   background-color: var(--bg-color);
-  box-shadow:  -5px -5px 9px var(--shadow-up),
-                5px 5px 9px var(--shadow-down);
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down);
 }
 
 /* Color/shape of burger icon bars */
@@ -96,8 +96,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
     
     border-radius: 20px;
     
-    box-shadow:  -9px -9px 22px var(--shadow-up),
-                  9px 9px 22px var(--shadow-down);
+    box-shadow:  var(--box-shadow-up),
+                  var(--box-shadow-down);
     
 }
   
