@@ -3,7 +3,19 @@ import React, { Component } from 'react';
 
 import 'assets/css/Multiviewer.css';
 class MultimediaViewer extends Component {
-  
+  constructor(props){
+    super(props);
+    this.state = {
+        files: []
+    }
+  }
+  files = [];
+  componentDidUpdate(){
+    this.props.files.map((item)=>{
+      this.state.files.push(item);
+      this.files.push(item);
+    });
+  }
   getIcon(element){
       var extension = element.type;
       if(extension.includes("jpg") 
@@ -14,19 +26,21 @@ class MultimediaViewer extends Component {
         return (<i className="fa far fa-map"></i>);
   }
   render() {
-     
+ 
     return (
-        <ul className="listMedia">
-            {this.props.files.map((item,index)=>{
-            return(
-
-                    <li className="mediaElement" key={index}>
-                         {this.getIcon(item)}{item.name}
-                        
-                    </li>);
-            })
-        }
-      </ul>
+        <React.Fragment>
+          <ul className="listMedia">
+              {this.props.files.map((item,index)=>{
+              return(
+                <li className="mediaElement" key={index}>
+                  {this.getIcon(item)}{item.name}          
+                </li>);
+                })
+              }
+          </ul>
+          
+        </React.Fragment>
+      
     )
   }
 }

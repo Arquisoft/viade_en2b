@@ -13,9 +13,19 @@ class Dropzone extends Component {
     this.onDragOver = this.onDragOver.bind(this);
     this.onDragLeave = this.onDragLeave.bind(this);
     this.onDrop = this.onDrop.bind(this);
+    this.onUpload = this.onUpload.bind(this);
   }
 
+  onUpload(event){
+    event.preventDefault();
+    if (this.props.disabled) return;
+    const files = this.state.files;
+    if (this.state.files) {
+      this.props.onUpload(files);
+    }
+    this.setState({highlight: false});
     
+  } 
 
   openFileDialog() {
     if (this.props.disabled) return;
@@ -23,14 +33,34 @@ class Dropzone extends Component {
   }
 
   onFilesAdded(evt) {
+    evt.preventDefault();
     if (this.props.disabled) return;
     const files = evt.target.files;
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
       this.props.onFilesAdded(array);
       console.log("FILE ADDED BY CLICKING");
-      this.setState({files: array});
+      array.map((item)=>{
+        this.state.files.push(item);
+      });
     }
+    this.setState({highlight: false});
+  }
+
+  onDrop(event) {
+    event.preventDefault();
+
+    if (this.props.disabled) return;
+    const files = event.dataTransfer.files;
+    if (this.props.onFilesAdded) {
+      const array = this.fileListToArray(files);
+      this.props.onFilesAdded(array);
+      console.log("FILE ADDED BY DROPPING");
+       array.map((item)=>{
+        this.state.files.push(item);
+      });
+    }
+    this.setState({highlight: false});
   }
 
   onDragOver(evt) {
@@ -45,20 +75,6 @@ class Dropzone extends Component {
      this.setState({highlight: false});
   }
 
-  onDrop(event) {
-    event.preventDefault();
-
-    if (this.props.disabled) return;
-
-    const files = event.dataTransfer.files;
-    if (this.props.onFilesAdded) {
-      const array = this.fileListToArray(files);
-      this.props.onFilesAdded(array);
-      console.log("FILE ADDED BY DROPPING");
-       this.setState({files: array});
-    }
-    this.setState({highlight: false});
-  }
 
   fileListToArray(list) {
     const array = [];
@@ -94,6 +110,12 @@ class Dropzone extends Component {
         <span>Upload Files</span>
       </div>
       <MultimediaViewer files={this.state.files}/>
+      <form>
+            <input type="button" 
+                   className="submitUpload"
+                   value="Upload Archives" 
+                   onClick={this.onUpload}/>
+          </form>
       </React.Fragment>
     )
   }
