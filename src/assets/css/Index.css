@@ -25,8 +25,8 @@
     --shadow-color-up: #ffffff;
     --shadow-color-down: #c8c8c8;
     
-    --box-shadow-up: -8px -8px 16px var(--shadow-color-up);
-    --box-shadow-down: 8px 8px 16px var(--shadow-color-down);
+    --box-shadow-up: -7px -7px 14px var(--shadow-color-up);
+    --box-shadow-down: 7px 7px 14px var(--shadow-color-down);
 }
 
 [data-theme="dark"] {
@@ -44,8 +44,8 @@
     --shadow-color-up: #484848;
     --shadow-color-down: #363636;
     
-    --box-shadow-up: -6px -6px 6px var(--shadow-color-up);
-    --box-shadow-down: 6px 6px 6px var(--shadow-color-down);
+    --box-shadow-up: -6px -6px 12px var(--shadow-color-up);
+    --box-shadow-down: 6px 6px 12px var(--shadow-color-down);
 }
 
 
