@@ -2,15 +2,16 @@ import React, {Component} from 'react';
 import { slide as Menu } from 'react-burger-menu';
 
 import {HashRouter as Router, Link} from "react-router-dom";
-import '../../assets/css/BurgerMenu.css'
+import 'assets/css/BurgerMenu.css'
+
+import ThemeSwitch from './ThemeSwitch.js';
 
 class BurgerMenu extends Component {
   showSettings (event) {
     event.preventDefault();
   }
-
+  
   render () {
-    // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
     return (
     
       <Menu disableAutoFocus className="bm-menu"  pageWrapId={ this.props.pageWrapId } outerContainerId={ this.props.container }>
@@ -54,13 +55,7 @@ class BurgerMenu extends Component {
               <span>Settings</span>
             </Link>
             
-            <div id="lightmode" class="menu-item">
-              <span class="toggle">Dark mode</span>
-              <label class="switch">
-                <input type="checkbox"/>
-                <span class="slider round"></span>
-              </label>
-            </div>
+            <ThemeSwitch/>
             
           </Router>
         </nav>

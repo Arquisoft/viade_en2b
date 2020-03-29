@@ -1,6 +1,9 @@
+/*//////////////////////////////////////////////////////////////////
+[ login ]*/
 
-.container-login100{
-    background: var(--bg-color);
+.limiter {
+  width: 100%;
+  margin: 0 auto;
 }
 
 .wrap-login100 {
@@ -47,7 +50,7 @@
   font-size: 24px;
   line-height: 1.2;
   text-align: center;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-family);
   font-weight: 700;
   text-transform: uppercase;
   
@@ -59,15 +62,34 @@
 }
 
 .login100-form-btn {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    
-    background: var(--bg-color);
-    box-shadow:  var(--box-shadow-up),
-                  var(--box-shadow-down);
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 30px;
-    color: var(--font-color);
+  text-transform: uppercase;
+  
+  width: 100%;
+  height: 50px;
+  border-radius: var(--border-radius);
+  
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  
+  background: var(--bg-color);
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down);
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 30px;
+  color: var(--font-color);
 }
 
 .login100-form-btn:hover {
@@ -79,31 +101,23 @@
   background: var(--bg-color-pressed);
 }
 
-/* Unused? */
-datalist{
-    border-radius: 20px;
-}
-
-/*TODO: this is ugly af*/
-.active-purple-4 input[type=text]:focus:not([readonly]) {
-  border: 1px solid     var(--primary-color);
-  box-shadow: 0 0 0 1px var(--primary-color);
-}
-
-.active-purple-3 input[type=text] {
-  border: 1px solid     var(--primary-color);
-  box-shadow: 0 0 0 1px var(--primary-color);
-}
-
 .input100 {
-  border-radius: 10px;
+  height: 50px;
+  display: block;
+  width: 100%;
+  border-radius: var(--border-radius);
   
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  padding: 0px 30px 0px 30px;
+  background: var(--input-bg-color);
+
+  padding: 0 30px 0 68px;
+  
   color: var(--font-color);
   
-  border: 1px solid     var(--primary-color);
-  box-shadow: 0 0 0 1px var(--primary-color);
+  /* border: var(--font-color) 1px solid; */
+  border-radius: var(--border-radius);
+  
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down);
 }
 
 .input100::placeholder {
@@ -119,6 +133,13 @@ datalist{
   color: var(--bg-color-hover);
 }
 
+/*---------------------------------------------*/
+.wrap-input100 {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin-bottom: 10px;
+}
 
 .bodyContainer{
   background-color: var(--bg-color);
@@ -134,39 +155,113 @@ datalist{
     height: 20%;
 }
 
-.login-text { 
-  color: var(--font-color);
-  width: 100%;
-  padding-top: 20px;
-  text-align: center;
-  font-size: 1.7em;
-  text-transform: uppercase;
-  
-  display: inline-block;
-
-  display: inline-block;
-  margin: 0;
-    
-	border: none;
-	
-	text-decoration: none;
-	font-weight: 700;
-
-  line-height: 1.5;
-	
-	-webkit-appearance: none;
-	-webkit-font-smoothing: antialiased;
-}
-
-.LoggetOut{
-  margin: 0px;
-  padding: 0px;
-}
-
 .login100-pic {
   width: 316px;
 }
 
 .login100-pic img {
   max-width: 100%;
+}
+
+/*------------------------------------------------------------------
+[ Responsive ]*/
+
+@media (max-width: 992px) {
+  .wrap-login100 {
+    padding: 177px 90px 33px 85px;
+  }
+
+  .login100-pic {
+    width: 35%;
+  }
+
+  .login100-form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrap-login100 {
+    padding: 100px 80px 33px 80px;
+  }
+
+  .login100-pic {
+    display: none;
+  }
+
+  .login100-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .wrap-login100 {
+    padding: 100px 15px 33px 15px;
+  }
+}
+
+
+/*------------------------------------------------------------------
+[ Alert validate ]*/
+
+.validate-input {
+  position: relative;
+}
+
+.alert-validate::before {
+  content: attr(data-validate);
+  position: absolute;
+  max-width: 70%;
+  background-color: white;
+  border: 1px solid #c80000;
+  border-radius: 13px;
+  padding: 4px 25px 4px 10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 8px;
+  pointer-events: none;
+  
+  color: #c80000;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+
+  visibility: hidden;
+  opacity: 0;
+
+  -webkit-transition: opacity 0.4s;
+  -o-transition: opacity 0.4s;
+  -moz-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+}
+
+.alert-validate::after {
+  content: "\f06a";
+  display: block;
+  position: absolute;
+  color: #c80000;
+  font-size: 15px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 13px;
+}
+
+.alert-validate:hover:before {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 992px) {
+  .alert-validate::before {
+    visibility: visible;
+    opacity: 1;
+  }
 }

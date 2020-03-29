@@ -2,7 +2,7 @@ export default getStyle
 
   function getStyle(mode)
   {
-    if(mode===0)
+    if(!mode)
       return [
 	{
 		"elementType": "geometry",

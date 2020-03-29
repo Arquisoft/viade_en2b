@@ -4,5 +4,5 @@
   
 .App {
   text-align: center;
-  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+  font-family: var(--font-family);
 }
