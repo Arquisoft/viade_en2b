@@ -9,7 +9,6 @@ function toggleTheme()
     document.documentElement.setAttribute('data-theme', 'dark');
   else
     document.documentElement.setAttribute('data-theme', '');
-  
 }
 
 class ThemeSwitch extends Component {

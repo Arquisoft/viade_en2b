@@ -13,7 +13,6 @@ class BurgerMenu extends Component {
   
   render () {
     return (
-    
       <Menu disableAutoFocus className="bm-menu"  pageWrapId={ this.props.pageWrapId } outerContainerId={ this.props.container }>
         <nav className="bm-item-list">
         <h2 className="bm-item" tabIndex="0"><i className="fa fa-fw fa-inbox fa-2x"></i>
