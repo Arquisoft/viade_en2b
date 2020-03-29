@@ -1,7 +1,7 @@
 import React from 'react';
 import BurgerMenu from '../generic_components/BurgerMenu';
 
-import '../../assets/css/login.css'
+import 'assets/css/Login.css'
 import Login from '../login/Login';
 
 const LoginPage = () => {
@@ -14,7 +14,7 @@ const LoginPage = () => {
 		<div className="container-login100" id="page-wrap">
 			<div className="wrap-login100">
 				<div className="login100-pic js-tilt" data-tilt>
-					<img src="images/img-01.png" alt="IMG"/>
+					<img src="images/login-icon.png" alt="IMG"/>
 				</div>
 
 				<form className="login100-form validate-form">

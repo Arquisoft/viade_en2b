@@ -10,14 +10,12 @@
 }
 
 .sectionFriends{
-    margin: 25px;
-    padding: 15px;
-    border-radius: 25px;
-    background-color: #f8f8f8;
-    border-bottom : 12px solid #396474;
-    border-right : 12px solid #396474;
-    border-left : 12px solid #396474;
-    border-style: outset;
-    box-shadow:  3px 3px 5px #0f8b8d, 
-             -3px -3px 5px #2aadaf;
+  margin: 25px;
+  padding: 15px;
+  border-radius: 40px;
+  
+  background: var(--bg-color);
+  
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down);
 }

@@ -1,58 +1,39 @@
+.routes{
+  padding-top: 120px;
+}
+
+/* TODO: have fewer columns in mobile*/ 
 ul {
-  columns: 2;
-  -webkit-columns: 2;
-  -moz-columns: 2;
+  columns: 4;
+  margin-top: 10px;
+  grid-gap: 30px;
+  -webkit-columns: 4;
+  -moz-columns: 4;
+}
+
+.sectionRoutes p, .sectionRoutes span, .sectionRoutes a{
+  color: var(--font-color);
 }
   
 .sectionRoutes {
   margin: 25px;
-  padding: 15px;
+  padding: 20px;
   border-radius: 40px;
   
   background: var(--bg-color);
   
-  box-shadow:  -11px -11px 22px var(--shadow-up),
-                2px 2px 22px var(--shadow-down);
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down);
 }
 
 .routeListElementContainter p {
   display: inline-block;
   text-align: center;
   padding: 10px;
-}
-
-.sectionRoutes p, .sectionRoutes span, .sectionRoutes a{
-  color: black;
-}
-
-.liRoute{
-  padding: 5px;
-  border-radius: 50px;
-}
-
-.routes{
-  padding-top: 120px;
-}
-
-.routeListElementContainter{
-  border : 3px solid #396474;
   margin-bottom: 10px;
 }
 
-/*Search */
-.active-purple-4{
-  float: top;
-  padding: 30px;
-}
-
-.active-purple-4 input[type=text]:focus:not([readonly]) {
-  border: 1px solid     var(--primary-color);
-  box-shadow: 0 0 0 1px var(--primary-color);
-}
-
-.active-purple-3 input[type=text] {
-  border-radius: 8px;
-  
-  border: 1px solid     var(--primary-color);
-  box-shadow: 0 0 0 1px var(--primary-color);
+.liRoute{
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down);
 }
