@@ -43,8 +43,8 @@ beforeEach(() => {
 });
 
 test('add files not in the cache', async () => {
-    FileCache.addFiles(dummyRoute1, dummyFileList);
-    FileCache.addFiles(dummyRoute2, dummyFileList);
+    await FileCache.addFiles(dummyRoute1, dummyFileList);
+    await FileCache.addFiles(dummyRoute2, dummyFileList);
 
     expect(mockGatewayUpload).toHaveBeenCalled();
     expect(FileCache.filePaths.length).toBe(2);
@@ -54,9 +54,9 @@ test('add files not in the cache', async () => {
     expect(FileCache.filePaths[1].files).toEqual(dummyFilePathList);
 });
 
-test('add files in the cache', () => {
-    FileCache.addFiles(dummyRoute1, dummyFileList);
-    FileCache.addFiles(dummyRoute1, dummyFileList);
+test('add files in the cache', async () => {
+    await FileCache.addFiles(dummyRoute1, dummyFileList);
+    await FileCache.addFiles(dummyRoute1, dummyFileList);
 
     expect(mockGatewayUpload).toHaveBeenCalled();
     expect(FileCache.filePaths.length).toBe(1);

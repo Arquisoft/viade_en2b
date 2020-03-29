@@ -3,7 +3,7 @@ import * as FileGateway from 'data-access/gateways/FileGateway'
 
 export default {
     filePaths: [],
-    addFiles(route, files) {
+    async addFiles(route, files) {
         let found = this.filePaths.find(rf => rf.routePath === route.name);
         try {
             if(found) {

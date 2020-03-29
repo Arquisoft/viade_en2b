@@ -54,20 +54,20 @@ export const uploadFiles = async (fileList) => {
         return Promise.reject('No files to upload');
     }
 
-    let path = fixPath(session.webId.split("profile")[0]);
     let validFiles = validContentType(fileList);
-    if (validFiles) {
-        const promises = Array.from(fileList).map(file => {
-            let buildPath = `${path}viade/resources/${file.name}`;
-            return updateFile(buildPath, file, file.type||mime.getExtension(file.name))
-                .then(() => {
-                    return buildPath;
-                });
-        });
-        return Promise.all(promises).catch(handleFetchError);
-    } else {
+    if(!validFiles) {
         return Promise.reject('All files must be images or videos.');
     }
+
+    let path = fixPath(session.webId.split("profile")[0]);
+    const promises = Array.from(fileList).map(file => {
+        let buildPath = `${path}viade/resources/${file.name}`;
+        return updateFile(buildPath, file, file.type||mime.getExtension(file.name))
+            .then(() => {
+                return buildPath;
+            });
+    });
+    return Promise.all(promises).catch(handleFetchError);
 };
 
 const updateFile = (path, content, contentType) => {
@@ -83,12 +83,13 @@ const fixPath = (path) => {
 };
 
 const validContentType = (fileList) => {
+    let valid = true;
     fileList.forEach(file => {
         if(!(fileItem.isImage(file.name) || fileItem.isVideo(file.name))) {
-            return false;
+            valid = false;
         }
     });
-    return true;
+    return valid;
 };
 
 const fileItem = {
