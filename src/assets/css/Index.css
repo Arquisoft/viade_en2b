@@ -4,6 +4,7 @@
     --border-radius: 25px;
     
     --font-family: Lato, "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans",'Helvetica Neue',Arial,Helvetica,sans-serif;
+    --font-size: 20px;
     
     --primary-color: #509A50;
     --secondary-color: #54C054;
@@ -86,13 +87,13 @@ a:hover {
 }
 
 /*---------------------------------------------*/
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,p {
+  color: var(--font-color);
 	margin: 0px;
 }
 
 p {
-  color: var(--font-color);
-	margin: 0px;
+  font-size: var(--font-size);
 }
 
 ul, li {

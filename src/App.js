@@ -6,6 +6,7 @@ import LoginPage from './components/pages/LoginPage';
 import FriendsPage from './components/pages/FriendList';
 import DropzonePage from './components/pages/DropzonePage';
 import RoutesPage from './components/pages/RoutesPage';
+import AboutPage from './components/pages/AboutPage';
 import './App.css';
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
         <Route exact path="/routes" component={RoutesPage}/>
         <Route exact path="/friends-list" component={FriendsPage}/>
         <Route exact path="/upload" component={DropzonePage}/>
+        <Route exact path="/about" component={AboutPage}/>
       </Switch>
     </Fragment>
     </Router>

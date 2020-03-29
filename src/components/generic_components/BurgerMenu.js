@@ -39,7 +39,7 @@ class BurgerMenu extends Component {
               <span>List Friends</span>
             </Link>
            
-            <Link id="about" className="menu-item" to="/">
+            <Link id="about" className="menu-item" to="/about">
               <i className="fa fa-fw fas fa-info-circle"></i>
               <span>About</span>
             </Link>
