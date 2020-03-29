@@ -39,8 +39,8 @@ export default class RoutesLoader{
             console.log("user has no routes directory")
         }
 
-       let rou =  this.jsonToEntity(this.routesToJson(routes));
-       localStorage.setItem('rutas', JSON.stringify(rou));
+       let rou = this.jsonToEntity(this.routesToJson(routes));
+       //localStorage.setItem('rutas', JSON.stringify(rou));
        
        return rou;
 

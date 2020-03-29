@@ -1,4 +1,4 @@
-.loginButton{
+.loginButton {
     position:absolute;
     z-index: 10;
     
@@ -7,4 +7,16 @@
     width: 6em;
     
     font-size: 22px;
+    color: rgb(226, 55, 189);
+}
+
+.loginButton:hover{
+    color:rgb(230, 142, 186);
+}
+
+.rtf {
+    height: 65px;
+    width: 75px;
+  
+    z-index: 10;
 }
