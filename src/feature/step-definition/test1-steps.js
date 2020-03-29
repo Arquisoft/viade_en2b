@@ -1,11 +1,9 @@
 const {defineFeature,loadFeature}=require('jest-cucumber');
-const feature = loadFeature('./feature/login.feature');
+const feature = loadFeature('src/feature/test.feature');
 
 defineFeature(feature,test=>{
 
-    beforeEach(async()=>{
-        await page.goto('http://localhost:3000');
-    })
+
 
     test('Testing cucumber integration. This test just prints',({given,when,then})=>
     {
