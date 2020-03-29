@@ -1,7 +1,7 @@
 import React from 'react';
-import { LoggedIn, LoggedOut } from '@solid/react';
+import { LoggedIn, LoggedOut, Value } from '@solid/react';
 import cache from '../../caches/routeCache/RouteCache'
-
+import {DeleteFriend} from '../../FriendManager/DeleteFriend';
 function Login() {
     const auth = require('solid-auth-client');
     function logout(e, auth) {
@@ -24,6 +24,7 @@ function Login() {
                 <button className="login100-form-btn" onClick={(e) => popup(e, auth)}>Log In</button>
             </LoggedOut>
             <LoggedIn>
+                <Value src={DeleteFriend('https://pablocanalsuarez.solid.community/profile/card#me')}></Value>
                 <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
             </LoggedIn>
 
