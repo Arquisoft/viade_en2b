@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
 import { LoggedIn, LoggedOut } from '@solid/react';
+import cache from '../../caches/routeCache/RouteCache'
 
 function Login() {
     const auth = require('solid-auth-client');
     function logout(e, auth) {
         e.preventDefault();
         auth.logout();
+        cache.clear();
     }
 
     return (

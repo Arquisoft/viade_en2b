@@ -18,8 +18,11 @@ class CardLayout extends Component{
                 </Card.Content>
                 <Card.Content extra>
                 <Router>
-                    <Link to={this.props.link}>
-                        <Icon name='user' />
+                    <Link className={this.props.classLink} 
+                          to={this.props.link}
+                          onClick={this.props.action}
+                    >
+                        <Icon name={this.props.iconName} />
                         {this.props.numberOfFriends}
                     </Link>
                 </Router>

@@ -100,6 +100,7 @@ class FriendsPage extends React.Component {
                     description = {item.description}
                     link = {item.link}
                     numberOfFriends = {item.numberOfFriends}
+                    iconName='user'
                     />
                   </li>
                 );
