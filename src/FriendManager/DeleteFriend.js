@@ -1,10 +1,13 @@
 import ldflex from '@solid/query-ldflex';
-import {GetUserWebId} from '../data-access/UserData'
+import {GetUserWebId} from '../data-access/UserData';
+
 export async function DeleteFriend(webId){
-    console.log('FROM');
+    console.log('User:');
     console.log(await GetUserWebId());  
-    console.log('TO');  
+    console.log('Wants to delete user:');  
     console.log(webId);
-    
-    return ldflex[ await GetUserWebId()].knows.delete(ldflex[webId]);
+
+
+    console.log('DELETING');
+    return ldflex[await GetUserWebId()].knows.delete(ldflex[webId]); 
 }
