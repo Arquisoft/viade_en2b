@@ -9,18 +9,18 @@ defineFeature(feature,test=>{
     {
 
 
-        given('Given condition',()=>{
+        given('Given condition that allows the test to happen',()=>{
             console.log("Executing given condition of the test.")
 
     })
 
 
-        when('When condition',()=>{
+        when('When condition is an action performed upon the application',()=>{
             console.log("Executing when condition of the test");
 
     });
 
-        then('Then sentence',()=>{
+        then('Then sentence expected behaviour of the application',()=>{
             console.log("Executing the then sentence");
         })
     })
