@@ -10,14 +10,12 @@ export async function DeleteFriend(webId, friends){
 
 
     let friendsAux = [];
-    friendsAux= asyncFunc(friends);    
+    friendsAux= await friends;   
 
        
     console.log('AFTER');
     console.log('ARRAY');
-    console.log(friendsAux);
-
-    
+    console.log(friendsAux);    
     
     friendsAux.forEach(async friend => {
         
@@ -33,7 +31,8 @@ export async function DeleteFriend(webId, friends){
     console.log('COULD NOT BE DELETED');   
 }
 
-async function asyncFunc(friends){
-    
+async function asyncFunc(friendsAux){
+    Promise.all(friendsAux).then(friendsPromise => {return friendsPromise})
+    .catch(error => console.log(`Error in promises ${error}`));
 }
 
