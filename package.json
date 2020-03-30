@@ -43,7 +43,7 @@
     "test": "react-scripts test --coverage",
     "docs": "shx rm -rf build/docs && asciidoctor -D build/docs -a imagesdir=./images -r asciidoctor-diagram src/docs/index.adoc && shx cp -R src/docs/images build/docs",
     "eject": "react-scripts eject",
-    "test:e2e": "jest -c jest-config.js"
+    "test:e2e": "jest -c e2e/jest-config.js"
   },
   "eslintConfig": {
     "extends": "react-app"

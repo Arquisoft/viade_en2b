@@ -1,5 +1,5 @@
 const {defineFeature,loadFeature}=require('jest-cucumber');
-const feature = loadFeature('src/feature/test.feature');
+const feature = loadFeature('e2e/features/test.feature');
 
 defineFeature(feature,test=>{
 
