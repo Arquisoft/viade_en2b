@@ -1,0 +1,41 @@
+.Dropzone {
+    height: 200px;
+    width: 200px;
+    background-color: #fff;
+    border: 2px dashed rgb(187, 186, 186);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 16px;
+    
+  }
+  .Icon {
+    opacity: 0.3;
+    height: 64px;
+    width: 64px;
+  }
+  .FileInput {
+    display: none;
+    opacity: 0;
+  }
+
+  .Highlight {
+    background-color: rgb(188, 185, 236);
+  }
+  .submitUpload{
+    text-align: center;
+    position: absolute;
+    left:0;
+    right: 0;
+    bottom: 0;
+    margin-left: auto; 
+    margin-right: auto;
+    padding: 10px;
+  }
+
+  .submitUpload:hover{
+    background-color: gray;
+  }
+  

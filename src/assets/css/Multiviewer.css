@@ -1,0 +1,23 @@
+.listMedia{
+    columns: 1;
+    display: block;
+    text-align: left; 
+    padding-left: 30px;
+}
+
+  .mediaElement{
+      padding: 0px;
+  }
+  .fa {
+    width: 1.28571429em;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .fa:focus {
+    color: #b8b7ad;
+    font-weight: 400;
+  }

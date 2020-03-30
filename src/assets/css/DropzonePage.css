@@ -1,0 +1,28 @@
+.dropzonePage {
+    text-align: center;
+    background-color: rgb(177, 207, 250);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+  }
+  
+  .CardZone {
+    position: relative;
+    background-color: rgb(214, 214, 251);
+    padding: 64px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    display:table-cell;
+    vertical-align:middle;
+    
+    
+    
+  }
+
+  
