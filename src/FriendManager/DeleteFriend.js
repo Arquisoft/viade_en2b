@@ -2,9 +2,9 @@ import ldflex from '@solid/query-ldflex';
 import {GetUserWebId} from '../data-access/UserData'
 import Friend from '../Entities/Friend';
 
-export async function DeleteFriend(webId, friends){
+export async function DeleteFriend(userDeleting, webId, friends){
     console.log('User:');
-    console.log(await GetUserWebId());  
+    console.log(userDeleting);  
     console.log('Wants to delete user:');  
     console.log(webId);
 
@@ -24,7 +24,7 @@ export async function DeleteFriend(webId, friends){
 
         if(webIdFriend == webId){
             console.log('CAN BE DELETED');
-            return ldflex[await GetUserWebId()].knows.delete(ldflex[webId]);
+            return ldflex[userDeleting].knows.delete(ldflex[webId]);
         }
     });
 

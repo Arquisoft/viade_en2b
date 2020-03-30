@@ -29,7 +29,8 @@ function Login() {
                 <button className="login100-form-btn" onClick={(e) => popup(e, auth)}>Log In</button>
             </LoggedOut>
             <LoggedIn>
-                <Value src={DeleteFriend('https://pablocanalsuarez.solid.community/profile/card#me', GetUserFriends())}></Value>
+                
+                <Value src={DeleteFriend('https://clrmrnd.inrupt.net/profile/card#me','https://pablocanalsuarez.solid.community/profile/card#me', GetUserFriends())}></Value>
                 <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
             </LoggedIn>
 
