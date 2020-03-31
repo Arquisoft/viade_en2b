@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { List } from '@solid/react';
+import React from 'react'
 import BurgerMenu from '../generic_components/BurgerMenu';
 import CardLayout from '../generic_components/Card';
 import * as cache from 'caches/friendCache/FriendCache';

@@ -1,4 +1,4 @@
-import {GetUserFriends, GetNumberOfFriends} from '../../data-access/UserData';
+import {GetUserFriends} from '../../data-access/UserData';
 
 export default {
     friends: [],
