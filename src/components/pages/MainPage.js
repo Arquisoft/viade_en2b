@@ -10,11 +10,8 @@ import {HashRouter as Router,Link} from 'react-router-dom';
 import * as cache from 'caches/friendCache/FriendCache';
 
 
-
-const MainPage = () => {
-
-    cache.default.loadFriends();
-
+const MainPage = () => {  
+  cache.default.loadFriends();
 
   return (
     <div className="App" id="outer-container">

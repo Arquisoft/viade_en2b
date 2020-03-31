@@ -11,5 +11,8 @@ export default {
     },
     getFriends(){
         return this.friends;
-}
+    },
+    clear(){
+        this.friends = [];
+    }
 }
