@@ -79,7 +79,8 @@ export async function GetSpecificProfileImage(webId) {
   try{
     return photo.value;
   } catch (TypeError ){
-    return console.log("There was some problem retrieving the profile picture of the user:"+webId);
+    console.log("There was some problem retrieving the profile picture of the user:"+webId);
+    return "images/userPictureUndefined"
   } 
 };
 
