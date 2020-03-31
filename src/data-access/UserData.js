@@ -1,4 +1,4 @@
-import { useLDflexValue, useLDflexList } from '@solid/react';
+import {useLDflexValue, useLDflexList } from '@solid/react';
 import Friend from '../Entities/Friend';
 
 const { default: data } = require('@solid/query-ldflex');
@@ -30,21 +30,22 @@ export async function GetUserFriends() {
   const friends = useLDflexList('user.friends');
   let friendsAux = [];
 
-
   //For each value (LDflexValue) in friends(LDflexValue [])
   friends.forEach(async friendLDflexValue =>{
     
     let friendWebIdLDflexValue = friendLDflexValue.value;
     const webId = data[friendWebIdLDflexValue];
+    const webIdString = webId.toString();
 
     //Use the await to retrieve the data from the Promise object.
     const name = await GetSpecificName(webId);
     const profilePic = await GetSpecificProfileImage(webId);
 
-    let friendAux = new Friend(webId, name, profilePic);
+    let friendAux = new Friend(webId, name, profilePic, webIdString);
     friendAux.toString();
     friendsAux.push(friendAux);
   });  
+  console.log("--------------------------------")
   return friendsAux;
 };
 
@@ -55,7 +56,6 @@ export async function GetUserWebId() {
 };
 
 export function GetNumberOfFriends() {
-  const name = useLDflexValue('user.firstName') || 'unknown';
   const friends = useLDflexList('user.friends');
   return friends.length;
 };
@@ -69,10 +69,10 @@ export async function GetSpecificName(webId) {
   try{
     return personName.value;
   } catch (TypeError ){
-    return console.log("There was some problem retrieving the name of the user:"+webId);
+    console.log("There was some problem retrieving the name of the user:"+webId);
+    return webId.toString().substring(8, webId.toString().length - 1);
   }
 };
-
 
 export async function GetSpecificProfileImage(webId) {
   const photo = await webId.vcard_hasPhoto;     

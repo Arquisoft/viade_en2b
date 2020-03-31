@@ -1,118 +1,47 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+import { List } from '@solid/react';
 import BurgerMenu from '../generic_components/BurgerMenu';
 import CardLayout from '../generic_components/Card';
+import * as cache from 'caches/friendCache/FriendCache';
 
 import "../../assets/css/FriendList.css";
 
+var friends = [];
 
-class FriendsPage extends React.Component {
-  render(){
+const FriendsPage = () => {
 
-    let friendos = [{
-      image: '/images/roberto.png',
-      name: "Alejandro",
-      date: "Joined some day",
-      description: "Testing the props and all shit",
-      link: "/login",
-      numberOfFriends: "0"
-    }, {
-      image: '/images/roberto.png',
-      name: "Alejandro",
-      date: "Joined some day",
-      description: "Testing the props and all shit",
-      link: "/login", 
-      numberOfFriends: "0"
-    }, {
-      image: '/images/roberto.png',
-      name: "Alejandro",
-      date: "Joined some day",
-      description: "Testing the props and all shit",
-      link: "/login",
-      numberOfFriends: "0"
-    }, {
-      image: '/images/roberto.png',
-      name: "Alejandro",
-      date: "Joined some day",
-      description: "Testing the props and all shit",
-      link: "/login",
-      numberOfFriends: "0"
-    }, {
-      image: '/images/roberto.png',
-      name: "Alejandro",
-      date: "Joined some day",
-      description: "Testing the props and all shit",
-      link: "/login",
-      numberOfFriends: "0"
-    } , {
-      image: '/images/roberto.png',
-      name: "Alejandro",
-      date: "Joined some day",
-      description: "Testing the props and all shit",
-      link: "/login",
-      numberOfFriends: "0"
-    }, {
-      image: '/images/roberto.png',
-      name: "Alejandro",
-      date: "Joined some day",
-      description: "Testing the props and all shit",
-      link: "/login",
-      numberOfFriends: "0"
-    }, {
-      image: '/images/roberto.png',
-      name: "Alejandro",
-      date: "Joined some day",
-      description: "Testing the props and all shit",
-      link: "/login",
-      numberOfFriends: "0"
-    }, {
-      image: '/images/roberto.png',
-      name: "Alejandro",
-      date: "Joined some day",
-      description: "Testing the props and all shit",
-      link: "/login", 
-      numberOfFriends: "0"
-    }, {
-      image: '/images/roberto.png',
-      name: "Alejandro",
-      date: "Joined some day",
-      description: "Testing the props and all shit",
-      link: "/login", 
-      numberOfFriends: "0"
-    }]
+  friends = cache.default.getFriends();
 
-    return (
-        <div className="bodyFriends" id="outer-container">
-      <main>
-          <BurgerMenu 
-          pageWrapId="page-wrap"
-          container="outer-container"
-          />
-        <div className="App routes" id="page-wrap">
-        <section className="sectionFriends">
-        <ul className = "friendContainer">
-         {friendos.map((item, index)=>{
-                return (
-                  <li id={"route"+index} key={index} className = "liCard">
-                    <CardLayout
-                    image = {item.image}
-                    header = {item.name}
-                    date = {item.date}
-                    description = {item.description}
-                    link = {item.link}
-                    numberOfFriends = {item.numberOfFriends}
-                    iconName='user'
-                    />
-                  </li>
-                );
-              })}
-
-          </ul>
-        </section>
-        </div>
-      </main>
-    </div>
-  );
-}
+      return (
+          <div className="bodyFriends" id="outer-container">
+        <main>
+            <BurgerMenu 
+            pageWrapId="page-wrap"
+            container="outer-container"
+            />
+          <div className="App friends" id="page-wrap">
+          <section className="sectionFriends"> 
+          <ul className = "friendContainer">
+          {friends.map((item, index)=>{
+                  return (
+                    <li id={"friend"+index} key={index} className = "liCard">
+                      <CardLayout
+                      image = {item.profilePicture}
+                      header = {item.name}
+                      description = {item.webIdString}
+                      link = "/login"
+                      iconName='user'
+                      numberOfFriends={item.numberOfFriends}
+                      />
+                    </li>
+                  );
+                })}
+            </ul>
+          </section>
+          </div>
+        </main>
+      </div>
+    );
 }
 
 export default FriendsPage;
