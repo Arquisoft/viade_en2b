@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../assets/css/Dropzone.css'
 import MultimediaViewer from './MultimediaViewer';
+import GenericButton from '../generic_components/GenericButton';
 class Dropzone extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,7 @@ class Dropzone extends Component {
     this.onDrop = this.onDrop.bind(this);
     this.onUpload = this.onUpload.bind(this);
   }
-
+  
   onUpload(event){
     event.preventDefault();
     if (this.props.disabled) return;
@@ -99,7 +100,7 @@ class Dropzone extends Component {
           ref={this.fileInputRef}
           className="FileInput"
           type="file"
-          multiple
+          
           onChange={this.onFilesAdded}
         />
         <img
@@ -111,10 +112,12 @@ class Dropzone extends Component {
       </div>
       <MultimediaViewer files={this.state.files}/>
       <form>
-            <input type="button" 
+            <GenericButton 
                    className="submitUpload"
                    value="Upload Archives" 
-                   onClick={this.onUpload}/>
+                   onClick={this.onUpload}
+                   message="Upload Archives"
+                   />
           </form>
       </React.Fragment>
     )

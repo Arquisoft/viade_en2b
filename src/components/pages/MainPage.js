@@ -7,9 +7,23 @@ import 'assets/css/GenericButton.css';
 import 'assets/css/mainPage.css';
 import MapContainer from 'components/map_components/MapContainer.js';
 import {HashRouter as Router,Link} from 'react-router-dom';
-
+import DropzonePage from './DropzonePage';
+import * as cache from 'caches/routeCache/RouteCache';
 
 class MainPage extends React.Component{
+  state = {showZone: false}
+  
+
+  getZone = () =>{
+     
+      return(<DropzonePage showUpload={() => this.showZone()}/>);
+  }
+  showZone = () =>{
+    if(cache.default.getSelected() != "") 
+      this.setState({showZone: !this.state.showZone});
+    else
+      alert("No route selected")
+  }
   render(){
   return (
     <div className="App" id="outer-container">
@@ -18,7 +32,10 @@ class MainPage extends React.Component{
         container="outer-container"
       />
       <main className="main" id="page-wrap">
-      <FloatingButton/>
+      <FloatingButton showUpload={() => this.showZone()}/>
+      <div ref={node=> this.node = node}>
+      {this.state.showZone ? this.getZone() : null}
+      </div>
       <Router>
         <Link to="/login">
           <GenericButton
