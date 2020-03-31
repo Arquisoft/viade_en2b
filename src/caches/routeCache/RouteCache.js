@@ -15,8 +15,7 @@ export default {
     }, 
     async getRoutes() {
         if(this.routes.length === 0) {
-            this.routes = await RouteGateway.findAll()
-                            .then(list => list);
+            this.routes = await RouteGateway.findAll();
             console.log(this.routes)
         }
         return this.routes;
