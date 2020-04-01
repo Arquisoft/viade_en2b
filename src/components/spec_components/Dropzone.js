@@ -29,6 +29,7 @@ class Dropzone extends Component {
     if (this.state.files) {
       cache.addFiles({ name: 'route1' }, [...files]);
       this.props.onUpload(files);
+      this.props.hideUpload();
     }
     this.setState({ highlight: false });
   }

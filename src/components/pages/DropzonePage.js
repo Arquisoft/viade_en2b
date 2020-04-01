@@ -15,7 +15,7 @@ class DropzonePage extends Component {
   }
   handleClick =(e)=>{
     if(this.node.contains(e.target)){
-
+      return;
     }
 
     this.props.showUpload();
@@ -35,7 +35,7 @@ class DropzonePage extends Component {
          
         </header>
         <div className="CardZone">
-          <Dropzone onUpload={pipo} onFilesAdded={emptyTrigger} /> 
+          <Dropzone hideUpload={this.props.showUpload} onUpload={pipo} onFilesAdded={emptyTrigger} /> 
           {
             //CON PASAR EL NOMBRE DE LA FUNCIÓN A onUpload YA DEBERÍA DE FUNCIONAR;
             //NO QUITAR EL EMPTY TRIGGER
