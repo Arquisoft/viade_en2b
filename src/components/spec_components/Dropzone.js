@@ -3,6 +3,7 @@ import '../../assets/css/Dropzone.css'
 import MultimediaViewer from './MultimediaViewer';
 
 import cache from 'caches/fileCache/FileCache';
+import GenericButton from '../generic_components/GenericButton';
 
 class Dropzone extends Component {
   constructor(props) {
@@ -20,8 +21,8 @@ class Dropzone extends Component {
     this.onDrop = this.onDrop.bind(this);
     this.onUpload = this.onUpload.bind(this);
   }
+  onUpload(event){
 
-  onUpload(event) {
     event.preventDefault();
     if (this.props.disabled) return;
     const files = this.state.files;
@@ -92,35 +93,37 @@ class Dropzone extends Component {
   render() {
     return (
       <React.Fragment>
-        <div
-          className={`Dropzone ${this.state.hightlight ? 'Highlight' : ''}`}
-          onDragOver={this.onDragOver}
-          onDragLeave={this.onDragLeave}
-          onDrop={this.onDrop}
-          onClick={this.openFileDialog}
-          style={{ cursor: this.props.disabled ? 'default' : 'pointer' }}
-        >
-          <input
-            ref={this.fileInputRef}
-            className="FileInput"
-            type="file"
-            multiple
-            onChange={this.onFilesAdded}
-          />
-          <img
-            alt="upload"
-            className="Icon"
-            src="baseline-cloud_upload-24px.svg"
-          />
-          <span>Upload Files</span>
-        </div>
-        <MultimediaViewer files={this.state.files} />
-        <form>
-          <input type="button"
-            className="submitUpload"
-            value="Upload Archives"
-            onClick={this.onUpload} />
-        </form>
+      <div
+        className={`Dropzone ${this.state.hightlight ? 'Highlight' : ''}`}
+        onDragOver={this.onDragOver}
+        onDragLeave={this.onDragLeave}
+        onDrop={this.onDrop}
+        onClick={this.openFileDialog}
+        style={{ cursor: this.props.disabled ? 'default' : 'pointer' }}
+      >
+        <input
+          ref={this.fileInputRef}
+          className="FileInput"
+          type="file"
+          multiple
+          onChange={this.onFilesAdded}
+        />
+        <img
+          alt="upload"
+          className="Icon"
+          src="baseline-cloud_upload-24px.svg"
+        />
+        <span>Upload Files</span>
+      </div>
+      <MultimediaViewer files={this.state.files}/>
+      <form>
+            <GenericButton 
+                   className="submitUpload"
+                   value="Upload Archives" 
+                   onClick={this.onUpload}
+                   message="Upload Archives"
+                   />
+          </form>
       </React.Fragment>
     )
   }
