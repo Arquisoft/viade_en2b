@@ -1,38 +1,21 @@
 import ldflex from '@solid/query-ldflex';
-import {GetUserWebId} from '../data-access/UserData'
-import Friend from '../Entities/Friend';
+import {GetUserWebId} from '../data-access/UserData';
 
-export async function DeleteFriend(userDeleting, webId, friends){
+/**
+ * Method that deletes the user given its id.
+ * If the user is not a friend of the user autenticated
+ * it does nothing.
+ * 
+ * @param {} webId from the user you want to delete.
+ */
+export async function DeleteFriend(webId){
     console.log('User:');
+    const userDeleting = await GetUserWebId();
     console.log(userDeleting);  
     console.log('Wants to delete user:');  
     console.log(webId);
 
-
-    let friendsAux = [];
-    friendsAux= await friends;   
-
-       
-    console.log('AFTER');
-    console.log('ARRAY');
-    console.log(friendsAux);    
-    
-    friendsAux.forEach(async friend => {
-        
-        const webIdFriend = friend.webId;
-        console.log(webIdFriend);
-
-        if(webIdFriend == webId){
-            console.log('CAN BE DELETED');
-            return ldflex[userDeleting].knows.delete(ldflex[webId]);
-        }
-    });
-
-    console.log('COULD NOT BE DELETED');   
+    return ldflex[userDeleting].knows.delete(ldflex[webId]);    
 }
 
-async function asyncFunc(friendsAux){
-    Promise.all(friendsAux).then(friendsPromise => {return friendsPromise})
-    .catch(error => console.log(`Error in promises ${error}`));
-}
 

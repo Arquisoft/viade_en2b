@@ -42,10 +42,11 @@ export async function GetUserFriends() {
     const profilePic = await GetSpecificProfileImage(webId);
 
     let friendAux = new Friend(friendWebIdLDflexValue, name, profilePic);
-    //friendAux.toString();
+    friendAux.toString();
     friendsAux.push(friendAux);
-  });  
-
+  });
+  console.log('FRIENDS');  
+  console.log(friendsAux);
   return friendsAux;
 };
 

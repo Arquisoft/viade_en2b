@@ -1,13 +1,22 @@
 import ldflex from '@solid/query-ldflex';
 import {GetUserWebId} from '../data-access/UserData';
 
-export async function AddFriend(webId, friends){
+/**
+ * Method that adds the user given to the user autenticated
+ * friends.
+ * If the user provided is already a friend of the user autenticated
+ * it does nothing.
+ * 
+ * @param {*} webId of the user to add.
+ */
+export async function AddFriend(webId){
     console.log('User:');
-    console.log(await GetUserWebId());  
+    const userToAdd = await GetUserWebId();
+    console.log(userToAdd);  
     console.log('Wants to add as friend user:');  
     console.log(webId);
 
 
     console.log('ADDING');
-    return ldflex[await GetUserWebId()].knows.add(ldflex[webId]); 
+    return ldflex[userToAdd].knows.add(ldflex[webId]); 
 }

@@ -1,10 +1,6 @@
 import React from 'react';
 import { LoggedIn, LoggedOut, Value } from '@solid/react';
 import cache from '../../caches/routeCache/RouteCache';
-import {GetUserFriends} from '../../data-access/UserData';
-import {DeleteFriend} from '../../FriendManager/DeleteFriend';
-import {AddFriend} from '../../FriendManager/AddFriend';
-
 
 
 function Login() {
@@ -30,7 +26,6 @@ function Login() {
             </LoggedOut>
             <LoggedIn>
                 
-                <Value src={DeleteFriend('https://clrmrnd.inrupt.net/profile/card#me','https://pablocanalsuarez.solid.community/profile/card#me', GetUserFriends())}></Value>
                 <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
             </LoggedIn>
 
