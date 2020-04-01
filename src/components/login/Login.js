@@ -1,6 +1,7 @@
 import React from 'react';
-import { LoggedIn, LoggedOut, Value } from '@solid/react';
-import cache from '../../caches/routeCache/RouteCache';
+import { LoggedIn, LoggedOut } from '@solid/react';
+import cache from '../../caches/routeCache/RouteCache'
+import * as friendCache from 'caches/friendCache/FriendCache';
 
 
 function Login() {
@@ -9,6 +10,7 @@ function Login() {
         e.preventDefault();
         auth.logout();
         cache.clear();
+        friendCache.default.clear();
     }
 
     return (
@@ -40,7 +42,6 @@ async function popup(e, auth) {
     if (!session)
         session = await auth.popupLogin({ popupUri });
     alert(`Logged in as ${session.webId}`);
-
 }
 
 export default Login;

@@ -7,10 +7,12 @@ import 'assets/css/GenericButton.css';
 import 'assets/css/mainPage.css';
 import MapContainer from 'components/map_components/MapContainer.js';
 import {HashRouter as Router,Link} from 'react-router-dom';
+import * as cache from 'caches/friendCache/FriendCache';
 
 
-class MainPage extends React.Component{
-  render(){
+const MainPage = () => {  
+  cache.default.loadFriends();
+
   return (
     <div className="App" id="outer-container">
       <BurgerMenu 
@@ -32,6 +34,6 @@ class MainPage extends React.Component{
     </div>
   );
 }
-}
+
 
 export default MainPage;
