@@ -16,6 +16,7 @@
     "jsonld-streaming-parser": "^1.1.2",
     "ldflex": "^2.8.0",
     "loaders.css": "^0.1.2",
+    "mime": "^2.4.4",
     "prop-types": "^15.7.2",
     "rdf-namespaces": "^1.8.0",
     "rdflib": "^1.0.6",
