@@ -7,6 +7,7 @@ import 'assets/css/GenericButton.css';
 import 'assets/css/mainPage.css';
 import MapContainer from 'components/map_components/MapContainer.js';
 import {HashRouter as Router,Link} from 'react-router-dom';
+
 import * as cache from 'caches/friendCache/FriendCache';
 
 
@@ -20,7 +21,10 @@ const MainPage = () => {
         container="outer-container"
       />
       <main className="main" id="page-wrap">
-      <FloatingButton/>
+      <FloatingButton showUpload={() => this.showZone()}/>
+      <div ref={node=> this.node = node}>
+      {this.state.showZone ? this.getZone() : null}
+      </div>
       <Router>
         <Link to="/login">
           <GenericButton
