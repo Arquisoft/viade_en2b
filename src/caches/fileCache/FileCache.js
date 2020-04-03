@@ -10,8 +10,8 @@ export default {
   filePaths: [],
   async addFiles(files) {
     let route = routeCache.getSelected();
-    let found = this.filePaths.find(rf => rf.routePath === route.name);
     try {
+      let found = this.filePaths.find(rf => rf.routePath === route.name);
       if (found) {
         uploadFiles(found.routePath, files).then(paths =>
           paths.forEach(path => {
@@ -29,7 +29,7 @@ export default {
         );
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
     }
   },
   async removeFile(route, path) {

@@ -66,34 +66,43 @@ test("add files in the cache", async () => {
   expect(FileCache.filePaths[0].files).toEqual(dummyFilePathList);
 });
 
-describe("remove files", () => {
-  beforeEach(() => {
-    console.log(FileCache.filePaths);
+describe("console log", () => {
+  const originalLog = console.log;
+  let consoleOutput = [];
+  const mockedConsoleLog = log => consoleOutput.push(log);
+  beforeAll(() => {
+    console.log = mockedConsoleLog;
   });
 
   afterAll(() => {
-    console.log(FileCache.filePaths);
+    console.log = originalLog;
   });
 
-  test("remove a file in the cache", async () => {
-    RouteCache.setSelected(dummyRoute1);
+  test("add files error when no route is selected", async () => {
     await FileCache.addFiles(dummyFileList);
-    RouteCache.setSelected(dummyRoute2);
-    await FileCache.addFiles(dummyFileList);
-    await FileCache.removeFile(dummyRoute1, "path/file1.png");
-
-    expect(mockGatewayRemove).toHaveBeenCalled();
-    expect(FileCache.filePaths.length).toBe(2);
-    expect(FileCache.filePaths[0].routePath).toEqual(dummyRoute1.name);
-    expect(FileCache.filePaths[1].routePath).toEqual(dummyRoute2.name);
-    expect(FileCache.filePaths[0].files).toEqual([
-      "path/file2.jpg",
-      "path/file3.avi"
-    ]);
-    expect(FileCache.filePaths[1].files).toEqual([
-      "path/file1.png",
-      "path/file2.jpg",
-      "path/file3.avi"
-    ]);
+    
+    expect(consoleOutput).toContain("Cannot read property 'name' of null");
   });
+});
+
+test("remove a file in the cache", async () => {
+  RouteCache.setSelected(dummyRoute1);
+  await FileCache.addFiles(dummyFileList);
+  RouteCache.setSelected(dummyRoute2);
+  await FileCache.addFiles(dummyFileList);
+  await FileCache.removeFile(dummyRoute1, "path/file1.png");
+
+  expect(mockGatewayRemove).toHaveBeenCalled();
+  expect(FileCache.filePaths.length).toBe(2);
+  expect(FileCache.filePaths[0].routePath).toEqual(dummyRoute1.name);
+  expect(FileCache.filePaths[1].routePath).toEqual(dummyRoute2.name);
+  expect(FileCache.filePaths[0].files).toEqual([
+    "path/file2.jpg",
+    "path/file3.avi"
+  ]);
+  expect(FileCache.filePaths[1].files).toEqual([
+    "path/file1.png",
+    "path/file2.jpg",
+    "path/file3.avi"
+  ]);
 });
