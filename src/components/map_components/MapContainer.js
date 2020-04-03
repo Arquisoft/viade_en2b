@@ -83,8 +83,6 @@ export class MapContainer extends React.Component {
 
   render(){
     const {loading} = this.state;
-    const {dark} = this.state;
-    
     
     return (
     <React.Fragment>

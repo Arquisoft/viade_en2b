@@ -2,28 +2,45 @@
   padding-top: 70px;
 }
 
-section {
+.sectionDevelopers {
   margin: 25px;
   padding: 20px;
-  border-radius: 40px;
+  border-radius: var(--border-radius);
   
   background: var(--bg-color);
   
   box-shadow:  var(--box-shadow-up),
                 var(--box-shadow-down);
+}
+
+.developerContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  
+  grid-auto-flow: row;
 }
 
 .divMembers {
   margin-top: 100px;
 }
 
-.memberCard {
-  margin: 25px;
-  padding: 20px;
-  border-radius: 40px;
+.liCard > div {
+  height: 95%;
+  width: 90%;
+}
+
+.ui.card {
+  margin-left: auto;
+  margin-right: auto;
   
-  background: var(--bg-color);
+  background-color: var(--bg-color) !important;
   
-  box-shadow:  var(--box-shadow-up),
-                var(--box-shadow-down);
+  height: 100% !important;
+  width: 90% !important;
+}
+
+.image {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50% !important;
 }

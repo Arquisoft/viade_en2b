@@ -16,24 +16,10 @@ ul {
 }
   
 .sectionRoutes {
-  margin: 25px;
-  padding: 20px;
-  border-radius: 40px;
+  border-radius: var(--border-radius);
   
   background: var(--bg-color);
   
-  box-shadow:  var(--box-shadow-up),
-                var(--box-shadow-down);
-}
-
-.routeListElementContainter p {
-  display: inline-block;
-  text-align: center;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.liRoute{
   box-shadow:  var(--box-shadow-up),
                 var(--box-shadow-down);
 }

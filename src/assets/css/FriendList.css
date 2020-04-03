@@ -11,8 +11,10 @@
 
 .sectionFriends{
   margin: 25px;
-  padding: 15px;
-  border-radius: 40px;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  
+  column-gap: 20px;
   
   background: var(--bg-color);
   
