@@ -34,7 +34,7 @@ test('Render HamburgerMenu is Correct',()=>{
 
 ////////////////////////
 
-test('Section Developrs',()=>{
+test('Section Developers',()=>{
     const main = mount(<AboutPage/>);
-    expect(main.find('sectionDevelopers')).exists()).toBe(true);
+    expect((main.find('.sectionDevelopers')).exists()).toBe(true);
 });
