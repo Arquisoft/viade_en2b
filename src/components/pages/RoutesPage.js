@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/css/routes.css";
+import "assets/css/Routes.css";
 import CustomLoader from 'components/generic_components/CustomLoader';
 import BurgerMenu from '../generic_components/BurgerMenu';
 //import RouteGateway from '../../data-access/gateways/RouteGateway'
@@ -57,9 +57,9 @@ class RoutesPage extends React.Component {
           <header className="bodyHeader"></header>
           <section className="sectionRoutes">
             
-            <SearchBar value={this.state.search} 
-                       action={this.updateSearch.bind(this)} 
-                       list="listRoute"
+            <SearchBar  value={this.state.search} 
+                        action={this.updateSearch.bind(this)}
+                        list="listRoute"
             />
             <ul className="listRoute">
               {filteredRoutes.map((item, index)=>{

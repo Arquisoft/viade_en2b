@@ -7,7 +7,7 @@ class CreateRoute{
         let myParser = new JsonLdParser();
         myParser
             .on("data", "test.jsonld")
-            .on('error', console.log("Fuck you"));
+            .on('error', console.log("F*ck you"));
 
         myParser.write('{');
         myParser.write('"@type": "Route",');

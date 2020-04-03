@@ -46,7 +46,7 @@ class Dropzone extends Component {
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
       this.props.onFilesAdded(array);
-      console.log("FILE ADDED BY CLICKING");
+     
       array.forEach((item) => {
         this.state.files.push(item);
       });
@@ -62,7 +62,7 @@ class Dropzone extends Component {
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
       this.props.onFilesAdded(array);
-      console.log("FILE ADDED BY DROPPING");
+      
       array.forEach((item) => {
         this.state.files.push(item);
       });
