@@ -130,4 +130,4 @@ class AboutPage extends React.Component {
   }
 }
 
-export default RoutesPage;
+export default AboutPage;
