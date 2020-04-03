@@ -2,17 +2,17 @@ import React, {Component} from 'react';
 import { slide as Menu } from 'react-burger-menu';
 
 import {HashRouter as Router, Link} from "react-router-dom";
-import '../../assets/css/BurgerMenu.css'
+import 'assets/css/BurgerMenu.css'
+
+import ThemeSwitch from './ThemeSwitch.js';
 
 class BurgerMenu extends Component {
   showSettings (event) {
     event.preventDefault();
   }
-
+  
   render () {
-    // NOTE: You also need to provide styles, see https://github.com/negomi/react-burger-menu#styling
     return (
-    
       <Menu disableAutoFocus className="bm-menu"  pageWrapId={ this.props.pageWrapId } outerContainerId={ this.props.container }>
         <nav className="bm-item-list">
         <h2 className="bm-item" tabIndex="0"><i className="fa fa-fw fa-inbox fa-2x"></i>
@@ -39,7 +39,7 @@ class BurgerMenu extends Component {
               <span>List Friends</span>
             </Link>
            
-            <Link id="about" className="menu-item" to="https://github.com/Arquisoft/viade_en2b">
+            <Link id="about" className="menu-item" to="/about">
               <i className="fa fa-fw fas fa-info-circle"></i>
               <span>About</span>
             </Link>
@@ -47,11 +47,15 @@ class BurgerMenu extends Component {
             <Link id="contact" className="menu-item" to="/">
               <i className="fa fa-fw fas far fa-address-card"></i>
               <span>Contact</span>
-            </Link>      
-            <Link id="settings" className="menu-item--small" to="/">
+            </Link>
+            
+            <Link id="settings" className="menu-item" to="/">
               <i className="fa fa-fw fas fa-cog"></i>
               <span>Settings</span>
             </Link>
+            
+            <ThemeSwitch/>
+            
           </Router>
         </nav>
       </Menu>
