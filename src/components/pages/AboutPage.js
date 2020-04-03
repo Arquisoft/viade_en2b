@@ -5,7 +5,7 @@ import BurgerMenu from 'components/generic_components/BurgerMenu';
 import CardLayout from 'components/generic_components/Card';
 
 
-class RoutesPage extends React.Component {
+class AboutPage extends React.Component {
   
   constructor(props){
     super(props);
@@ -22,49 +22,49 @@ class RoutesPage extends React.Component {
   viewLoaded() {
     let developers = [
     {
-      image: 'http://localhost:3000/viade_en2b/images/developers/miguel.png',
+      image: 'images/developers/miguel.png',
       name: "Andrés",
       meta: "Position",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget porta est. Morbi egestas, dui nec gravida ornare, purus turpis rutrum tortor, quis sollicitudin neque diam ut erat. Duis vehicula consequat accumsan.",
       link: "",
       numberOfFriends: ""
     }, {
-      image: 'http://localhost:3000/viade_en2b/images/developers/fernando.jpg',
+      image: 'images/developers/fernando.jpg',
       name: "Fernando",
       meta: "UI and UX",
       description: "Fernando has programmed in 15+ different programming languages. He has yet to make something useful.",
       link: "mailto:UO266754@uniovi.es",
       numberOfFriends: ""
     }, {
-      image: 'http://localhost:3000/viade_en2b/images/developers/guillermo.png',
+      image: 'images/developers/guillermo.png',
       name: "Guille",
       meta: "Position",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget porta est. Morbi egestas, dui nec gravida ornare, purus turpis rutrum tortor, quis sollicitudin neque diam ut erat. Duis vehicula consequat accumsan.",
       link: "mailto:",
       numberOfFriends: ""
     }, {
-      image: 'http://localhost:3000/viade_en2b/images/developers/miguel.png',
+      image: 'images/developers/miguel.png',
       name: "Miguel",
       meta: "Position",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget porta est. Morbi egestas, dui nec gravida ornare, purus turpis rutrum tortor, quis sollicitudin neque diam ut erat. Duis vehicula consequat accumsan.",
       link: "mailto:",
       numberOfFriends: ""
     }, {
-      image: 'http://localhost:3000/viade_en2b/images/developers/miguel.png',
+      image: 'images/developers/miguel.png',
       name: "Violeta",
       meta: "Position",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget porta est. Morbi egestas, dui nec gravida ornare, purus turpis rutrum tortor, quis sollicitudin neque diam ut erat. Duis vehicula consequat accumsan.",
       link: "mailto:",
       numberOfFriends: ""
     }, {
-      image: 'http://localhost:3000/viade_en2b/images/developers/miguel.png',
+      image: 'images/developers/miguel.png',
       name: "Clara",
       meta: "Position",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget porta est. Morbi egestas, dui nec gravida ornare, purus turpis rutrum tortor, quis sollicitudin neque diam ut erat. Duis vehicula consequat accumsan.",
       link: "mailto:",
       numberOfFriends: ""
     }, {
-      image: 'http://localhost:3000/viade_en2b/images/developers/miguel.png',
+      image: 'images/developers/miguel.png',
       name: "Alejandro",
       meta: "Position",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget porta est. Morbi egestas, dui nec gravida ornare, purus turpis rutrum tortor, quis sollicitudin neque diam ut erat. Duis vehicula consequat accumsan.",
