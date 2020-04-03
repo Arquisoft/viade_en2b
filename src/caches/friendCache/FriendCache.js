@@ -6,7 +6,7 @@ export default {
         if(this.friends.length === 0) {
             this.friends = await GetUserFriends()
                             .then(list => list);
-            console.log("CACHE: ", this.friends)
+           
         }
     },
     getFriends(){

@@ -22,8 +22,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    box-shadow:  var(--box-shadow-up),
-                  var(--box-shadow-down);
+    box-shadow: 0 15px 30px 10000px rgba(0, 0, 0, 0.5), 0 15px 35px 0 rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
     display:table-cell;
     vertical-align:middle;
