@@ -12,40 +12,10 @@ export default {
     longitude:0,
     main(){
         main();
-        /*
-        let counter = 0;
-        while(!this.routeIsOver){
-            let lat;
-            let long;
-            navigator.geolocation.getCurrentPosition((position) =>{
-                    putCoords(position.coords.latitude, position.coords.longitude);
-            });
-            
-            console.log(this.latitude);
-            console.log(this.longitude);
-            while (counter < 20000){
-                counter++;
-            }
-            this.routeIsOver = true;
-        }
-        if(this.routeIsOver){
-            this.route = new BasicRoute(this.routeName, this.geoCoordinates);
-        }*/
-    },
-    getCoords(lat, long){
-        this.latitude = lat;
-        this.longitude = long;
-    },
-    endRoute(){
-        this.routeIsOver = true;
     },
 
-    nameRoute(name){
-        this.routeName = name;
-    },
-
-    getTheRoute(){
-        return this.route;
+    getRoute(){
+        route.getRoute();
     }
 }
 
