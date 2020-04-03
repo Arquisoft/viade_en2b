@@ -1,0 +1,21 @@
+.ui.card {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  
+  overflow: hidden !important;
+  
+  border-radius: var(--border-radius) !important;
+  
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down) !important;
+}
+
+.ui.card > .content {
+  background-color: var(--bg-color) !important;
+}
+
+.ui.card > .content > .header,
+.ui.card > .content > .meta,
+.ui.card > .content > .description {
+  color: var(--font-color) !important;
+}

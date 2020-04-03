@@ -8,74 +8,74 @@ import "../../assets/css/FriendList.css";
 class FriendsPage extends React.Component {
   render(){
 
-    let friendos = [{
-      image: '/images/roberto.png',
+    let friends = [{
+      image: 'images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
-      description: "Testing the props and all shit",
+      description: "Testing the props and all stuff",
       link: "/login",
       numberOfFriends: "0"
     }, {
-      image: '/images/roberto.png',
+      image: 'images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
-      description: "Testing the props and all shit",
+      description: "Testing the props and all stuff",
       link: "/login", 
       numberOfFriends: "0"
     }, {
-      image: '/images/roberto.png',
+      image: 'images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
-      description: "Testing the props and all shit",
+      description: "Testing the props and all stuff",
       link: "/login",
       numberOfFriends: "0"
     }, {
-      image: '/images/roberto.png',
+      image: 'images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
-      description: "Testing the props and all shit",
+      description: "Testing the props and all stuff",
       link: "/login",
       numberOfFriends: "0"
     }, {
-      image: '/images/roberto.png',
+      image: 'images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
-      description: "Testing the props and all shit",
+      description: "Testing the props and all stuff",
       link: "/login",
       numberOfFriends: "0"
     } , {
-      image: '/images/roberto.png',
+      image: 'images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
-      description: "Testing the props and all shit",
+      description: "Testing the props and all stuff",
       link: "/login",
       numberOfFriends: "0"
     }, {
-      image: '/images/roberto.png',
+      image: 'images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
-      description: "Testing the props and all shit",
+      description: "Testing the props and all stuff",
       link: "/login",
       numberOfFriends: "0"
     }, {
-      image: '/images/roberto.png',
+      image: 'images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
-      description: "Testing the props and all shit",
+      description: "Testing the props and all stuff",
       link: "/login",
       numberOfFriends: "0"
     }, {
-      image: '/images/roberto.png',
+      image: 'images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
-      description: "Testing the props and all shit",
+      description: "Testing the props and all stuff",
       link: "/login", 
       numberOfFriends: "0"
     }, {
-      image: '/images/roberto.png',
+      image: 'images/roberto.png',
       name: "Alejandro",
       date: "Joined some day",
-      description: "Testing the props and all shit",
+      description: "Testing the props and all stuff",
       link: "/login", 
       numberOfFriends: "0"
     }]
@@ -90,7 +90,7 @@ class FriendsPage extends React.Component {
         <div className="App routes" id="page-wrap">
         <section className="sectionFriends">
         <ul className = "friendContainer">
-         {friendos.map((item, index)=>{
+         {friends.map((item, index)=>{
                 return (
                   <li id={"route"+index} key={index} className = "liCard">
                     <CardLayout

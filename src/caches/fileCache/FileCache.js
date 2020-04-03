@@ -5,9 +5,12 @@ import {
   getFilesAttached
 } from "data-access/gateways/FileGateway";
 
+import routeCache from "../routeCache/RouteCache";
+
 export default {
   filePaths: [],
-  async addFiles(route, files) {
+  async addFiles(files) {
+    let route = routeCache.getSelected();
     let found = this.filePaths.find(rf => rf.routePath === route.name);
     try {
       if (found) {

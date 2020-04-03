@@ -4,13 +4,16 @@ import GenericButton from '../generic_components/GenericButton';
 import FloatingButton from '../generic_components/FloatingButton'
 import BurgerMenu from 'components/generic_components/BurgerMenu';
 import 'assets/css/GenericButton.css';
-import 'assets/css/mainPage.css';
+import 'assets/css/MainPage.css';
 import MapContainer from 'components/map_components/MapContainer.js';
 import {HashRouter as Router,Link} from 'react-router-dom';
 
+import * as cache from 'caches/friendCache/FriendCache';
 
-class MainPage extends React.Component{
-  render(){
+
+const MainPage = () => {  
+  cache.default.loadFriends();
+
   return (
     <div className="App" id="outer-container">
       <BurgerMenu 
@@ -18,7 +21,7 @@ class MainPage extends React.Component{
         container="outer-container"
       />
       <main className="main" id="page-wrap">
-      <FloatingButton/>
+      <FloatingButton showUpload={() => this.showZone()}/>
       <Router>
         <Link to="/login">
           <GenericButton
@@ -32,6 +35,6 @@ class MainPage extends React.Component{
     </div>
   );
 }
-}
+
 
 export default MainPage;
