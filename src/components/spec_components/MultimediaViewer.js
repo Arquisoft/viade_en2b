@@ -11,7 +11,7 @@ class MultimediaViewer extends Component {
   }
   files = [];
   componentDidUpdate(){
-    this.props.files.map((item)=>{
+    this.props.files.forEach((item)=>{
       this.state.files.push(item);
       this.files.push(item);
     });

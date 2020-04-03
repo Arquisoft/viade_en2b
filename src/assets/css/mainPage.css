@@ -13,6 +13,13 @@
 .loginButton:hover{
     color:rgb(230, 142, 186);
 }
+.dropzonePage{
+    display: block;
+    
+    top: 45%;
+    left: 45%;
+    
+}
 
 .rtf {
     height: 65px;
