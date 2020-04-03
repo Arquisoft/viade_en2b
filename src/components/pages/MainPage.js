@@ -22,9 +22,6 @@ const MainPage = () => {
       />
       <main className="main" id="page-wrap">
       <FloatingButton showUpload={() => this.showZone()}/>
-      <div ref={node=> this.node = node}>
-      {this.state.showZone ? this.getZone() : null}
-      </div>
       <Router>
         <Link to="/login">
           <GenericButton
