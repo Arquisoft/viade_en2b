@@ -65,3 +65,35 @@ test("add files in the cache", async () => {
   expect(FileCache.filePaths[0].routePath).toEqual(dummyRoute1.name);
   expect(FileCache.filePaths[0].files).toEqual(dummyFilePathList);
 });
+
+describe("remove files", () => {
+  beforeEach(() => {
+    console.log(FileCache.filePaths);
+  });
+
+  afterAll(() => {
+    console.log(FileCache.filePaths);
+  });
+
+  test("remove a file in the cache", async () => {
+    RouteCache.setSelected(dummyRoute1);
+    await FileCache.addFiles(dummyFileList);
+    RouteCache.setSelected(dummyRoute2);
+    await FileCache.addFiles(dummyFileList);
+    await FileCache.removeFile(dummyRoute1, "path/file1.png");
+
+    expect(mockGatewayRemove).toHaveBeenCalled();
+    expect(FileCache.filePaths.length).toBe(2);
+    expect(FileCache.filePaths[0].routePath).toEqual(dummyRoute1.name);
+    expect(FileCache.filePaths[1].routePath).toEqual(dummyRoute2.name);
+    expect(FileCache.filePaths[0].files).toEqual([
+      "path/file2.jpg",
+      "path/file3.avi"
+    ]);
+    expect(FileCache.filePaths[1].files).toEqual([
+      "path/file1.png",
+      "path/file2.jpg",
+      "path/file3.avi"
+    ]);
+  });
+});

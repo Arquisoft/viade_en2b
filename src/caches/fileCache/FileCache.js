@@ -1,8 +1,7 @@
 import RouteFile from "Entities/RouteFile";
 import {
   uploadFiles,
-  removeFileAttached,
-  getFilesAttached
+  removeFileAttached
 } from "data-access/gateways/FileGateway";
 
 import routeCache from "../routeCache/RouteCache";
@@ -34,9 +33,12 @@ export default {
     }
   },
   async removeFile(route, path) {
-    this.filePaths.forEach(rf => rf.removeFilePath(path));
+    this.filePaths.forEach(rf => {
+      if(rf.routePath === route.name && rf.hasPath(path)) {
+        rf.removeFilePath(path);
+      }
+    });
     await removeFileAttached(route, path);
   },
-  async getFiles(route) {
-  }
+  async getFiles(route) {}
 };
