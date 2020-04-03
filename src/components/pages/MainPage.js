@@ -7,7 +7,7 @@ import 'assets/css/GenericButton.css';
 import 'assets/css/mainPage.css';
 import MapContainer from 'components/map_components/MapContainer.js';
 import {HashRouter as Router,Link} from 'react-router-dom';
-
+import * as RealTimeRoute from "../../RouteManager/CreateRouteRealTime";
 
 class MainPage extends React.Component{
   render(){
@@ -29,7 +29,11 @@ class MainPage extends React.Component{
       </Router>
         <MapContainer/>  
       </main>
+      {
+        RealTimeRoute.default.main()
+      }
     </div>
+    
   );
 }
 }
