@@ -38,9 +38,9 @@ export class MapContainer extends React.Component {
           lng: parseFloat(punto.longitude)
         });
       })
-     //console.log(puntos)
+     
      route = ruta;
-     //console.log(route)
+  
     }else{
      route =  this.route;
     }

@@ -9,8 +9,7 @@ export function findByName(name) {
 export function findAll() {
     let routesLoader = new RoutesLoader();
     let loadedRoutes = routesLoader.loadUserRoutesFiles();
-    console.log(loadedRoutes)
-    console.log("Loaded routes length: "+loadedRoutes.length);
+    
     return loadedRoutes;
 }
 
