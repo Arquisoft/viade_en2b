@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Icon, Card, Image } from 'semantic-ui-react'
 import {HashRouter as Router, Link} from "react-router-dom";
+import 'assets/css/Card.css'
 
 class CardLayout extends Component{
   render(){
