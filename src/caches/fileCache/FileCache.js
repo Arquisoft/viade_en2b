@@ -38,14 +38,5 @@ export default {
     await removeFileAttached(route, path);
   },
   async getFiles(route) {
-    let found = this.filePaths.find(rf => rf.routePath === route.name);
-    if (found) {
-      return found;
-    } else {
-      let filesMap = new RouteFile(route.name, []);
-      let filesForRoute = await getFilesAttached(route.name);
-
-      
-    }
   }
 };

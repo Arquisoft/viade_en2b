@@ -27,7 +27,7 @@ class Dropzone extends Component {
     if (this.props.disabled) return;
     const files = this.state.files;
     if (this.state.files) {
-      fileCache.addFiles([...files]);
+      cache.addFiles([...files]);
       this.props.onUpload(files);
       this.props.hideUpload();
     }
