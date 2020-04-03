@@ -20,9 +20,9 @@ export class MapContainer extends React.Component {
   }
   
   center={lat: 43.362448, lng: -5.849005}
-  route = [{lat: 43.361778, lng: -5.848008}, {lat: 43.363836, lng: -5.851059}, {lat: 43.363174, lng: -5.852273}]
-  zoom = 15;
-
+  route = []
+  //{lat: 43.361778, lng: -5.848008}, {lat: 43.363836, lng: -5.851059}, {lat: 43.363174, lng: -5.852273}
+  zoom = 15
   
   setZoom(zoom) { this.zoom = zoom }
   

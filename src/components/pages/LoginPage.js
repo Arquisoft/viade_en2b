@@ -3,8 +3,10 @@ import BurgerMenu from '../generic_components/BurgerMenu';
 
 import 'assets/css/Login.css'
 import Login from '../login/Login';
+import * as cache from 'caches/friendCache/FriendCache';
 
 const LoginPage = () => {
+	cache.default.loadFriends();
   return (
     <div className=".bodyContainer" id="outer-container">
 	 <BurgerMenu 

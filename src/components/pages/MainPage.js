@@ -8,9 +8,12 @@ import 'assets/css/MainPage.css';
 import MapContainer from 'components/map_components/MapContainer.js';
 import {HashRouter as Router,Link} from 'react-router-dom';
 
+import * as cache from 'caches/friendCache/FriendCache';
 
-class MainPage extends React.Component{
-  render(){
+
+const MainPage = () => {  
+  cache.default.loadFriends();
+
   return (
     <div className="App" id="outer-container">
       <BurgerMenu 
@@ -18,7 +21,10 @@ class MainPage extends React.Component{
         container="outer-container"
       />
       <main className="main" id="page-wrap">
-      <FloatingButton/>
+      <FloatingButton showUpload={() => this.showZone()}/>
+      <div ref={node=> this.node = node}>
+      {this.state.showZone ? this.getZone() : null}
+      </div>
       <Router>
         <Link to="/login">
           <GenericButton
@@ -32,6 +38,6 @@ class MainPage extends React.Component{
     </div>
   );
 }
-}
+
 
 export default MainPage;

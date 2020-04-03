@@ -8,6 +8,13 @@
     
     font-size: 22px;
 }
+.dropzonePage{
+    display: block;
+    
+    top: 45%;
+    left: 45%;
+    
+}
 
 .rtf {
     height: 65px;
