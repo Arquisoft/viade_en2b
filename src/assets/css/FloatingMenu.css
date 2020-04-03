@@ -6,8 +6,8 @@
     
     border-radius: 30px;
     background: var(--bg-color);
-    box-shadow:  -11px -11px 22px var(--shadow-up),
-                  11px 11px 22px var(--shadow-down);
+    box-shadow:  var(--box-shadow-up),
+                  var(--box-shadow-down);
     
 }
 
@@ -17,14 +17,14 @@
     overflow: hidden;
 
     background: var(--bg-color);
-    box-shadow:  -11px -11px 22px var(--shadow-up),
-                  11px 11px 22px var(--shadow-down);
+    box-shadow:  var(--box-shadow-up),
+                  var(--box-shadow-down);
 }
 
 .rtf--ab:hover{
     background: var(--bg-color);
-    box-shadow:  -11px -11px 22px var(--shadow-up),
-                  11px 11px 22px var(--shadow-down);
+    box-shadow:  var(--box-shadow-up),
+                  var(--box-shadow-down);
 }
 
 .rtf--ab::after, .rtf--mb::after {

@@ -4,7 +4,7 @@ import GenericButton from '../generic_components/GenericButton';
 import FloatingButton from '../generic_components/FloatingButton'
 import BurgerMenu from 'components/generic_components/BurgerMenu';
 import 'assets/css/GenericButton.css';
-import 'assets/css/mainPage.css';
+import 'assets/css/MainPage.css';
 import MapContainer from 'components/map_components/MapContainer.js';
 import {HashRouter as Router,Link} from 'react-router-dom';
 
@@ -22,9 +22,6 @@ const MainPage = () => {
       />
       <main className="main" id="page-wrap">
       <FloatingButton showUpload={() => this.showZone()}/>
-      <div ref={node=> this.node = node}>
-      {this.state.showZone ? this.getZone() : null}
-      </div>
       <Router>
         <Link to="/login">
           <GenericButton

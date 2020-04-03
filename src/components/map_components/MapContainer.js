@@ -5,6 +5,8 @@ import getKey from 'ApiKey.js';
 import * as cache from 'caches/routeCache/RouteCache'
 import CustomLoader from 'components/generic_components/CustomLoader';
 
+import ConfigCache from 'caches/ConfigCache.js'
+
 export class MapContainer extends React.Component {
 
   constructor(props){
@@ -12,9 +14,11 @@ export class MapContainer extends React.Component {
   
   this.state = {
     loading: true,
-    route: ""
+    route: "",
+    dark: ConfigCache.dark,
     };
   }
+  
   center={lat: 43.362448, lng: -5.849005}
   route = []
   //{lat: 43.361778, lng: -5.848008}, {lat: 43.363836, lng: -5.851059}, {lat: 43.363174, lng: -5.852273}
@@ -24,11 +28,11 @@ export class MapContainer extends React.Component {
   
   componentDidMount() {
     let rutita = cache.default.getSelected()
-    this.setState({ loading: false, route: rutita });
+    this.setState({ loading: false, route: rutita, dark: ConfigCache.dark});
   }
 
   
-  viewLoaded = route => {
+  viewLoaded = (route, dark) => {
     var ruta = [];
     if(route){
       var puntos = route.geoCoordinates;
@@ -52,7 +56,7 @@ export class MapContainer extends React.Component {
     return ( <Map
       google={this.props.google}
       zoom={this.zoom}
-      styles={getStyle(0)}
+      styles={getStyle(dark)}
       streetViewControl={false}
       mapTypeControl={false}
       fullscreenControl={false}
@@ -79,11 +83,15 @@ export class MapContainer extends React.Component {
 
   render(){
     const {loading} = this.state;
-    return(
-      <React.Fragment>
-        {loading ? <CustomLoader/> : this.viewLoaded(this.state.route)}
-      </React.Fragment>
+    
+    return (
+    <React.Fragment>
+      {
+        loading ? <CustomLoader/> : this.viewLoaded(this.state.route, this.state.dark)
+      }
+    </React.Fragment>
     );
+    
   }
 }
 
