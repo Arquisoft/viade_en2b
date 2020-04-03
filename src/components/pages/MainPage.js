@@ -22,7 +22,7 @@ const MainPage = () => {
   };
 
   const showZone = () => {
-    if (routecache.default.getSelected() != "") 
+    if (routecache.default.getSelected() !== "") 
       setShowDropzone(!showDropzone);
     //this.setState({showZone: !this.state.showZone});
     else alert("No route selected");
