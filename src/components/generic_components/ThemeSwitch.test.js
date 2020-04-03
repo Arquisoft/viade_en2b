@@ -27,10 +27,3 @@ test("SwitchToggle", () => {
   temp.find(".theme-switch").at(0).simulate('click');
   expect(ConfigCache.dark).toBeTruthy();
 });
-
-test("SwitchToggleTwice", () => {
-  const temp = mount(<ThemeSwitch/>);
-  temp.find(".theme-switch").at(0).simulate('click');
-  temp.find(".theme-switch").at(0).simulate('click');
-  expect(ConfigCache.dark).toBeFalsy();
-});
