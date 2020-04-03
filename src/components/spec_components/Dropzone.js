@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import '../../assets/css/Dropzone.css'
 import MultimediaViewer from './MultimediaViewer';
 
-import cache from 'caches/fileCache/FileCache';
+import routeCache from 'caches/routeCache/RouteCache';
+import fileCache from 'caches/fileCache/FileCache';
 
 class Dropzone extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class Dropzone extends Component {
     if (this.props.disabled) return;
     const files = this.state.files;
     if (this.state.files) {
-      cache.addFiles({ name: 'route1' }, [...files]);
+      fileCache.addFiles(routeCache.getSelected(), [...files]);
       this.props.onUpload(files);
     }
     this.setState({ highlight: false });

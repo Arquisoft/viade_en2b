@@ -1,0 +1,31 @@
+import * as auth from "solid-auth-client";
+import SolidFileClient from "solid-file-client";
+
+import { handleFetchError } from "./FileUtils";
+
+const fileClient = new SolidFileClient(auth, { enableLogging: true });
+
+const routesFolder = "viade/routes/";
+
+export const linkFilesToRoute = async (fileUris, routeName) => {
+  let session = await auth.currentSession();
+  let storageRoot = session.webId.split("profile")[0];
+  let buildRoutePath = storageRoot + routesFolder + routeName + ".json";
+  if (await fileClient.itemExists(buildRoutePath)) {
+    // get the route
+    let routeFile = await fileClient.readFile(buildRoutePath);
+    let route = JSON.parse(routeFile);
+    // check the media subject
+    if(!route.media) {
+      route.media = [];
+    }
+    // for each file
+    // add a new ref to a media subject
+    fileUris.forEach(fileUri => {
+      route.media.push({ "@id": fileUri });
+    });
+    console.log(route);
+    // save the updated route
+    fileClient.putFile(buildRoutePath, JSON.stringify(route), "application/json").catch(handleFetchError);
+  }
+};

@@ -2,7 +2,7 @@ import FileCache from './FileCache';
 import * as FileGateway from 'data-access/gateways/FileGateway';
 
 const mockGatewayUpload = jest.spyOn(FileGateway, 'uploadFiles');
-const mockGatewayRemove = jest.spyOn(FileGateway, 'removeFile');
+const mockGatewayRemove = jest.spyOn(FileGateway, 'removeFileAttached');
 
 mockGatewayUpload.mockImplementation(async (routePath, fileList) => {
     return fileList.map(file => `path/${file.name}`);
