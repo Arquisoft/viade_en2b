@@ -71,7 +71,9 @@ export default class RoutesLoader{
                    try{ let tempRoute = JSON.parse(fileContent);
                     if(tempRoute.name===name){
 
-                       return new Route(tempRoute.name,tempRoute.itinerary);
+                       let route =  new Route(tempRoute.name,tempRoute.itinerary);
+                       route.setUrl(files[i].url);
+                       return route;
                     }}catch(error){
                        console.log("wrong json format");
                    }

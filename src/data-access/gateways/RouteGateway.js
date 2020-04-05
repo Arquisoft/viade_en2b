@@ -41,7 +41,7 @@ export function deleteByUrl(url) {
     return false;
 }
 
-export function updateByName(cacheRoute, newRouteDate) {
+export function updateByName(cacheRoute, newRouteData) {
     // call to ldflex to find route by the name
     //var route = await RouteRDF.findByName(name);
     // if any, modify it
@@ -50,4 +50,8 @@ export function updateByName(cacheRoute, newRouteDate) {
     //}
 
     let foundRoute = findByName(cacheRoute.name);
+    if(foundRoute!==null && foundRoute!==undefined){
+        foundRoute.name=newRouteData.name;
+        let updateRoute = new
+    }
 }
