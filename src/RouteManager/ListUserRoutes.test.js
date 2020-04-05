@@ -135,3 +135,26 @@ test("routes json to entities", () => {
   expect(entityRoutes.routes[2].name).toEqual("Avilés");
   expect(entityRoutes.routes[2].geoCoordinates).toBeDefined();
 });
+
+test("route files created properly", () => {
+  let route = {
+    name: "Oviedo",
+    media: [
+      {
+        "@id": "image.png",
+        dateTime: new Date().toISOString,
+      },
+      {
+        "@id": "video.avi",
+        dateTime: new Date().toISOString,
+      },
+    ],
+  };
+  let loader = new RoutesLoader();
+  let routeFile = loader.getMediaAttachedToRoute(route);
+
+  expect(routeFile.routePath).toEqual("Oviedo");
+  expect(routeFile.files.length).toBe(2);
+  expect(routeFile.files[0].filePath).toEqual("image.png");
+  expect(routeFile.files[1].filePath).toEqual("video.avi");
+});
