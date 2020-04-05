@@ -42,10 +42,10 @@ export async function GetUserFriends() {
     const profilePic = await GetSpecificProfileImage(webId);
 
     let friendAux = new Friend(webId, name, profilePic, webIdString);
-    friendAux.toString();
+   
     friendsAux.push(friendAux);
   });  
-  console.log("--------------------------------")
+
   return friendsAux;
 };
 
@@ -69,7 +69,7 @@ export async function GetSpecificName(webId) {
   try{
     return personName.value;
   } catch (TypeError ){
-    console.log("There was some problem retrieving the name of the user:"+webId);
+  
     return webId.toString().substring(8, webId.toString().length - 1);
   }
 };
@@ -79,7 +79,7 @@ export async function GetSpecificProfileImage(webId) {
   try{
     return photo.value;
   } catch (TypeError ){
-    console.log("There was some problem retrieving the profile picture of the user:"+webId);
+    
     return "images/userPictureUndefined"
   } 
 };
