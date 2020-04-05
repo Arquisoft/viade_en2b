@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/css/routes.css";
+import "assets/css/Routes.css";
 import CustomLoader from 'components/generic_components/CustomLoader';
 import BurgerMenu from '../generic_components/BurgerMenu';
 import SearchBar from '../generic_components/SearchBar';

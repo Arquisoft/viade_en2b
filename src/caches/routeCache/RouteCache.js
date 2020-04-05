@@ -17,14 +17,13 @@ export default {
         if(this.routes.length === 0) {
             this.routes = await RouteGateway.findAll(callback)
                             .then(list => list);
-            console.log(this.routes)
         }
         return this.routes;
     }, 
     setSelected(route) {
         console.table(this.routes);
         let found = this.routes.find(obj => route.name === obj.name);
-        console.log(found);
+        
         if(found) {
             this.selected = found;
             return;

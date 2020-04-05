@@ -7,7 +7,7 @@ export default class SearchBar extends React.Component{
         return (
         <input 
             type="text" 
-            id="myInput" 
+            id="searchBar" 
             value={this.props.value}
             onChange={this.props.action}
             placeholder="Search for names.." 
@@ -16,4 +16,3 @@ export default class SearchBar extends React.Component{
         );
     }
 }
-

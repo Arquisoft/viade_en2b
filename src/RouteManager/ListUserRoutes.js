@@ -18,7 +18,7 @@ export default class RoutesLoader {
         let routesFolder = session.webId.substring(0, session.webId.length - 16) + "/public/Routes/";
 
         if (await fc.itemExists(routesFolder)) {
-            //console.log(routesFolder + " exists");
+            
             try {
                 let content = await fc.readFolder(routesFolder);
 
@@ -66,7 +66,6 @@ export default class RoutesLoader {
 
     jsonToEntity(routes){
         let entRoutes = [];
-        console.log("Json to entity");
         for(let i = 0;i<routes.length;i++){
             try {
                 console.log(routes[i]);

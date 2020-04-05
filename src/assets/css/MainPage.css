@@ -7,11 +7,13 @@
     width: 6em;
     
     font-size: 22px;
-    color: rgb(226, 55, 189);
 }
-
-.loginButton:hover{
-    color:rgb(230, 142, 186);
+.dropzonePage{
+    display: block;
+    
+    top: 45%;
+    left: 45%;
+    
 }
 
 .rtf {

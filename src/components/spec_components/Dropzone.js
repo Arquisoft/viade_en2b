@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import '../../assets/css/Dropzone.css'
 import MultimediaViewer from './MultimediaViewer';
+
+import cache from 'caches/fileCache/FileCache';
+import GenericButton from '../generic_components/GenericButton';
+
 class Dropzone extends Component {
   constructor(props) {
     super(props);
-    this.state = { hightlight: false, 
-                   files: []};
+    this.state = {
+      hightlight: false,
+      files: []
+    };
     this.fileInputRef = React.createRef();
-    
+
     this.openFileDialog = this.openFileDialog.bind(this);
     this.onFilesAdded = this.onFilesAdded.bind(this);
     this.onDragOver = this.onDragOver.bind(this);
@@ -15,17 +21,18 @@ class Dropzone extends Component {
     this.onDrop = this.onDrop.bind(this);
     this.onUpload = this.onUpload.bind(this);
   }
-
   onUpload(event){
+
     event.preventDefault();
     if (this.props.disabled) return;
     const files = this.state.files;
     if (this.state.files) {
+      cache.addFiles({ name: 'route1' }, [...files]);
       this.props.onUpload(files);
+      this.props.hideUpload();
     }
-    this.setState({highlight: false});
-    
-  } 
+    this.setState({ highlight: false });
+  }
 
   openFileDialog() {
     if (this.props.disabled) return;
@@ -39,12 +46,12 @@ class Dropzone extends Component {
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
       this.props.onFilesAdded(array);
-      console.log("FILE ADDED BY CLICKING");
-      array.map((item)=>{
+     
+      array.forEach((item) => {
         this.state.files.push(item);
       });
     }
-    this.setState({highlight: false});
+    this.setState({ highlight: false });
   }
 
   onDrop(event) {
@@ -55,12 +62,12 @@ class Dropzone extends Component {
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files);
       this.props.onFilesAdded(array);
-      console.log("FILE ADDED BY DROPPING");
-       array.map((item)=>{
+      
+      array.forEach((item) => {
         this.state.files.push(item);
       });
     }
-    this.setState({highlight: false});
+    this.setState({ highlight: false });
   }
 
   onDragOver(evt) {
@@ -68,11 +75,11 @@ class Dropzone extends Component {
 
     if (this.props.disabled) return;
 
-     this.setState({highlight: true});
+    this.setState({ highlight: true });
   }
 
   onDragLeave() {
-     this.setState({highlight: false});
+    this.setState({ highlight: false });
   }
 
 
@@ -111,10 +118,12 @@ class Dropzone extends Component {
       </div>
       <MultimediaViewer files={this.state.files}/>
       <form>
-            <input type="button" 
+            <GenericButton 
                    className="submitUpload"
                    value="Upload Archives" 
-                   onClick={this.onUpload}/>
+                   onClick={this.onUpload}
+                   message="Upload Archives"
+                   />
           </form>
       </React.Fragment>
     )
