@@ -73,6 +73,7 @@ export default class RoutesLoader{
 
                        let route =  new Route(tempRoute.name,tempRoute.itinerary);
                        route.setUrl(files[i].url);
+                       route.setJsonFormat(tempRoute);
                        return route;
                     }}catch(error){
                        console.log("wrong json format");
@@ -121,6 +122,7 @@ export default class RoutesLoader{
                 let name = routes[i].name;
                 let it =routes[i].itinerary;
                 let route = new Route(name,it);
+                route.setJsonFormat(routes[i]);
                 entRoutes.push(route);
                 console.log("Route "+route.name+" was created succesfully");
 

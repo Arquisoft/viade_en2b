@@ -1,6 +1,7 @@
 import RoutesLoader from "RouteManager/ListUserRoutes";
 //import {Read} from "rdf-namespaces/dist/acl"; -->Comment to avoid unused
 import DeleteUserRoute from "../../RouteManager/DeleteUserRoute";
+import UpdateRoute from "../../RouteManager/UpdateRoute";
 
 
 export function findByName(name) {
@@ -42,16 +43,12 @@ export function deleteByUrl(url) {
 }
 
 export function updateByName(cacheRoute, newRouteData) {
-    // call to ldflex to find route by the name
-    //var route = await RouteRDF.findByName(name);
-    // if any, modify it
-    //if(route && route.name) {
-    //    RouteRDF.update(route);
-    //}
-
     let foundRoute = findByName(cacheRoute.name);
     if(foundRoute!==null && foundRoute!==undefined){
+
         foundRoute.name=newRouteData.name;
-        let updateRoute = new
+        foundRoute.jsonFormat.name=newRouteData.name;
+        let updateRoute = new UpdateRoute();
+        updateRoute.update(foundRoute);
     }
 }

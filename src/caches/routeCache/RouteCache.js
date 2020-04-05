@@ -12,7 +12,9 @@ export default {
     deleteRoute(route) {
         this.routes = this.routes.filter(obj => route.name !== obj.name);
         RouteGateway.deleteByName(route.name);
-    }, 
+    },
+
+
     async getRoutes() {
         if(this.routes.length === 0) {
             this.routes = await RouteGateway.findAll();
