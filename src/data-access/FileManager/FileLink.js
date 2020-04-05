@@ -3,8 +3,6 @@ import SolidFileClient from "solid-file-client";
 
 import { handleFetchError } from "./FileUtils";
 
-const fileClient = new SolidFileClient(auth, { enableLogging: true });
-
 const routesFolder = "viade/routes/";
 
 const getAttachmentDate = () => {
@@ -12,6 +10,7 @@ const getAttachmentDate = () => {
 };
 
 export const linkFilesToRoute = async (fileUris, routeName) => {
+  let fileClient = new SolidFileClient(auth, { enableLogging: true });
   let session = await auth.currentSession();
   let storageRoot = session.webId.split("profile")[0];
   let buildRoutePath = storageRoot + routesFolder + routeName + ".json";
