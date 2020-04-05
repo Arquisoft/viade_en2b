@@ -4,12 +4,14 @@ import DeleteUserRoute from "../../RouteManager/DeleteUserRoute";
 
 
 export function findByName(name) {
+
+    let routesLoader = new RoutesLoader();
+    return routesLoader.loadRouteByName(name);
 }
 
 export function findAll() {
     let routesLoader = new RoutesLoader();
     let loadedRoutes = routesLoader.loadUserRoutesFiles();
-    
     return loadedRoutes;
 }
 
@@ -39,11 +41,13 @@ export function deleteByUrl(url) {
     return false;
 }
 
-export function updateByName(name, route) {
+export function updateByName(cacheRoute, newRouteDate) {
     // call to ldflex to find route by the name
     //var route = await RouteRDF.findByName(name);
     // if any, modify it
     //if(route && route.name) {
     //    RouteRDF.update(route);
     //}
+
+    let foundRoute = findByName(cacheRoute.name);
 }

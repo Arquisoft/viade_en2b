@@ -68,10 +68,13 @@ export default class RoutesLoader{
 
                 for (let i = 0; i < files.length; i++) {
                     let fileContent = await fc.readFile(files[i].url);
-                    let tempRoute = JSON.parse(fileContent);
+                   try{ let tempRoute = JSON.parse(fileContent);
                     if(tempRoute.name===name){
-                       return new BasicRoute(tempRoute.name,tempRoute.itinerary);
-                    }
+
+                       return new Route(tempRoute.name,tempRoute.itinerary);
+                    }}catch(error){
+                       console.log("wrong json format");
+                   }
 
                 }
 
