@@ -13,18 +13,25 @@ button {
     
     line-height: 1;
     
-    font-family: Muli, Verdana, Arial, sans-serif;
+    font-family: var(--font-family);
     font-weight: 700;
+    
+    color: var(--font-color);
+    
     -webkit-appearance: none;
     -webkit-font-smoothing: antialiased;
     
-  }
+}
+
+button:hover {
+  color: var(--font-color-hover);
+}
 
 .buttonGeneric {
     border-radius: 30px;
     background: var(--bg-color);
-    box-shadow:  -11px -11px 22px var(--shadow-up),
-                  2px 2px 22px var(--shadow-down);
+    box-shadow:  var(--box-shadow-up),
+                  var(--box-shadow-down);
 }
 
 .buttonGeneric:active {

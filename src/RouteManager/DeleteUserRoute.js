@@ -25,7 +25,6 @@ export default class DeleteUserRoute{
         let routesFolder = session.webId.substring(0, session.webId.length - 16) + "/public/Routes/";
         
         if (await fc.itemExists(routesFolder)) {
-            console.log(routesFolder + " exists");
             try {
 
                 let content = await fc.readFolder(routesFolder);                
@@ -82,7 +81,7 @@ export default class DeleteUserRoute{
 
         
         if (await fc.itemExists(routesFolder)) {
-            console.log(routesFolder + " exists");
+         
             try {
 
                 let content = await fc.readFolder(routesFolder);                

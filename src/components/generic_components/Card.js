@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import { Icon, Card, Image } from 'semantic-ui-react'
 import {HashRouter as Router, Link} from "react-router-dom";
+import 'assets/css/Card.css'
 
 class CardLayout extends Component{
   render(){
       return(
         <div>
-            <Card>
+            <Card className = "claim_Card">
                 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css'/>
-                <Image src={this.props.image} size= "medium"/>
+                <Image className = "ui medium image" src={this.props.image}/>
                 <Card.Content>
                     <Card.Header>{this.props.header}</Card.Header>
                     <Card.Meta>
