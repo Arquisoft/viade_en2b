@@ -11,12 +11,10 @@ export default class RouteFile {
   addFilePath(path) {
     if (!this.files.includes(path)) {
       this.files = [...this.files, path];
-    } else {
-      throw new Error(`The path "${path}" is already in the cache.`);
     }
   }
 
   removeFilePath(path) {
-    this.files = this.files.filter(fp => fp !== path);
+    this.files = this.files.filter((fp) => fp !== path);
   }
 }

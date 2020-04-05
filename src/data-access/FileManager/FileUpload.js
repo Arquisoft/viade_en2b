@@ -21,13 +21,13 @@ export const uploadFiles = async fileList => {
     return Promise.reject("All files must be images or videos.");
   }
 
-  let path = fixPath(session.webId.split("profile")[0]);
+  let path = session.webId.split("profile")[0];
   const promises = Array.from(fileList).map(file => {
     let buildPath = `${path}viade/resources/${file.name}`;
     return updateFile(
       buildPath,
       file,
-      file.type || mime.getExtension(file.name)
+      file.type || mime.getType(file.name)
     ).then(() => {
       return buildPath;
     });
@@ -36,13 +36,7 @@ export const uploadFiles = async fileList => {
 };
 
 const updateFile = (path, content, contentType) => {
-  path = fixPath(path);
   return fileClient.putFile(path, content, contentType).catch(handleFetchError);
-};
-
-const fixPath = path => {
-  if (path === "") return path;
-  return path.replace(/\/\//g, "/");
 };
 
 const validContentType = fileList => {

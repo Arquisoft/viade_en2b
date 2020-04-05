@@ -43,9 +43,9 @@ beforeEach(() => {
 
 test("add files not in the cache", async () => {
   RouteCache.setSelected(dummyRoute1);
-  await FileCache.addFiles(dummyFileList);
+  await FileCache.uploadFiles(dummyFileList);
   RouteCache.setSelected(dummyRoute2);
-  await FileCache.addFiles(dummyFileList);
+  await FileCache.uploadFiles(dummyFileList);
 
   expect(mockGatewayUpload).toHaveBeenCalled();
   expect(FileCache.filePaths.length).toBe(2);
@@ -57,8 +57,8 @@ test("add files not in the cache", async () => {
 
 test("add files in the cache", async () => {
   RouteCache.setSelected(dummyRoute1);
-  await FileCache.addFiles(dummyFileList);
-  await FileCache.addFiles(dummyFileList);
+  await FileCache.uploadFiles(dummyFileList);
+  await FileCache.uploadFiles(dummyFileList);
 
   expect(mockGatewayUpload).toHaveBeenCalled();
   expect(FileCache.filePaths.length).toBe(1);
@@ -79,7 +79,7 @@ describe("console log", () => {
   });
 
   test("add files error when no route is selected", async () => {
-    await FileCache.addFiles(dummyFileList);
+    await FileCache.uploadFiles(dummyFileList);
     
     expect(consoleOutput).toContain("Cannot read property 'name' of null");
   });
@@ -87,9 +87,9 @@ describe("console log", () => {
 
 test("remove a file in the cache", async () => {
   RouteCache.setSelected(dummyRoute1);
-  await FileCache.addFiles(dummyFileList);
+  await FileCache.uploadFiles(dummyFileList);
   RouteCache.setSelected(dummyRoute2);
-  await FileCache.addFiles(dummyFileList);
+  await FileCache.uploadFiles(dummyFileList);
   await FileCache.removeFile(dummyRoute1, "path/file1.png");
 
   expect(mockGatewayRemove).toHaveBeenCalled();

@@ -7,10 +7,15 @@ const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 const routesFolder = "viade/routes/";
 
+const getAttachmentDate = () => {
+  return new Date().toISOString();
+}
+
 export const linkFilesToRoute = async (fileUris, routeName) => {
   let session = await auth.currentSession();
   let storageRoot = session.webId.split("profile")[0];
   let buildRoutePath = storageRoot + routesFolder + routeName + ".json";
+  let attachementDate = getAttachmentDate();
   if (await fileClient.itemExists(buildRoutePath)) {
     // get the route
     let routeFile = await fileClient.readFile(buildRoutePath);
@@ -22,7 +27,7 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
     // for each file
     // add a new ref to a media subject
     fileUris.forEach(fileUri => {
-      route.media.push({ "@id": fileUri });
+      route.media.push({ "@id": fileUri, "dateTime": attachementDate });
     });
     console.log(route);
     // save the updated route
