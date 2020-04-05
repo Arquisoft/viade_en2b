@@ -9,7 +9,7 @@ const routesFolder = "viade/routes/";
 
 const getAttachmentDate = () => {
   return new Date().toISOString();
-}
+};
 
 export const linkFilesToRoute = async (fileUris, routeName) => {
   let session = await auth.currentSession();
@@ -21,16 +21,17 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
     let routeFile = await fileClient.readFile(buildRoutePath);
     let route = JSON.parse(routeFile);
     // check the media subject
-    if(!route.media) {
+    if (!route.media) {
       route.media = [];
     }
     // for each file
     // add a new ref to a media subject
-    fileUris.forEach(fileUri => {
-      route.media.push({ "@id": fileUri, "dateTime": attachementDate });
+    fileUris.forEach((fileUri) => {
+      route.media.push({ "@id": fileUri, dateTime: attachementDate });
     });
-    console.log(route);
     // save the updated route
-    fileClient.putFile(buildRoutePath, JSON.stringify(route), "application/json").catch(handleFetchError);
+    fileClient
+      .putFile(buildRoutePath, JSON.stringify(route), "application/json")
+      .catch(handleFetchError);
   }
 };
