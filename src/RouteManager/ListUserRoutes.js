@@ -7,6 +7,7 @@ export default class RoutesLoader{
         const fc = new FC(auth)
         let routes = [];
         let session = await auth.currentSession();
+ 
         let popupUri = 'https://solid.community/common/popup.html';
         if (!session || session.webId === undefined || session.webId === null)
             session = await auth.popupLogin({popupUri});
