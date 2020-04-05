@@ -21,10 +21,15 @@ class CardLayout extends Component{
                 <Router>
                     <Link className={this.props.classLink} 
                           to={this.props.link}
-                          onClick={this.props.action}
-                    >
-                        <Icon name={this.props.iconName} />
-                        {this.props.numberOfFriends}
+                          onClick={this.props.action}>
+                    <Icon name={this.props.iconName} />
+                   
+                    </Link>
+
+                    <Link className={this.props.detailsClassName} 
+                          to={this.props.detailsLink}
+                          onClick={this.props.detailsAction}>
+                    <Icon name={this.props.detailsIconName} />
                     </Link>
                 </Router>
                 </Card.Content>
