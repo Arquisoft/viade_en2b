@@ -10,13 +10,6 @@ import {GetUserWebId} from '../data-access/UserData';
  * @param {*} webId of the user to add.
  */
 export async function AddFriend(webId){
-    console.log('User:');
     const userToAdd = await GetUserWebId();
-    console.log(userToAdd);  
-    console.log('Wants to add as friend user:');  
-    console.log(webId);
-
-
-    console.log('ADDING');
     return ldflex[userToAdd].knows.add(ldflex[webId]); 
 }
