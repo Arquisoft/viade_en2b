@@ -4,7 +4,7 @@ const feature = loadFeature('e2e/features/test.feature');
 defineFeature(feature,test=>{
 
     beforeEach(async () =>{
-        await page.goto('/')
+        await page.goto('https://arquisoft.github.io/viade_en2b/#/')
     });
 
     test('The user is not logged in the application',({given,when,then})=>
@@ -12,7 +12,7 @@ defineFeature(feature,test=>{
 
 
         given('Given a logout user',()=>{
-            page.goto('/login')     
+            page.goto('https://arquisoft.github.io/viade_en2b/#/login')     
 
     })
 
