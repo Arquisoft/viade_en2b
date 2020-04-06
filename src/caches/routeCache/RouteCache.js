@@ -4,6 +4,7 @@ import FileCache from "../fileCache/FileCache";
 export default {
   routes: [],
   selected: "",
+  selectedDetails: "",
   addRoute(route) {
     if (route && !this.routes.find((obj) => route.name === obj.name)) {
       RouteGateway.add(route);
@@ -14,11 +15,15 @@ export default {
     this.routes = this.routes.filter((obj) => route.name !== obj.name);
     RouteGateway.deleteByName(route.name);
   },
-  async getRoutes() {
+  async getRoutes(callback) {
     if (this.routes.length === 0) {
-      let foundRoutes = await RouteGateway.findAll();
-      this.routes = foundRoutes.routes;
-      FileCache.addFilePaths(foundRoutes.files);
+      let foundRoutes = await RouteGateway.findAll(callback);
+      if (routes.length > 0) {
+        this.routes = foundRoutes.routes;
+        FileCache.addFilePaths(foundRoutes.files);
+      } else {
+        this.routes = [];
+      }
     }
     return this.routes;
   },
@@ -45,5 +50,12 @@ export default {
   clear() {
     this.routes = [];
     this.selected = "";
+    this.selectedDetails = "";
+  },
+  setSelectedDetails(route) {
+    this.selectedDetails = route;
+  },
+  getSelectedDetails() {
+    return this.selectedDetails;
   },
 };

@@ -3,15 +3,18 @@ import Route from "../Entities/BasicRoute";
 import RouteFile from "../Entities/RouteFile";
 
 export default class RoutesLoader {
-  async loadUserRoutesFiles() {
+  async loadUserRoutesFiles(callback) {
     const auth = require("solid-auth-client");
     const FC = require("solid-file-client");
     const fc = new FC(auth);
     let routes = [];
     let session = await auth.currentSession();
-    let popupUri = "https://solid.community/common/popup.html";
-    if (!session || session.webId === undefined || session.webId === null)
-      session = await auth.popupLogin({ popupUri });
+    //let popupUri = 'https://solid.community/common/popup.html';
+    if (!session || session.webId === undefined || session.webId === null) {
+        //session = await auth.popupLogin({popupUri});
+        callback();
+        return [];
+    }
     //alert('Logged in as ' + session.webId);
     let routesFolder =
       session.webId.substring(0, session.webId.length - 16) + //"/public/Routes/";
