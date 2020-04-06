@@ -1,15 +1,8 @@
 import GeoCoordinate from "../Entities/GeoCoordinate";
 import BasicRoute from "../Entities/BasicRoute";
-import Geolocalization from "./Geolocalization";
-
-
+import * as CreateRoute from "./CreateRoute";
 
 export default {
-    geoCoordinates: [],
-    routeIsOver: false,
-    routeName:"",
-    latitude:0,
-    longitude:0,
     main(){
         main();
     },
@@ -26,7 +19,6 @@ class RouteCreator{
     }
 
     addCoords(coords){
-        console.log(coords);
         this.geoCoordinates.push(coords);
     }
 
@@ -35,7 +27,8 @@ class RouteCreator{
     }
 
     getRoute(){
-        return new BasicRoute(this.nameRoute, this.geoCoordinates);
+        let r = new BasicRoute(this.nameRoute, this.geoCoordinates);
+        CreateRoute.default.createNormalBasic(r);
     }
     
 }
@@ -44,27 +37,31 @@ const route = new RouteCreator();
 
 async function main (){
         let routeIsOver = false;
-        let counterSleep = 0;
         let counterNext = 0;
         while(!routeIsOver){
             navigator.geolocation.getCurrentPosition((position) =>{
                     putCoords(position.coords.latitude, position.coords.longitude);
             });
 
-            await sleep(20000);
+            await sleep(2000);
             
-            if(counterNext>100){
+            if(counterNext>2){
                 routeIsOver = true;    
             }
             
             counterNext++;
         }
+        route.putNameToRoute("test");
+        route.getRoute();
 }
 
 function putCoords(lat, long){
         let latitude = lat;
         let longitude = long;
-
+        
+        console.log("New coords");
+        console.log(latitude);
+        console.log(longitude);
         route.addCoords(new GeoCoordinate(latitude, longitude));
 }
 
