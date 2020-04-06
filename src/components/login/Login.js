@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoggedIn, LoggedOut, Value } from '@solid/react';
+import { LoggedIn, LoggedOut} from '@solid/react';
 import cache from '../../caches/routeCache/RouteCache'
 import * as friendCache from 'caches/friendCache/FriendCache';
 
