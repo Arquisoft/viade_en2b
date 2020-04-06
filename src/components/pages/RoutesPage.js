@@ -84,14 +84,14 @@ class RoutesPage extends React.Component {
             <ul className="listRoute">            
               {filteredRoutes.map((item, index)=>{
                 return (
-                  <li id={"route"+index} key={index} className="liRoute">
+                  <li id={"route"+index} key={index} className="liCard">
                     <div className="routeListElementContainter">
                       <CardLayout
                         header={item.name}
-                        image="/images/daddy.png"
+                        image="images/daddy.png"
                         link = "/"
                         className="linkRoute"
-                        description="Well, it should be a description..."
+                        description="Well, there should be a description..."
                         action={e=>{cache.default.setSelected(routes[index])}}
                         iconName='send'
 
