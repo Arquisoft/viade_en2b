@@ -17,7 +17,7 @@ defineFeature(feature,test=>{
     })
 
 
-        when('When the user has reach the page',()=>{
+        when('When the user has reach the page',async ()=>{
             await expect(page).toClick('Login',{text : 'Log In'})
 
     });
