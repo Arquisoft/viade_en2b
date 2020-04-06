@@ -2,43 +2,35 @@ import React from "react";
 import "assets/css/Routes.css";
 import CustomLoader from 'components/generic_components/CustomLoader';
 import BurgerMenu from '../generic_components/BurgerMenu';
-//import RouteGateway from '../../data-access/gateways/RouteGateway'
 import SearchBar from '../generic_components/SearchBar';
 import CardLayout from '../generic_components/Card';
 import RouteDetails from './RouteDetails';
 
-
-//const gateway = new RouteGateway();
-
-//var frutas = ["Route 1","Route 2","Route 3","Route 4"];
-
-import * as cache from 'caches/routeCache/RouteCache'
+import cache from 'caches/routeCache/RouteCache';
 
 
 class RoutesPage extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
-  
   this.state = {
     loading: true,
     routes: "",
     search: '',
     showDetails: false
   };
-}
-  updateSearch(event){
-    this.setState({search: event.target.value.substr(0,20)});
+  }
+  updateSearch(event) {
+    this.setState({ search: event.target.value.substr(0, 20) });
   }
   componentDidMount() {
-    cache.default.getRoutes().then(rutas => {
+    cache.getRoutes(this.handleSession).then(rutas => {
       this.setState({ loading: false, routes: rutas });
     });
-
   }
 
   viewDetails(route){
-    cache.default.setSelectedDetails(route);
+    cache.setSelectedDetails(route);
     this.setState({
       showDetails: true
     })
@@ -51,20 +43,18 @@ class RoutesPage extends React.Component {
     }}/>
   }
 
-  viewLoaded = routes =>{
-   /* function search(){
-        var value = document.getElementById("myInput").value;
-        routes = routes.filter(item=>
-          item.name.search(value)<0
-        );
-      }
-    */
-    let filteredRoutes = routes.filter(ruta=>{
-          return ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase())!==-1;
+    
+  handleSession = () => {
+    this.props.history.push('/login');
+  }
+
+  viewLoaded = routes => {
+      let filteredRoutes = routes.filter(ruta => {
+        return ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       }
     );
-    return(
-      
+    return (
+
       <div className="bodyRoutes" id="outer-container">
                   {this.state.showDetails ? this.getDetailsZone(): null}
 
@@ -92,7 +82,7 @@ class RoutesPage extends React.Component {
                         link = "/"
                         className="linkRoute"
                         description="Well, it should be a description..."
-                        action={e=>{cache.default.setSelected(routes[index])}}
+                        action={e=>{cache.setSelected(routes[index])}}
                         iconName='send'
 
                         detailsClassName="linkRoute"
@@ -110,26 +100,22 @@ class RoutesPage extends React.Component {
       </main>
     </div>
     );
-    }
-  viewCharge = ()=>{
-    return(
+  }
+  viewCharge = () => {
+    return (
       <div className="bodyRoutes" id="outer-container">
-        <CustomLoader/>
-       </div>
+        <CustomLoader />
+      </div>
     );
   }
-  render(){
-    const {loading} = this.state;
-  //  loader.loadUserRoutesFiles();
- //   var nullableRutas = localStorage.getItem('rutas');
- //   if(nullableRutas!=null)
- //     rutas = JSON.parse(nullableRutas);
-    return ( 
+  render() {
+    const { loading } = this.state;
+    return (
       <React.Fragment>
-        {loading ? <CustomLoader/> : this.viewLoaded(this.state.routes)}
+        {loading ? <CustomLoader /> : this.viewLoaded(this.state.routes)}
       </React.Fragment>
-  );
-}
+    );
+  }
 }
 
 export default RoutesPage;
