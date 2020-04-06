@@ -21,13 +21,11 @@ export default class RoutesLoader {
             
             try {
                 let content = await fc.readFolder(routesFolder);
-
                 let files = content.files;
 
                 for (let i = 0; i < files.length; i++) {
                     let fileContent = await fc.readFile(files[i].url);
                     routes.push(fileContent);
-
                 }
 
 

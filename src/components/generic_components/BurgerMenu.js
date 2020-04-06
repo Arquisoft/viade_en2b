@@ -24,9 +24,9 @@ class BurgerMenu extends Component {
               <span>Home</span>
             </Link>
            
-            <Link id="add-route" className="menu-item" to="/">
+            <Link id="add-route" className="menu-item" to="/notifications">
               <i className="fa fa-fw far fa-map"></i>
-              <span>Add route</span>
+              <span>Notifications</span>
             </Link>
           
             <Link id="list-routes" className="menu-item" to="/routes">

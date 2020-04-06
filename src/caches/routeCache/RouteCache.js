@@ -3,6 +3,7 @@ import * as RouteGateway from '../../data-access/gateways/RouteGateway';
 export default {
     routes: [],
     selected: "",
+    selectedDetails:"",
     addRoute(route) {
         if(route && !this.routes.find(obj => route.name === obj.name)) {
             RouteGateway.add(route);
@@ -42,5 +43,11 @@ export default {
     clear() {
         this.routes = [];
         this.selected = null;
+    },
+    setSelectedDetails(route){
+        this.selectedDetails = route;
+    }, 
+    getSelectedDetails() {
+        return this.selectedDetails;
     }
 }
