@@ -2,14 +2,6 @@ import React from "react";
 import "assets/css/NotificationsPage.css";
 import CustomLoader from 'components/generic_components/CustomLoader';
 import BurgerMenu from '../generic_components/BurgerMenu';
-//import RouteGateway from '../../data-access/gateways/RouteGateway'
-
-import { List } from 'semantic-ui-react'
-//const gateway = new RouteGateway();
-
-//var frutas = ["Route 1","Route 2","Route 3","Route 4"];
-
-import * as cache from 'caches/routeCache/RouteCache'
 
 
 class NotificationsPage extends React.Component {
