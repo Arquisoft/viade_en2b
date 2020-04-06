@@ -1,8 +1,7 @@
 import React from 'react';
-import { LoggedIn, LoggedOut } from '@solid/react';
+import { LoggedIn, LoggedOut, Value } from '@solid/react';
 import cache from '../../caches/routeCache/RouteCache'
 import * as friendCache from 'caches/friendCache/FriendCache';
-
 
 function Login() {
     const auth = require('solid-auth-client');
@@ -27,7 +26,7 @@ function Login() {
                 <button className="login100-form-btn" onClick={(e) => popup(e, auth)}>Log In</button>
             </LoggedOut>
             <LoggedIn>
-                <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
+               <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
             </LoggedIn>
 
         </div>
