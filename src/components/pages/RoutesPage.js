@@ -5,6 +5,8 @@ import BurgerMenu from '../generic_components/BurgerMenu';
 //import RouteGateway from '../../data-access/gateways/RouteGateway'
 import SearchBar from '../generic_components/SearchBar';
 import CardLayout from '../generic_components/Card';
+import RouteDetails from './RouteDetails';
+
 
 //const gateway = new RouteGateway();
 
@@ -21,7 +23,8 @@ class RoutesPage extends React.Component {
   this.state = {
     loading: true,
     routes: "",
-    search: ''
+    search: '',
+    showDetails: false
   };
 }
   updateSearch(event){
@@ -33,6 +36,21 @@ class RoutesPage extends React.Component {
     });
 
   }
+
+  viewDetails(route){
+    cache.default.setSelectedDetails(route);
+    this.setState({
+      showDetails: true
+    })
+  }
+
+  getDetailsZone(){
+    return <RouteDetails showUpload = {() => {this.setState({
+      showDetails: !this.state.showDetails
+    })
+    }}/>
+  }
+
   viewLoaded = routes =>{
    /* function search(){
         var value = document.getElementById("myInput").value;
@@ -48,6 +66,8 @@ class RoutesPage extends React.Component {
     return(
       
       <div className="bodyRoutes" id="outer-container">
+                  {this.state.showDetails ? this.getDetailsZone(): null}
+
       <main>
           <BurgerMenu 
           pageWrapId="page-wrap"
@@ -61,7 +81,7 @@ class RoutesPage extends React.Component {
                         action={this.updateSearch.bind(this)}
                         list="listRoute"
             />
-            <ul className="listRoute">
+            <ul className="listRoute">            
               {filteredRoutes.map((item, index)=>{
                 return (
                   <li id={"route"+index} key={index} className="liRoute">
@@ -74,6 +94,10 @@ class RoutesPage extends React.Component {
                         description="Well, it should be a description..."
                         action={e=>{cache.default.setSelected(routes[index])}}
                         iconName='send'
+
+                        detailsClassName="linkRoute"
+                        detailsAction={e=>{this.viewDetails(routes[index])}}
+                        detailsIconName='send'
                       />
                      
                     </div>
