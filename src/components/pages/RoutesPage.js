@@ -93,11 +93,11 @@ class RoutesPage extends React.Component {
                         className="linkRoute"
                         description="Well, there should be a description..."
                         action={e=>{cache.default.setSelected(routes[index])}}
-                        iconName='send'
+                        iconName='map'
 
                         detailsClassName="linkRoute"
                         detailsAction={e=>{this.viewDetails(routes[index])}}
-                        detailsIconName='send'
+                        detailsIconName='info'
                       />
                      
                     </div>

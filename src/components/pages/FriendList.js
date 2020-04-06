@@ -28,8 +28,8 @@ const FriendsPage = () => {
                       image = {item.profilePicture}
                       header = {item.name}
                       description = {item.webIdString}
-                      link = "/login"
-                      iconName='user'
+                      externalLink = {item.webIdString}
+                      externalIconName='user'
                       numberOfFriends={item.numberOfFriends}
                       />
                     </li>
