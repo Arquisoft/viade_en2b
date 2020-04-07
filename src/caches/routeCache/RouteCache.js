@@ -18,7 +18,7 @@ export default {
   async getRoutes(callback) {
     if (this.routes.length === 0) {
       let foundRoutes = await RouteGateway.findAll(callback);
-      if (routes.length > 0) {
+      if (foundRoutes.length > 0) {
         this.routes = foundRoutes.routes;
         FileCache.addFilePaths(foundRoutes.files);
       } else {
