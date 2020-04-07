@@ -9,6 +9,9 @@ export default {
 
     getRoute(){
         route.getRoute();
+    },
+    stop(){
+        stop();
     }
 }
 
@@ -16,6 +19,7 @@ class RouteCreator{
     constructor(){
         this.geoCoordinates = [];
         this.nameRoute = "";
+        this.routeIsOver = false;
     }
 
     addCoords(coords){
@@ -35,21 +39,16 @@ class RouteCreator{
 
 const route = new RouteCreator();
 
+function stop(){
+    route.routeIsOver = true;
+}
 async function main (){
-        let routeIsOver = false;
-        let counterNext = 0;
-        while(!routeIsOver){
+        while(!route.routeIsOver){
             navigator.geolocation.getCurrentPosition((position) =>{
                     putCoords(position.coords.latitude, position.coords.longitude);
             });
 
             await sleep(2000);
-            
-            if(counterNext>2){
-                routeIsOver = true;    
-            }
-            
-            counterNext++;
         }
         route.putNameToRoute("test");
         route.getRoute();

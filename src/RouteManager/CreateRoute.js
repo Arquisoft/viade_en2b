@@ -1,33 +1,5 @@
-import Route from "../Entities/Route"
-import GeoCoordinate from "../Entities/GeoCoordinate"
-import {JsonLdParser} from "jsonld-streaming-parser";
-import * as fs from 'fs';
-//import * as fs from 'fs';
 
 export default{
-    createNormal(route){
-        let str = "{";
-        str+="@type: Route,";
-        str+="name : '"+route.name+"',";
-        str+="itirenary: {";
-        str+="@type: 'Itirenary',";
-        str+="numberOfitems : '"+route.itirenary.numberOfItems+"',";
-        str+="itemList : [{";
-        route.itirenary.map(a =>{
-            str+= "@type: 'Item',";
-            str+= "order : '" +a.order +"',";
-            str+= "geoCoordinate : {"
-            str+= "latitude : '" +a.geoCoordinate.latitude+"',";
-            str+= "longitude : '" +a.geoCoordinate.longitude+"'";
-            str+="}"
-        })
-        str+= "}]}";
-
-        let json = JSON.stringify(eval(str));
-        let fs = require('fs');
-        fs.writeFile("test.json", json,err => console.log("something went wrong"));
-    },
-
     createNormalBasic(route){
         let str = "{";
         str+="\"name\" : \""+route.name+"\",";
@@ -38,8 +10,9 @@ export default{
             str+= "\"longitude\" : '" +a.lng+"\"";
             str+="},"
         })
+        str  = str.substring(0, str.length -1);
         str+= "]}";
-        writeFile(str);
+        console.log(str);
     }
 }
 

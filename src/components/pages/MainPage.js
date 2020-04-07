@@ -9,8 +9,8 @@ import "assets/css/MainPage.css";
 import MapContainer from "components/map_components/MapContainer.js";
 import { HashRouter as Router, Link } from "react-router-dom";
 import DropzonePage from './DropzonePage';
-import * as RealTimeRoute from "../../RouteManager/CreateRouteRealTime";
-import * as CreateRoute from "../../RouteManager/CreateRoute";
+
+
 
 import * as routecache from "caches/routeCache/RouteCache";
 import * as cache from "caches/friendCache/FriendCache";
@@ -49,9 +49,6 @@ const MainPage = () => {
         </Router>
         <MapContainer />
       </main>
-      {
-        RealTimeRoute.default.main()
-      }
     </div>
     
   );
