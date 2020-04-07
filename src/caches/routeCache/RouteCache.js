@@ -15,9 +15,11 @@ export default {
     this.routes = this.routes.filter((obj) => route.name !== obj.name);
     RouteGateway.deleteByName(route.name);
   },
-  updateRoute(route,newRoute){
+  updateRoute(route,newRouteData,callback){
+    let updatedRoute = RouteGateway.updateByName(route,newRouteData,callback);
+    if(updatedRoute!==null && updatedRoute!==undefined){
     let routeIndex = this.routes.indexOf((obj) => route.name === obj.name);
-    this.routes[routeIndex]=newRoute;
+    this.routes[routeIndex]=newRouteData;}
   },
   async getRoutes(callback) {
     if (this.routes.length === 0) {

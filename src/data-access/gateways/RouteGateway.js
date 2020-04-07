@@ -51,8 +51,9 @@ export function updateByName(cacheRoute, newRouteData,callback) {
         foundRoute.jsonFormat.name=newRouteData.name;
         let updateRoute = new UpdateRoute();
         let wasPodUpdated = updateRoute.updatePod(foundRoute);
-        if(wasPodUpdated){
-            updateRoute.updateCache(cacheRoute.name,foundRoute);
-        }
+       if(wasPodUpdated){
+           return foundRoute;
+       }
     }
+    return;
 }

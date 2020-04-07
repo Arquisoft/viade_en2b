@@ -2,15 +2,7 @@ import RouteCache from "../caches/routeCache/RouteCache"
 export default class updateRoute{
 
     //createFile( fileURL, content, contentType, options )
- update(route){
 
-     let updatedPod = this.updatePod(route);
-     if(updatedPod){
-         this.updateCache(route);
-     }
-
-
-    }
 
     async updatePod(route,callback){
 
@@ -46,10 +38,6 @@ export default class updateRoute{
 
 
 
-    async updateCache(cacheRoute,newRoute){
-     let cache = new RouteCache();
-     cache.updateRoute(cacheRoute,newRoute);
 
-    }
 
 }
