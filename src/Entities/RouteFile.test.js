@@ -17,14 +17,8 @@ test('add a path for a new file', () => {
 test('add a path for a file already saved', () => {
     let rf = new RouteFile("path/route", ["path/file1", "path/file2"]);
 
-    expect.assertions(2);
-    try {
-        rf.addFilePath("path/file2");
-        fail("Error: adding a repeated path should throw an error.");
-    } catch(err) {
-        expect(rf.files).toEqual(["path/file1", "path/file2"]);
-        expect(err.message).toEqual("The path \"path/file2\" is already in the cache.");
-    }
+    rf.addFilePath("path/file2");
+    expect(rf.files).toEqual(["path/file1", "path/file2"]);
 });
 
 test('removing an existing path', () => {
