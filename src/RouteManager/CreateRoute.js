@@ -43,20 +43,6 @@ export default{
     }
 }
 
-function writeFile(json){
-    const fs = require('fs')
-
-    const content = json;
-
-fs.writeFile('/Users/joe/test.txt', content, err => {
-  if (err) {
-    console.error(err)
-    return
-  }
-  //file written successfully
-})
-}
-
 /*
 class CreateRoute{
     create(route){
