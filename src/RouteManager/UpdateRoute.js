@@ -1,3 +1,4 @@
+import RouteCache from "../caches/routeCache/RouteCache"
 export default class updateRoute{
 
     //createFile( fileURL, content, contentType, options )
@@ -11,7 +12,7 @@ export default class updateRoute{
 
     }
 
-    async updatePod(route){
+    async updatePod(route,callback){
 
        // createFile( fileURL, content, 'application/json', options )
         const auth = require('solid-auth-client')
@@ -20,7 +21,9 @@ export default class updateRoute{
 
         let session = await auth.currentSession();
         let popupUri = 'https://solid.community/common/popup.html';
-        if (!session || session.webId === undefined || session.webId === null) session = await auth.popupLogin({popupUri});
+        if (!session || session.webId === undefined || session.webId === null)
+            callback();
+            return false;
 
         try {
              await fc.createFile(route.url,route.jsonFormat,"application/json");
@@ -43,7 +46,9 @@ export default class updateRoute{
 
 
 
-    async updateCache(route){
+    async updateCache(cacheRoute,newRoute){
+     let cache = new RouteCache();
+     cache.updateRoute(cacheRoute,newRoute);
 
     }
 

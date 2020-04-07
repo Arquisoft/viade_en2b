@@ -15,6 +15,10 @@ export default {
     this.routes = this.routes.filter((obj) => route.name !== obj.name);
     RouteGateway.deleteByName(route.name);
   },
+  updateRoute(route,newRoute){
+    let routeIndex = this.routes.indexOf((obj) => route.name === obj.name);
+    this.routes[routeIndex]=newRoute;
+  },
   async getRoutes(callback) {
     if (this.routes.length === 0) {
       let foundRoutes = await RouteGateway.findAll(callback);

@@ -42,13 +42,17 @@ export function deleteByUrl(url) {
     return false;
 }
 
-export function updateByName(cacheRoute, newRouteData) {
-    let foundRoute = findByName(cacheRoute.name);
+export function updateByName(cacheRoute, newRouteData,callback) {
+    let foundRoute = findByName(cacheRoute.name,callback);
+
     if(foundRoute!==null && foundRoute!==undefined){
 
         foundRoute.name=newRouteData.name;
         foundRoute.jsonFormat.name=newRouteData.name;
         let updateRoute = new UpdateRoute();
-        updateRoute.update(foundRoute);
+        let wasPodUpdated = updateRoute.updatePod(foundRoute);
+        if(wasPodUpdated){
+            updateRoute.updateCache(cacheRoute.name,foundRoute);
+        }
     }
 }
