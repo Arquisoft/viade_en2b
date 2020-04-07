@@ -34,6 +34,7 @@ class CardLayout extends Component{
                     <a className={this.props.externalClassName}
                           hidden={externalHide}
                           target="_blank"
+                          rel="noopener noreferrer"
                           href={this.props.externalLink}
                           onClick={this.props.externalAction}>
                     <Icon name={this.props.externalIconName} />
