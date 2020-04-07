@@ -4,10 +4,10 @@ import DeleteUserRoute from "../../RouteManager/DeleteUserRoute";
 import UpdateRoute from "../../RouteManager/UpdateRoute";
 
 
-export function findByName(name) {
+export function findByName(name,callback) {
 
     let routesLoader = new RoutesLoader();
-    return routesLoader.loadRouteByName(name);
+    return routesLoader.loadRouteByName(name,callback);
 }
 
 export function findAll(callback) {

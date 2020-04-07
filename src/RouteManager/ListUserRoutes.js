@@ -46,38 +46,7 @@ export default class RoutesLoader {
     return rou;
   }
 
-  routesToJson(routes) {
-    let jsonRoutes = [];
-    for (let i = 0; i < routes.length; i++) {
-      try {
-        let route = JSON.parse(routes[i]);
-        jsonRoutes.push(route);
-      } catch (e) {
-        console.log(
-          "Route " +
-            i +
-            " couldn't be transformed to json because the format is wrong"
-        );
-      }
-    }
-    return jsonRoutes;
-  }
-
-  jsonToEntity(routes) {
-    let entRoutes = [];
-    let entFiles = [];
-    for (let i = 0; i < routes.length; i++) {
-      try {
-        console.log(routes[i]);
-        let name = routes[i].name;
-        let it = routes[i].itinerary;
-        let route = new Route(name, it);
-        entRoutes.push(route);
-        console.log("Route " + route.name + " was created succesfully");
-
-        if (routes[i].media) {
-          entFiles.push(this.getMediaAttachedToRoute(routes[i]));
-    async loadRouteByName(name){
+    async loadRouteByName(name,callback){
         const auth = require('solid-auth-client')
         const FC = require('solid-file-client')
         const fc = new FC(auth)
@@ -85,7 +54,8 @@ export default class RoutesLoader {
         let session = await auth.currentSession();
         let popupUri = 'https://solid.community/common/popup.html';
         if (!session || session.webId === undefined || session.webId === null)
-            session = await auth.popupLogin({popupUri});
+            callback();
+            return;
         //alert('Logged in as ' + session.webId);
         let routesFolder = session.webId.substring(0, session.webId.length - 16) + "/public/Routes/";
 
@@ -98,16 +68,16 @@ export default class RoutesLoader {
 
                 for (let i = 0; i < files.length; i++) {
                     let fileContent = await fc.readFile(files[i].url);
-                   try{ let tempRoute = JSON.parse(fileContent);
-                    if(tempRoute.name===name){
+                    try{ let tempRoute = JSON.parse(fileContent);
+                        if(tempRoute.name===name){
 
-                       let route =  new Route(tempRoute.name,tempRoute.itinerary);
-                       route.setUrl(files[i].url);
-                       route.setJsonFormat(tempRoute);
-                       return route;
-                    }}catch(error){
-                       console.log("wrong json format");
-                   }
+                            let route =  new Route(tempRoute.name,tempRoute.itinerary);
+                            route.setUrl(files[i].url);
+                            route.setJsonFormat(tempRoute);
+                            return route;
+                        }}catch(error){
+                        console.log("wrong json format");
+                    }
 
                 }
 
@@ -130,47 +100,73 @@ export default class RoutesLoader {
 
     }
 
-
-    routesToJson(routes){
-        let jsonRoutes = [];
-        for (let i =0;i<routes.length;i++){
-            try{
-            let route = JSON.parse(routes[i]);
-            jsonRoutes.push(route);}
-            catch (e) {
-                console.log("Route "+i+" couldn't be transformed to json because the format is wrong");
-           }
-        }
+  routesToJson(routes) {
+    let jsonRoutes = [];
+    for (let i = 0; i < routes.length; i++) {
+      try {
+        let route = JSON.parse(routes[i]);
+        jsonRoutes.push(route);
       } catch (e) {
         console.log(
-          "Route " + i + " couldn't be parsed because the format is wrong"
+          "Route " +
+            i +
+            " couldn't be transformed to json because the format is wrong"
         );
-        console.log(e);
       }
     }
+    return jsonRoutes;
+  }
 
-    jsonToEntity(routes){
+    routesToJson(routes) {
+        let jsonRoutes = [];
+        for (let i = 0; i < routes.length; i++) {
+            try {
+                let route = JSON.parse(routes[i]);
+                jsonRoutes.push(route);
+            } catch (e) {
+                console.log(
+                    "Route " +
+                    i +
+                    " couldn't be transformed to json because the format is wrong"
+                );
+            }
+        }
+        return jsonRoutes;
+    }
+
+    jsonToEntity(routes) {
         let entRoutes = [];
-        for(let i = 0;i<routes.length;i++){
+        let entFiles = [];
+        for (let i = 0; i < routes.length; i++) {
             try {
                 console.log(routes[i]);
                 let name = routes[i].name;
-                let it =routes[i].itinerary;
-                let route = new Route(name,it);
-                route.setJsonFormat(routes[i]);
+                let it = routes[i].itinerary;
+                let route = new Route(name, it);
                 entRoutes.push(route);
-                console.log("Route "+route.name+" was created succesfully");
-    return { routes: entRoutes, files: entFiles };
-  }
+                console.log("Route " + route.name + " was created succesfully");
 
-  getMediaAttachedToRoute(route) {
-    let routeFile = new RouteFile(route.name, []);
-    for (let i = 0; i < route.media.length; i++) {
-      let path = route.media[i]["@id"];
-      let date = new Date(route.media[i]["dateTime"]);
-      let file = new File(path, date);
-      routeFile.addFilePath(file);
+                if (routes[i].media) {
+                    entFiles.push(this.getMediaAttachedToRoute(routes[i]));
+                }
+            } catch (e) {
+                console.log(
+                    "Route " + i + " couldn't be parsed because the format is wrong"
+                );
+                console.log(e);
+            }
+        }
+
+        return { routes: entRoutes, files: entFiles };
     }
-    return routeFile;
-  }
-}
+
+    getMediaAttachedToRoute(route) {
+        let routeFile = new RouteFile(route.name, []);
+        for (let i = 0; i < route.media.length; i++) {
+            let path = route.media[i]["@id"];
+            let date = new Date(route.media[i]["dateTime"]);
+            let file = new File(path, date);
+            routeFile.addFilePath(file);
+        }
+        return routeFile;
+    }}
