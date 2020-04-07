@@ -23,9 +23,21 @@ class RouteCreator{
     }
 
     addCoords(coords){
-        this.geoCoordinates.push(coords);
+        if(!this.checkCoordsAlreadyExist(coords)){
+            this.geoCoordinates.push(coords);
+            console.log(coords)
+        }
+        
     }
-
+    checkCoordsAlreadyExist(coords){
+        let aux = false;
+        this.geoCoordinates.map(a =>{
+            if(a.lat === coords.lat && a.lng === coords.lng){
+                aux = true;
+            }
+        })
+        return aux;
+    }
     putNameToRoute(name){
         this.nameRoute = name;
     }
@@ -57,10 +69,6 @@ async function main (){
 function putCoords(lat, long){
         let latitude = lat;
         let longitude = long;
-        
-        console.log("New coords");
-        console.log(latitude);
-        console.log(longitude);
         route.addCoords(new GeoCoordinate(latitude, longitude));
 }
 

@@ -3,12 +3,19 @@ export default{
     createNormalBasic(route){
         let str = "{";
         str+="\"name\" : \""+route.name+"\",";
-        str+="\"itirenary\" : [{";
+        str+="\"itirenary\" : [";
+        let aux = [];
         route.geoCoordinates.map(a =>{
-            str+= "\"@type\": \"GeoCoordinate\",";
-            str+= "\"latitude\" : \"" +a.lat+"\",";
-            str+= "\"longitude\" : '" +a.lng+"\"";
-            str+="},"
+            if(aux.includes(a)){
+                console.log(a+"Already exists in the route")
+            }else{
+                aux.push(a);
+                str+= "{\"@type\": \"GeoCoordinate\",";
+                str+= "\"latitude\" : \"" +a.lat+"\",";
+                str+= "\"longitude\" : '" +a.lng+"\"";
+                str+="},"
+            }
+            
         })
         str  = str.substring(0, str.length -1);
         str+= "]}";
