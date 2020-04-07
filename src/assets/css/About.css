@@ -21,10 +21,6 @@
   grid-gap: 10px;
 }
 
-.divMembers {
-  margin-top: 100px;
-}
-
 .liCard > div {
   height: 95%;
   width: 90%;
@@ -34,7 +30,6 @@
   background-color: var(--bg-color) !important;
   
   height: 100% !important;
-  width: 100% !important;
 }
 
 .developerContainer .image {

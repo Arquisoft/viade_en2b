@@ -154,6 +154,7 @@ ul {
   padding: 5px;
 }
 
+/* center the cards */
 .liCard > div {
     margin-left: auto;
     margin-right: auto;
@@ -163,6 +164,7 @@ ul {
   background-color: var(--bg-color) !important;
   
   height: 100% !important;
+  
   margin-left: auto !important;
   margin-right: auto !important;
 }
