@@ -5,6 +5,7 @@
 .sectionFriends{
   margin: 25px;
   padding: 20px;
+  
   border-radius: var(--border-radius);
   
   background: var(--bg-color);
