@@ -22,9 +22,8 @@ var lastRouteReceived = [];
     if (cache.default.getSelected() != lastRouteReceived) {
       lastRouteReceived = cache.default.getSelected();
       toast.info("Route Selected", {
-        className: "error-toast",
         draggable: true,
-        position: toast.POSITION.TOP_CENTER,
+        position: toast.POSITION.TOP_CENTER
       });
     }
   }
@@ -37,7 +36,7 @@ class App extends Component {
     return (
      
       <Fragment>
-        <ToastContainer draggable={false} transition={Zoom} autoClose={8000} />
+        <ToastContainer closeOnClick draggable={false} transition={Bounce} autoClose={2000} />
         <Router>
           <Fragment>
             <Switch>
