@@ -10,9 +10,9 @@ export function findByName(name) {
     return routesLoader.loadRouteByName(name);
 }
 
-export function findAll() {
+export function findAll(callback) {
     let routesLoader = new RoutesLoader();
-    let loadedRoutes = routesLoader.loadUserRoutesFiles();
+    let loadedRoutes = routesLoader.loadUserRoutesFiles(callback);
     return loadedRoutes;
 }
 
