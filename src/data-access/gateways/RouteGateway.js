@@ -1,23 +1,21 @@
-
-import ReadRoute from "../../RouteManager/ReadRoute"
-import RoutesLoader from "../../RouteManager/ListUserRoutes"
-import {Read} from "rdf-namespaces/dist/acl";
+import RoutesLoader from "RouteManager/ListUserRoutes";
+//import {Read} from "rdf-namespaces/dist/acl"; -->Comment to avoid unused
+import DeleteUserRoute from "../../RouteManager/DeleteUserRoute";
 
 
 export function findByName(name) {
 }
 
-export function findAll() {
+export function findAll(callback) {
     let routesLoader = new RoutesLoader();
-    let loadedRoutes =   routesLoader.loadUserRoutesFiles();
-    console.log("Loaded routes length: "+loadedRoutes.length);
+    let loadedRoutes = routesLoader.loadUserRoutesFiles(callback);
     return loadedRoutes;
 }
 
 export function read(routeFile) {
-    let routeReader = new ReadRoute();
-    let routeList  = routeReader.readRoute(routeFile);
-    return routeList;
+   // let routeReader = new ReadRoute();
+   // let routeList  = routeReader.readRoute(routeFile);
+  //  return routeList;
 }
 
 export function add(route) {
@@ -29,12 +27,15 @@ export function add(route) {
 }
 
 export function deleteByName(name) {
-    // call to find the route by the name
-    //var route = await RouteRDF.findByName(name);
-    // if any, call again to delete it
-    //if(route && route.name) {
-    //    RouteRDF.delete(route);
-    //}
+    let routesDeleter = new DeleteUserRoute();
+    if(routesDeleter.deleteRouteByName(name)){return true;}
+    return false;
+}
+
+export function deleteByUrl(url) {
+    let routesDeleter = new DeleteUserRoute();
+    if(routesDeleter.deleteRouteByUrl(url)){return true;}
+    return false;
 }
 
 export function updateByName(name, route) {

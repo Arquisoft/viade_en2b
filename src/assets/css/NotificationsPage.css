@@ -1,0 +1,70 @@
+.comments{
+    padding-top: 120px;
+  }
+  
+  /* TODO: have fewer columns in mobile*/ 
+  ul {
+    columns: 1;
+    margin-top: 10px;
+    grid-gap: 30px;
+    -webkit-columns: 1;
+    -moz-columns: 1;
+  }
+  
+  .sectionComments p,  .sectionComments a{
+    color: var(--font-color);
+    text-align: left;
+  }
+
+  .delete{
+    color: var(--font-color);
+    text-align: left;
+    font-size: large;
+  }
+
+  .top{
+    border-top: solid 1px rgb(141, 140, 140);
+
+  }
+
+  .bottom{
+ 
+    border-bottom: solid 1px rgb(97, 97, 97);
+  }
+  .sectionComments {
+    margin: 25px;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    
+    background: var(--bg-color);
+    
+    box-shadow:  var(--box-shadow-up),
+                  var(--box-shadow-down);
+  }
+  .sectionComment {
+    margin: 20px;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    
+    background: var(--bg-color);
+    
+    box-shadow:  var(--box-shadow-up),
+                  var(--box-shadow-down);
+  }
+  
+  .delete{
+    text-align: right;
+  }
+  
+.fa {
+  width: 1.28571429em;
+  display: inline-block;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa:focus {
+  font-weight: 400;
+}
