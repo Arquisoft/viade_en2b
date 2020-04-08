@@ -13,7 +13,7 @@ export default class RoutesLoader {
     if (!session || session.webId === undefined || session.webId === null) {
         //session = await auth.popupLogin({popupUri});
         callback();
-        return [];
+        return { routes: [], files: [] };
     }
     //alert('Logged in as ' + session.webId);
     let routesFolder =
