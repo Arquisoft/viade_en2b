@@ -1,3 +1,4 @@
+import RouteFile from "Entities/RouteFile";
 import FileCache from "./FileCache";
 import RouteCache from "../routeCache/RouteCache";
 import * as FileGateway from "data-access/gateways/FileGateway";
@@ -127,4 +128,13 @@ test("get the file paths for a non-existing route", async () => {
 
   expect(filePaths.length).toBe(0);
   expect(filePaths).toEqual([]);
+});
+
+test("add filepaths to the cache", () => {
+  FileCache.addFilePaths([
+    new RouteFile(dummyRoute1, [...dummyFilePathList]),
+    new RouteFile(dummyRoute2, [...dummyFilePathList]),
+  ]);
+
+  expect(FileCache.filePaths.length).toBe(2);
 });
