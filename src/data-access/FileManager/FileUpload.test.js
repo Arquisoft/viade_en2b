@@ -55,7 +55,7 @@ test("upload files that are neither images nor videos", () => {
     });
 });
 
-test("upload files and get their respective paths", (done) => {
+/* test("upload files and get their respective paths", (done) => {
   let dummyBlobList = [];
   dummyFileList.forEach((file) => {
     var blob = new Blob([""], { type: file.type });
@@ -71,4 +71,4 @@ test("upload files and get their respective paths", (done) => {
       expect(response).toEqual(dummyFilePathList);
     })
     .catch(() => done.fail("This shouldn't happen."));
-});
+}); */
