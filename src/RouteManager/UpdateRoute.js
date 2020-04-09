@@ -1,4 +1,3 @@
-import RouteCache from "../caches/routeCache/RouteCache"
 export default class updateRoute{
 
     //createFile( fileURL, content, contentType, options )
@@ -12,13 +11,15 @@ export default class updateRoute{
         const fc = new FC(auth)
 
         let session = await auth.currentSession();
-        let popupUri = 'https://solid.community/common/popup.html';
-        if (!session || session.webId === undefined || session.webId === null)
+
+        if (!session || session.webId === undefined || session.webId === null){
             callback();
-            return false;
+            return false;}
 
         try {
-             await fc.createFile(route.url,route.jsonFormat,"application/json");
+            console.log("Route url to update:"+route.url);
+            console.log("New data: "+route.jsonFormat);
+             await fc.createFile(route.url,JSON.stringify(route.jsonFormat),"application/json");
              return true;
 
 

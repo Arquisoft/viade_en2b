@@ -4,10 +4,12 @@ import DeleteUserRoute from "../../RouteManager/DeleteUserRoute";
 import UpdateRoute from "../../RouteManager/UpdateRoute";
 
 
-export function findByName(name,callback) {
+export async function findByName(name,callback) {
 
     let routesLoader = new RoutesLoader();
-    return routesLoader.loadRouteByName(name,callback);
+   let route = await  routesLoader.loadRouteByName(name,callback);
+   console.log("Found route by name "+route.url);
+   return route;
 }
 
 export function findAll(callback) {
@@ -42,18 +44,24 @@ export function deleteByUrl(url) {
     return false;
 }
 
-export function updateByName(cacheRoute, newRouteData,callback) {
-    let foundRoute = findByName(cacheRoute.name,callback);
-
+export async function updateByName(cacheRoute, newRouteData,callback) {
+    let foundRoute =  await findByName(cacheRoute.name,callback);
+    console.log("Found route for update "+foundRoute.url);
     if(foundRoute!==null && foundRoute!==undefined){
 
         foundRoute.name=newRouteData.name;
         foundRoute.jsonFormat.name=newRouteData.name;
+        console.log("Json format: "+JSON.stringify(foundRoute.jsonFormat));
         let updateRoute = new UpdateRoute();
-        let wasPodUpdated = updateRoute.updatePod(foundRoute);
-       if(wasPodUpdated){
-           return foundRoute;
-       }
+        let wasPodUpdated = await updateRoute.updatePod(foundRoute);
+        if(wasPodUpdated){
+            console.log("Pod was updated correctly");
+        }else{
+            console.log("Pod wasn't updated");
+        }
     }
+
+
+
     return;
 }

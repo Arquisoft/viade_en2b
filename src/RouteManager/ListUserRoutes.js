@@ -53,11 +53,11 @@ export default class RoutesLoader {
 
         let session = await auth.currentSession();
         let popupUri = 'https://solid.community/common/popup.html';
-        if (!session || session.webId === undefined || session.webId === null)
+        if (!session || session.webId === undefined || session.webId === null){
             callback();
-            return;
+            return undefined;}
         //alert('Logged in as ' + session.webId);
-        let routesFolder = session.webId.substring(0, session.webId.length - 16) + "/public/Routes/";
+        let routesFolder =  session.webId.substring(0, session.webId.length - 16) + "/viade/routes/";
 
         if (await fc.itemExists(routesFolder)) {
             //console.log(routesFolder + " exists");
@@ -74,6 +74,7 @@ export default class RoutesLoader {
                             let route =  new Route(tempRoute.name,tempRoute.itinerary);
                             route.setUrl(files[i].url);
                             route.setJsonFormat(tempRoute);
+                            console.log("Match "+route.url);
                             return route;
                         }}catch(error){
                         console.log("wrong json format");
@@ -94,7 +95,7 @@ export default class RoutesLoader {
             console.log("user has no routes directory")
         }
 
-        return;
+        return undefined;
 
 
 
@@ -143,8 +144,10 @@ export default class RoutesLoader {
                 let name = routes[i].name;
                 let it = routes[i].itinerary;
                 let route = new Route(name, it);
+                route.setJsonFormat(routes[i]);
                 entRoutes.push(route);
                 console.log("Route " + route.name + " was created succesfully");
+
 
                 if (routes[i].media) {
                     entFiles.push(this.getMediaAttachedToRoute(routes[i]));
