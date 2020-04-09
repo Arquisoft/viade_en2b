@@ -16,12 +16,12 @@ export default {
     this.routes = this.routes.filter((obj) => route.name !== obj.name);
     RouteGateway.deleteByName(route.name);
   },
- /* updateRoute(route,newRouteData,callback){
-    let updatedRoute = RouteGateway.updateByName(route,newRouteData,callback);
+ async updateRoute(route,newRouteData,callback){
+    let updatedRoute = await RouteGateway.updateByName(route,newRouteData,callback);
     if(updatedRoute!==null && updatedRoute!==undefined){
     let routeIndex = this.routes.indexOf((obj) => route.name === obj.name);
-    this.routes[routeIndex]=newRouteData;}
-  },*/
+    this.routes[routeIndex]=updatedRoute;}
+  },
   async getRoutes(callback) {
     if (this.routes.length === 0) {
       let foundRoutes = await RouteGateway.findAll(callback);
@@ -32,10 +32,6 @@ export default {
         this.routes = [];
       }
     }
-    let route1 = new BasicRoute();
-    route1.name="Madrid";
-    let json = { "name":"Prueba update"};
-    RouteGateway.updateByName(route1,json,callback);
     return this.routes;
   },
   setSelected(route) {

@@ -8,7 +8,6 @@ export async function findByName(name,callback) {
 
     let routesLoader = new RoutesLoader();
    let route = await  routesLoader.loadRouteByName(name,callback);
-   console.log("Found route by name "+route.url);
    return route;
 }
 
@@ -46,22 +45,24 @@ export function deleteByUrl(url) {
 
 export async function updateByName(cacheRoute, newRouteData,callback) {
     let foundRoute =  await findByName(cacheRoute.name,callback);
-    console.log("Found route for update "+foundRoute.url);
+
     if(foundRoute!==null && foundRoute!==undefined){
 
         foundRoute.name=newRouteData.name;
         foundRoute.jsonFormat.name=newRouteData.name;
-        console.log("Json format: "+JSON.stringify(foundRoute.jsonFormat));
+
         let updateRoute = new UpdateRoute();
         let wasPodUpdated = await updateRoute.updatePod(foundRoute);
         if(wasPodUpdated){
             console.log("Pod was updated correctly");
+            return foundRoute;
         }else{
             console.log("Pod wasn't updated");
+            return undefined;
         }
     }
 
 
 
-    return;
+    return undefined;
 }
