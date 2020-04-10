@@ -27,6 +27,7 @@ class RoutesPage extends React.Component {
     cache.default.getRoutes(this.handleSession).then(rutas => {
       this.setState({ loading: false, routes: rutas });
     });
+
   }
 
   viewDetails(route){
@@ -47,6 +48,7 @@ class RoutesPage extends React.Component {
   handleSession = () => {
     this.props.history.push('/login');
   }
+
 
   viewLoaded = routes => {
       let filteredRoutes = routes.filter(ruta => {

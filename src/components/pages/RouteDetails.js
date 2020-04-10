@@ -27,6 +27,9 @@ class RouteDetails extends React.Component {
     this.props.showUpload();
     
   }
+    handleSession = () => {
+        this.props.history.push('/login');
+    }
 
   componentDidMount() {
     let detail = cache.default.getSelectedDetails();
