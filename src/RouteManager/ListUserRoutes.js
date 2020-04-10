@@ -42,7 +42,7 @@ export default class RoutesLoader {
 
     let rou = this.jsonToEntity(this.routesToJson(routes));
     //localStorage.setItem('rutas', JSON.stringify(rou));
-
+    
     return rou;
   }
 
