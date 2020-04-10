@@ -1,14 +1,5 @@
 .routes{
-  padding-top: 120px;
-}
-
-/* TODO: have fewer columns in mobile*/ 
-ul {
-  columns: 4;
-  margin-top: 10px;
-  grid-gap: 30px;
-  -webkit-columns: 4;
-  -moz-columns: 4;
+  padding-top: 60px;
 }
 
 .sectionRoutes p, .sectionRoutes span, .sectionRoutes a{
@@ -16,6 +7,9 @@ ul {
 }
   
 .sectionRoutes {
+  margin: 25px;
+  padding: 25px;
+  
   border-radius: var(--border-radius);
   
   background: var(--bg-color);
