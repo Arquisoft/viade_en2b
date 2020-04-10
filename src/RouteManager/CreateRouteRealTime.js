@@ -61,7 +61,7 @@ async function main (){
 
             await sleep(2000);
         }
-        route.putNameToRoute("test2");
+        route.putNameToRoute("finalTest");
         route.getRoute();
 }
 

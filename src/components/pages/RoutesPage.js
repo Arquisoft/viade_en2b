@@ -6,7 +6,7 @@ import SearchBar from '../generic_components/SearchBar';
 import CardLayout from '../generic_components/Card';
 import RouteDetails from './RouteDetails';
 
-import cache from 'caches/routeCache/RouteCache';
+import * as cache from 'caches/routeCache/RouteCache';
 
 
 class RoutesPage extends React.Component {
@@ -24,13 +24,13 @@ class RoutesPage extends React.Component {
     this.setState({ search: event.target.value.substr(0, 20) });
   }
   componentDidMount() {
-    cache.getRoutes(this.handleSession).then(rutas => {
+    cache.default.getRoutes(this.handleSession).then(rutas => {
       this.setState({ loading: false, routes: rutas });
     });
   }
 
   viewDetails(route){
-    cache.setSelectedDetails(route);
+    cache.default.setSelectedDetails(route);
     this.setState({
       showDetails: true
     })
@@ -82,7 +82,7 @@ class RoutesPage extends React.Component {
                         link = "/"
                         className="linkRoute"
                         description="Well, it should be a description..."
-                        action={e=>{cache.setSelected(routes[index])}}
+                        action={e=>{cache.default.setSelected(routes[index])}}
                         iconName='send'
 
                         detailsClassName="linkRoute"

@@ -4,16 +4,16 @@ export default{
     createNormalBasic(route){
         let str = "{";
         str+="\"name\" : \""+route.name+"\",";
-        str+="\"itirenary\" : [";
+        str+="\"itinerary\" : [";
         let aux = [];
         route.geoCoordinates.map(a =>{
             if(aux.includes(a)){
                 console.log(a+"Already exists in the route")
             }else{
                 aux.push(a);
-                str+= "{\"@type\": \"GeoCoordinate\",";
+                str+= "{\"@type\": \"GeoCoordinates\",";
                 str+= "\"latitude\" : \"" +a.lat+"\",";
-                str+= "\"longitude\" : '" +a.lng+"\"";
+                str+= "\"longitude\" : \"" +a.lng+"\"";
                 str+="},"
             }
         })
