@@ -6,9 +6,9 @@ import MyVideoInfiniteScroll  from '../generic_components/InfiniteScrollVideo';
 
 import * as cache from '../../caches/fileCache/FileCache'
 
-let comentarios = []
-let images = []
-let videos = []
+let comentarios = [];
+let images = [];
+let videos = [];
 
 const panes = [
   { menuItem: 'Comentarios', pane: {
