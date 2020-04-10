@@ -6,7 +6,7 @@ import SearchBar from '../generic_components/SearchBar';
 import CardLayout from '../generic_components/Card';
 import RouteDetails from './RouteDetails';
 
-import cache from 'caches/routeCache/RouteCache';
+import * as cache from 'caches/routeCache/RouteCache';
 
 
 class RoutesPage extends React.Component {
@@ -24,14 +24,14 @@ class RoutesPage extends React.Component {
     this.setState({ search: event.target.value.substr(0, 20) });
   }
   componentDidMount() {
-    cache.getRoutes(this.handleSession).then(rutas => {
+    cache.default.getRoutes(this.handleSession).then(rutas => {
       this.setState({ loading: false, routes: rutas });
     });
 
   }
 
   viewDetails(route){
-    cache.setSelectedDetails(route);
+    cache.default.setSelectedDetails(route);
     this.setState({
       showDetails: true
     })
@@ -76,20 +76,21 @@ class RoutesPage extends React.Component {
             <ul className="listRoute">            
               {filteredRoutes.map((item, index)=>{
                 return (
-                  <li id={"route"+index} key={index} className="liRoute">
+                  <li id={"route"+index} key={index} className="liCard">
                     <div className="routeListElementContainter">
                       <CardLayout
                         header={item.name}
-                        image="/images/daddy.png"
+                        image="images/daddy.png"
                         link = "/"
                         className="linkRoute"
-                        description="Well, it should be a description..."
-                        action={e=>{cache.setSelected(routes[index])}}
-                        iconName='send'
+
+                        description="Well, there should be a description..."
+                        action={e=>{cache.default.setSelected(routes[index])}}
+                        iconName='map'
 
                         detailsClassName="linkRoute"
                         detailsAction={e=>{this.viewDetails(routes[index])}}
-                        detailsIconName='send'
+                        detailsIconName='info'
                       />
                      
                     </div>

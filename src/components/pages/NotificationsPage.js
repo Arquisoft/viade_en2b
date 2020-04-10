@@ -63,7 +63,7 @@ class NotificationsPage extends React.Component {
                             <p className="description">{item.text}</p>
                         </div>
                         <div className="delete">
-                            <span><i class="fa fas fa-trash"></i></span>
+                            <span><i className="fa fas fa-trash"></i></span>
                         </div>
                     </div>
                   </li>
