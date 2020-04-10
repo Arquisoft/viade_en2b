@@ -4,21 +4,8 @@
 The main goal of this project is to create a decentralized routes management system based on Solid, which means that
 every user has its own Pod, that is their own personal storage space, where all of their information is stored.
 The main communication partners of the applications will be the users themselves.
-****
-.Contents
-System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
 
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
-
-.Motivation
-The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
-
-.Form
-Various options:
-
-The system scope and responsibilities define what the system should do in order to fulfill its objective. Viade should have the following features:
-
+Viade should have the following features:
 
 * The system should be based on a decentralized architecture where data storage is separated from the app.
 * Enable users to store their routes in their own pods
@@ -40,35 +27,16 @@ Due to the requirement that states that the decentralized application must imple
 which contains application data
 ** POD: web-accessible personal datastore of each user.
 
-image:BusinessContext.png["BusinessContext Diagram"]
+image:images/BusinessContext.png["Business Context Diagram"]
 
 
 
 === Technical Context
-Our applcation will be a web application as well as a mobile application.
-In order to make it decentralized all user's data will be saved in each user's own Solid Pod.
+
+The application, although in its core a web application, is expected to work in all types of devices. In order to make it decentralized all user's data will be saved in each user's own Solid Pod.
 
 * Technical interfaces:
 ** Solid
 ** Javascript
 ** React navite
 ** Map api
-
-[role="arc42help"]
-****
-.Contents
-Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
-
-.Motivation
-Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
-
-.Form
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.
-
-
-**<Diagram or Table>**
-
-**<optionally: Explanation of technical interfaces>**
-
-**<Mapping Input/Output to Channels>**
