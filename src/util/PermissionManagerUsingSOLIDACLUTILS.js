@@ -34,19 +34,25 @@ export async function setPermissionsTo2(permission, urlToShare, webIdFriend){
 
 }
 
+export function deletePermissions(permission, urlToShare, webIdFriend){
+
+    const mode = getMode(permission);
+
+    const fetch = auth.fetch.bind(auth);
+    const utils = new AclApi(fetch, { autoSave: true });
+    //const acl = await utils.loadFromFileUrl("https://clrmrnd.inrupt.net/viade/routes/Oviedo.json");
+    const acl = await utils.loadFromFileUrl(urlToShare);
+
+    // Revoke permissions
+    await acl.deleteRule(mode, webIdFriend);
+    console.log("Done!"); 
+}
+
 
 export async function checkPermissions(permission, webId, filePath){
     let mode = getMode(permission);
-    console.log('MODE');
-    console.log(mode);
-
-    const filePermissionsACL = new AccessControlList(webId, filePath);
-    const permissions = await filePermissionsACL.getPermissions();
-
-    console.log('PERMISSIONS');
-    console.log(permissions);
-    console.log('INCLUDES' + permission);
-    console.log(permissions.includes(permission))
+    
+    const permissions = filePath.getAgentsWith(mode);
 
     return permissions.includes(permission);
 }
@@ -61,10 +67,8 @@ export function getMode(permission){
         case("WRITE"):
             return WRITE;
 
-
         case("APPEND"):
             return APPEND;
-
 
         case("CONTROL"):
             return CONTROL;
