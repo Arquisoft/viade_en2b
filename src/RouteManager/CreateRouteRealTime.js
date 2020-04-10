@@ -57,7 +57,7 @@ async function main (){
         while(!route.routeIsOver){
             navigator.geolocation.getCurrentPosition((position) =>{
                     putCoords(position.coords.latitude, position.coords.longitude);
-            });
+            }, error, options);
 
             await sleep(2000);
         }
@@ -74,3 +74,14 @@ function putCoords(lat, long){
 function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
    }
+
+   
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
