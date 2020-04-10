@@ -9,35 +9,30 @@ import RoutesPage from "./components/pages/RoutesPage";
 import AboutPage from "./components/pages/AboutPage";
 import NotificationsPage from "./components/pages/NotificationsPage";
 
-import { ToastContainer, toast, Zoom, Bounce } from "react-toastify";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+//import axios from "axios";
 import * as cache from "caches/routeCache/RouteCache";
 
 import "./App.css";
 
 var lastRouteReceived = [];
   function notificationsRecieved() {
-    console.log(lastRouteReceived);
     if (cache.default.getSelected() != lastRouteReceived) {
       lastRouteReceived = cache.default.getSelected();
       toast.info("Route Selected", {
-        className: "error-toast",
         draggable: true,
-        position: toast.POSITION.TOP_CENTER,
+        position: toast.POSITION.TOP_CENTER
       });
     }
   }
 class App extends Component {
   render() {
     // document.documentElement.setAttribute('data-theme', 'dark');
-    {
      // notificationsRecieved();
-    }
     return (
-     
       <Fragment>
-        <ToastContainer draggable={false} transition={Zoom} autoClose={8000} />
+        <ToastContainer closeOnClick draggable={true} transition={Bounce} autoClose={2000} />
         <Router>
           <Fragment>
             <Switch>

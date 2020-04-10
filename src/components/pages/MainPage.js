@@ -9,7 +9,6 @@ import MapContainer from "components/map_components/MapContainer.js";
 import { HashRouter as Router, Link } from "react-router-dom";
 import DropzonePage from "./DropzonePage";
 
-
 import * as routecache from "caches/routeCache/RouteCache";
 import * as cache from "caches/friendCache/FriendCache";
 
