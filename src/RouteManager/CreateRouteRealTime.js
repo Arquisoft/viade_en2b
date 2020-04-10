@@ -46,7 +46,6 @@ class RouteCreator{
         let r = new BasicRoute(this.nameRoute, this.geoCoordinates);
         CreateRoute.default.createNormalBasic(r);
     }
-    
 }
 
 const route = new RouteCreator();
@@ -62,7 +61,7 @@ async function main (){
 
             await sleep(2000);
         }
-        route.putNameToRoute("test");
+        route.putNameToRoute("test2");
         route.getRoute();
 }
 
