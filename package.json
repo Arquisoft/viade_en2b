@@ -4,6 +4,7 @@
   "homepage": "https://arquisoft.github.io/viade_en2b/",
   "private": true,
   "dependencies": {
+    "@inrupt/solid-react-components": "^0.5.0",
     "@ldflex/comunica": "^3.3.0",
     "@rdfjs/data-model": "^1.1.2",
     "@solid/context": "^1.1.0",
@@ -32,8 +33,10 @@
     "react-spinkit": "^3.0.0",
     "react-tiny-fab": "^3.4.0",
     "semantic-ui-react": "^0.88.2",
+    "solid-acl-utils": "github:otto-aa/solid-acl-utils",
     "solid-auth-client": "^2.4.1",
     "solid-file-client": "^1.0.2",
+    "styled-components": "^5.1.0",
     "tripledoc": "^4.2.2",
     "uuid": "^7.0.2"
   },
