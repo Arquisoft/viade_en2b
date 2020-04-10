@@ -47,7 +47,6 @@ render(){
     let multimedia = [];
     multimedia = cache.default.getFilePathsForRoute(this.props.route);
     multimedia.forEach(element => {
-        console.log(element);
         if(element.contentType === "image/png")
             images.push(element);
         else if(element.contentType === "video/mp4")

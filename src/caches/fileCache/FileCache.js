@@ -44,7 +44,6 @@ export default {
     await removeFileAttached(route, path);
   },
   getFilePathsForRoute(route) {
-    console.log("FILES:", this.filePaths)
     let routeFile = this.filePaths.find((rf) => rf.routePath === route.name);
     return routeFile ? [...routeFile.files] : [];
   },
