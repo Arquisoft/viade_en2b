@@ -41,7 +41,7 @@ class RouteDetails extends React.Component {
             <div ref = {node => this.node = node} className = "routeDetails">
                 <div className = "DetailsZone">
                     <h2>{detail.name}</h2>
-                    <MyTab/>  
+                    <MyTab route = {detail}/>  
                 </div>
             </div>
         );

@@ -18,7 +18,7 @@ import "./App.css";
 
 var lastRouteReceived = [];
   function notificationsRecieved() {
-    if (cache.default.getSelected() != lastRouteReceived) {
+    if (cache.default.getSelected() !== lastRouteReceived) {
       lastRouteReceived = cache.default.getSelected();
       toast.info("Route Selected", {
         draggable: true,
