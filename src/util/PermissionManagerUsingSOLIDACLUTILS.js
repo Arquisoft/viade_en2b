@@ -11,16 +11,23 @@ const { AclApi, AclDoc, AclParser, AclRule, Permissions, Agents } = SolidAclUtil
 const { READ, WRITE, APPEND, CONTROL } = Permissions;
 
 
-export async function setPermissionsTo2(){
+export async function setPermissionsTo2(permission, urlToShare, webIdFriend){
+
+    const mode = getMode(permission);
+
     const fetch = auth.fetch.bind(auth);
     const utils = new AclApi(fetch, { autoSave: true });
-    const acl = await utils.loadFromFileUrl("https://clrmrnd.inrupt.net/viade/routes/Oviedo.json");
+    //const acl = await utils.loadFromFileUrl("https://clrmrnd.inrupt.net/viade/routes/Oviedo.json");
+    const acl = await utils.loadFromFileUrl(urlToShare);
 
+    //Setting permissions
     let permissions = new Permissions();
-    permissions.add(READ);
+    permissions.add(mode);
 
+    //Setting person to grant access to.
     let agents = new Agents();
-    agents.addWebId("http://pablocanalsuarez.solid.community/profile/card#me");
+    //agents.addWebId("http://pablocanalsuarez.solid.community/");
+    agents.addWebId(webIdFriend);
 
     await acl.addRule(permissions, agents);
     console.log("Done!"); 
@@ -49,17 +56,17 @@ export async function checkPermissions(permission, webId, filePath){
 export function getMode(permission){
     switch(permission){
         case("READ"):
-            return AccessControlList.MODES.READ;
+            return READ;
 
         case("WRITE"):
-            return AccessControlList.MODES.WRITE;
+            return WRITE;
 
 
         case("APPEND"):
-            return AccessControlList.MODES.APPEND;
+            return APPEND;
 
 
         case("CONTROL"):
-            return AccessControlList.MODES.CONTROL;
+            return CONTROL;
     }
 }
