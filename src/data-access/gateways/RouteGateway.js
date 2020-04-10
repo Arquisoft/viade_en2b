@@ -6,10 +6,9 @@ import DeleteUserRoute from "../../RouteManager/DeleteUserRoute";
 export function findByName(name) {
 }
 
-export function findAll() {
+export function findAll(callback) {
     let routesLoader = new RoutesLoader();
-    let loadedRoutes = routesLoader.loadUserRoutesFiles();
-    
+    let loadedRoutes = routesLoader.loadUserRoutesFiles(callback);
     return loadedRoutes;
 }
 
