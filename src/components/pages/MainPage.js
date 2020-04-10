@@ -54,6 +54,7 @@ const MainPage = () => {
         <MapContainer />
       </main>
     </div>
+    
   );
 };
 
