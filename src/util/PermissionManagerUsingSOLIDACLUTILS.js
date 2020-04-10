@@ -11,14 +11,20 @@ const { AclApi, AclDoc, AclParser, AclRule, Permissions, Agents } = SolidAclUtil
 const { READ, WRITE, APPEND, CONTROL } = Permissions;
 
 
+/**
+ * Method that sets a permission for an
+ * specific url for a specific user
+ * @param {*} permission, string as "READ", "WRITE", "APPEND", "CONTROL" that represent the permission
+ * @param {*} urlToShare url of the resource to be shared.
+ * @param {*} webIdFriend id of the person to share the resource with.
+ */
 export async function setPermissionsTo2(permission, urlToShare, webIdFriend){
 
     const mode = getMode(permission);
 
     const fetch = auth.fetch.bind(auth);
     const utils = new AclApi(fetch, { autoSave: true });
-    //const acl = await utils.loadFromFileUrl("https://clrmrnd.inrupt.net/viade/routes/Oviedo.json");
-    const acl = await utils.loadFromFileUrl(urlToShare);
+   const acl = await utils.loadFromFileUrl(urlToShare);
 
     //Setting permissions
     let permissions = new Permissions();
@@ -26,21 +32,25 @@ export async function setPermissionsTo2(permission, urlToShare, webIdFriend){
 
     //Setting person to grant access to.
     let agents = new Agents();
-    //agents.addWebId("http://pablocanalsuarez.solid.community/");
     agents.addWebId(webIdFriend);
 
     await acl.addRule(permissions, agents);
-    console.log("Done!"); 
 
 }
 
-export function deletePermissions(permission, urlToShare, webIdFriend){
+/**
+ * Method that deletes a permission for an
+ * specific url for a specific user
+ * @param {*} permission, string as "READ", "WRITE", "APPEND", "CONTROL" that represent the permission to be deleted
+ * @param {*} urlToShare url of the resource that was shared.
+ * @param {*} webIdFriend id of the person that the resource was shared with.
+ */
+export async function deletePermissions(permission, urlToShare, webIdFriend){
 
     const mode = getMode(permission);
 
     const fetch = auth.fetch.bind(auth);
     const utils = new AclApi(fetch, { autoSave: true });
-    //const acl = await utils.loadFromFileUrl("https://clrmrnd.inrupt.net/viade/routes/Oviedo.json");
     const acl = await utils.loadFromFileUrl(urlToShare);
 
     // Revoke permissions
@@ -48,17 +58,31 @@ export function deletePermissions(permission, urlToShare, webIdFriend){
     console.log("Done!"); 
 }
 
-
+/**
+ * Checks whether a user has a permission over an specific 
+ * file or not.
+ * @param {*} permission 
+ * @param {*} webId 
+ * @param {*} filePath 
+ */
 export async function checkPermissions(permission, webId, filePath){
-    let mode = getMode(permission);
-    
-    const permissions = filePath.getAgentsWith(mode);
+    const fetch = auth.fetch.bind(auth);
+    const utils = new AclApi(fetch, { autoSave: true });
+    const acl = await utils.loadFromFileUrl(filePath);
 
-    return permissions.includes(permission);
+    
+    let mode = getMode(permission);
+    const permissions = acl.getPermissionsFor(webId);
+    const value = permissions.permissions;
+    return value.has(mode);
 }
 
-
-
+/**
+ * Auxiliar method that given a string representing
+ * the permission, returns the specific permission.
+ * 
+ * @param {} permission 
+ */
 export function getMode(permission){
     switch(permission){
         case("READ"):
