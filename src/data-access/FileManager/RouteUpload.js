@@ -1,8 +1,5 @@
 import * as auth from "solid-auth-client";
 import SolidFileClient from "solid-file-client";
-import mime from "mime";
-
-import { handleFetchError } from "./FileUtils";
 
 const fileClient = new SolidFileClient(auth, { enableLogging: true });
 

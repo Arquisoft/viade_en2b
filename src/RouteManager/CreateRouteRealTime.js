@@ -46,6 +46,11 @@ class RouteCreator{
         let r = new BasicRoute(this.nameRoute, this.geoCoordinates);
         CreateRoute.default.createNormalBasic(r);
     }
+
+    resetRoute(){
+        this.geoCoordinates = [];
+        this.nameRoute = "";
+    }
 }
 
 const route = new RouteCreator();
