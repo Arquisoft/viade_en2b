@@ -66,3 +66,7 @@ export async function updateByName(cacheRoute, newRouteData,callback) {
 
     return undefined;
 }
+
+export async function addComment(route,comment,callback){
+    let foundRoute = await findByName(cacheRoute.name,callback);
+}
