@@ -1,8 +1,6 @@
 [[section-runtime-view]]
 == Runtime View
 
-
-
 In this section of the documentation important use cases will be described in order to understand how the system communicates at runtime.
 
 This part of the documentation will be in continuous development.

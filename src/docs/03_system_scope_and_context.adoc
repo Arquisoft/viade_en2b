@@ -27,7 +27,7 @@ Due to the requirement that states that the decentralized application must imple
 which contains application data
 ** POD: web-accessible personal datastore of each user.
 
-image:images/BusinessContext.png["Business Context Diagram"]
+image:BusinessContext.png["Business Context Diagram"]
 
 
 
