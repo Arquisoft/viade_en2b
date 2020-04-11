@@ -2,8 +2,12 @@ import React from 'react';
 import { LoggedIn, LoggedOut} from '@solid/react';
 import cache from '../../caches/routeCache/RouteCache'
 import * as friendCache from 'caches/friendCache/FriendCache';
-import {setPermissionsTo2, checkPermissions} from 'util/PermissionManagerUsingSOLIDACLUTILS';
+import {setPermissionsTo2, checkPermissions} from 'util/PermissionManager';
 import { GetUserWebId } from 'data-access/UserData';
+import { ShareWith} from 'ShareManager/ShareRoute';
+import { useNotification, NotificationTypes } from '@inrupt/solid-react-components';
+
+
 function Login() {
     const auth = require('solid-auth-client');
     function logout(e, auth) {
@@ -27,7 +31,8 @@ function Login() {
                 <button className="login100-form-btn" onClick={(e) => popup(e, auth)}>Log In</button>
             </LoggedOut>
             <LoggedIn>
-                <button className="login100-form-btn" onClick={checkPermissions("READ","http://pablocanalsuarez.solid.community/","https://clrmrnd.inrupt.net/viade/routes/Oviedo.json")}>Testing</button> 
+                <button className="login100-form-btn" onClick={()=>ShareWith("https://clrmrnd.inrupt.net/viade/routes/Rusia.json", "https://testingclrmrnd.inrupt.net/")}>Testing</button> 
+
                <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
             </LoggedIn>
 
