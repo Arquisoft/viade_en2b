@@ -1,8 +1,3 @@
-import { AccessControlList, AppPermission } from '@inrupt/solid-react-components';
-import {GetUserWebId} from 'data-access/UserData';
-
-
-
 const SolidAclUtils = require('solid-acl-utils');
 const auth = require('solid-auth-client');
 // You could also use SolidAclUtils.Permissions.READ instead of following
@@ -78,6 +73,23 @@ export async function checkPermissions(permission, webId, filePath){
     return value.has(mode);
 }
 
+export async function getUsersForResource(webId, filePath){
+    //get files that you can read from.??
+
+    const fetch = auth.fetch.bind(auth);
+    const utils = new AclApi(fetch, { autoSave: true });
+    const acl = await utils.loadFromFileUrl(filePath);
+
+
+    // Check if someone else has writing access
+    const agents = acl.getAgentsWith(WRITE)
+    console.log([...agents.webIds]) // array containing all webIds which have write access
+    console.log([...agents.groups])
+    console.log(agents.hasPublic())
+    console.log(agents.hasAuthenticated()) // Authenticated means everyone who is logged in
+
+
+}
 /**
  * Auxiliar method that given a string representing
  * the permission, returns the specific permission.
