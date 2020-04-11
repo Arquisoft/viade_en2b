@@ -1,7 +1,30 @@
-import Route from "../entities/Route"
-import GeoCoordinate from "../entities/GeoCoordinate"
-import {JsonLdParser} from "jsonld-streaming-parser";
+import RouteUpload from "../data-access/FileManager/RouteUpload"
 
+export default{
+    createNormalBasic(route){
+        let str = "{";
+        str+="\"name\" : \""+route.name+"\",";
+        str+="\"itinerary\" : [";
+        let aux = [];
+        route.geoCoordinates.map(a =>{
+            if(aux.includes(a)){
+                console.log(a+"Already exists in the route")
+            }else{
+                aux.push(a);
+                str+= "{\"@type\": \"GeoCoordinates\",";
+                str+= "\"latitude\" : \"" +a.lat+"\",";
+                str+= "\"longitude\" : \"" +a.lng+"\"";
+                str+="},"
+            }
+        })
+        str  = str.substring(0, str.length -1);
+        str+= "]}";
+        console.log(str);
+        RouteUpload.main(route.name, str);
+    }
+}
+
+/*
 class CreateRoute{
     create(route){
         let myParser = new JsonLdParser();
@@ -51,6 +74,6 @@ class CreateRoute{
         let fs = require('fs');
         fs.writeFile("test.json", json,err => console.log("something went wrong"));
     }
-}
+}*/
 
-export default CreateRoute;
+//export default CreateRoute;

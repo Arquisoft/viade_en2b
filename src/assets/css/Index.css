@@ -54,15 +54,20 @@
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
 }
 
 body, html {
 	height: 100%;
 	font-family: var(--font-family);
   background-color: var(--bg-color);
+  
+  min-width: 340px;
 }
 
 /*---------------------------------------------*/
@@ -136,3 +141,36 @@ textarea::-webkit-input-placeholder { color: var(--font-color-placeholder); }
 textarea:-moz-placeholder { color: var(--font-color-placeholder); }
 textarea::-moz-placeholder { color: var(--font-color-placeholder); }
 textarea:-ms-input-placeholder { color: var(--font-color-placeholder); }
+
+/* Has fewer columns in mobile, min width 250px*/ 
+ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-flow: dense;
+  margin-top: 10px;
+  grid-gap: 10px;
+}
+
+.liCard{
+  padding: 5px;
+}
+
+/* center the cards */
+.liCard > div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ui.card {
+  background-color: var(--bg-color) !important;
+  
+  height: 100% !important;
+  
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.image {
+  margin-left: auto;
+  margin-right: auto;
+}

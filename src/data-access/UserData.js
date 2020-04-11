@@ -20,7 +20,7 @@ export async function GetUserProfileImage() {
 
 /**
  * Function that retrieves the user list of the user autenticated
- * @returns Friend[]: array of "Friend" entity.
+ * @returns Promise  Friend[]: array of "Friend" entity.
  * 
  * For using this method the GetUserFriends the component List was
  * added in generic_components. An example using this List is
