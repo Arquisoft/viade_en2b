@@ -5,6 +5,11 @@ import 'assets/css/Card.css'
 
 class CardLayout extends Component{
   render(){
+      let linkHide = this.props.link === undefined;
+      let externalHide = this.props.externalLink === undefined;
+      let detailsHide = this.props.detailsLink === undefined;
+    
+    
       return(
         <div>
             <Card className = "claim_Card">
@@ -19,14 +24,24 @@ class CardLayout extends Component{
                 </Card.Content>
                 <Card.Content extra>
                 <Router>
-                    <Link className={this.props.classLink} 
+                    <Link className={this.props.classLink}
+                          hidden={linkHide}
                           to={this.props.link}
                           onClick={this.props.action}>
                     <Icon name={this.props.iconName} />
-                   
                     </Link>
-
-                    <Link className={this.props.detailsClassName} 
+                    
+                    <a className={this.props.externalClassName}
+                          hidden={externalHide}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={this.props.externalLink}
+                          onClick={this.props.externalAction}>
+                    <Icon name={this.props.externalIconName} />
+                    </a>
+                    
+                    <Link className={this.props.detailsClassName}
+                          hidden={detailsHide}
                           to={this.props.detailsLink}
                           onClick={this.props.detailsAction}>
                     <Icon name={this.props.detailsIconName} />
