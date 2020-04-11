@@ -69,4 +69,10 @@ export async function updateByName(cacheRoute, newRouteData,callback) {
 
 export async function addComment(route,comment,callback){
     let foundRoute = await findByName(cacheRoute.name,callback);
+    if(foundRoute!==undefined && foundRoute!==null){
+        let addComment = new AddComment();
+        let comment = new Comment(foundRoute.url,comment.text,comment.sender);
+
+        addComment.addComment(comment,callback);
+    }
 }
