@@ -1,52 +1,53 @@
-import { useNotification, NotificationTypes } from '@inrupt/solid-react-components';
 import {setPermissionsTo, checkPermissions} from 'util/PermissionManager';
-//import  {findUserInboxes, getDefaultInbox} from 'NotificationsManager/NotificationManager2';
-import {GetUserWebId} from 'data-access/UserData';
-
 const request = require("request");
 
-function Create(){
-    const webIdPropioCreo = "https://clrmrnd.inrupt.net/";    
-    const { createNotification } = useNotification(webIdPropioCreo);
-    return createNotification;
-}
-
-export async function ShareWith(route, webIdFriend){
-    
-    const webIdPropioCreo = "https://clrmrnd.inrupt.net/";    
-    const license = "https://creativecommons.org/licenses/by-sa/4.0/";    
-    var targetUrl = webIdFriend + "viade/inbox/";
+/**
+ * Function that allows a user to share a route with a friend.
+ * Provides READ permissions to the friend over the route of the user autenticated,
+ * and sends a notification to the inbox of the friend, containing the url of that
+ * route.
+ * 
+ * @param {String} route path to the route the user wants to share.
+ * @param {String} webIdFriend represents the id of the friend.
+ * @param {String} webIdAuthor represents the id of the user autenticated.
+ */
+export async function ShareWith(route, webIdFriend, webIdAuthor){
 
     //check if it's already shared
     const shared = await checkPermissions("READ", webIdFriend, route);
-    if(shared){//!
+    if(!shared){
 
         //set permissions to read in the route
         setPermissionsTo("READ", route, webIdFriend);
 
         //send notification to other user inbox
         const content = {
-            title: "Notification Example",
+            title: "Route shared Notification",
             summary: route,
             actor: webIdFriend
         };
 
-        const toSend = createNotificationJSONLD(webIdPropioCreo, route, webIdFriend);
-        
         try{
-            sendNotification(webIdPropioCreo, webIdFriend, toSend);
-            console.log('SENDED');
+            sendNotification(webIdAuthor, webIdFriend, content);
         } catch(e){
             console.log('There was an error');
         }        
         
+    } else {
+        console.log('The route was already shared.');
+        return false;
     }
    
 }
 
-
-export async function sendNotification (webId, targetWebId, content) {
-    var inbox = "https://testingclrmrnd.inrupt.net/viade/inbox/";
+/**
+ * Method that allows to send a notification to a 
+ * friend.
+ * @param {} webIdFriend 
+ * @param {*} content 
+ */
+export async function sendNotification (webIdFriend, content) {
+    var inbox = webIdFriend + "viade/inbox/";
     await request({
       method: "POST",
       uri: inbox,
@@ -56,8 +57,8 @@ export async function sendNotification (webId, targetWebId, content) {
       }
     },
     function (error, response, content) {
-      if (error) { return false } else {
-        console.log("Notificacion subida correctamente, el servidor respondio con :", content);
+      if (error) { return false; } else {
+        console.log("Notification sended");
         return true;
       }
     })
