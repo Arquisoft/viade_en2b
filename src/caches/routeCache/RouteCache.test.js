@@ -1,10 +1,11 @@
-import * as RouteGateway from "../../data-access/gateways/RouteGateway";
+import * as RouteGateway from "data-access/gateways/RouteGateway";
 import RouteCache from "./RouteCache";
 
 const mockGatewayAdd = jest.spyOn(RouteGateway, "add");
 const mockGatewayFindAll = jest.spyOn(RouteGateway, "findAll");
 const mockGatewayFind = jest.spyOn(RouteGateway, "findByName");
 const mockGatewayDelete = jest.spyOn(RouteGateway, "deleteByName");
+const mockGatewayUpdate = jest.spyOn(RouteGateway, "updateByName");
 
 mockGatewayFind.mockImplementation((route) => {
   if (route.name.trim() !== "") {
@@ -14,6 +15,9 @@ mockGatewayFind.mockImplementation((route) => {
   }
 });
 mockGatewayFindAll.mockImplementation(() => new Array());
+mockGatewayUpdate.mockImplementation(async (route, newRouteData, callback) => {
+  return newRouteData;
+});
 
 var dummyRoute1 = {
   name: "route1",
@@ -151,6 +155,14 @@ test("get a selected route to see its details", () => {
   RouteCache.setSelectedDetails(dummyRoute1);
 
   expect(RouteCache.getSelectedDetails()).toEqual(dummyRoute1);
+});
+
+test("update a route", async () => {
+  RouteCache.routes = [dummyRoute1];
+  await RouteCache.updateRoute(dummyRoute1, dummyRoute2, () => {});
+
+  expect(mockGatewayUpdate).toHaveBeenCalled();
+  expect(RouteCache.routes).toEqual([dummyRoute2]);
 });
 
 test("clear the cache", () => {

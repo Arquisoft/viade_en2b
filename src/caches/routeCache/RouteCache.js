@@ -1,4 +1,4 @@
-import * as RouteGateway from "../../data-access/gateways/RouteGateway";
+import * as RouteGateway from "data-access/gateways/RouteGateway";
 import FileCache from "../fileCache/FileCache";
 
 export default {
@@ -22,8 +22,11 @@ export default {
       callback
     );
     if (updatedRoute !== null && updatedRoute !== undefined) {
-      let routeIndex = this.routes.indexOf((obj) => route.name === obj.name);
-      this.routes[routeIndex] = updatedRoute;
+      this.routes = this.routes.filter((obj) => route.name !== obj.name);
+      this.routes.push(updatedRoute);
+      this.routes.sort((r1, r2) =>
+        r1.name > r2.name ? 1 : r1.name < r2.name ? -1 : 0
+      );
     }
   },
   async getRoutes(callback) {
