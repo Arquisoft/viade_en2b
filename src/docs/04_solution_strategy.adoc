@@ -12,7 +12,7 @@ The following technologies are the ones used in the project:
 
 === Decomposition of the system
 
-* The system will be divided in interrelated high-level modules.
+* The system will be divided in interrelated high-level modules, or **layers**.
 * Each module will contain several components (or sub-modules, in some cases), and different components between modules may be connected between each other to pass data.
 * The only connections between the modules will be user data moving from one place to another, through middle "facade" classes. The components in the modules will not notice the data moving, only when they have data available.
 * The moving of the data between modules will be normally done through caches, which save data in memory to fasten data-retrieving operations. Caches behave like gateways, containing CRUD operations, and there's only one instance of each cache in the app.
@@ -22,7 +22,7 @@ This module and component-oriented design will make the division of the developm
 === Decisions on how to achieve quality goals
 
 * **Agile methodology**. The team set on developing with an agile methodology in mind: use of kanban, use of issues to enhance communication, division of tasks in small and doable user stories, and giving feedback to each other when possible (connecting to previous point).
-* **Heavy testing**. Test-driven development is a must to achieve any form of quality. When creating user stories, as many testing scenarios as possible will accompany them to ensure what the new functionality must achieve and what it should not do. This will lose time when creating the tasks, but it will help the agility of the development.
+* **Heavy testing**. Test-driven development and behaviour driven development are a must to achieve any form of quality. When creating user stories, as many testing scenarios as possible will accompany them to ensure what the new functionality must achieve and what it should not do. This will lose time when creating the functionalities, but it will help the agility of the development in the long run.
 * **Coordination and communication**. The team will coordinate itself through discussing as much as possible every problem or idea, as well as giving feedback in pull requests and issues in development.
 
 === Organizational decisions
