@@ -3,16 +3,4 @@
 
 == Deployment View
 
-
-_**<Overview Diagram>**_
-
-image:07-deployment-diagram.svg["Deployment diagram"]
-
-
-Motivation::
-
-Both Native and Web applications rely on a SOLID library to get data from the pods server/database. Both use, also, the Maps API to show map data, which is then overlaid with a representation of the data collected from the pods.
-
-Quality and/or Performance Features::
-
-_<explanation in text form>_
+**TBD**
