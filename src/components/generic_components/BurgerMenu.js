@@ -35,10 +35,15 @@ class BurgerMenu extends Component {
             </Link>
           
             <Link id="list-friends" className="menu-item" to="/friends-list">
-              <i className="fa fa-fw fas fa-users"></i>
+              <i className="fa fa-fw fas fa-users" ></i>
               <span>List Friends</span>
             </Link>
-           
+
+            <Link id="gpx" className="menu-item" to="/gpx">
+              <i className="fa fa-fw fas fa-cubes" ></i>
+              <span>Import GPX</span>
+            </Link>
+
             <Link id="about" className="menu-item" to="/about">
               <i className="fa fa-fw fas fa-info-circle"></i>
               <span>About</span>
