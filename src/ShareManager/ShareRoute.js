@@ -15,7 +15,7 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
 
     //check if it's already shared
     const shared = await checkPermissions("READ", webIdFriend, route);
-    if(!shared){
+    if(shared){
 
         //set permissions to read in the route
         setPermissionsTo("READ", route, webIdFriend);
@@ -28,7 +28,7 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
         };
 
         try{
-            sendNotification(webIdAuthor, webIdFriend, content);
+            sendNotification(webIdFriend, createNotificationJSONLD(webIdAuthor, route, webIdFriend));
         } catch(e){
             console.log('There was an error');
         }        
@@ -47,7 +47,8 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
  * @param {*} content 
  */
 export async function sendNotification (webIdFriend, content) {
-    var inbox = webIdFriend + "viade/inbox/";
+    var inbox = webIdFriend+"viade/inbox/";
+
     await request({
       method: "POST",
       uri: inbox,
