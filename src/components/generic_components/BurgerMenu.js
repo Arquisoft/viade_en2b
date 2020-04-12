@@ -15,8 +15,9 @@ class BurgerMenu extends Component {
     return (
       <Menu disableAutoFocus className="bm-menu"  pageWrapId={ this.props.pageWrapId } outerContainerId={ this.props.container }>
         <nav className="bm-item-list">
-        <h2 className="bm-item" tabIndex="0"><i className="fa fa-fw fa-inbox fa-2x"></i>
-          <span>ViAde</span>
+        <h2 className="bm-item" tabIndex="0">
+        <img className="fa fa-fw fa-2x" src="ViaDe.png"></img>
+          <span> ViAde</span>
         </h2>
         <Router>
             <Link id="home" className="menu-item" to="/">
@@ -35,10 +36,15 @@ class BurgerMenu extends Component {
             </Link>
           
             <Link id="list-friends" className="menu-item" to="/friends-list">
-              <i className="fa fa-fw fas fa-users"></i>
+              <i className="fa fa-fw fas fa-users" ></i>
               <span>List Friends</span>
             </Link>
-           
+
+            <Link id="gpx" className="menu-item" to="/gpx">
+              <i className="fa fa-fw fas fa-cubes" ></i>
+              <span>Import GPX</span>
+            </Link>
+
             <Link id="about" className="menu-item" to="/about">
               <i className="fa fa-fw fas fa-info-circle"></i>
               <span>About</span>

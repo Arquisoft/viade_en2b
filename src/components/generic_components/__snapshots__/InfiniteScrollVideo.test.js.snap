@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Correct 1`] = `
+<MyVideoInfiniteScroll
+  content={
+    Object {
+      "dateAttached": 2012-01-22T06:32:32.000Z,
+      "name": "hola",
+    }
+  }
+/>
+`;
