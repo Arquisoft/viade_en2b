@@ -1,21 +1,21 @@
 [[section-introduction-and-goals]]
 == Introduction and Goals
 
-This is a decentralized Routes Management Proyect based on Solid and React technologies.Based on a decentralized network,so there is not
-a unique central server where all the personal data is stored and classified. All the data is stored in the users' PODS, and each user
-knows if the application has access to their data. This proyect aims to :
+ViaDe is a _decentralized routes management application_. Based on the link:https://github.com/solid/solid-spec[Solid specification], which is itself based on the link:https://www.w3.org/TR/ldp/[linked data platform], this proyect aims to bring its users an application that provides them with the tools to create their own routes, which is completely independent of the storage the user has chosen to use to store their routes; the user will also be able to share their routes with whomever they like, and attach images, videos and comments to the routes. This proyect aims to:
 
-* Provide the users a Well-formed application.
-* Be Reliable, Operable, Functional Suitable and Transferable
-* Have different Stakeholders: Users, Developers, SOLID and React Developers...
+* Provide the users a well-formed application, with the expected characteristics of a route management system combined with the SOLID possibilities.
+* Be reliable, operable, functional, suitable and transferable.
+* Be transparent with the use of user's data. All the data is stored in the users' PODS, and each user knows if the application has access to their data.
 
 === Requirements Overview
+
+The following table comply the requirements of the application, which can be found in link:https://labra.solid.community/public/SoftwareArchitecture/AssignmentDescription/[the assignment page]:
 
 .Mandatory Requirements
 * The system will be based on a decentralized architecture wheredata storage is separated from the app.
 * Users can store their routes in their own pods.
 * Users can view the routes stored on a map.
-* The app will allow a user to share pictures, videos or     information about a route with other friends.
+* The app will allow a user to share pictures, videos or information about a route with other friends.
 * A user can get notifications when some friend shares a route with him.
 * Users can have groups of friends with whom they may want to share a route
 * It should be possible to view routes loaded by users that are using a different app, so interoperability with other route management systems should be taken into account.
@@ -23,6 +23,18 @@ knows if the application has access to their data. This proyect aims to :
 .Optional Requirements
 * The system could work on a mobile device
 * Users can share their routes while they are doing the routes
+
+The project is also being evaluated by Inrupt, and they specified their own requirements as part of their challenge:
+
+.Inrupt challenge
+* Ease of use by non-technical people
+* Responsiveness of the application
+* Online independence: no central control of data
+* Security and privacy: no vulnerability points
+* Aesthetics and friendliness of the application
+* Originality of the solution
+* Usability of technical documentation
+* Interoperability with similar Solid apps
 
 
 === Quality Goals
@@ -43,6 +55,7 @@ The system ensures that the application is compatible with other applications th
 Whenever a user performs a change one of his routes or add a new one, the action must be done by the application and save on the record.
 
 |=========================================================
+
 These quality goals are the ones which have the most importance to the major stakeholders on this proyect.
 
 
@@ -51,26 +64,27 @@ These quality goals are the ones which have the most importance to the major sta
 .Summary
 The following table describes the stakeholders of this project and what is expected from them at the beginning of the project, it will be updated as the project goes on if it is required. 
 
-[options="header",cols="1,2,2"]
+[options="header",cols="1,2"]
 .General Stakeholders
 |===
-|Role/Name|Contact|Expectations
-| _Development_ | _Development team(see below table for details)_ | _The development of the App_
-| _Supervision_ | _Teachers of the subject_ | _Supervise the work done by the students and evaluating it as well_
-| _Helping Development Team_ | _Solid Community_ | _As a community interested in solid if the development team has a doubt and seeks for help the community is expected to help_
-| _Evaluating the final product_ | _Inrupt Supervisor_ | _As part of the inrupt challenge someone is expected to take a look to the projects created by the students_
-| _Testing the app/Give feedback_ | _Users_ | _Test the app to give some feedback to the development team to improve the app_
+|Role/Name|Expectations
+| Development team | The team must communicate constantly to know how all the parts of the development are being pieced together, to make the most out of continuous integration development.
+| Teachers of the subject | The teachers will eventually evaluate the work of the students in the project, and they are expecting a project that not only fulfills their mandatory requirements, but also does so with quality code, sufficient unit, scenario and load testing, extensive documentation, and visible teamwork.
+| Inrupt | As the project will take part in the Inrupt challenge, they are expecting that their requirements (listed above) are fulfilled.
+| Solid Community | The Solid community is formed by users avid to see new applications made by new developers to the community. They expect these applications to be not only usable, but also to comply with the Solid specification and to be as transparent with their data as possible.
+| Expert users | A user is considered an expert user if they know not only about Solid, but also about how route management applications normally work. They expect the application to be responsive and to be able to create their routes and share them easily.
+| Non-expert users | Non-expert users are either new to Solid or to route management applications or to both. They expect to be able to use with ease the application, even without the knowledge about these technologies.
 |===
 
 [options="header",cols="1,2,2"]
 .Development Team
 |===
 |Role/Name|Contact|Expectations
-| _Front-End_ | _Guillermo Fernández-Campoamor Fernández_ | _Focus on the front-end side of the app_
-| _Front-End_ | _Fernando Sáenz de Santa María Modroño_ | _Focus on the front-end side of the app_
-| _Front-End_ | _Alejandro Matas Sánchez_ | _Focus on the front-end side of the app_
-| _Back-End_ | _Andrés García Celis_ | _Focus on the back-end side of the app_
-| _Back-End_ | _Clara Miranda García_ | _Focus on the back-end side of the app_
-| _Back-End_ | _Violeta Ruiz Martínez_ | _Focus on the back-end side of the app_
-| _Back-End_ | _Miguel Rodríguez Huerta_ | _Focus on the back-end side of the app_
+| Front-End | Guillermo Fernández-Campoamor Fernández   | Focus on the front-end side of the app
+| Front-End | Fernando Sáenz de Santa María Modroño     | Focus on the front-end side of the app
+| Front-End | Alejandro Matas Sánchez                   | Focus on the front-end side of the app
+| Back-End  | Andrés García Celis                       | Focus on the back-end side of the app
+| Back-End  | Clara Miranda García                      | Focus on the back-end side of the app
+| Back-End  | Violeta Ruiz Martínez                     | Focus on the back-end side of the app
+| Back-End  | Miguel Rodríguez Huerta                   | Focus on the back-end side of the app
 |===
