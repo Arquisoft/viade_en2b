@@ -11,6 +11,7 @@ import NotificationsPage from "./components/pages/NotificationsPage";
 import SaveRoutePage from "./components/pages/SaveRoutePage";
 import ImportGpxPage from "./components/pages/ImportGpxPage";
 
+
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //import axios from "axios";
@@ -58,17 +59,12 @@ class App extends Component {
                 <Route exact path="/friends-list" component={FriendsPage} />
                 <Route exact path="/upload" component={DropzonePage} />
                 <Route exact path="/about" component={AboutPage} />
-                <Route
-                  exact
-                  path="/notifications"
-                  component={NotificationsPage}
-                />
+                <Route exact path="/notifications" component={NotificationsPage} />
+                <Route exact path="/saveroute" component={SaveRoutePage}/>
+                <Route exact path="/gpx" component={ImportGpxPage}/>
               </Switch>
             </Fragment>
           </Router>
-           {setInterval(() => {
-          notificationsRecieved()
-        }, 2000)}
         </Fragment>
       );
     else {
