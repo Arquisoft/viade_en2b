@@ -111,5 +111,5 @@ test("HamburguerClickListRoutes", () => {
 
 test("HamburguerClickAbout", () => {
   const temp = mount(<BurgerMenu/>);
-  expect(temp.find("#about").at(1).props().href).toBe("#/about");
+  expect(temp.find("#about").at(1).props().href).toBe("#/gpx");
  });
