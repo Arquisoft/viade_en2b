@@ -2,19 +2,108 @@
 //Add the URL to a file located in /viade/shared/globalSharedWithMe.js
 import { fetchDocument } from "tripledoc";
 import { ldp, schema} from "rdf-namespaces";
-//import {as} from "solid-namespace";
 
 const $rdf = require('rdflib'); 
 const ns = require('solid-namespace')($rdf);
 
-//GET ALL NOTIFICATIONS
+//LISTING SHARED ROUTES
+export async function sharedRoutesList(routesURL){
+
+  const sharedPath = "https://testingclrmrnd.inrupt.net/viade/shared/sharedroutes.json";
+  // = webId + "viade/shared/sharedroutes.json"
+  const url = retrieveSharedRoutes(sharedPath);
+  
+  for(let i = 0; i< url.length; i++){
+
+  }
+
+}
+//RETRIEVE SHARED ROUTE
+export async function retrieveSharedRoutes(sharedPath){
+  const auth = require("solid-auth-client");
+  const FC = require("solid-file-client");
+  const fc = new FC(auth);
+  let routesJSONS = [];
+
+  let content = await fc.readFolder("https://testingclrmrnd.inrupt.net/viade/shared/");
+  let files = content.files;
+
+  for (let i = 0; i < files.length; i++) {
+      let fileContent = await fc.readFile(files[i].url);
+      routesJSONS.push(fileContent);
+
+  }
+  console.log(routesJSONS);  
+  const url = jsonURLRetrieve(toJson(routesJSONS));
+  console.log('URLS');
+  console.log(url);
+  return url;
+}
+
+function jsonURLRetrieve(routes) {
+  let routesShared = [];
+  let routesURL = [];
+
+  for (let i = 0; i < routes.length; i++) {
+    try {
+       let routesRetrieved = routes[i].routes;
+
+      for (let i = 0; i < routesRetrieved.length; i++){
+        console.log(routesRetrieved[i]);
+        
+        const routeURL = routesRetrieved[i]['@id'];
+       
+        routesURL.push(routeURL);
+      }      
+
+      routesShared.push(routes[i].routes);
+      return routesURL;
+      
+    } catch (e) {
+      console.log(
+        "Route " + i + " couldn't be parsed because the format is wrong"
+      );
+      console.log(e);
+    }
+  }
+
+  //return { routes: entRoutes, files: entFiles };
+}
+
+function toJson(routes) {
+  let jsonRoutes = [];
+  for (let i = 0; i < routes.length; i++) {
+    try {
+      let route = JSON.parse(routes[i]);
+      jsonRoutes.push(route);
+    } catch (e) {
+      console.log(
+        "Route " +
+          i +
+          " couldn't be transformed to json because the format is wrong"
+      );
+    }
+  }
+  return jsonRoutes;
+}
+
+
+
+
+
+
+
+
+//GETTIN ALL NOTIFICATIONS (urls?)
 export async function getNotifications(inboxPath){ 
   let notificationDocuments = [];
   notificationDocuments = await getNotificationDocuments(inboxPath);
+  
   let not2 = processSharedRoutes(notificationDocuments);
 
+  console.log('NOTIFICATIONS RETRIEVED')
   console.log(notificationDocuments);
-  console.log(not2);
+  //console.log(not2);
 }
 
 
@@ -48,13 +137,8 @@ export async function getNotificationDocuments (inboxPath) {
       }
       return result
     }
-    return [];
-
-    
+    return [];    
   }
-
-
-
 
   export async function processSharedRoutes (notificationDocuments) {
     var result = []
