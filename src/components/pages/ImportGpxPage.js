@@ -38,7 +38,7 @@ class ImportGpxPage extends React.Component {
         
        
         <div className="GpxZone">
-          <Dropzone hideUpload={this.props.showUpload} onUpload={toDo} onFilesAdded={emptyTrigger} /> 
+          <Dropzone hideUpload={() => {}} onUpload={toDo} onFilesAdded={emptyTrigger} /> 
         </div>
     
       </div>

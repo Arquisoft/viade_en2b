@@ -1,4 +1,4 @@
-import GPX from 'gpx-parser-builder';
+import GPX from "gpx-parser-builder";
 import GeoCoordinate from "../../Entities/GeoCoordinate";
 import BasicRoute from "../../Entities/BasicRoute";
 import * as CreateRoute from "../../RouteManager/CreateRoute";
@@ -40,7 +40,7 @@ export default {
             try {
                 parseToRouteObject(routeString);
             } catch(error) {
-                console.log(error);
+                //console.log(error);
             }
           }
           console.log("2");
