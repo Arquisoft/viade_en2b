@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Dropzone from '../spec_components/Dropzone';
 import '../../assets/css/DropzonePage.css';
+import cache from "caches/fileCache/FileCache";
 
 class DropzonePage extends Component {
  
@@ -23,7 +24,8 @@ class DropzonePage extends Component {
   }
   render() {
 
-    function pipo(params) { //EJEMPLO DE FUNCIÓN PARA PASARLE AL onUpload
+    function toDo(params) { //EJEMPLO DE FUNCIÓN PARA PASARLE AL onUpload
+      cache.uploadFiles([...params]);
       console.log(params);
     }
     function emptyTrigger(){
@@ -35,7 +37,7 @@ class DropzonePage extends Component {
          
         </header>
         <div className="CardZone">
-          <Dropzone hideUpload={this.props.showUpload} onUpload={pipo} onFilesAdded={emptyTrigger} /> 
+          <Dropzone hideUpload={this.props.showUpload} onUpload={toDo} onFilesAdded={emptyTrigger} /> 
           {
             //CON PASAR EL NOMBRE DE LA FUNCIÓN A onUpload YA DEBERÍA DE FUNCIONAR;
             //NO QUITAR EL EMPTY TRIGGER
