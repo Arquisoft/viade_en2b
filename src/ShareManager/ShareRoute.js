@@ -1,4 +1,5 @@
 import {setPermissionsTo, checkPermissions} from 'util/PermissionManager';
+import { v4 as uuidv4 } from 'uuid';
 const request = require("request");
 
 /**
@@ -22,13 +23,16 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
 
         //send notification to other user inbox
         const content = {
-            title: "Route shared Notification",
+            title: "NEW ROUTE Notification",
             summary: route,
             actor: webIdFriend
         };
 
+        const uuid =uuidv4();
+        const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, route, "TODAY", uuid);
+
         try{
-            sendNotification(webIdFriend, createNotificationJSONLD(webIdAuthor, route, webIdFriend));
+            sendNotification(webIdFriend, contenido, uuid);
         } catch(e){
             console.log('There was an error');
         }        
@@ -46,15 +50,18 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
  * @param {} webIdFriend 
  * @param {*} content 
  */
-export async function sendNotification (webIdFriend, content) {
+export async function sendNotification ( webIdFriend, content, uuid) {
     var inbox = webIdFriend+"viade/inbox/";
+    
+    console.log(inbox);
 
     await request({
       method: "POST",
       uri: inbox,
       body: content,
       headers: {
-        "Content-Type": "text/turtle"
+        "Content-Type": "text/turtle",
+        "Content-Disposition": "attachment; filename='genial.html'"
       }
     },
     function (error, response, content) {
@@ -65,13 +72,27 @@ export async function sendNotification (webIdFriend, content) {
     })
   }
 
-
+export function createNotificationContent(type, title, webId, routePath, time,uuid){
+    return `@prefix terms: <http://purl.org/dc/terms#>.
+          @prefix as: <https://www.w3.org/ns/activitystreams#> .
+          @prefix schema: <http://schema.org/> .
+          @prefix solid: <http://www.w3.org/ns/solid/terms#> .
+          @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+          @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+          @prefix : ${webId+`viade/inbox/123123.ttl`};
+          <${webId+`viade/inbox/123123.ttl`}> a as:${type} ;
+          terms:title ${title} ;
+          as:summary ${routePath} ;
+          as:actor ${webId} ;
+          solid:read "false"^^xsd:boolean ;
+          as:published ${ time }^^xsd:dateTime .`
+}
 export function createNotificationJSONLD(webIdAuthor, routePath, webIdTo){
     return JSON.stringify(
 
         {
             "@context": "https://www.w3.org/ns/activitystreams",
-            "summary": "A route was shared with you",
+            "summary": "NEW ROUTE",
             "type": "RouteShared",
 
             "actor": {
