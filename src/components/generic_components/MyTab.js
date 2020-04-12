@@ -3,15 +3,12 @@ import { Tab } from 'semantic-ui-react'
 import MyCommentInfiniteScroll  from '../generic_components/InfiniteScrollComment';
 import MyImageInfiniteScroll  from '../generic_components/InfiniteScrollImage';
 import MyVideoInfiniteScroll  from '../generic_components/InfiniteScrollVideo';
-import CustomLoader from "components/generic_components/CustomLoader";
-
 
 import * as cache from '../../caches/fileCache/FileCache'
 
 let comentarios = [];
 let images = [];
 let videos = [];
-
 
 const panes = [
   { menuItem: 'Comentarios', pane: {
@@ -42,54 +39,26 @@ const panes = [
 
 
 class MyTab extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            multimedia: [],
-            loading: true
-        };
-    }
-        
-
-componentDidMount(){
-    cache.default.getFilePathsForRoute(this.props.route).then((multi) => {
-        this.setState({
-            multimedia: multi,
-            loading: false
-        }) 
-    });
-}
-
-showView = (multimedia) => {
+render(){
     images.length = 0;
     videos.length = 0;
     comentarios.length = 0;
-    
+
+    let multimedia = [];
+    multimedia = cache.default.getFilePathsForRoute(this.props.route);
     multimedia.forEach(element => {
         if(element.contentType === "image/png")
             images.push(element);
         else if(element.contentType === "video/mp4")
             videos.push(element);
     });
+
     return(
         <div className = "MyTabDiv">
             <link rel='stylesheet' href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"/>
             <Tab panes = {panes} renderActiveOnly={false}/>
         </div>
     )
-} 
-
-render(){
-    const {loading} = this.state;
-
-    return (
-       
-        <React.Fragment>
-            {loading ? <CustomLoader/> : this.showView(this.state.multimedia)}
-        </React.Fragment>
-    
-    );
-
 }
 }
 
