@@ -2,31 +2,20 @@ import React, { Component } from 'react';
 import SaveRoute from '../spec_components/SaveRoute';
 import BurgerMenu from '../generic_components/BurgerMenu';
 import * as cache from "caches/routeCache/RouteCache";
-
+import {useHistory} from "react-router-dom";
 
 import "assets/css/SaveRoutePage.css";
-class SaveRoutePage extends Component {
+const SaveRoutePage=()=> {
  
   
 
-  componentWillMount(){
-      document.addEventListener('mousedown',this.handleClick, false);
-  }
-
-  componentWillUnmount(){
-    document.removeEventListener('mousedown', this.handleClick, false);
-  }
-  handleClick =(e)=>{
-    if(this.node.contains(e.target)){
-      return;
-    }
-
   //  this.props.showUpload();
     
-  }
-  render() {
-
-    function pipo(params) { //EJEMPLO DE FUNCIÓN PARA PASARLE AL onUpload
+  
+ 
+    let history = useHistory();
+    function toDo(params) { //EJEMPLO DE FUNCIÓN PARA PASARLE AL onUpload
+      history.push('/routes');
       console.log(params);
     }
     function emptyTrigger(){
@@ -37,11 +26,11 @@ class SaveRoutePage extends Component {
       <React.Fragment>
             {console.table(cache.default.getSelectedToUpload())}
         <BurgerMenu pageWrapId="page-wrap" container="outer-container"/>
-      <div ref={node => this.node = node } className="savePage" id="page-wrap">
+      <div className="savePage" id="page-wrap">
       
 
         <div className="cardsave">
-          <SaveRoute hideUpload={this.props.showUpload} onUpload={pipo} onFilesAdded={emptyTrigger} /> 
+          <SaveRoute onFinish={toDo}/> 
           <div className="mapContainer">
            
           </div>
@@ -50,7 +39,7 @@ class SaveRoutePage extends Component {
       </div>
       </React.Fragment>
     )
-  }
+  
 }
 
 export default SaveRoutePage;

@@ -36,7 +36,10 @@ const MainPage = () => {
 
   const showZone = () => {
     if (routecache.default.getSelected() !== "") setShowDropzone(!showDropzone);
-    else alert("No route selected");
+    else  toast.error("No Route Selected", {
+        draggable: true,
+        position: toast.POSITION.TOP_CENTER
+      });;
   };
 
  

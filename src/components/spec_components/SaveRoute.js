@@ -22,8 +22,10 @@ import * as RealTimeRoute from "../../RouteManager/CreateRouteRealTime";
     console.log(this.state.nameRoute)
   }
   saveRouteToPod(){
-    if(this.state.nameRoute !== "" && RealTimeRoute.default.getRouteIsOver())
+    if(this.state.nameRoute !== "" && RealTimeRoute.default.getRouteIsOver()){
       RealTimeRoute.default.setNameAndUpload(this.state.nameRoute);
+      this.props.onFinish();
+    }
   }
   render() {
     return (
