@@ -27,6 +27,9 @@ class RouteDetails extends React.Component {
     this.props.showUpload();
     
   }
+    handleSession = () => {
+        this.props.history.push('/login');
+    }
 
   componentDidMount() {
     let detail = cache.default.getSelectedDetails();
@@ -38,7 +41,7 @@ class RouteDetails extends React.Component {
             <div ref = {node => this.node = node} className = "routeDetails">
                 <div className = "DetailsZone">
                     <h2>{detail.name}</h2>
-                    <MyTab/>  
+                    <MyTab route = {detail}/>  
                 </div>
             </div>
         );
