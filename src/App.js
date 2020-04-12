@@ -27,34 +27,52 @@ var lastRouteReceived = [];
     }
   }
 class App extends Component {
+  state = {
+    render: 0
+  }
+  
   render() {
-    
-    // notificationsRecieved();
-    return (
-      <Fragment>
-        <ToastContainer closeOnClick draggable={true} transition={Bounce} autoClose={2000} />
-        <Router>
-          <Fragment>
-            <Switch>
-              <Route exact path="/" component={MainPage} />
-              <Route exact path="/login" component={LoginPage} />
-              <Route exact path="/routes" component={RoutesPage} />
-              <Route exact path="/friends-list" component={FriendsPage} />
-              <Route exact path="/upload" component={DropzonePage} />
-              <Route exact path="/about" component={AboutPage} />
-              <Route
-                exact
-                path="/notifications"
-                component={NotificationsPage}
-              />
-            </Switch>
-          </Fragment>
-        </Router>
-         {setInterval(() => {
-        notificationsRecieved()
-      }, 2000)}
-      </Fragment>
-    );
+    setTimeout(() => {
+      if(this.state.render === 0)
+        this.setState({
+          render: 1
+        })
+    }, 5000);
+    if(this.state.render > 0)
+      return (
+        <Fragment>
+          <ToastContainer closeOnClick draggable={true} transition={Bounce} autoClose={2000} />
+          <Router>
+            <Fragment>
+              <Switch>
+                <Route exact path="/" component={MainPage} />
+                <Route exact path="/login" component={LoginPage} />
+                <Route exact path="/routes" component={RoutesPage} />
+                <Route exact path="/friends-list" component={FriendsPage} />
+                <Route exact path="/upload" component={DropzonePage} />
+                <Route exact path="/about" component={AboutPage} />
+                <Route
+                  exact
+                  path="/notifications"
+                  component={NotificationsPage}
+                />
+              </Switch>
+            </Fragment>
+          </Router>
+           {setInterval(() => {
+          notificationsRecieved()
+        }, 2000)}
+        </Fragment>
+      );
+    else {
+      return(
+        <Fragment>
+          <video id="viadegif" height="800" autoPlay muted>
+            <source src="videos/ViaDe.mp4" type="video/mp4"/>
+          </video>
+        </Fragment>
+      );
+    }
   }
 }
 
