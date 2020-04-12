@@ -11,8 +11,14 @@ export default {
 
 
     function parseToRouteObject(fileContent){
-        let gpx = GPX.parse(fileContent);
-        console.log("YEEEEEEEES");
+        console.log(fileContent);
+        try {
+            var gpx = GPX.parse(fileContent);
+            } catch(error) {
+                console.log(error);
+            }
+        
+        
         let routesList = [];
 
         gpx.trk.forEach(r => {
@@ -38,9 +44,10 @@ export default {
             console.log("1");
             console.log(routeString);
             try {
+                console.log(routeString);
                 parseToRouteObject(routeString);
             } catch(error) {
-                //console.log(error);
+                console.log(error);
             }
           }
           console.log("2");
