@@ -1,12 +1,11 @@
 import RoutesLoader from "RouteManager/ListUserRoutes";
-import DeleteUserRoute from "../../RouteManager/DeleteUserRoute";
-import UpdateRoute from "../../RouteManager/UpdateRoute";
+import DeleteUserRoute from "RouteManager/DeleteUserRoute";
+import UpdateRoute from "RouteManager/UpdateRoute";
 
-export async function findByName(name,callback) {
-
-    let routesLoader = new RoutesLoader();
-   let route = await  routesLoader.loadRouteByName(name,callback);
-   return route;
+export async function findByName(name, callback) {
+  let routesLoader = new RoutesLoader();
+  let route = await routesLoader.loadRouteByName(name, callback);
+  return route;
 }
 
 export function findAll(callback) {
@@ -35,26 +34,23 @@ export function deleteByUrl(url) {
   return false;
 }
 
-export async function updateByName(cacheRoute, newRouteData,callback) {
-    let foundRoute =  await findByName(cacheRoute.name,callback);
+export async function updateByName(cacheRoute, newRouteData, callback) {
+  let foundRoute = await findByName(cacheRoute.name, callback);
 
-    if(foundRoute!==null && foundRoute!==undefined){
+  if (foundRoute !== null && foundRoute !== undefined) {
+    foundRoute.name = newRouteData.name;
+    foundRoute.jsonFormat.name = newRouteData.name;
 
-        foundRoute.name=newRouteData.name;
-        foundRoute.jsonFormat.name=newRouteData.name;
-
-        let updateRoute = new UpdateRoute();
-        let wasPodUpdated = await updateRoute.updatePod(foundRoute);
-        if(wasPodUpdated){
-            console.log("Pod was updated correctly");
-            return foundRoute;
-        }else{
-            console.log("Pod wasn't updated");
-            return undefined;
-        }
+    let updateRoute = new UpdateRoute();
+    let wasPodUpdated = await updateRoute.updatePod(foundRoute);
+    if (wasPodUpdated) {
+      console.log("Pod was updated correctly");
+      return foundRoute;
+    } else {
+      console.log("Pod wasn't updated");
+      return undefined;
     }
+  }
 
-
-
-    return undefined;
+  return undefined;
 }
