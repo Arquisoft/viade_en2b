@@ -33,8 +33,8 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
         };
 
         const uuid =uuidv4();
-        const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, route, "TODAY", uuid);
-       // const contenido = createNotificationJSONLD(webIdAuthor, route, webIdFriend);
+        const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, route, new Date(), uuid);
+       
 
         try{
             sendNotification(webIdFriend, contenido, uuid);
