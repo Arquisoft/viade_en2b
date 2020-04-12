@@ -89,6 +89,7 @@ class RoutesPage extends React.Component {
                         iconName="map"
 
                         detailsClassName="linkRoute"
+                        detailsLink= "/routes"
                         detailsAction={e=>{this.viewDetails(routes[index])}}
                         detailsIconName="info"
                       />
