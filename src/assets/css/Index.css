@@ -122,25 +122,7 @@ textarea:focus, input:focus {
   border-color: transparent !important;
 }
 
-input:focus::-webkit-input-placeholder { color:transparent; }
-input:focus:-moz-placeholder { color:transparent; }
-input:focus::-moz-placeholder { color:transparent; }
-input:focus:-ms-input-placeholder { color:transparent; }
 
-textarea:focus::-webkit-input-placeholder { color:transparent; }
-textarea:focus:-moz-placeholder { color:transparent; }
-textarea:focus::-moz-placeholder { color:transparent; }
-textarea:focus:-ms-input-placeholder { color:transparent; }
-
-input::-webkit-input-placeholder { color: var(--font-color-placeholder); }
-input:-moz-placeholder { color: var(--font-color-placeholder); }
-input::-moz-placeholder { color: var(--font-color-placeholder); }
-input:-ms-input-placeholder { color: var(--font-color-placeholder); }
-
-textarea::-webkit-input-placeholder { color: var(--font-color-placeholder); }
-textarea:-moz-placeholder { color: var(--font-color-placeholder); }
-textarea::-moz-placeholder { color: var(--font-color-placeholder); }
-textarea:-ms-input-placeholder { color: var(--font-color-placeholder); }
 
 /* Has fewer columns in mobile, min width 250px*/ 
 ul {
@@ -174,3 +156,28 @@ ul {
   margin-left: auto;
   margin-right: auto;
 }
+
+.viadegif {
+  margin: auto;
+  object-fit: fill;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; }
+input:focus::-moz-placeholder { color:transparent; }
+input:focus:-ms-input-placeholder { color:transparent; }
+
+textarea:focus::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; }
+textarea:focus::-moz-placeholder { color:transparent; }
+textarea:focus:-ms-input-placeholder { color:transparent; }
+
+input::-webkit-input-placeholder { color: var(--font-color-placeholder); }
+input:-moz-placeholder { color: var(--font-color-placeholder); }
+input::-moz-placeholder { color: var(--font-color-placeholder); }
+input:-ms-input-placeholder { color: var(--font-color-placeholder); }
+
+textarea::-webkit-input-placeholder { color: var(--font-color-placeholder); }
+textarea:-moz-placeholder { color: var(--font-color-placeholder); }
+textarea::-moz-placeholder { color: var(--font-color-placeholder); }
+textarea:-ms-input-placeholder { color: var(--font-color-placeholder); }
