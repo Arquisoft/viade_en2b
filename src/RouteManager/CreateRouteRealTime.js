@@ -1,6 +1,7 @@
 import GeoCoordinate from "../Entities/GeoCoordinate";
 import BasicRoute from "../Entities/BasicRoute";
 import * as CreateRoute from "./CreateRoute";
+import * as routecache from "caches/routeCache/RouteCache";
 
 export default {
     main(){
@@ -12,6 +13,11 @@ export default {
     },
     stop(){
         stop();
+    },setNameAndUpload(name){
+        route.putNameToRoute(name);
+        route.getRoute();
+    },getRouteIsOver(){
+        return route.routeIsOver;
     }
 }
 
@@ -57,17 +63,22 @@ const route = new RouteCreator();
 
 function stop(){
     route.routeIsOver = true;
+    route.putNameToRoute("finalTest");
+    console.log(route)
+    routecache.default.setSelectedToUpload(route);
 }
 async function main (){
+        let id;
         while(!route.routeIsOver){
-            navigator.geolocation.getCurrentPosition((position) =>{
+            id = navigator.geolocation.getCurrentPosition((position) =>{
                     putCoords(position.coords.latitude, position.coords.longitude);
             }, error, options);
 
-            await sleep(2000);
+          await sleep(2000);
         }
-        route.putNameToRoute("finalTest");
-        route.getRoute();
+        //navigator.geolocation.clearWatch(id);
+        
+        //route.getRoute();
 }
 
 function putCoords(lat, long){
@@ -86,7 +97,7 @@ function error(err) {
 }
 
 const options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
+  enableHighAccuracy: false,
+  timeout: 50000000,
   maximumAge: 0
 };

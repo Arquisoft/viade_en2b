@@ -5,18 +5,20 @@ import MainPage from './MainPage';
 
 Enzyme.configure({ adapter: new Adapter() });
 
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+    useHistory: () => ({
+    push: jest.fn()
+  })
+}));
+
 /////////////////////////
 
 test('MainPage',()=>{
     expect(MainPage).toBeDefined();
 });
 
-/////////////////////////
 
-test('Render Correct',()=>{
-    const main = mount(<MainPage/>);
-    expect(main).toMatchSnapshot();
-});
 
 /////////////////////////
 

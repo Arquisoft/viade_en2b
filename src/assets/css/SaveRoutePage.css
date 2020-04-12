@@ -1,0 +1,38 @@
+.savePage {
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    
+  
+    
+   
+  }
+  .mapContainer{
+    width: 100px;
+    height: 500px;    
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow:  var(--box-shadow-up),
+    var(--box-shadow-down);
+  }
+  .cardsave {
+    border-radius: 36px;
+    
+    background-color: rgb(248, 248, 251);
+    padding: 64px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    box-shadow:  var(--box-shadow-up),
+    var(--box-shadow-down);
+    box-sizing: border-box;
+    display:table-cell;
+    
+  }
+
+  

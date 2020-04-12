@@ -5,6 +5,13 @@ export default {
   routes: [],
   selected: "",
   selectedDetails: "",
+  routeToUpload: "",
+  getSelectedToUpload(){
+    return this.routeToUpload;
+  },
+  setSelectedToUpload(route){
+    this.routeToUpload = route;
+  },
   addRoute(route) {
     if (route && !this.routes.find((obj) => route.name === obj.name)) {
       RouteGateway.add(route);

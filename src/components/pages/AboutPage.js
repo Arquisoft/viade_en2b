@@ -4,7 +4,6 @@ import CustomLoader from 'components/generic_components/CustomLoader';
 import BurgerMenu from 'components/generic_components/BurgerMenu';
 import CardLayout from 'components/generic_components/Card';
 
-
 class AboutPage extends React.Component {
   
   constructor(props){
