@@ -1,10 +1,11 @@
 const SolidAclUtils = require('solid-acl-utils');
 const auth = require('solid-auth-client');
-// You could also use SolidAclUtils.Permissions.READ instead of following
-// This is just more convenient
+
+
 const { AclApi, AclDoc, AclParser, AclRule, Permissions, Agents } = SolidAclUtils;
 const { READ, WRITE, APPEND, CONTROL } = Permissions;
 
+//Acl creation
 
 /**
  * Method that sets a permission for an
@@ -73,23 +74,7 @@ export async function checkPermissions(permission, webId, filePath){
     return value.has(mode);
 }
 
-export async function getUsersForResource(webId, filePath){
-    //get files that you can read from.??
 
-    const fetch = auth.fetch.bind(auth);
-    const utils = new AclApi(fetch, { autoSave: true });
-    const acl = await utils.loadFromFileUrl(filePath);
-
-
-    // Check if someone else has writing access
-    const agents = acl.getAgentsWith(WRITE)
-    console.log([...agents.webIds]) // array containing all webIds which have write access
-    console.log([...agents.groups])
-    console.log(agents.hasPublic())
-    console.log(agents.hasAuthenticated()) // Authenticated means everyone who is logged in
-
-
-}
 /**
  * Auxiliar method that given a string representing
  * the permission, returns the specific permission.
