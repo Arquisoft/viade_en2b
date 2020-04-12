@@ -15,8 +15,9 @@ class BurgerMenu extends Component {
     return (
       <Menu disableAutoFocus className="bm-menu"  pageWrapId={ this.props.pageWrapId } outerContainerId={ this.props.container }>
         <nav className="bm-item-list">
-        <h2 className="bm-item" tabIndex="0"><i className="fa fa-fw fa-inbox fa-2x"></i>
-          <span>ViAde</span>
+        <h2 className="bm-item" tabIndex="0">
+        <img className="fa fa-fw fa-2x" src="ViaDe.png"></img>
+          <span> ViAde</span>
         </h2>
         <Router>
             <Link id="home" className="menu-item" to="/">

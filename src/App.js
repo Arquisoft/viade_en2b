@@ -28,8 +28,8 @@ var lastRouteReceived = [];
   }
 class App extends Component {
   render() {
-    // document.documentElement.setAttribute('data-theme', 'dark');
-     // notificationsRecieved();
+    
+    // notificationsRecieved();
     return (
       <Fragment>
         <ToastContainer closeOnClick draggable={true} transition={Bounce} autoClose={2000} />
@@ -37,7 +37,6 @@ class App extends Component {
           <Fragment>
             <Switch>
               <Route exact path="/" component={MainPage} />
-              {/* <Route exact path="/login" component={Login}/> */}
               <Route exact path="/login" component={LoginPage} />
               <Route exact path="/routes" component={RoutesPage} />
               <Route exact path="/friends-list" component={FriendsPage} />
