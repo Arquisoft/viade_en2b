@@ -1,10 +1,18 @@
 import GPX from 'gpx-parser-builder';
-import GeoCoordinate from "../Entities/GeoCoordinate";
-import BasicRoute from "../Entities/BasicRoute";
+import GeoCoordinate from "../../Entities/GeoCoordinate";
+import BasicRoute from "../../Entities/BasicRoute";
+import * as CreateRoute from "../../RouteManager/CreateRoute";
 
 export default {
-    parseToRouteObject(fileContent){
+    parseFile(file){
+        parseGPXfileToRouteObject(file);
+    }
+}
+
+
+    function parseToRouteObject(fileContent){
         let gpx = GPX.parse(fileContent);
+        console.log("YEEEEEEEES");
         let routesList = [];
 
         gpx.trk.forEach(r => {
@@ -19,24 +27,22 @@ export default {
             console.log(route);
             routesList.push(route);
         });
-        
-        return routeList;
+        CreateRoute.default.createNormalBasic(routesList[0]);
     }
 
-    parseGPXfileToRouteObject(file){
-        let str = XMLToString(file);
-        parseToRouteObject(str);
+    function parseGPXfileToRouteObject(file){
+        console.log(file);
+        let reader = new FileReader();
+         reader.onload = () => {
+            let routeString = reader.result;
+            console.log("1");
+            console.log(routeString);
+            try {
+                parseToRouteObject(routeString);
+            } catch(error) {
+                console.log(error);
+            }
+          }
+          console.log("2");
+          reader.readAsText(file);
     }
-}
-
-function XMLToString(oXML)
-{
- //code for IE
- if (window.ActiveXObject) {
- var oString = oXML.xml; return oString;
- } 
- // code for Chrome, Safari, Firefox, Opera, etc.
- else {
- return (new XMLSerializer()).serializeToString(oXML);
- }
- }
