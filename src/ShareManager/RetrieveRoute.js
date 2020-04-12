@@ -33,10 +33,7 @@ export async function retrieveSharedRoutes(sharedPath){
       routesJSONS.push(fileContent);
 
   }
-  console.log(routesJSONS);  
   const url = jsonURLRetrieve(toJson(routesJSONS));
-  console.log('URLS');
-  console.log(url);
   return url;
 }
 
@@ -49,8 +46,7 @@ function jsonURLRetrieve(routes) {
        let routesRetrieved = routes[i].routes;
 
       for (let i = 0; i < routesRetrieved.length; i++){
-        console.log(routesRetrieved[i]);
-        
+            
         const routeURL = routesRetrieved[i]['@id'];
        
         routesURL.push(routeURL);
@@ -60,10 +56,10 @@ function jsonURLRetrieve(routes) {
       return routesURL;
       
     } catch (e) {
-      console.log(
-        "Route " + i + " couldn't be parsed because the format is wrong"
-      );
-      console.log(e);
+     // console.log(
+      //  "Route " + i + " couldn't be parsed because the format is wrong"
+      //);
+     // console.log(e);
     }
   }
 
@@ -77,11 +73,11 @@ function toJson(routes) {
       let route = JSON.parse(routes[i]);
       jsonRoutes.push(route);
     } catch (e) {
-      console.log(
-        "Route " +
-          i +
-          " couldn't be transformed to json because the format is wrong"
-      );
+      //console.log(
+      //  "Route " +
+      //    i +
+      //    " couldn't be transformed to json because the format is wrong"
+      //);
     }
   }
   return jsonRoutes;
@@ -101,9 +97,7 @@ export async function getNotifications(inboxPath){
   
   let not2 = processSharedRoutes(notificationDocuments);
 
-  console.log('NOTIFICATIONS RETRIEVED')
-  console.log(notificationDocuments);
-  //console.log(not2);
+  //console.log('NOTIFICATIONS RETRIEVED')
 }
 
 
@@ -129,8 +123,6 @@ export async function getNotificationDocuments (inboxPath) {
           if (doc) {
             
             result = [...result, doc];
-            console.log('RESULT');
-            console.log(doc);
           }
         } catch (e) {
         }
@@ -146,10 +138,8 @@ export async function getNotificationDocuments (inboxPath) {
       if (notificationDocuments.length > 0) {
         for (let i = 0; i < notificationDocuments.length; i++) {
           var message = notificationDocuments[i].getSubject("");
-          console.log(message);
 
           const route = message.getString(schema.license);
-          console.log(route);          
 
         }
       

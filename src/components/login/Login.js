@@ -2,8 +2,6 @@ import React from 'react';
 import { LoggedIn, LoggedOut} from '@solid/react';
 import cache from '../../caches/routeCache/RouteCache'
 import * as friendCache from 'caches/friendCache/FriendCache';
-import {ShareWith} from 'ShareManager/ShareRoute';
-import {getNotifications, retrieveSharedRoutes} from 'ShareManager/RetrieveRoute';
 
 function Login() {
     const auth = require('solid-auth-client');
@@ -28,8 +26,7 @@ function Login() {
                 <button className="login100-form-btn" onClick={(e) => popup(e, auth)}>Log In</button>
             </LoggedOut>
             <LoggedIn>
-                <button className="login100-form-btn" onClick={() => retrieveSharedRoutes("https://testingclrmrnd.inrupt.net/viade/shared/sharedroutes.json")}>Testing</button>                
-                <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
+               <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
             </LoggedIn>
 
         </div>

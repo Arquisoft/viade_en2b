@@ -13,10 +13,10 @@ const request = require("request");
  * @param {String} webIdAuthor represents the id of the user autenticated.
  */
 export async function ShareWith(route, webIdFriend, webIdAuthor){
-    console.log('INN');
-    console.log(webIdFriend);
-    console.log(webIdAuthor);
-    console.log(route);
+   
+    //check .acl created for the path;
+
+    //check friend has an inbox;
 
     //check if it's already shared
     const shared = await checkPermissions("READ", webIdFriend, route);
@@ -39,11 +39,11 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
         try{
             sendNotification(webIdFriend, contenido, uuid);
         } catch(e){
-            console.log('There was an error');
+            //console.log('There was an error');
         }        
         
     } else {
-        console.log('The route was already shared.');
+        //console.log('The route was already shared.');
         return false;
     }
    
@@ -57,8 +57,6 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
  */
 export async function sendNotification ( webIdFriend, content, uuid) {
     var inbox = webIdFriend+"viade/inbox/";
-    
-    console.log(inbox);
 
     await request({
       method: "POST",
@@ -70,7 +68,7 @@ export async function sendNotification ( webIdFriend, content, uuid) {
     },
     function (error, response, content) {
       if (error) { return false; } else {
-        console.log("Notification sended");
+        //console.log("Notification sended");
         return true;
       }
     })
