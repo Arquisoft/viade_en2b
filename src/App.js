@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch,useHistory } from "react-router-dom";
 import MainPage from "./components/pages/MainPage";
 import LoginPage from "./components/pages/LoginPage";
 import FriendsPage from "./components/pages/FriendList";
@@ -8,17 +8,20 @@ import DropzonePage from "./components/pages/DropzonePage";
 import RoutesPage from "./components/pages/RoutesPage";
 import AboutPage from "./components/pages/AboutPage";
 import NotificationsPage from "./components/pages/NotificationsPage";
+import SaveRoutePage from "./components/pages/SaveRoutePage";
+import ImportGpxPage from "./components/pages/ImportGpxPage";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //import axios from "axios";
 import * as cache from "caches/routeCache/RouteCache";
 
+
 import "./App.css";
 
 var lastRouteReceived = [];
   function notificationsRecieved() {
-    if (cache.default.getSelected() !== lastRouteReceived) {
+    if (cache.default.getSelected() != lastRouteReceived) {
       lastRouteReceived = cache.default.getSelected();
       toast.info("Route Selected", {
         draggable: true,
@@ -26,12 +29,16 @@ var lastRouteReceived = [];
       });
     }
   }
+
 class App extends Component {
   state = {
     render: 0
   }
   
   render() {
+    setInterval(() => {
+        notificationsRecieved()
+      }, 2000)
     setTimeout(() => {
       if(this.state.render === 0)
         this.setState({
