@@ -6,6 +6,7 @@ export default {
   selected: "",
   selectedDetails: "",
   routeToUpload: "",
+  reload: false,
   getSelectedToUpload(){
     return this.routeToUpload;
   },
@@ -37,7 +38,7 @@ export default {
     }
   },
   async getRoutes(callback) {
-    if (this.routes.length === 0) {
+    if (this.routes.length === 0 || this.reload) {
       let foundRoutes = await RouteGateway.findAll(callback);
       if (foundRoutes.routes.length > 0) {
         this.routes = foundRoutes.routes;
@@ -79,4 +80,7 @@ export default {
   getSelectedDetails() {
     return this.selectedDetails;
   },
+  setReload(reload){
+    this.reload = reload;
+  }
 };
