@@ -4,22 +4,26 @@ import { fetchDocument } from "tripledoc"
 import { ldp } from "rdf-namespaces"
 
 //MARK AS READ NOTIFICATION METHOD
-export async function getNotifications(){  
-  console.log(getNotificationDocuments());
+export async function getNotifications(inboxPath){ 
+  let notification = [];
+  notification = await getNotificationDocuments(inboxPath);
+
+  console.log(notification);
 }
 
 
-
-export async function getNotificationDocuments () {
-    var inbox =  "https://testingclrmrnd.inrupt.net/viade/inbox/";
-    console.log(inbox);
+/**
+ * Returns the current list of notifications.
+ * Ex: "https://testingclrmrnd.inrupt.net/viade/inbox/"
+ */
+export async function getNotificationDocuments (inboxPath) {
+    var inbox =  inboxPath;
     var containerDoc = await fetchDocument(inbox);
-    console.log(containerDoc);
 
+    //if the document exists
     if (containerDoc) {
-      console.log('IN');
-      var containerSub = containerDoc.getSubject(inbox)
-      var containerItemUrls = containerSub.getAllRefs(ldp.contains)
+      var containerSub = containerDoc.getSubject(inbox);
+      var containerItemUrls = containerSub.getAllRefs(ldp.contains);
       var result = []
       for (var i = 0; i < containerItemUrls.length; i++) {
         try {
@@ -32,7 +36,7 @@ export async function getNotificationDocuments () {
       }
       return result
     }
-    return console.log('NO');
+    return [];
 
     
   }

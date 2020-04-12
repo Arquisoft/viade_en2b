@@ -28,7 +28,7 @@ function Login() {
                 <button className="login100-form-btn" onClick={(e) => popup(e, auth)}>Log In</button>
             </LoggedOut>
             <LoggedIn>
-                <button className="login100-form-btn" onClick={() => getNotifications()}>Testing</button>                
+                <button className="login100-form-btn" onClick={() => getNotifications("https://testingclrmrnd.inrupt.net/viade/inbox/")}>Testing</button>                
                 <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
             </LoggedIn>
 
