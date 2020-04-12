@@ -85,6 +85,7 @@ export async function sendNotification ( webIdFriend, content, uuid) {
           @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
           @prefix : <${webId+`viade/inbox/`+uuid+`.ttl`}>.
           <${webId+`viade/inbox/`+uuid+`.ttl`}> a as:${type} ;
+          schema:license <https://creativecommons.org/licenses/by-sa/4.0/>;
           terms:title "${title}" ;
           as:summary "${routePath}" ;
           as:actor <${webId}> ;

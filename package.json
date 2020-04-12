@@ -36,6 +36,7 @@
     "solid-acl-utils": "github:otto-aa/solid-acl-utils",
     "solid-auth-client": "^2.4.1",
     "solid-file-client": "^1.0.2",
+    "solid-namespace": "^0.3.0",
     "styled-components": "^5.1.0",
     "tripledoc": "^4.2.2",
     "uuid": "^7.0.2"
