@@ -2,7 +2,7 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 
-class MyInfiniteScroll extends React.Component {
+class MyImageInfiniteScroll extends React.Component {
   state = {
     items: this.props.content.slice(0,20),
     array_index: 20,
@@ -44,7 +44,10 @@ class MyInfiniteScroll extends React.Component {
         >
           {this.state.items.map((i, index) => (
             <div key={index}>
-                {i}
+                <img src = {i.filePath} alt = "hola" width="200" height="200"/>
+                <span>
+                  Published: {i.dateAttached.toDateString()}, {i.dateAttached.getHours()}:{i.dateAttached.getMinutes()}
+                </span>                      
             </div>
           ))}
         </InfiniteScroll>
@@ -53,4 +56,4 @@ class MyInfiniteScroll extends React.Component {
   }
 }
 
-export default MyInfiniteScroll;
+export default MyImageInfiniteScroll;

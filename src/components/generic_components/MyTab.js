@@ -1,29 +1,21 @@
 import React from "react";
 import { Tab } from 'semantic-ui-react'
-import MyInfiniteScroll  from '../generic_components/InfiniteScroll';
+import MyCommentInfiniteScroll  from '../generic_components/InfiniteScrollComment';
+import MyImageInfiniteScroll  from '../generic_components/InfiniteScrollImage';
+import MyVideoInfiniteScroll  from '../generic_components/InfiniteScrollVideo';
 
+import * as cache from '../../caches/fileCache/FileCache'
 
-var comentarios = []
+let comentarios = [];
+let images = [];
+let videos = [];
 
-var images = []
-
-var videos = []
-
-const loadArrays = () => {
-        for(let i = 0; i<100; i++){
-            comentarios.push("Comentario " + i);
-            images.push("Image " + i);
-            videos.push("Video " + i);
-    }
-}
-
-loadArrays();
 const panes = [
   { menuItem: 'Comentarios', pane: {
       key: "tabComentarios",
       content: (
         <div className = "routeComments" id ="scrollableCommentDiv" style={{overflow:"scroll", height:400}}>
-            <MyInfiniteScroll content = {comentarios} scrollParent = "scrollableCommentDiv"/>
+            <MyCommentInfiniteScroll content = {comentarios} scrollParent = "scrollableCommentDiv"/>
         </div>
       ),
   } },
@@ -31,7 +23,7 @@ const panes = [
       key: "tabImagenes",
       content: (
         <div className = "routeImages" id ="scrollableImageDiv" style={{overflow:"scroll", height:400}}>
-            <MyInfiniteScroll content = {images} scrollParent = "scrollableImageDiv"/>
+            <MyImageInfiniteScroll content = {images} scrollParent = "scrollableImageDiv"/>
         </div>
       ),
   }  },
@@ -39,21 +31,35 @@ const panes = [
       key: "tabVideos",
       content: (
         <div className = "routeVideos" id ="scrollableVideoDiv" style={{overflow:"scroll", height:400}}>
-            <MyInfiniteScroll content = {videos} scrollParent = "scrollableVideoDiv"/>
+            <MyVideoInfiniteScroll content = {videos} scrollParent = "scrollableVideoDiv"/>
         </div>
       ),
   }  }
 ]
 
-class MyTab extends React.Component{
 
+class MyTab extends React.Component {
 render(){
+    images.length = 0;
+    videos.length = 0;
+    comentarios.length = 0;
+
+    let multimedia = [];
+    multimedia = cache.default.getFilePathsForRoute(this.props.route);
+    multimedia.forEach(element => {
+        if(element.contentType === "image/png")
+            images.push(element);
+        else if(element.contentType === "video/mp4")
+            videos.push(element);
+    });
+
     return(
         <div className = "MyTabDiv">
             <link rel='stylesheet' href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"/>
             <Tab panes = {panes} renderActiveOnly={false}/>
         </div>
-    )}
+    )
+}
 }
 
 export default MyTab;

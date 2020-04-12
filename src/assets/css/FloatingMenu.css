@@ -1,3 +1,8 @@
+
+.rtf {
+  display: inline;
+}
+
 .rtf--mb{
     margin-right:0;
     margin-left:0;
@@ -12,7 +17,7 @@
 }
 
 .rtf--ab{
-    margin-right: 22px;
+    margin-right: 12px;
     position: relative;
     overflow: hidden;
 
@@ -64,6 +69,9 @@
   color: var(--font-color);
   }
 .fa-circle{
+  color: #B54A4A;
+}
+.fa-stop{
   color: #B54A4A;
 }
   

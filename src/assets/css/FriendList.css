@@ -1,20 +1,12 @@
-.friendContainer{   
-    columns: 5;
-    -webkit-columns: 5;
-    -moz-columns: 5;
-  }
-
-.liCard{
-  padding: 5px;
-  border-radius: 50px;
+.friends {
+  padding-top: 60px;
 }
 
 .sectionFriends{
   margin: 25px;
   padding: 20px;
-  border-radius: var(--border-radius);
   
-  column-gap: 20px;
+  border-radius: var(--border-radius);
   
   background: var(--bg-color);
   

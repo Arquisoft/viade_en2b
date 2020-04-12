@@ -1,5 +1,6 @@
 import * as RouteGateway from "../../data-access/gateways/RouteGateway";
 import FileCache from "../fileCache/FileCache";
+import BasicRoute from "../../Entities/BasicRoute";
 
 export default {
   routes: [],
@@ -14,6 +15,12 @@ export default {
   deleteRoute(route) {
     this.routes = this.routes.filter((obj) => route.name !== obj.name);
     RouteGateway.deleteByName(route.name);
+  },
+ async updateRoute(route,newRouteData,callback){
+    let updatedRoute = await RouteGateway.updateByName(route,newRouteData,callback);
+    if(updatedRoute!==null && updatedRoute!==undefined){
+    let routeIndex = this.routes.indexOf((obj) => route.name === obj.name);
+    this.routes[routeIndex]=updatedRoute;}
   },
   async getRoutes(callback) {
     if (this.routes.length === 0) {

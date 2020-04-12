@@ -1,10 +1,10 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
   margin-top: 5px;
-  position: absolute;
+  position: fixed;
   width: 46px;
   height: 30px;
-  left: 28px;
+  left: 25px;
   top: 36px;
   
   border-radius: 10px;
