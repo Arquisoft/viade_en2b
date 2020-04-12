@@ -13,10 +13,14 @@ const request = require("request");
  * @param {String} webIdAuthor represents the id of the user autenticated.
  */
 export async function ShareWith(route, webIdFriend, webIdAuthor){
+    console.log('INN');
+    console.log(webIdFriend);
+    console.log(webIdAuthor);
+    console.log(route);
 
     //check if it's already shared
     const shared = await checkPermissions("READ", webIdFriend, route);
-    if(shared){
+    if(!shared){
 
         //set permissions to read in the route
         setPermissionsTo("READ", route, webIdFriend);
@@ -30,6 +34,7 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
 
         const uuid =uuidv4();
         const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, route, "TODAY", uuid);
+       // const contenido = createNotificationJSONLD(webIdAuthor, route, webIdFriend);
 
         try{
             sendNotification(webIdFriend, contenido, uuid);
@@ -60,8 +65,7 @@ export async function sendNotification ( webIdFriend, content, uuid) {
       uri: inbox,
       body: content,
       headers: {
-        "Content-Type": "text/turtle",
-        "Content-Disposition": "attachment; filename='genial.html'"
+        "Content-Type": "text/turtle"
       }
     },
     function (error, response, content) {
@@ -72,20 +76,20 @@ export async function sendNotification ( webIdFriend, content, uuid) {
     })
   }
 
-export function createNotificationContent(type, title, webId, routePath, time,uuid){
+  export function createNotificationContent(type, title, webId, routePath, time, uuid){
     return `@prefix terms: <http://purl.org/dc/terms#>.
           @prefix as: <https://www.w3.org/ns/activitystreams#> .
           @prefix schema: <http://schema.org/> .
           @prefix solid: <http://www.w3.org/ns/solid/terms#> .
           @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
           @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-          @prefix : ${webId+`viade/inbox/123123.ttl`};
-          <${webId+`viade/inbox/123123.ttl`}> a as:${type} ;
-          terms:title ${title} ;
-          as:summary ${routePath} ;
-          as:actor ${webId} ;
+          @prefix : <${webId+`viade/inbox/`+uuid+`.ttl`}>.
+          <${webId+`viade/inbox/`+uuid+`.ttl`}> a as:${type} ;
+          terms:title "${title}" ;
+          as:summary "${routePath}" ;
+          as:actor <${webId}> ;
           solid:read "false"^^xsd:boolean ;
-          as:published ${ time }^^xsd:dateTime .`
+          as:published "${ time }"^^xsd:dateTime .`
 }
 export function createNotificationJSONLD(webIdAuthor, routePath, webIdTo){
     return JSON.stringify(
