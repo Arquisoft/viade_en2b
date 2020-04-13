@@ -140,7 +140,8 @@ export async function getNotificationDocuments (inboxPath) {
           var message = notificationDocuments[i].getSubject("");
 
           const route = message.getString(schema.license);
-
+          //const route = message.getString(ns.as.summary); //intentando coger el summary de la notificación,
+                                                            //que contiene la url de la ruta.
         }
       
     }
