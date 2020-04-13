@@ -13,7 +13,7 @@ As every application should be we developed this with the concept of reliability
 
 The tree below shows some of the quality attributes that we already discussed and decided to be relevant to the development.
 
-image::images/QualityTreeV0.1.png[Quality Tree V0.1]
+image:QualityTreeV0.1.png[Quality Tree V0.1]
 
 === Quality Scenarios
 
