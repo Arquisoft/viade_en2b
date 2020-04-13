@@ -60,6 +60,7 @@ render(){
         </div>
     )
 }
+
 }
 
 export default MyTab;

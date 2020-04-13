@@ -51,3 +51,18 @@ image:WhatsApp Image 2020-02-20 at 14.34.38.jpeg[]
      
 ----
 
+.Design of Views
+Our application has different views for the different actions that a user can perform.
+Before implementing that views we discuss about the design of them. First we decided that we wanted a side menu (hamburguer menu) used to access to any of the application's functions. The Home view of the application should be a map representing the route selected by the user, or a default route if any is selected, and a login button to access the login view. Here are shown the first drafts of the views:
+
+List Routes View::
+image:WhatsApp Image 2020-03-22 at 20.01.50(1).jpeg[]
+
+Home View::
+image:WhatsApp Image 2020-03-22 at 20.01.50(2).jpeg[]
+
+Login View::
+image:WhatsApp Image 2020-03-22 at 20.01.50.jpeg[]
+
+
+

@@ -1,67 +1,16 @@
 [[section-building-block-view]]
 
-
 == Building Block View
-
-[role="arc42help"]
-****
-.Content
-The building block view shows the static decomposition of the system into building blocks (modules, components, subsystems, classes,
-interfaces, packages, libraries, frameworks, layers, partitions, tiers, functions, macros, operations,
-datas structures, ...) as well as their dependencies (relationships, associations, ...)
-
-This view is mandatory for every architecture documentation.
-In analogy to a house this is the _floor plan_.
-
-.Motivation
-Maintain an overview of your source code by making its structure understandable through
-abstraction.
-
-This allows you to communicate with your stakeholder on an abstract level without disclosing implementation details.
-
-.Form
-The building block view is a hierarchical collection of black boxes and white boxes
-(see figure below) and their descriptions.
-
-image:05_building_blocks-EN.png["Hierarchy of building blocks"]
-
-*Level 1* is the white box description of the overall system together with black
-box descriptions of all contained building blocks.
-
-*Level 2* zooms into some building blocks of level 1.
-Thus it contains the white box description of selected building blocks of level 1, together with black box descriptions of their internal building blocks.
-
-*Level 3* zooms into selected building blocks of level 2, and so on.
-****
 
 === Whitebox Overall System
 
-[role="arc42help"]
-****
-Here you describe the decomposition of the overall system using the following white box template. It contains
-
- * an overview diagram
- * a motivation for the decomposition
- * black box descriptions of the contained building blocks. For these we offer you alternatives:
-
-   ** use _one_ table for a short and pragmatic overview of all contained building blocks and their interfaces
-   ** use a list of black box descriptions of the building blocks according to the black box template (see below).
-   Depending on your choice of tool this list could be sub-chapters (in text files), sub-pages (in a Wiki) or nested elements (in a modeling tool).
-
-
- * (optional:) important interfaces, that are not explained in the black box templates of a building block, but are very important for understanding the white box.
-Since there are so many ways to specify interfaces why do not provide a specific template for them.
- In the worst case you have to specify and describe syntax, semantics, protocols, error handling,
- restrictions, versions, qualities, necessary compatibilities and many things more.
-In the best case you will get away with examples or simple signatures.
-
-****
-
-image:05building-block-view_01.svg["Overview diagram"]
+image:05_BuildingBlocks-Scope and context.svg["Overview diagram"]
 
 Motivation::
 
 The above decomposition eases the development by a fair margin, as the division of tasks is more direct among the development team members; the team has two sub-units, front-end and back-end, and this division clearly states what should be done mostly by each sub-unit, and how they should coordinate to make everything connected. The different modules are created upfront, and from there every member will know what will be connected to what they are creating.
+
+As it can be noted, it is fairly similar to an MVC or a layered architecture.
 
 Contained Building Blocks::
 * **Viade**: The main application, the project being created.
@@ -71,76 +20,62 @@ Important Interfaces::
 * **User's Pod**: The data storage of the user. The application will have access to it, to move the necessary data to provide its functionalities.
 * **User**: The user, which has access to the application, and gives their permission for it to manipulate their Pod, so they can access the functionalities of the application.
 
-[role="arc42help"]
-****
-Insert your explanations of black boxes from level 1:
-
-If you use tabular form you will only describe your black boxes with name and
-responsibility according to the following schema:
-
-[cols="1,2" options="header"]
-|===
-| **Name** | **Responsibility**
-| _<black box 1>_ | _<Text>_
-| _<black box 2>_ | _<Text>_
-|===
-
-
-
-If you use a list of black box descriptions then you fill in a separate black box template for every important building block .
-Its headline is the name of the black box.
-****
-
-
 ==== Level 1 - Viade
 
-[role="arc42help"]
-****
-Here you describe <black box 1>
-according the the following black box template:
+image:05_BuildingBlocks-Level 1 - Viade.svg["Structure of the application"]
 
-* Purpose/Responsibility
-* Interface(s), when they are not extracted as separate paragraphs. This interfaces may include qualities and performance characteristics.
-* (Optional) Quality-/Performance characteristics of the black box, e.g.availability, run time behavior, ....
-* (Optional) directory/file location
-* (Optional) Fulfilled requirements (if you need traceability to requirements).
-* (Optional) Open issues/problems/risks
-
-****
-
-* **Purpose/Responsibility**: Viade is a route-management system that lets users create routes and share them with their friends, and is based on the _Solid specifications_. It is structured as a layered-architecture webapp, with layers connected through facades.
+* **Purpose/Responsibility**: Viade is a route-management system that lets users create routes and share them with their friends, and is based on the _Solid specifications_. It is structured as a layered-architecture web application, with layers connected through facades (very similar to a MVC structure).
 
 * **Contained Building Blocks**:
 ** **Interface Layer**: The layer with which the user will directly interact. It has all the components related with the user interface, and it relies on the _Control Layer_ to get any needed data to output to the user.
-** **Control Layer**: Layer that deals with receiving requests from the _Interface Layer_, do different requests to the _Data Access Layer_, receive the data, construct the needed components and send them to the _Interface Layer_.
+** **Control Layer**: Layer that deals with receiving requests from the _Interface Layer_, do different requests to the _Data Access Layer_, receive the data, save it and send it to the _Interface Layer_.
 ** **Data Access Layer**: This layer will transform requests from the _Control Layer_ to requests to the User's Pod. In some cases it will retrieve data, and it will process it accordingly so the _Control Layer_ can receive it and use it.
 
-* **Interfaces**: 
-** **Cache**: The cache is a component which has the sole purpose of intercepting and saving data going through the layers of the application, so the retrieving of data is faster because it is saved in memory.
+* **Directory/File location**: `viade_en2b/src`.
 
 
 ==== Level 2 - Interface Layer
 
+image:05_BuildingBlocks-Level 2 - Interface.svg["Interface layer structure"]
+
 * **Purpose/Responsibility**: Ease the interaction between the user and the Viade system.
 
 * **Contained Building Blocks**:
-** **Login**: Bars the interaction of any potential user with the app unless they have a valid (Solid) account.
-** **MapView**: The map the user interacts with. It contains all the routes created by him and lets modify them or create new ones.
-** **Menu**: Inside the menu, a user can find many options related with notifications, file sharing and configuration.
+** **Module _pages_**: Composed of the principal pages of the system, it contains components from all the other modules.
+** **Module _login_**: A small module that contains the necessary code to provide a user with the capability of logging in into the application and enjoy all its functionalities.
+** **Module _map_components_**: This module contains the components directly related with the map interface that manage the interactions between the user and the map.
+** **Module _generic_components_**: Module contained by components that do not have an specific role and are scattered around the application (like buttons with certain functionality or some interfacecomponents that keep a consistent style troughout the application).
+** **Module _spec_components_**: 
+
+* **Directory/File location**: `viade_en2b/src/components`.
 
 ==== Level 2 - Control Layer
 
-* **Purpose/Responsibility**: Validate and process the data of the application, to be able to show to user valuable information.
+image:05_BuildingBlocks-Level 2 - Control.svg["Control layer structure"]
+
+* **Purpose/Responsibility**: Validate data and attend requests coming from the interface layer, make requests to the data-access layer to meet those requests and send the response back to the interface layer. In this layer data will also be cached, so the number of petitions to the POD is decreased and thus the application can serve content to the user faster. 
+
+To note: there's only one instance of each cache present in the application, thus these working very much like singletons.
 
 * **Contained Building Blocks**:
-** **Login component**: A component that offers the user the option to choose its _Pod Provider_ and login with their _WebID_.
-** **Map**: Module formed by components that process the data related to route-management.
-** **Menu**: Module containing all the components that offer the menu options.
+** **Module _friendCache_**: Stores and makes petitions related to data of a user's Solid friends.
+** **Module _configCache_**: This cache only stores the chosen interface mode (light/dark mode), to pass the state between views. It does not make petitions or receive data from the Data Access Layer, as it does not need to.
+** **Module _fileCache_**: Stores and makes petitions related to files that a user has attached to routes. It communicates with the route cache to receive or give information about the files of a route.
+** **Module _routeCache_**: Stores and makes petitions regarding routes stored in a user's POD. It communicates with the file cache to receive or give information about the files attached to its routes.
+
+* **Directory/File location**: `viade_en2b/src/caches`.
 
 ==== Level 2 - Data Access Layer
 
-* **Purpose/Responsibility**: Retrieve and save data from the authenticated user's Pod related to the functionalities of the application. This layer will receive information by the user and make use of web standards to move the needed data accordingly.
+image:05_BuildingBlocks-Level 2 - Data.svg["Data access layer structure"]
+
+* **Purpose/Responsibility**: Retrieve and save data from the authenticated user's Pod related to the functionalities of the application. This layer will receive information by the control layer and make use of web standards to move the needed data accordingly.
 
 * **Contained Building Blocks**:
-** **DataProcessingModule**: Module containing several components that deal with RDF data, processing it and converting it for the _Control Layer_ to be able to use it.
-** **DataAccessModule**: As the name suggests, this is the module that deals with the data. It makes **heavy use** of several libraries complying with _Linked Data_ specifications to create, save, retrieve and delete resources from the User's Pod.
+** **Module _gateways_**: As its name says, it contains gateways that bar the passing of data between the control layer and the other submodules in the data access layer; this gateways will redirect the petitions to the correspondent submodules.
+** **Module _FileManager_**: Module that interacts with the files the user has attached to the routes in the POD.
+** **Module _RouteManager_**: Module that deals with the creation, updating, deletion and listing of routes in the user's POD.
+** **Module _FriendManager_**: Module that deals with the Solid friends of the user interacting with the application.
+
+
+* **Directory/File location**: `viade_en2b/src/data-access`.

@@ -1,30 +1,136 @@
 [[section-runtime-view]]
 == Runtime View
 
-
-
 In this section of the documentation important use cases will be described in order to understand how the system communicates at runtime.
 
 This part of the documentation will be in continuous development.
 
+=== Login into the application
+
+Users can access the functionalities of the application logging in with their Solid account.
+
+[plantuml, diagram-sequence, png]
+....
+MainPage -> LoginPage : <<user clicks in LOG IN button>>
+create collections SolidLoginPopUp
+LoginPage --> SolidLoginPopUp : <<user opens Solid pop-up>>
+LoginPage <-- SolidLoginPopUp : <<user logged in>>
+....
 
 === Adding a route
 
-The user will be able to add new routes. The data belonging to that specific route will be stored in its own particular pod.
+The user will be able to add new routes. The data belonging to that specific route will be stored in their own particular pod.
 
-image:6_addingRoute_Diagram.svg["Adding routes"]
+[plantuml, diagram-sequence, png]
+....
+MapContainer -> AddRoute
+AddRoute -> RouteCache : addRoute(route)
+RouteCache -> RouteGateway : addRoute(route)
+RouteCache --> RouteCache : <<cache route>>
+RouteGateway -> AddUserRoute : addRoute(route)
+AddUserRoute --> : <<save in POD>>
+....
+
+=== Recording a route
+
+Once a user presses the button to start recording, they can move and their movement will be tracked; when they press the button again to stop the recording and name the recorded route, it will inmediately saved in the cache and sent to the POD.
+
+[plantuml, diagram-sequence, png]
+....
+MapContainer -> RecordRoute
+RecordRoute -> RouteCache : recordRoute(route)
+RouteCache --> RouteCache : <<cache route>>
+RouteCache -> RouteGateway : addRoute(route)
+RouteGateway -> AddUserRoute : addRoute(route)
+AddUserRoute --> : <<save in POD>>
+....
 
 === Sharing a route
 
 The users are capable of sharing a route that has been previously added with their friends. In order to do it, they will just select the route that should be shared and the system will get it from the user's POD. Afterwards, Viade will notificate the user about the state of the sharing process, indicating whether there's been an error or not.
 
-
-image:6_sharingRoute_Diagram.svg["Sharing routes"]
+****
+Note: this use case involves an ongoing discussion in the ViadeSpec, therefore it is not fully known yet how it will be implemented and it will stay undocumented for now.
+****
 
 === Adding a friend
 
-In our application, users have the possibility to add other users as friends, and so, to share routes with them.
+In our application, users have the possibility to add other users as friends, and so, be able to share routes with them.
 
-image:6_addingFriends_Diagram.svg["Adding friends"]
+[plantuml, diagram-sequence, png]
+....
+FriendList -> FriendCache : addFriend(webId)
+FriendCache -> AddFriend : AddFriend(webId)
+AddFriend -> : <<add friend in POD>>
+....
+
+=== Deleting a friend
+
+In our application, users also have the possibility to delete friends.
+
+[plantuml, diagram-sequence, png]
+....
+FriendList -> FriendCache : deleteFriend(webId)
+FriendCache -> DeleteFriend : DeleteFriend(webId)
+DeleteFriend -> : <<delete friend in POD>>
+....
+
+=== See created routes
+
+The user can see the routes that they have in their POD, and can interact with those routes' data in various ways.
+
+[plantuml, diagram-sequence, png]
+....
+participant MainPage order 1
+participant RoutesPage order 2
+participant RouteCache order 3
+participant FileCache order 4
+participant RouteGateway order 5
+participant ListUserRoutes order 6
+
+MainPage -> RoutesPage
+RoutesPage --> RoutesPage : <<loading view>>
+RoutesPage -> RouteCache : getRoutes()
+RouteCache -> RouteGateway : findAll()
+RouteGateway -> ListUserRoutes : loadUserRoutesFiles()
+ListUserRoutes <-- : <<get routes from the POD>>
+ListUserRoutes -> RouteGateway : return Object(routes, filePaths)
+RouteGateway -> RouteCache : return Object(routes, filePaths)
+RouteCache --> RouteCache : <<cache routes>>
+RouteCache -> FileCache : addFilePaths(filePaths)
+....
+
+=== Link to a route an uploaded file
+
+Users can upload a file from their device (image or video) and automatically link it to a selected route.
+
+[plantuml, diagram-sequence, png]
+....
+participant RoutesPage order 1
+participant MainPage order 2
+participant Dropzone order 3
+participant RouteCache order 4
+participant FileCache order 5
+participant FileGateway order 6
+participant FileUpload order 7
+participant FileLink order 8
+
+RoutesPage -> RouteCache : setSelected(route)
+RoutesPage -> MainPage
+MainPage <- RouteCache : getSelected()
+MainPage -> Dropzone : <<user clicks on upload button>>
+Dropzone --> Dropzone : <<user adds files to upload>>
+Dropzone -> FileCache : uploadFiles(routeSelected, files)
+FileCache -> FileGateway : uploadFiles(routeSelected, files)
+FileGateway -> FileUpload : uploadFiles(files)
+FileUpload --> : <<save files in POD>>
+FileUpload -> FileGateway : return filePaths
+FileGateway -> FileLink : linkFilesToRoute(routeSelected, filePaths)
+FileLink <-- : <<get route from POD>>
+FileLink --> : <<save updated route to POD>>
+FileLink -> FileGateway
+FileGateway -> FileCache : return filePaths
+FileCache --> FileCache : <<cache filePaths>>
+....
 
 

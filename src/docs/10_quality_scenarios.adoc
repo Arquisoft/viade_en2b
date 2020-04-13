@@ -1,15 +1,32 @@
 [[section-quality-scenarios]]
 == Quality Requirements
 
+Many quality attributes were present in our minds when developing the applicarion. But one was highly prioritized above all the others. And that one is the usability. When we were discusing how to make the program we reached the conclusion that this one was the most important one, since in our opinion, this kind of application should be easy to use. So with that focus in mind we decided to make the application the most intuitive and easy that we could.
 
-After we discussed some more the design and the goals of this proyect some quality attributes that aren't as notable or important that the ones that we are focusing on came to light. Some of this includes attributes like usability, learnability or flexibility. This three, for example, constitute an integral part of every application and will be taken into consideration in a future stage of development.
+Another quality attributes that were relevant were the interoperability of the application, were alongside the other group of students developed a common standart so the application would be functional between each other.
+
+Since the program is built using Solid we have acces to Solid's use of permisions, granting the application an extra layer of security in the files of the user.
+
+As every application should be we developed this with the concept of reliability in mind, we do not want the user to get confused if some problem happens, so we made sure to make that not a single one happens.
 
 === Quality Tree
 
-The tree below shows some of the quality attributes that we already discussed and decided to be relevant at this point of the development. In the future it is certain that this initial tree will be expanded upon or even altered.
+The tree below shows some of the quality attributes that we already discussed and decided to be relevant to the development.
 
-image::images/QualityTreeV0.1.png[Quality Tree V0.1]
+image:QualityTreeV0.1.png[Quality Tree V0.1]
 
 === Quality Scenarios
 
-Unfortunately, at this stage in development we cannot ascertain the functionality and efficiency of the system. So this will be completed in the near future when we have a more solid understanding of our capabilities with the development tools that are available to us.
+
+.Quality Scenarios
+[width="100%",options="header,footer"]
+|====================
+| Quality Attribute | Case | Action | Response | Response time 
+| Usability | U.1 | The user wants to add a new route to the application, by pressing the record button in the main menu. | The application starts recording the route, changing the icon of the button to give feedback to the user. | <500ms
+| Usability | U.2 | The user tries to upload a multimedia file to a route. He opens the menu to upload the file and adds the file(s) to the zone| The program will use a drag and drop feature to easily add a file only needing to drop the file(s) in the marked zone | <1500ms
+| Reliability | R.1 | The user tries to upload a file in a wrong format | A notification will appear in the top of the screen warning the user that the specified file is not supported. | <800ms
+| Securability | S.1 | The user will try to access the routes stored in application | The application will retrieve the routes stored in the pod. The solid pod has a control in the permisions of its data making it a secure way to store information | <5s
+| Securability | S.1 | The user will try to access the routes stored in application | The application will retrieve the routes stored in the pod. The solid pod has a control in the permisions of its data making it a secure way to store information | <5s
+| Efficiency | E.1 | The user will want to list any type of information of the application | The pod will access the cache of the pertinent request in order to extract the information requested in an efficient manner. | <1s
+| Efficiency | E.2 | The user has finished recording the route and has given it a name | The application will redirect to the routes page automatically and show all the routes including the new one | <2s
+|====================

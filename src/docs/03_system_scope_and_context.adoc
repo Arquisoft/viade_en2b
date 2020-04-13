@@ -1,74 +1,42 @@
 [[section-system-scope-and-context]]
 == System Scope and Context
 
-The main goal of this project is to create a decentralized routes management system based on Solid, which means that
-every user has its own Pod, that is their own personal storage space, where all of their information is stored.
-The main communication partners of the applications will be the users themselves.
-****
-.Contents
-System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
+The main goal of this project is to create a decentralized routes management system based on Solid, which means that every user has its own Pod, that is their own personal storage space, where all of their information is stored. The main communication partners of the applications will be the users themselves; the application will only ease the interaction.
 
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
-
-.Motivation
-The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
-
-.Form
-Various options:
-
-The system scope and responsibilities define what the system should do in order to fulfill its objective. Viade should have the following features:
-
+Viade should have the following features:
 
 * The system should be based on a decentralized architecture where data storage is separated from the app.
-* Enable users to store their routes in their own pods
-* Enable users to view the routes stored on a map
-* Enable users to share pictures, videos or information about a route with other friends
+* Enable users to store their routes in their own pods.
+* Enable users to view the routes stored on a map.
+* Enable users to share pictures, videos or information about a route with other friends.
 * Enable the user to receive notifications when other friends share a route with him.
-* Enable the users to for groups of friends with whom the may want to share routes
+* Enable the users to for groups of friends with whom the may want to share routes.
 * Enable the users to view routes loaded by users that are using a different app.
-
 
 === Business Context
 
 Due to the requirement that states that the decentralized application must implement SOLID technology, each user of the system will have a POD where its data will be stored. The application will establish a communication with the user's POD to read/write the required data from it. 
 
 * Communication elements:
-
 ** User: represents the end user of the application.
 ** Viade: the application itself, in charge of managing the access to the data. Uses an authentication protocol to perform the user data access, and links that point to the user pod.
 which contains application data
 ** POD: web-accessible personal datastore of each user.
+** POD Provider: gives the user the possibility of using the application with the data of their POD (can be the user itself, if they have made their own POD provider).
 
-image:BusinessContext.png["BusinessContext Diagram"]
-
-
+image:BusinessContext.png["Business Context Diagram"]
 
 === Technical Context
-Our applcation will be a web application as well as a mobile application.
-In order to make it decentralized all user's data will be saved in each user's own Solid Pod.
+
+The application, although in its core a web application, is expected to work in all types of devices. In order to make it decentralized all user's data will be saved in each user's own Solid Pod.
 
 * Technical interfaces:
-** Solid
-** Javascript
-** React navite
-** Map api
 
-[role="arc42help"]
-****
-.Contents
-Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
-
-.Motivation
-Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
-
-.Form
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.
-
-
-**<Diagram or Table>**
-
-**<optionally: Explanation of technical interfaces>**
-
-**<Mapping Input/Output to Channels>**
+[options="header",cols="1,2"]
+|===
+|Technical interface|Description
+|Solid|It will work as the base of the project, setting the foundations of what the application will strive to do.
+|Javascript|It is the language of choosing for the application, plus React, the chosen library to develop the project with, uses Javascript so it was a must.
+|React|Library used to create the interface of the application and integrate it with the accesing of data to the POD.
+|Map API|The application is a route management system, therefore it needs a map API that brings the user an interface to see their routes and manage them more easily.
+|===

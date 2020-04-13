@@ -1,15 +1,31 @@
 [[section-technical-risks]]
 == Risks and Technical Debts
 
-In the development of this project we are facing the following risks and technical debts that may affect our work.
+In the development of this project we are facing the following risks that may affect our work:
 
+[options="header",cols="1,2"]
+|===
+|Risk | Measures we are taking 
+|The team is not familiar with Solid| We will be researching about it using all the resources available at the official webpage and repositories.
+|The team is not familiar with React framework|We will be researching about it to be familiar with all of its capabilities that fit the most in our project.
+|No experience working in a team this big| We will be working on using Git properly to get the most out of it and keep an open conversation to divide the work in the best way possible
+|Little experience with JavaScript| We will try to work on our own to get familiar with the language.
+|Coordinating with other teams to reach an standard| We should be working with other teams to agree on using an standard for the routes to provide interoperability.
 |===
 
-|Risk / Technical debts | Measures we are taking 
-|The team is not familiar with Solid| We will be researching about it using all the resources available at the official webpage and repositories
-|The team is not familiar with React framework|We will be researching about it to be familiar with all of its capabilities that fit the most in our project
-|No experience working in a team this big| We will be working on using Git properly to get the most out of it and keep an open conversation to divide the work in the best way possible
-|Little experience with JavaScript| We will try to work on our own to get familiar with the language
-|Coordinating with other teams to reach an standard| We should be working with other teams to agree on using an standard for the routes to provide interoperability
+We also faced several difficulties that translated as technical debts:
 
+[options="header",cols=">1,2"]
+|===
+2+^|Technical debts
+s|Code debts s|Description
+||
+s|Design debts s|Description
+|React Native|The project was initially thought to be developed in both React and React Native. But it was later decided, after much investigation and thought put into it, that it was not going to be possible to provide both applications, so the team sticked to the web application.
+||
+s|Test debts s|Description
+|Jest|The team had to inadvertently learn how to work with the Jest library and a couple of other testing utilities to be able to test the project being developed.
+|Cucumber|The team also had to learn to create scenario testing using Cucumber, Jest and Pupeteer.
+||
+s|Documentation debts s|Description
 |===
