@@ -9,38 +9,41 @@ This part of the documentation will be in continuous development.
 
 Users can access the functionalities of the application logging in with their Solid account.
 
-@startuml
+[plantuml, diagram-sequence, png]
+....
 MainPage -> LoginPage : <<user clicks in LOG IN button>>
 create collections SolidLoginPopUp
 LoginPage --> SolidLoginPopUp : <<user opens Solid pop-up>>
 LoginPage <-- SolidLoginPopUp : <<user logged in>>
-@enduml
+....
 
 === Adding a route
 
 The user will be able to add new routes. The data belonging to that specific route will be stored in their own particular pod.
 
-@startuml
+[plantuml, diagram-sequence, png]
+....
 MapContainer -> AddRoute
 AddRoute -> RouteCache : addRoute(route)
 RouteCache -> RouteGateway : addRoute(route)
 RouteCache --> RouteCache : <<cache route>>
 RouteGateway -> AddUserRoute : addRoute(route)
 AddUserRoute --> : <<save in POD>>
-@enduml
+....
 
 === Recording a route
 
 Once a user presses the button to start recording, they can move and their movement will be tracked; when they press the button again to stop the recording and name the recorded route, it will inmediately saved in the cache and sent to the POD.
 
-@startuml
+[plantuml, diagram-sequence, png]
+....
 MapContainer -> RecordRoute
 RecordRoute -> RouteCache : recordRoute(route)
 RouteCache --> RouteCache : <<cache route>>
 RouteCache -> RouteGateway : addRoute(route)
 RouteGateway -> AddUserRoute : addRoute(route)
 AddUserRoute --> : <<save in POD>>
-@enduml
+....
 
 === Sharing a route
 
@@ -54,27 +57,30 @@ Note: this use case involves an ongoing discussion in the ViadeSpec, therefore i
 
 In our application, users have the possibility to add other users as friends, and so, be able to share routes with them.
 
-@startuml
+[plantuml, diagram-sequence, png]
+....
 FriendList -> FriendCache : addFriend(webId)
 FriendCache -> AddFriend : AddFriend(webId)
 AddFriend -> : <<add friend in POD>>
-@enduml
+....
 
 === Deleting a friend
 
 In our application, users also have the possibility to delete friends.
 
-@startuml
+[plantuml, diagram-sequence, png]
+....
 FriendList -> FriendCache : deleteFriend(webId)
 FriendCache -> DeleteFriend : DeleteFriend(webId)
 DeleteFriend -> : <<delete friend in POD>>
-@enduml
+....
 
 === See created routes
 
 The user can see the routes that they have in their POD, and can interact with those routes' data in various ways.
 
-@startuml
+[plantuml, diagram-sequence, png]
+....
 participant MainPage order 1
 participant RoutesPage order 2
 participant RouteCache order 3
@@ -92,13 +98,14 @@ ListUserRoutes -> RouteGateway : return Object(routes, filePaths)
 RouteGateway -> RouteCache : return Object(routes, filePaths)
 RouteCache --> RouteCache : <<cache routes>>
 RouteCache -> FileCache : addFilePaths(filePaths)
-@enduml
+....
 
 === Link to a route an uploaded file
 
 Users can upload a file from their device (image or video) and automatically link it to a selected route.
 
-@startuml
+[plantuml, diagram-sequence, png]
+....
 participant RoutesPage order 1
 participant MainPage order 2
 participant Dropzone order 3
@@ -124,6 +131,6 @@ FileLink --> : <<save updated route to POD>>
 FileLink -> FileGateway
 FileGateway -> FileCache : return filePaths
 FileCache --> FileCache : <<cache filePaths>>
-@enduml
+....
 
 
