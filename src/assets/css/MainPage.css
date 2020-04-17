@@ -1,24 +1,22 @@
 .loginButton {
-    position:absolute;
-    z-index: 10;
-    
-    top: 20px;
-    right:20px;
-    width: 6em;
-    
-    font-size: 22px;
+  z-index: 10;
+  display: block;
+  top: 20px;
+  right: 140px;
 }
-.dropzonePage{
-    display: block;
-    
-    top: 45%;
-    left: 45%;
-    
+.dropzonePage {
+  display: block;
+
+  top: 45%;
+  left: 45%;
 }
 
 .rtf {
-    height: 65px;
-    width: 75px;
-  
-    z-index: 10;
+  height: 65px;
+  width: 75px;
+
+  z-index: 10;
+}
+.dropdown {
+  transition: max-height 0.15s ease-out;
 }

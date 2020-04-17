@@ -1,26 +1,25 @@
 button {
-    text-align: center;
-    width: auto;
-    height: auto;
-    margin: 15px 10px;
-    font-size: 20px;
-    padding: 10px 15px;
+  text-align: center;
+  width: auto;
+  height: auto;
+  margin: 15px 10px;
+  font-size: 20px;
+  padding: 10px 15px;
 
-    border: 0;
-    border-radius: 10px;
-    background-color: var(--bg-color);
-    text-decoration: none;
-    
-    line-height: 1;
-    
-    font-family: var(--font-family);
-    font-weight: 700;
-    
-    color: var(--font-color);
-    
-    -webkit-appearance: none;
-    -webkit-font-smoothing: antialiased;
-    
+  border: 0;
+  border-radius: 10px;
+  background-color: var(--bg-color);
+  text-decoration: none;
+
+  line-height: 1;
+
+  font-family: var(--font-family);
+  font-weight: 700;
+
+  color: var(--font-color);
+
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 button:hover {
@@ -28,12 +27,11 @@ button:hover {
 }
 
 .buttonGeneric {
-    border-radius: 30px;
-    background: var(--bg-color);
-    box-shadow:  var(--box-shadow-up),
-                  var(--box-shadow-down);
+  border-radius: 30px;
+  background: var(--bg-color);
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
 }
 
 .buttonGeneric:active {
-    background: var(--bg-color-pressed);
+  background: var(--bg-color-pressed);
 }

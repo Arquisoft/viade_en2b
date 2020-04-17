@@ -21,6 +21,7 @@ class Login extends React.Component {
       name: "",
     };
   }
+
   componentDidMount() {
     this.getProfileImage().then((foto) => {
       if (foto == undefined) {
@@ -32,9 +33,13 @@ class Login extends React.Component {
     });
 
     this.getProfileName().then((name) => {
+      if (name == undefined) {
+        this.setState({ name: "Guest" });
+      }
       this.setState({ name: "Welcome, " + name });
     });
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.image !== this.state.image) {
       this.getProfileImage().then((foto) => {
@@ -47,6 +52,9 @@ class Login extends React.Component {
       });
 
       this.getProfileName().then((name) => {
+        if (name == undefined) {
+          this.setState({ name: "Welcome, Guest" });
+        }
         this.setState({ name: name });
       });
     }
@@ -67,10 +75,10 @@ class Login extends React.Component {
     });
 
     this.getProfileName().then((name) => {
-      this.setState({ name: "Welcome, " + name });
+      if (name == undefined) {
+        this.setState({ name: "Welcome, Guest" });
+      } else this.setState({ name: "Welcome, " + name });
     });
-
-    alert(`Logged in as ${session.webId}`);
   }
 
   async logout(e, auth) {
@@ -87,7 +95,9 @@ class Login extends React.Component {
     });
 
     this.getProfileName().then((name) => {
-      this.setState({ name: "Welcome, " + name });
+      if (name == undefined) {
+        this.setState({ name: "Welcome, Guest" });
+      } else this.setState({ name: "Welcome, " + name });
     });
     cache.clear();
     friendCache.default.clear();
@@ -107,6 +117,7 @@ class Login extends React.Component {
     try {
       const { user } = data;
       const userName = await user.name;
+
       return userName.value;
     } catch (error) {
       //errorToaster(error.message, 'Error');
