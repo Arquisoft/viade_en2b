@@ -60,7 +60,9 @@ class UserDropdown extends Component {
       <div className="loginButton">
         <div className="dropdown">
           <img id="avataruser" src={this.state.image} />
-          <span>{this.state.name.split(" ")[1]}</span>
+          <span style={{ padding: "10px" }}>
+            {this.state.name.split(" ")[1]}
+          </span>
           <div className="dropdown-content">
             <Router>
               <Link className="linkUser" to="/login">
