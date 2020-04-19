@@ -2,41 +2,68 @@
 //Add the URL to a file located in /viade/shared/globalSharedWithMe.js
 import { fetchDocument } from "tripledoc";
 import { ldp, schema} from "rdf-namespaces";
+import { message } from "rdf-namespaces/dist/wf";
+import {loadSpecificUserRoutesFiles} from 'RouteManager/ListSpecificUserRoutes';
 
-const $rdf = require('rdflib'); 
-const ns = require('solid-namespace')($rdf);
+const $rdf = require("rdflib");
+const ns = require("solid-namespace")();
+//const ns = require('solid-namespace')($rdf);
 
-//LISTING SHARED ROUTES
+/**
+ * Method that retrieves the urls from the file
+ * sharedroutes.js and lists them.
+ * 
+ * @param {String} routesURL url where the user
+ * has the shared routes stored
+ * for example "https://testingclrmrnd.inrupt.net/viade/shared/sharedroutes.json"
+ */
 export async function sharedRoutesList(routesURL){
 
-  const sharedPath = "https://testingclrmrnd.inrupt.net/viade/shared/sharedroutes.json";
-  // = webId + "viade/shared/sharedroutes.json"
-  const url = retrieveSharedRoutes(sharedPath);
+
+  const sharedPath = routesURL;
+  const url = await retrieveSharedRoutes(sharedPath);
+
+  let routes = [];
   
   for(let i = 0; i< url.length; i++){
-
+    //now, retrieving the specific route from the url
+    let urlRoute = url[i];
+    routes.push(loadSpecificUserRoutesFiles(urlRoute));
   }
-
+  console.log(routes);
 }
-//RETRIEVE SHARED ROUTE
+
+
+/**
+ * Method that retrieves the file of the shared routes
+ * from the folder shared of the user autenticated
+ * 
+ * Example: "https://testingclrmrnd.inrupt.net/viade/shared/"
+ * @param {String} sharedPath 
+ */
+
 export async function retrieveSharedRoutes(sharedPath){
   const auth = require("solid-auth-client");
   const FC = require("solid-file-client");
   const fc = new FC(auth);
   let routesJSONS = [];
 
-  let content = await fc.readFolder("https://testingclrmrnd.inrupt.net/viade/shared/");
+  let content = await fc.readFolder();
   let files = content.files;
 
   for (let i = 0; i < files.length; i++) {
       let fileContent = await fc.readFile(files[i].url);
       routesJSONS.push(fileContent);
-
   }
   const url = jsonURLRetrieve(toJson(routesJSONS));
   return url;
 }
 
+/**
+ * Method that retrieves the urls
+ * of the file sharedroutes.js
+ * @param {} routes 
+ */
 function jsonURLRetrieve(routes) {
   let routesShared = [];
   let routesURL = [];
@@ -44,11 +71,8 @@ function jsonURLRetrieve(routes) {
   for (let i = 0; i < routes.length; i++) {
     try {
        let routesRetrieved = routes[i].routes;
-
-      for (let i = 0; i < routesRetrieved.length; i++){
-            
-        const routeURL = routesRetrieved[i]['@id'];
-       
+      for (let i = 0; i < routesRetrieved.length; i++){            
+        const routeURL = routesRetrieved[i]['@id'];       
         routesURL.push(routeURL);
       }      
 
@@ -86,18 +110,22 @@ function toJson(routes) {
 
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 //GETTIN ALL NOTIFICATIONS (urls?)
 export async function getNotifications(inboxPath){ 
+
   let notificationDocuments = [];
   notificationDocuments = await getNotificationDocuments(inboxPath);
-  
-  let not2 = processSharedRoutes(notificationDocuments);
+  console.log("NOTIFIC DOCUMENTS");
+  console.log(notificationDocuments);
 
-  //console.log('NOTIFICATIONS RETRIEVED')
+  let not2 = processSharedRoutes(notificationDocuments);
+  console.log('NOTIFICATIONS RETRIEVED');
+  console.log(not2);
+
 }
 
 
@@ -118,11 +146,27 @@ export async function getNotificationDocuments (inboxPath) {
       for (var i = 0; i < containerURLS.length; i++) {
         try {
           //FETCH DE LA NOTIFICACIÓN
+         // console.log('FETCH DE LA NOTIFICACIÓN');
+         // console.log(containerURLS[i]);
           var doc = await fetchDocument(containerURLS[i]);
 
-          if (doc) {
-            
+          if (doc) {    
+            console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');        
             result = [...result, doc];
+
+            var subjectNotification = containerURLS[i];
+            console.log(subjectNotification);
+
+            console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
+            //var messageNotification = containerURLS[i].getSubject(subjectNotification);
+            console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC');
+            //if (messageNotification){
+              //sconsole.log('THERE IS A NOTIFICATION');
+              //const routeNotification = messageNotification.getString(ns.as("summary"));
+              //console.log('MESSAGE NOTIFICATION');
+              //console.log(routeNotification);
+            //}
+            
           }
         } catch (e) {
         }
@@ -133,19 +177,25 @@ export async function getNotificationDocuments (inboxPath) {
   }
 
   export async function processSharedRoutes (notificationDocuments) {
-    var result = []
-     
-      if (notificationDocuments.length > 0) {
-        for (let i = 0; i < notificationDocuments.length; i++) {
-          var message = notificationDocuments[i].getSubject("");
+    var result = [];
 
-          const route = message.getString(schema.license);
-          //const route = message.getString(ns.as.summary); //intentando coger el summary de la notificación,
-                                                            //que contiene la url de la ruta.
-        }
-      
+    if (notificationDocuments.length > 0) {
+      for (let i = 0; i < notificationDocuments.length; i++) {
+        var message = notificationDocuments[i].getSubject(
+          "https://testingclrmrnd.inrupt.net/viade/inbox/5cbd2db0-7cb8-11ea-b984-edbaa4d4ab97.ttl"
+        );
+        //console.log('MESSAGE');
+        //console.log(message);
+
+        //const route = message.getString(schema.license);
+        const route = message.getString(ns.as("summary"));
+        
+        console.log('ROUTE');
+        console.log(route);
+        result.push(route);
+      }
     }
-    return result
+    return result;
   }
 
   

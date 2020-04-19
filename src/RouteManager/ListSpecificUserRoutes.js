@@ -10,9 +10,10 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
     
     let routesFolder = urlRoute;
 
-    if (await fc.itemExists(routesFolder)) {
+    if (await fc.itemExists(urlRoute)) {
       try {
-        let fileContent = await fc.readFile(files[i].url);
+        let fileContent = await fc.readFile(urlRoute);
+        console.log('FILE CONTENT');
         console.log(fileContent);
         routes.push(fileContent);
         
@@ -26,8 +27,10 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
       console.log("user has no routes directory");
     }
 
-    let rou = this.jsonToEntity(this.routesToJson(routes));
-    //localStorage.setItem('rutas', JSON.stringify(rou));
+    console.log('ROUTEs');
+    console.log(routes);
+
+    let rou = jsonToEntity(routesToJson(routes));
 
     return rou;
   }
@@ -62,7 +65,7 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
         console.log("Route " + route.name + " was created succesfully");
 
         if (routes[i].media) {
-          entFiles.push(this.getMediaAttachedToRoute(routes[i]));
+          entFiles.push(getMediaAttachedToRoute(routes[i]));
         }
       } catch (e) {
         console.log(
