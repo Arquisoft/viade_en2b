@@ -30,13 +30,13 @@ function Login() {
           </datalist>
           <span className="focus-input100"></span>
         </div>
-        <button id="loginBtn" className="login100-form-btn" onClick={(e) => popup(e, auth)}>
+        <button className="login100-form-btn" onClick={(e) => popup(e, auth)}>
           Log In
         </button>
       </LoggedOut>
       <LoggedIn>
-        <button id="logoutBtn" className="login100-form-btn" onClick={(e) => logout(e, auth)}>
-          Log out
+        <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>
+          Log Out
         </button>
       </LoggedIn>
     </div>
