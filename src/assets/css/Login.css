@@ -22,13 +22,12 @@
   background-color: var(--bg-color);
   border-radius: var(--border-radius);
   padding: 150px 130px 150px 95px;
-  
-  box-shadow:  var(--box-shadow-up),
-                var(--box-shadow-down);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
 }
 
 .container-login100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -53,21 +52,20 @@
   font-family: var(--font-family);
   font-weight: 700;
   text-transform: uppercase;
-  
+
   color: var(--font-color);
-  
-  
+
   display: block;
   padding-bottom: 54px;
 }
 
 .login100-form-btn {
   text-transform: uppercase;
-  
+
   width: 100%;
   height: 50px;
   border-radius: var(--border-radius);
-  
+
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -75,17 +73,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   padding: 0 25px;
 
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
-  
+
   background: var(--bg-color);
-  box-shadow:  var(--box-shadow-up),
-                var(--box-shadow-down);
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
   margin-left: 0px;
   margin-right: 0px;
   margin-top: 30px;
@@ -106,24 +103,23 @@
   display: block;
   width: 100%;
   border-radius: var(--border-radius);
-  
+
   background: var(--input-bg-color);
 
   padding: 0 30px 0 68px;
-  
+
   color: var(--font-color);
-  
+
   /* border: var(--font-color) 1px solid; */
   border-radius: var(--border-radius);
-  
-  box-shadow:  var(--box-shadow-up),
-                var(--box-shadow-down);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
 }
 
 .input100::placeholder {
   color: var(--font-color);
-  
-  border: 1px solid     var(--primary-color);
+
+  border: 1px solid var(--primary-color);
   box-shadow: 0 0 0 1px var(--primary-color);
 }
 
@@ -141,7 +137,7 @@
   margin-bottom: 10px;
 }
 
-.bodyContainer{
+.bodyContainer {
   background-color: var(--bg-color);
   min-height: 100vh;
   display: flex;
@@ -150,9 +146,9 @@
   justify-content: center;
 }
 
-.headerLogin{
-    width: 100%;
-    height: 20%;
+.headerLogin {
+  width: 100%;
+  height: 20%;
 }
 
 .login100-pic {
@@ -161,6 +157,8 @@
 
 .login100-pic img {
   max-width: 100%;
+  border-radius: 170px;
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
 }
 
 /*------------------------------------------------------------------
@@ -200,7 +198,6 @@
   }
 }
 
-
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 
@@ -224,7 +221,7 @@
   transform: translateY(-50%);
   right: 8px;
   pointer-events: none;
-  
+
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
