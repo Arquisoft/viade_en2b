@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx creator="WTracks"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+  <name>Test</name>
+  <desc></desc>
+  <author><name>WTracks</name></author>
+  <link href='https://opoto.github.io/wtracks/'>
+    <text>WTracks</text>
+    <type>text/html</type>
+  </link>
+  <time>2020-04-12T15:34:43.704Z</time>
+  <bounds minlat="42.43821709603838" minlon="-7.973499298095704" maxlat="42.4665569062003" maxlon="-7.891101837158204"/>
+</metadata>
+<trk><name>FinalTestGPX</name>
+  <trkseg>
+    <trkpt lat="42.45138032401269" lon="-7.926764488220216"></trkpt>
+    <trkpt lat="42.453533553945334" lon="-7.926764488220216"></trkpt>
+    <trkpt lat="42.455496728484356" lon="-7.929081916809083"></trkpt>
+    <trkpt lat="42.45673159706724" lon="-7.933502197265626"></trkpt>
+    <trkpt lat="42.457143214517046" lon="-7.940111160278321"></trkpt>
+    <trkpt lat="42.457459841483484" lon="-7.946505546569825"></trkpt>
+    <trkpt lat="42.457808129297476" lon="-7.953243255615235"></trkpt>
+    <trkpt lat="42.45967618542211" lon="-7.9618263244628915"></trkpt>
+    <trkpt lat="42.46148086468275" lon="-7.9673194885253915"></trkpt>
+    <trkpt lat="42.46262063531039" lon="-7.971310615539552"></trkpt>
+    <trkpt lat="42.464203615650185" lon="-7.971181869506837"></trkpt>
+    <trkpt lat="42.46578655596554" lon="-7.968134880065919"></trkpt>
+    <trkpt lat="42.46632474655516" lon="-7.967276573181153"></trkpt>
+  </trkseg>
+</trk></gpx>
