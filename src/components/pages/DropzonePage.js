@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import Dropzone from '../spec_components/Dropzone';
 import '../../assets/css/DropzonePage.css';
 import cache from "caches/fileCache/FileCache";
+import routeCache from "caches/routeCache/RouteCache";
 
 class DropzonePage extends Component {
- 
-  
-
+   
   componentWillMount(){
       document.addEventListener('mousedown',this.handleClick, false);
   }
@@ -16,9 +15,9 @@ class DropzonePage extends Component {
   }
   handleClick =(e)=>{
     if(this.node.contains(e.target)){
+    
       return;
     }
-
     this.props.showUpload();
     
   }
@@ -27,6 +26,7 @@ class DropzonePage extends Component {
     function toDo(params) { //EJEMPLO DE FUNCIÓN PARA PASARLE AL onUpload
       cache.uploadFiles([...params]);
       console.log(params);
+      routeCache.setReload(true);
     }
     function emptyTrigger(){
       //Function To Trigger

@@ -27,7 +27,7 @@ class RoutesPage extends React.Component {
     cache.default.getRoutes(this.handleSession).then(rutas => {
       this.setState({ loading: false, routes: rutas });
     });
-
+    cache.default.setReload(false);
   }
 
   viewDetails(route){
@@ -87,8 +87,9 @@ class RoutesPage extends React.Component {
                         description="Well, there should be a description..."
                         action={e=>{cache.default.setSelected(routes[index])}}
                         iconName="map"
-
                         detailsClassName="linkRoute"
+                        detailsLink="/routes"
+
                         detailsAction={e=>{this.viewDetails(routes[index])}}
                         detailsIconName="info"
                       />

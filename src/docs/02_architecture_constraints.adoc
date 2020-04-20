@@ -1,23 +1,6 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
 
-
-[role="arc42help"]
-****
-.Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
-
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
-
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
-
 === Technical constraints
 
 [options="header",cols="1,2"]
@@ -26,7 +9,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 | Solid | The application must follow the link:https://github.com/solid/solid-spec[Solid specifications] and make use of Solid pods, as well as being decentralized and follow linked data principles.
 | React framework | React is the framework that will be used to implement the application. The architecture of the application has to be adapted to the inner workings of the Javascript library (components, routing, rendering...).
 | Interoperability between similar webapps | The design for the data saving and retrieving has to be thoughtfully taken care of such that a user can switch between similar apps without having to modify their data (using of Solid, W3C standards, etc.).
-| Test-Driven Development | Any functionality added must be constantly and thoroughly tested by the development team, making use of the testing tools available (Cucumber, Travis, Codecov).
+| TDD and BDD | Any functionality added must be constantly and thoroughly tested by the development team, making use of the testing tools available (Cucumber, Travis, Codecov).
 |===
 
 === Organizational and political constraints
@@ -47,7 +30,7 @@ conventions (e.g. programming or versioning guidelines, documentation or naming 
 | Constraint | Explanation
 | Linked Data | The project has to make use of linked data principles and guidelines, following the Solid specifications.
 | W3C Standards | The architecture of the project has to comply with as many web standards as possible, as stated in the Solid specifications.
-| React best practices | Guidelines and advices for React should be followed to ensure an easily testable and fixable application. 
+| React and Javascript best practices | Guidelines and advices for React  and Javascript should be followed to ensure an easily testable, fixable and readable application. 
 | UI Design | The design of the user interface must feel intuitive for people new to the app. This means following current standards of interface, color and icon design.
 | Documentation | The project's architecture must be documented in AsciiDoc format following the arc42 templates.
 |===
