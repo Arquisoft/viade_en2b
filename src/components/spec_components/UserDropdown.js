@@ -66,7 +66,7 @@ class UserDropdown extends Component {
           <div className="dropdown-content">
             <Router>
               <Link className="linkUser" to="/login">
-                My Profile
+                Profile
               </Link>
             </Router>
           </div>
