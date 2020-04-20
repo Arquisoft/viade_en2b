@@ -1,5 +1,5 @@
 import { fetchDocument } from "tripledoc";
-import { ldp, schema} from "rdf-namespaces";
+import { ldp, schema } from "rdf-namespaces";
 import { message } from "rdf-namespaces/dist/wf";
 const request = require("request");
 
@@ -11,11 +11,15 @@ const ns = require("solid-namespace")();
 //From the user inbox, retrieve all the notifications (marked as 'read'-> más adelante)
 //Add the URL to a file located in /viade/shared/globalSharedWithMe.js
 
+
+//getNotifications("https://andrewcosgaya.inrupt.net/viade/inbox");
+
 export async function getNotifications(inboxPath) {
 
     let notificationDocuments = [];
+    inboxPath = "https://testingclrmrnd.inrupt.net/viade/inbox";
     notificationDocuments = await getNotificationDocuments(inboxPath);
-    console.log("NOTIFIC DOCUMENTS");
+    console.log("NOTIFICATIONS DOCUMENTS");
     console.log(notificationDocuments);
 
     let not2 = processSharedRoutes(notificationDocuments);
@@ -44,10 +48,13 @@ export async function getNotificationDocuments(inboxPath) {
                 //FETCH DE LA NOTIFICACIÓN
                 // console.log('FETCH DE LA NOTIFICACIÓN');
                 // console.log(containerURLS[i]);
-                var doc = await fetchDocument(containerURLS[i]);
+                var doc = await fetchDocument(containerURLS[i].replace("/viade", "/viade/inbox"));
+                console.log('CONTAINER URLS');
 
+                let notificationURL = containerURLS[i].replace("/viade", "/viade/inbox");
+                console.log(notificationURL);
                 if (doc) {
-                    console.log('A1');
+                    
                     result = [...result, doc];
 
                     //var subjectNotification = containerURLS[i];
@@ -138,14 +145,14 @@ export function createNotificationContent(type, title, webId, routePath, time, u
 }
 
 
-export function createNotificationJSONLD(webIdAuthor, routePath, webIdTo){
+export function createNotificationJSONLD(webIdAuthor, routePath, webIdTo) {
     return JSON.stringify(
-  
+
         {
             "@context": "https://www.w3.org/ns/activitystreams",
             "summary": "NEW ROUTE",
             "type": "RouteShared",
-  
+
             "actor": {
                 "type": "Person",
                 "name": webIdAuthor
@@ -158,9 +165,9 @@ export function createNotificationJSONLD(webIdAuthor, routePath, webIdTo){
                 "type": "Person",
                 "name": webIdTo
             }
-  
+
         }
-  
+
     );
 }
 
