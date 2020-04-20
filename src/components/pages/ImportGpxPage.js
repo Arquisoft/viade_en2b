@@ -14,12 +14,14 @@ import '../../assets/css/DropzonePage.css';
 import { ToastContainer, toast, Zoom, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cache from "caches/fileCache/FileCache";
+import * as GPXparser from "../../data-access/FileManager/GPXparser";
+
 class ImportGpxPage extends React.Component {
   render() {
     function toDo(params) { //EJEMPLO DE FUNCIÓN PARA PASARLE AL onUpload
       //cache.uploadFiles([...params]); 
+      GPXparser.default.parseFile(params);
       
-      console.log(params);
 
     }
     function emptyTrigger(){
@@ -32,7 +34,7 @@ class ImportGpxPage extends React.Component {
         
        
         <div className="GpxZone">
-          <Dropzone hideUpload={this.props.showUpload} onUpload={toDo} onFilesAdded={emptyTrigger} /> 
+          <Dropzone hideUpload={() => {}} onUpload={toDo} onFilesAdded={emptyTrigger} /> 
         </div>
     
       </div>
