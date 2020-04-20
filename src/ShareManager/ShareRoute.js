@@ -10,6 +10,8 @@ const request = require("request");
  * and sends a notification to the inbox of the friend, containing the url of that
  * route.
  * 
+ * Example: ShareWith( "https://clrmrnd.inrupt.net/viade/routes/Rusia.json", "https://testingclrmrnd.inrupt.net/", "https://clrmrnd.inrupt.net/")
+ * 
  * @param {String} route path to the route the user wants to share.
  * @param {String} webIdFriend represents the id of the friend.
  * @param {String} webIdAuthor represents the id of the user autenticated.
@@ -44,6 +46,7 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
 
         try{
             sendNotification(webIdFriend, contenido, uuid);
+            return true;
         } catch(e){
             //console.log('There was an error');
         }        

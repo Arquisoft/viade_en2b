@@ -47,15 +47,15 @@ export async function getNotificationDocuments(inboxPath) {
                 var doc = await fetchDocument(containerURLS[i]);
 
                 if (doc) {
-                    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+                    console.log('A1');
                     result = [...result, doc];
 
-                    var subjectNotification = containerURLS[i];
-                    console.log(subjectNotification);
+                    //var subjectNotification = containerURLS[i];
+                    //console.log(subjectNotification);
 
-                    console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
+                    //console.log('B2');
                     //var messageNotification = containerURLS[i].getSubject(subjectNotification);
-                    console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC');
+                    //console.log('C3');
                     //if (messageNotification){
                     //sconsole.log('THERE IS A NOTIFICATION');
                     //const routeNotification = messageNotification.getString(ns.as("summary"));

@@ -3,7 +3,8 @@ import { LoggedIn, LoggedOut} from '@solid/react';
 import cache from '../../caches/routeCache/RouteCache'
 import * as friendCache from 'caches/friendCache/FriendCache';
 import {ShareWith} from 'ShareManager/ShareRoute';
-import { sharedRoutesList, getNotifications } from 'ShareManager/RetrieveRoute';
+import {getNotifications} from 'NotificationManager/NotificationManager';
+import { sharedRoutesList} from 'ShareManager/RetrieveRoute';
 
 function Login() {
     const auth = require('solid-auth-client');
@@ -29,8 +30,7 @@ function Login() {
             </LoggedOut>
             <LoggedIn>
                  
-                <button className="login100-form-btn" onClick={() => ShareWith( "https://clrmrnd.inrupt.net/viade/routes/Rusia.json", "https://testingclrmrnd.inrupt.net/", "https://clrmrnd.inrupt.net/")}>Share</button>                
-               
+               <button className="login100-form-btn" onClick={() => getNotifications( "https://testingclrmrnd.inrupt.net/viade/inbox/")}>Notifications</button>                
                <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
             </LoggedIn>
 
