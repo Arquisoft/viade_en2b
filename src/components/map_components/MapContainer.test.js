@@ -11,19 +11,6 @@ Enzyme.configure({ adapter: new Adapter() });
 test('isDefined', ()=>{
     expect(<MapContainer/>).toBeDefined();
 });
-
-
-//ToChange
-/*
-test('TestExistance of button', () => {
-    const mockLogout = jest.fn();
-    const button = <GenericButton onClick={mockLogout}/>
-    const wrapper = shallow(button);
-
-    wrapper.simulate('click');
-    expect(mockLogout).toHaveBeenCalled();
-});
-*/  
 test('isContainerMapNotNull', ()=>{
     const main = mount(<MapContainer/>);
     
@@ -53,7 +40,6 @@ test('Zoom False',()=>{
     const maps = mount(<MapContainer/>);
     const submit = maps.find('Map');
     expect(maps.props.zoomControl).toBeFalsy();
-
 })
 
 test('polylineIsNotNull', ()=>{
