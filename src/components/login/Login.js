@@ -30,7 +30,7 @@ function Login() {
             </LoggedOut>
             <LoggedIn>
                  
-               <button className="login100-form-btn" onClick={() => getNotifications( "https://testingclrmrnd.inrupt.net/viade/inbox/")}>Notifications</button>                
+               <button className="login100-form-btn" onClick={() => getNotifications( "https://testingclrmrnd.inrupt.net/viade/inbox")}>Notifications</button>                
                <button className="login100-form-btn" onClick={(e) => logout(e, auth)}>Log out</button>                
             </LoggedIn>
 
