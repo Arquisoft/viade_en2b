@@ -14,12 +14,12 @@ const { READ, WRITE, APPEND, CONTROL } = Permissions;
  * @param {*} urlToShare url of the resource to be shared.
  * @param {*} webIdFriend id of the person to share the resource with.
  */
-export async function setPermissionsTo(permission, urlToShare, webIdFriend){
-    console.log('IN SETPERMISSIONS')
+export async function setPermissionsTo(permission, urlToShare, webIdFriend, webIdAuthor){
     const mode = getMode(permission);
 
     const fetch = auth.fetch.bind(auth);
     const utils = new AclApi(fetch, { autoSave: true });
+    console.log('permission error?');
     const acl = await utils.loadFromFileUrl(urlToShare);
 
     //Setting permissions
@@ -32,7 +32,6 @@ export async function setPermissionsTo(permission, urlToShare, webIdFriend){
 
     await acl.addRule(permissions, agents);
     console.log('PERMISSION ADDED');
-
 }
 
 /**
@@ -65,6 +64,7 @@ export async function deletePermissions(permission, urlToShare, webIdFriend){
 export async function checkPermissions(permission, webId, filePath){
     const fetch = auth.fetch.bind(auth);
     const utils = new AclApi(fetch, { autoSave: true });
+
     const acl = await utils.loadFromFileUrl(filePath);
 
     

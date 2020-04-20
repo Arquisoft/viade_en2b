@@ -1,3 +1,16 @@
+import { fetchDocument } from "tripledoc";
+import { ldp, schema} from "rdf-namespaces";
+import { message } from "rdf-namespaces/dist/wf";
+const request = require("request");
+
+const $rdf = require("rdflib");
+const ns = require("solid-namespace")();
+//const ns = require('solid-namespace')($rdf);
+
+
+//From the user inbox, retrieve all the notifications (marked as 'read'-> más adelante)
+//Add the URL to a file located in /viade/shared/globalSharedWithMe.js
+
 export async function getNotifications(inboxPath) {
 
     let notificationDocuments = [];
@@ -89,7 +102,7 @@ export async function processSharedRoutes(notificationDocuments) {
 * @param {*} content 
 */
 export async function sendNotification(webIdFriend, content, uuid) {
-    var inbox = webIdFriend + "viade/inbox/";
+    var inbox = webIdFriend + "/viade/inbox/";
 
     await request({
         method: "POST",
