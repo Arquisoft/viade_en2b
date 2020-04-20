@@ -20,11 +20,7 @@ class ImportGpxPage extends React.Component {
   render() {
     function toDo(params) { //EJEMPLO DE FUNCIÓN PARA PASARLE AL onUpload
       //cache.uploadFiles([...params]); 
-      if(params.length == 0){
-
-      }else{
-        GPXparser.default.parseFile(params[0]);
-      }
+      GPXparser.default.parseFile(params);
       
 
     }

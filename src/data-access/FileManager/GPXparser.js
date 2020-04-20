@@ -1,55 +1,84 @@
-import GPX from "gpx-parser-builder";
+
 import GeoCoordinate from "../../Entities/GeoCoordinate";
 import BasicRoute from "../../Entities/BasicRoute";
 import * as CreateRoute from "../../RouteManager/CreateRoute";
+import GPX from "viade-gpx-parse"
+import { parseGpx} from "viade-gpx-parse";
+import { tracks } from "rdf-namespaces/dist/schema";
 
 export default {
     parseFile(file){
-        parseGPXfileToRouteObject(file);
+        read(file);
     }
 }
 
 
-    function parseToRouteObject(fileContent){
-        console.log(fileContent);
-        try {
-            var gpx = GPX.parse(fileContent);
-            } catch(error) {
-                console.log(error);
-            }
+    function parseToJsonldAndUpload(route){
+        try{
+            CreateRoute.default.createNormalBasic(route);
+            return true;
+        }catch(error){
+            return false;
+        }
         
-        
-        let routesList = [];
-
-        gpx.trk.forEach(r => {
-            let routeName = r.name;
-            let itirenary = [];
-            r.trkseg.forEach(points =>{
-                points.trkpt.forEach(point =>{
-                    itirenary.push(new GeoCoordinate(point.lat, point.lon))
-                });
-            });
-            let route = new BasicRoute(routeName, itirenary);
-            console.log(route);
-            routesList.push(route);
-        });
-        CreateRoute.default.createNormalBasic(routesList[0]);
     }
 
-    function parseGPXfileToRouteObject(file){
-        console.log(file);
-        let reader = new FileReader();
-         reader.onload = () => {
+
+    function read(file){
+        file.forEach((file) => {
+          let reader = new FileReader()
+
+          reader.onload = () => {
             let routeString = reader.result;
-            console.log("1");
-            console.log(routeString);
             try {
-                console.log(routeString);
-                parseToRouteObject(routeString);
+              let imported = true;
+              parseGpxToRoute(routeString, function(routes) {
+                  routes.forEach(route => {
+                    imported = parseToJsonldAndUpload(route) && imported;
+                  });
+                  if(imported && routes.length > 0) {
+                    console.log("success");
+                  } else {
+                    console.log("no success");
+                  }
+                });
             } catch(error) {
-                console.log(error);
+              console.log("error: " +error );
             }
-          }
-          console.log("2");
+          };
           reader.readAsText(file);
+        });
+    }
+    
+    function parseGpxToRoute(string, callback){
+
+        parseGpx(string, function (error, gpxData){
+            let routes = [];
+            let geoCoordinates = [];
+            let tracks = gpxData.tracks;
+
+            tracks.forEach(track => {
+                let route = parseRoute(track);
+                routes.push(route);
+            });
+
+            return callback(routes);
+            
+        })
+    }
+
+    function parseRoute(track){
+        let points = getPoints(track);
+        let route = new BasicRoute(track.name, points);
+        return route;
+    }
+
+    function getPoints(track){
+        let points = [];
+        track.segments.forEach( (segment) => {
+            segment.forEach(trackPoint => {
+                points.push(new GeoCoordinate(trackPoint.lat, trackPoint.lon));
+            });
+        });
+        return points;
     }
