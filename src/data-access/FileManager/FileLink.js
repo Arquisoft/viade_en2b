@@ -1,6 +1,5 @@
 import * as auth from "solid-auth-client";
 import SolidFileClient from "solid-file-client";
-import { fetchDocument } from "tripledoc";
 
 import { handleFetchError } from "./FileUtils";
 
@@ -17,11 +16,11 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
   let buildRouteFolderPath = storageRoot + routesFolder;
   let attachementDate = getAttachmentDate();
   if (await fileClient.itemExists(buildRouteFolderPath)) {
-    let viadeRoutes = await fc.readFolder(storageRoot + routesFolder);
+    let viadeRoutes = await fileClient.readFolder(storageRoot + routesFolder);
     let routeFiles = viadeRoutes.files;
 
-    routeFiles.forEach(file => {
-      if(file.url.match(new RegExp(routeName + "\.json"))) {
+    routeFiles.forEach(async (file) => {
+      if (file.url.match(new RegExp(`${routeName}\..*`))) {
         let routeFile = await fileClient.readFile(file.url);
         let route = JSON.parse(routeFile);
         if (!route.media) {
@@ -34,17 +33,7 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
         fileClient
           .putFile(file.url, JSON.stringify(route), file.type)
           .catch(handleFetchError);
-      } else if(file.url.match(new RegExp(routeName + "\.ttl"))) {
-        let routeDocument = await fetchDocument(file.url);
       }
     });
   }
 };
-
-const treatJSONRoute = (routeFile) => {
-
-}
-
-const treatTurtleRoute = (routeFile) => {
-  
-}
