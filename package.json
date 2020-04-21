@@ -14,6 +14,8 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "google-maps-react": "^2.0.2",
+    "gpx-parse": "^0.10.4",
+    "gpx-parser-builder": "^1.0.2",
     "jsonld-streaming-parser": "^1.1.2",
     "ldflex": "^2.8.0",
     "loaders.css": "^0.1.2",
@@ -37,7 +39,8 @@
     "solid-auth-client": "^2.4.1",
     "solid-file-client": "^1.0.2",
     "tripledoc": "^4.2.2",
-    "uuid": "^7.0.2"
+    "uuid": "^7.0.2",
+    "viade-gpx-parse": "^0.1.1"
   },
   "scripts": {
     "predeploy": "npm run build",

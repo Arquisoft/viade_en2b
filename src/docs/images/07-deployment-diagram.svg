@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="465px" preserveAspectRatio="none" style="width:746px;height:465px;" version="1.1" viewBox="0 0 746 465" width="746px" zoomAndPan="magnify"><defs><filter height="300%" id="f1o8qwq5tznfsw" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[779bdc9ef3a6b365282b55e74be4effd]
+cluster android--><polygon fill="#FFFFFF" filter="url(#f1o8qwq5tznfsw)" points="22,34,32,24,278,24,278,295,268,305,22,305,22,34" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="268" x2="277" y1="34" y2="25"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="268" y1="34" y2="34"/><line style="stroke: #000000; stroke-width: 1.5;" x1="268" x2="268" y1="34" y2="305"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="117" x="87.5" y="49.9951">Android Phone</text><!--MD5=[d5ac3844f66b12d9e08170e47495e096]
+cluster app--><polygon fill="#FFFFFF" filter="url(#f1o8qwq5tznfsw)" points="46,82,56,72,254,72,254,271,244,281,46,281,46,82" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="244" x2="253" y1="82" y2="73"/><line style="stroke: #000000; stroke-width: 1.5;" x1="46" x2="244" y1="82" y2="82"/><line style="stroke: #000000; stroke-width: 1.5;" x1="244" x2="244" y1="82" y2="281"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="132" x="80" y="97.9951">React Native app</text><!--MD5=[2de28e47f9582cb6df153deeec479525]
+cluster browser--><polygon fill="#FFFFFF" filter="url(#f1o8qwq5tznfsw)" points="402,34,412,24,724,24,724,295,714,305,402,305,402,34" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="714" x2="723" y1="34" y2="25"/><line style="stroke: #000000; stroke-width: 1.5;" x1="402" x2="714" y1="34" y2="34"/><line style="stroke: #000000; stroke-width: 1.5;" x1="714" x2="714" y1="34" y2="305"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="246" x="436" y="49.9951">Web browser (Chrome/Firefox)</text><!--MD5=[35dd84c23ad91445a3974d1258f96446]
+cluster webapp--><polygon fill="#FFFFFF" filter="url(#f1o8qwq5tznfsw)" points="426,82,436,72,612,72,612,271,602,281,426,281,426,82" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="602" x2="611" y1="82" y2="73"/><line style="stroke: #000000; stroke-width: 1.5;" x1="426" x2="602" y1="82" y2="82"/><line style="stroke: #000000; stroke-width: 1.5;" x1="602" x2="602" y1="82" y2="281"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="69" x="480.5" y="97.9951">Web app</text><!--MD5=[ddd5fd5b5b377ab6b6539f7b16c4e19c]
+entity owncode--><polygon fill="#FEFECE" filter="url(#f1o8qwq5tznfsw)" points="84.5,122,94.5,112,237.5,112,237.5,148.2969,227.5,158.2969,84.5,158.2969,84.5,122" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="227.5" x2="236.5" y1="122" y2="113"/><line style="stroke: #000000; stroke-width: 1.5;" x1="84.5" x2="227.5" y1="122" y2="122"/><line style="stroke: #000000; stroke-width: 1.5;" x1="227.5" x2="227.5" y1="122" y2="158.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="99.5" y="144.9951">Proprietary code</text><!--MD5=[21fd88f9298afb232ff11ab2c2a53616]
+entity solidlib--><polygon fill="#FEFECE" filter="url(#f1o8qwq5tznfsw)" points="108.5,229,118.5,219,233.5,219,233.5,255.2969,223.5,265.2969,108.5,265.2969,108.5,229" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="223.5" x2="232.5" y1="229" y2="220"/><line style="stroke: #000000; stroke-width: 1.5;" x1="108.5" x2="223.5" y1="229" y2="229"/><line style="stroke: #000000; stroke-width: 1.5;" x1="223.5" x2="223.5" y1="229" y2="265.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="85" x="123.5" y="251.9951">SOLID library</text><!--MD5=[1678df96f6d77d21f731950a2abef83b]
+entity owncode2--><polygon fill="#FEFECE" filter="url(#f1o8qwq5tznfsw)" points="442.5,122,452.5,112,595.5,112,595.5,148.2969,585.5,158.2969,442.5,158.2969,442.5,122" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="585.5" x2="594.5" y1="122" y2="113"/><line style="stroke: #000000; stroke-width: 1.5;" x1="442.5" x2="585.5" y1="122" y2="122"/><line style="stroke: #000000; stroke-width: 1.5;" x1="585.5" x2="585.5" y1="122" y2="158.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="457.5" y="144.9951">Proprietary code</text><!--MD5=[8e183043e2c643c34381e9201f3a58d3]
+entity solidlib2--><polygon fill="#FEFECE" filter="url(#f1o8qwq5tznfsw)" points="445.5,229,455.5,219,570.5,219,570.5,255.2969,560.5,265.2969,445.5,265.2969,445.5,229" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="560.5" x2="569.5" y1="229" y2="220"/><line style="stroke: #000000; stroke-width: 1.5;" x1="445.5" x2="560.5" y1="229" y2="229"/><line style="stroke: #000000; stroke-width: 1.5;" x1="560.5" x2="560.5" y1="229" y2="265.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="85" x="460.5" y="251.9951">SOLID library</text><!--MD5=[568b54cda844d96eda7898e0497bcd95]
+entity poddb--><path d="M221.5,378 C221.5,368 368,368 368,368 C368,368 514.5,368 514.5,378 L514.5,443.8906 C514.5,453.8906 368,453.8906 368,453.8906 C368,453.8906 221.5,453.8906 221.5,443.8906 L221.5,378 " fill="#FEFECE" filter="url(#f1o8qwq5tznfsw)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M221.5,378 C221.5,388 368,388 368,388 C368,388 514.5,388 514.5,378 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="96" x="231.5" y="404.9951">Pods server</text><path d="M221.5,403.2969 C221.5,413.2969 368,413.2969 368,413.2969 C368,413.2969 514.5,413.2969 514.5,403.2969 " fill="none" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="261" x="237.5" y="425.292">This can either be deployed internally,</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="189" x="237.5" y="441.5889">or using a free web service.</text><!--MD5=[464222c64b0d830046b1836b9f1533fe]
+entity map--><path d="M304.1828,227.8632 C306.4959,221.4078 312.7102,220.3888 316.6779,226.1743 C319.5283,220.2874 324.6615,220.1321 327.7148,225.9836 C330.9009,218.753 336.6841,218.51 341.6507,224.0389 C346.3682,218.963 350.7447,220.8841 352.6992,226.8129 C356.8365,220.9917 363.1988,221.1252 367.0741,227.1313 C371.5513,221.0969 376.5238,223.2702 379.3026,228.9103 C387.0814,230.893 389.1561,235.2167 385.2181,242.3547 C391.0915,250.0368 388.5908,257.2118 378.7482,258.6566 C376.6867,266.2698 371.0419,267.4278 365.784,261.7818 C362.4447,267.5237 358.9683,269.1128 354.0943,263.3398 C351.8862,269.8741 345.9193,270.6535 341.6557,265.5338 C337.3466,272.1154 330.4643,271.6521 327.4532,264.2185 C322.8825,268.5671 317.2361,267.7134 315.2137,261.316 C310.4625,267.2467 305.4195,266.3329 302.7157,259.3365 C292.3184,257.8176 288.5653,252.6204 294.2116,242.8339 C290.6881,234.7995 293.4772,226.4204 304.1828,227.8632 " fill="#FEFECE" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="62" x="309" y="246.9951">Maps API</text><!--MD5=[0512b937468d881f7a1ca8de0a439343]
+link owncode to solidlib--><path d="M163.096,158.011 C164.633,174.143 166.729,196.151 168.376,213.45 " fill="none" id="owncode-&gt;solidlib" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="168.872,218.656,172.0002,209.3171,168.3977,213.6785,164.0363,210.076,168.872,218.656" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[30cad1619d55929810986b5ee599d01c]
+link owncode2 to solidlib2--><path d="M516.694,158.011 C515.004,174.143 512.698,196.151 510.886,213.45 " fill="none" id="owncode2-&gt;solidlib2" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="510.341,218.656,515.2553,210.1208,510.861,213.6831,507.2987,209.2888,510.341,218.656" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[aa289ef7868a4fc2a25bcd80cc961beb]
+link solidlib to poddb--><path d="M197.16,265.176 C226.849,290.344 276.081,332.078 314.087,364.2969 " fill="none" id="solidlib-&gt;poddb" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="318.195,367.7796,313.9178,358.908,314.3815,364.5458,308.7437,365.0095,318.195,367.7796" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="63" x="283" y="334.0669">read/write</text><!--MD5=[e2ce502ce3cff86dc03db81da9774fe4]
+link solidlib2 to poddb--><path d="M489.409,265.176 C468.395,290.243 433.607,331.741 406.642,363.9051 " fill="none" id="solidlib2-&gt;poddb" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="403.394,367.7796,412.2407,363.4511,406.6057,363.9475,406.1093,358.3124,403.394,367.7796" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="29" x="443" y="334.0669">read</text><!--MD5=[a45f688d151ff322fe6dc683c037eccb]
+link owncode to map--><path d="M198.524,158.011 C227.544,175.034 267.722,198.602 297.848,216.274 " fill="none" id="owncode-&gt;map" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="302.217,218.837,296.478,210.833,297.9043,216.3071,292.4302,217.7333,302.217,218.837" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[a69fbf5e46bbc07d9ce4c8edf4ba5d57]
+link owncode2 to map--><path d="M481.476,158.011 C452.456,175.034 412.278,198.602 382.152,216.274 " fill="none" id="owncode2-&gt;map" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="377.783,218.837,387.5698,217.7333,382.0957,216.3071,383.522,210.833,377.783,218.837" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[e468af2d10fda819a3798a315f387efb]
+@startuml
+node "Android Phone" as android {
+    node "React Native app" as app {
+        node "Proprietary code" as owncode
+        node "SOLID library" as solidlib
+    }
+}
+
+
+node "Web browser (Chrome/Firefox)" as browser {
+    node "Web app" as webapp {
+        node "Proprietary code" as owncode2
+        node "SOLID library" as solidlib2
+    }
+}
+
+database poddb [
+    <b>Pods server</b>
+    - - - -
+    This can either be deployed internally,
+    or using a free web service.
+]
+
+cloud "Maps API" as map
+
+
+
+owncode - -> solidlib
+owncode2 - -> solidlib2
+
+solidlib - -> poddb : read/write
+solidlib2 - -> poddb : read
+
+owncode - -> map
+owncode2 - -> map
+@enduml
+
+PlantUML version 1.2020.03beta11(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 1.7.0_25-b15
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

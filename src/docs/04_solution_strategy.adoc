@@ -1,52 +1,29 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
-
-[role="arc42help"]
-****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
-
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
-
-.Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
-
-.Form
-Keep the explanation of these key decisions short.
-
-Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.
-****
-
 === Technology decisions
 
 The following technologies are the ones used in the project:
 
-* **React Native and React**. The application is hybrid, with a focus in mobile devices and similars, but still having a web-oriented version. Although the workload is considerably higher because effectively two different applications have to be developed, it was decided this was the best approach to tackle the expected results.
-* **Solid React Components**. A link:https://github.com/solid/react-components[library specifically designed to use Solid in React], it helps with the integration of Solid functionality in the application. It helps the development of the part of the application that deals with the data, and time is a very valuable resource for this project.
-* **Leaflet**. Javascript library used for the management of the geogrphical-related data, as well as displaying maps and routes. Considered the best option by the team, because is easy to use, many resources are available to check out, and is highly customisable in the interface part.
-* **Solid libraries**. This libraries (like LDFlex, TripleDoc, rdflib.js, etc.) will ease the connection between the application data and the user's pod data, specifically in the operations of saving, retrieving and interconnecting data.
+* **React**. The application is web-oriented, with support for all types of devices with a responsive and usable interface. Initially the team was set on developing both web and native versions of the application, but the native version was later discarded (more information in the link:11_technical_risks.adoc[technical debts section]).
+* **Google Maps React**. Library that makes use of the Google Maps API, it eases the development with geographical data and helps provide high usability to the users.
+* **Solid libraries**. This libraries will ease the connection between the application data and the user's pod data, specifically in the operations of saving, retrieving and interconnecting data.
+* **Jest**. Library used for testing purposes. The default React app created with the generator already comes with this library installed. This library does not only ease the making of unit tests for TDD and BDD, but also is highly versatile and can be integrated with other testing tools and utilities which are used in the project such as React Testing Library or Cucumber.
 
 === Decomposition of the system
 
-* The system will be divided in interrelated high-level modules.
-* Each module will contain several components (or sub-modules, in some cases), which will be independent from any component outside of their module.
+* The system will be divided in interrelated high-level modules, or **layers**.
+* Each module will contain several components (or sub-modules, in some cases), and different components between modules may be connected between each other to pass data.
 * The only connections between the modules will be user data moving from one place to another, through middle "facade" classes. The components in the modules will not notice the data moving, only when they have data available.
+* The moving of the data between modules will be accompanied with the use of caches (control layer, more on the link:05_building_block_view.adoc[building blocks section]), which save data in memory to speed-up data-retrieving operations. Caches behave like gateways, containing CRUD operations, and there's only one instance of each cache in the app.
 
-This module and component-oriented design will make the division of the development work much easier, and the using of facades for data accessing decouples the interface from the data, somewhat similar to a MVC layout, keeping cohesion; although a drawback that will have to be taken into account is the independent development of components, which can obfuscate the team if the interconnection between components and modules is not considered when developing and testing.
-
-More over, the system will be divided (in the interface and part of the control layers) into two applications, web-oriented and native-oriented. This will difficult the decisions when it comes to make both compatible.
+This module and component-oriented design will make the division of the development work much easier, and the using of facades for data accessing decouples the interface from the data, somewhat similar to a MVC layout, keeping cohesion; although a drawback that will have to be taken into account is the independent development of components, which can obfuscate the team if the interconnection between components and modules is not considered when developing and testing. This type of design in React, though, is somewhat difficult, because React components work as views and work with interconnected states and hooks; the team will note this and create the best possible mixing of logic in Javascript with React components.
 
 === Decisions on how to achieve quality goals
 
-* **Heavy testing**. Test-driven development is a must to achieve any form of quality. When creating user stories, as many testing scenarios as possible will accompany them to ensure what the new functionality must achieve and what it should not do. This will lose time when creating the tasks, but it will help the agility of the development.
-* **Coordination**. The team will coordinate itself through discussing as much as possible every problem or idea, as well as giving feedback in pull requests and issues in development.
 * **Agile methodology**. The team set on developing with an agile methodology in mind: use of kanban, use of issues to enhance communication, division of tasks in small and doable user stories, and giving feedback to each other when possible (connecting to previous point).
+* **Heavy testing**. Test-driven development and behaviour driven development are a must to achieve any form of quality. When creating user stories, as many testing scenarios as possible will accompany them to ensure what the new functionality must achieve and what it should not do. This will lose time when creating the functionalities, but it will help the agility of the development in the long run.
+* **Coordination and communication**. The team will coordinate itself through discussing as much as possible every problem or idea, as well as giving feedback in pull requests and issues in development.
 
 === Organizational decisions
 

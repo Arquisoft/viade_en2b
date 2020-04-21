@@ -6,7 +6,7 @@ import { handleFetchError } from "./FileUtils";
 
 const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
-export const uploadFiles = async fileList => {
+export const uploadFiles = async (fileList) => {
   let session = await auth.currentSession();
   if (!session || session.webId === undefined || session.webId === null) {
     throw new Error("You are not logged in.");
@@ -22,7 +22,7 @@ export const uploadFiles = async fileList => {
   }
 
   let path = session.webId.split("profile")[0];
-  const promises = Array.from(fileList).map(file => {
+  const promises = Array.from(fileList).map((file) => {
     let buildPath = `${path}viade/resources/${file.name}`;
     return updateFile(
       buildPath,
@@ -32,16 +32,20 @@ export const uploadFiles = async fileList => {
       return buildPath;
     });
   });
-  return Promise.all(promises).catch(handleFetchError);
+  return Promise.all(promises).catch((err) => {
+    console.log("error");
+    handleFetchError(err);
+  });
 };
 
 const updateFile = (path, content, contentType) => {
+  console.log("updateFile");
   return fileClient.putFile(path, content, contentType).catch(handleFetchError);
 };
 
-const validContentType = fileList => {
+const validContentType = (fileList) => {
   let valid = true;
-  fileList.forEach(file => {
+  fileList.forEach((file) => {
     if (!(fileItem.isImage(file.name) || fileItem.isVideo(file.name))) {
       valid = false;
     }
@@ -55,10 +59,10 @@ const fileItem = {
   },
   isVideo(name) {
     return patterns.video.test(name);
-  }
+  },
 };
 
 const patterns = {
   image: /\.(jpe?g|gif|bmp|png|svg|tiff?)$/i,
-  video: /\.(mp4|webm|ogg)$/i
+  video: /\.(mp4|webm|ogg|avi)$/i,
 };

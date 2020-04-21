@@ -75,7 +75,7 @@ export class MapContainer extends React.Component {
         name={'Start of route'}
         position={route[0]}
         opacity={1}
-        icon={"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Media_Viewer_Icon_-_Location.svg/35px-Media_Viewer_Icon_-_Location.svg.png"}
+        icon={"https://arquisoft.github.io/viade_en2b/ViaDeSmall.png"}
       />
     </Map>
     );

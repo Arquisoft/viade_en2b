@@ -1,7 +1,35 @@
 [[section-concepts]]
 == Cross-cutting Concepts
 
+.Introduction
+As this project does not have a properly said database(using sql for example) we will use the pods as the database storing the different data as files with a the format decided as the standard, which in the lasts weeks at least regarding both groups of our lab is storing data in jsonld file in the pod.
 
+.Architecture
+Right now our project has a more or less layered architecture as we tried to divide the project in the presentation layer and logic layer having an intemidiate layer to interact between the two.
+
+.Technical decisions
+As the project advanced we decided several things that affected the project in one way or another here are some decisions that we made.
+
+* Decide to use jsonld as the file to save the data.
+* Decide to create a route in real time while the user is doing it as all the team members
+decided that it makes sense to do it this way.
+
+.Modules and libraries
+We used several modules/libraries that made several of the funcionalities possible and without them it would have been impossible for us to develop them, some of the libraries/modules are listed and explained next.
+
+* solid-auth-client : use the login system most of the time
+* solid-file-client : get and upload files from/to the pods
+* react-router-dom : use a lot of things as redirects and assigning components to a url from react
+* react-toastify : implement notifications
+* google-maps-react : show the routes in the map
+* @solid/react : use ldflex to get user info
+* jest-cucumber : for testing
+* jest-puppeteer : for testing
+
+
+
+[role="arc42help"]
+****
 .Not Yet Implemented
 As there is no final decisions about anything at the moment that belongs to this category because the development of the app hasn´t started yet, so there is not much to put in this category for now, but it will be updated as the project goes on.
 I haven´t erased the examples of this document to take a look to them when it is really needed in the near future.
@@ -66,3 +94,4 @@ _<explanation>_
 === _<Concept n>_
 
 _<explanation>_
+****

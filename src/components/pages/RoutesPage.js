@@ -1,12 +1,12 @@
 import React from "react";
 import "assets/css/Routes.css";
-import CustomLoader from 'components/generic_components/CustomLoader';
-import BurgerMenu from '../generic_components/BurgerMenu';
-import SearchBar from '../generic_components/SearchBar';
-import CardLayout from '../generic_components/Card';
-import RouteDetails from './RouteDetails';
+import CustomLoader from "components/generic_components/CustomLoader";
+import BurgerMenu from "../generic_components/BurgerMenu";
+import SearchBar from "../generic_components/SearchBar";
+import CardLayout from "../generic_components/Card";
+import RouteDetails from "./RouteDetails";
 
-import * as cache from 'caches/routeCache/RouteCache';
+import * as cache from "caches/routeCache/RouteCache";
 
 
 class RoutesPage extends React.Component {
@@ -16,7 +16,7 @@ class RoutesPage extends React.Component {
   this.state = {
     loading: true,
     routes: "",
-    search: '',
+    search: "",
     showDetails: false
   };
   }
@@ -27,7 +27,7 @@ class RoutesPage extends React.Component {
     cache.default.getRoutes(this.handleSession).then(rutas => {
       this.setState({ loading: false, routes: rutas });
     });
-
+    cache.default.setReload(false);
   }
 
   viewDetails(route){
@@ -46,7 +46,7 @@ class RoutesPage extends React.Component {
 
     
   handleSession = () => {
-    this.props.history.push('/login');
+    this.props.history.push("/login");
   }
 
 
@@ -86,11 +86,12 @@ class RoutesPage extends React.Component {
 
                         description="Well, there should be a description..."
                         action={e=>{cache.default.setSelected(routes[index])}}
-                        iconName='map'
-
+                        iconName="map"
                         detailsClassName="linkRoute"
+                        detailsLink="/routes"
+
                         detailsAction={e=>{this.viewDetails(routes[index])}}
-                        detailsIconName='info'
+                        detailsIconName="info"
                       />
                      
                     </div>

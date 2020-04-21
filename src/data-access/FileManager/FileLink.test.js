@@ -1,7 +1,6 @@
 import * as FileLink from "./FileLink";
 
 import * as auth from "solid-auth-client";
-import SolidFileClient from "solid-file-client";
 
 const mockAuth = jest.spyOn(auth, "currentSession");
 mockAuth.mockImplementation(async () => {
