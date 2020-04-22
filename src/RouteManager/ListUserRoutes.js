@@ -72,6 +72,13 @@ export default class RoutesLoader {
                         if(tempRoute.name===name){
 
                             let route =  new Route(tempRoute.name,tempRoute.itinerary);
+                            let comUrl;
+                            if(tempRoute.commentsUrl!=undefined){
+                                comUrl = tempRoute.commentsUrl;
+                            }else{
+                                comUrl='';
+                            }
+                            route.commentsUrl=comUrl;
                             route.setUrl(files[i].url);
                             route.setJsonFormat(tempRoute);
                             console.log("Match "+route.url);
@@ -118,22 +125,7 @@ export default class RoutesLoader {
     return jsonRoutes;
   }
 
-    routesToJson(routes) {
-        let jsonRoutes = [];
-        for (let i = 0; i < routes.length; i++) {
-            try {
-                let route = JSON.parse(routes[i]);
-                jsonRoutes.push(route);
-            } catch (e) {
-                console.log(
-                    "Route " +
-                    i +
-                    " couldn't be transformed to json because the format is wrong"
-                );
-            }
-        }
-        return jsonRoutes;
-    }
+
 
     jsonToEntity(routes) {
         let entRoutes = [];
@@ -143,7 +135,14 @@ export default class RoutesLoader {
                 console.log(routes[i]);
                 let name = routes[i].name;
                 let it = routes[i].itinerary;
+                let comUrl;
+                if(routes[i].commentsUrl!=undefined){
+                    comUrl = routes[i].commentsUrl;
+                }else{
+                   comUrl='';
+                }
                 let route = new Route(name, it);
+                route.commentsUrl=comUrl;
                 route.setJsonFormat(routes[i]);
                 entRoutes.push(route);
                 console.log("Route " + route.name + " was created succesfully");
