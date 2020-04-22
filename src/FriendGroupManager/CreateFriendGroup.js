@@ -15,7 +15,7 @@ export default class CreateFriendGroup {
     if (!this.checkexistance(groupname, group_folder)) {
       let new_id = this.create_UUID();
       var group = JSON.stringify(this.group_template(groupname, users, new_id));
-      var file = new File([group], groupname + ".jsonld", {
+      var file = new File([group], groupname + " " + new_id + ".jsonld", {
         type: "application/ld+json",
       });
       this.updateFile(group_folder, file, file.type);
