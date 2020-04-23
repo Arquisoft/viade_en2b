@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Icon, Card, Image } from 'semantic-ui-react'
+import { Icon, Card, Image, Popup } from 'semantic-ui-react'
 import {HashRouter as Router, Link} from "react-router-dom";
 import 'assets/css/Card.css'
 
@@ -28,7 +28,12 @@ class CardLayout extends Component{
                           hidden={linkHide}
                           to={this.props.link}
                           onClick={this.props.action}>
-                    <Icon name={this.props.iconName} />
+                    <Popup
+                        trigger={<Icon name={this.props.iconName}/>}
+                        mouseEnterDelay={250}
+                        content="Show route in map"
+                        position="bottom center"
+                    />    
                     </Link>
                     
                     <a className={this.props.externalClassName}
@@ -37,14 +42,25 @@ class CardLayout extends Component{
                           rel="noopener noreferrer"
                           href={this.props.externalLink}
                           onClick={this.props.externalAction}>
-                    <Icon name={this.props.externalIconName} />
+                      <Popup
+                        trigger={<Icon name={this.props.externalIconName}/>}
+                        mouseEnterDelay={250}
+                        content="Contact email"
+                        position="bottom center"
+                    />    
                     </a>
                     
-                    <Link className={this.props.detailsClassName}
+
+                        <Link className={this.props.detailsClassName}     
                           hidden={detailsHide}
                           to={this.props.detailsLink}
                           onClick={this.props.detailsAction}>
-                    <Icon name={this.props.detailsIconName} />
+                     <Popup
+                        trigger={<Icon name={this.props.detailsIconName}/>}
+                        mouseEnterDelay={250}
+                        content="Shows the messages and multimedia of the route"
+                        position="bottom center"
+                    />
                     </Link>
                 </Router>
                 </Card.Content>
