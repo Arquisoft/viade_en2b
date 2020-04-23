@@ -1,10 +1,16 @@
 export default class LoadRouteComments{
 
     async loadComments(route,callback){
-        if(route.commentsUrl===""){
-            await createCommentsFile(route.name,callback);
+        if(route.commentsUrl===null || route.commentsUrl===undefined||route.commentsUrl===""){
+            let createdUrl = await createCommentsFile(route.name,callback);
+            if(createdUrl!==null && createdUrl!==undefined && createdUrl!==""){
+                route.commentsUrl=createdUrl;
+
+            }
             return [];
         }else{
+            let comments = await getComments(route.commentsUrl,callback);
+            return comments;
 
         }
 
@@ -24,10 +30,36 @@ export default class LoadRouteComments{
             }
 
         try {
-            console.log("Comments url"+route.url);
-            console.log("New data: "+route.jsonFormat);
-            await fc.createFile("/V",JSON.stringify(route.jsonFormat),"application/json");
-            return true;
+
+            let url = session.webId.substring(0, session.webId.length - 16) + "/viade/comments/"+routeName;
+            let emptyCommentFile = {
+                "@context": {
+                    "@version": 1.1,
+                    "comments": {
+                        "@container": "@list",
+                        "@id": "viade:comments"
+                    },
+                    "comment":{
+                        "@id": "viade:comment",
+                        "@type": "@id"
+                    },
+                    "author":{ "@id": "schema:author", "@type": "@id" },
+                    "dateCreated": {
+                        "@id": "viade:dateCreated",
+                        "@type": "xsd:date"
+                    },
+                    "text": {
+                        "@id": "viade:text",
+                        "@type": "xsd:string"
+                    },
+                    "viade": "http://arquisoft.github.io/viadeSpec/",
+                    "xsd": "http://www.w3.org/2001/XMLSchema#"
+                },
+                "comments": []
+
+            };
+            await fc.createFile(url,JSON.stringify(emptyCommentFile),"application/json+ld");
+            return url;
 
 
         } catch (error) {
@@ -35,8 +67,10 @@ export default class LoadRouteComments{
             console.log(error)         // A full error response
             console.log(error.status)  // Just the status code of the error
             console.log(error.message) // Just the status code and statusText
-            return false;
+            return "";
         }
+
+        return "";
 
     }
 
