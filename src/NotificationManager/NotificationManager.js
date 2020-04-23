@@ -14,7 +14,10 @@ const request = require("request");
 //From the user inbox, retrieve all the notifications (marked as 'read'-> más adelante)
 //Add the URL to a file located in /viade/shared/globalSharedWithMe.js
 
-//GETTIN ALL NOTIFICATIONS (urls?)
+/**
+ * Listing the notifications urls
+ * @param {*} inboxPath 
+ */
 export async function getNotifications(inboxPath) {
     let notificationDocuments = [];
     notificationDocuments = await getNotificationDocuments(inboxPath);
@@ -48,20 +51,36 @@ export async function getNotificationDocuments(inboxPath) {
                     result = [...result, doc];
                     console.log('RESULT');
                     console.log(result);
-                    const subj = containerURLS[i].replace("/viade", "/viade/inbox");
-                    console.log('SUBJECT');
-                    console.log(subj);
-
-                    //const t1 = "";//containerURLS[i].getSubject(subj.toString());
-                    //const t2 = containerURLS[i].getSubject("");
-
-                    //console.log('T1');
-                    //console.log(t1);
-
-                    //console.log('T2');
-                    //console.log(t2);
 
                 }
+            } catch (e) {
+                console.log("Error");
+            }
+        }
+        return result;
+    }
+    return [];
+}
+
+/**
+ * Returns the current list of notifications.
+ * Ex: "https://testingclrmrnd.inrupt.net/viade/inbox/"
+ */
+export async function getNotificationURLS(inboxPath) {
+    var inbox = inboxPath;
+    var containerDoc = await fetchDocument(inbox);
+
+    //if the document exists
+    if (containerDoc) {
+        var subject = containerDoc.getSubject(inbox);
+        var containerURLS = subject.getAllRefs(ldp.contains);
+
+        var result = [];
+        for (var i = 0; i < containerURLS.length; i++) {
+            try {
+                //LISTANDO LAS URLS DE LAS NOTIFICACIONES
+                result.push(containerURLS[i]);
+                console.log(result);
             } catch (e) {
                 console.log("Error");
             }
@@ -77,10 +96,12 @@ export async function processSharedRoutes(notificationDocuments) {
     if (notificationDocuments.length > 0) {
         for (let i = 0; i < notificationDocuments.length; i++) {
 
+            //getting the subject by the notification title
             var message = notificationDocuments[i]
-            .getSubject("https://testingclrmrnd.inrupt.net/viade/inbox/5cbd2db0-7cb8-11ea-b984-edbaa4d4ab97.ttl");
+                .getSubject("https://testingclrmrnd.inrupt.net/viade/inbox/44904d92-1319-45f2-9079-817fdcbdd72b.ttl");
             const route = message.getString(ns.as("summary"));
 
+            console.log('ROUTE');
             console.log(route);
 
             result.push(route);
@@ -95,7 +116,7 @@ export async function processSharedRoutes(notificationDocuments) {
 * @param {} webIdFriend 
 * @param {*} content 
 */
-export async function sendNotification(webIdFriend, content, uuid) {
+export async function postNotification(webIdFriend, content, uuid) {
     var inbox = webIdFriend + "/viade/inbox/";
 
     await request({
@@ -103,12 +124,14 @@ export async function sendNotification(webIdFriend, content, uuid) {
         uri: inbox,
         body: content,
         headers: {
+            slug: uuid,
             "Content-Type": "text/turtle"
         }
     },
         function (error, response, content) {
-            if (error) { return false; } else {
-                //console.log("Notification sended");
+            if (error) { 
+                return false; 
+            } else {
                 return true;
             }
         })

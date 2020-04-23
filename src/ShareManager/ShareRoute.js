@@ -1,5 +1,5 @@
 import {setPermissionsTo, checkPermissions} from 'util/PermissionManager';
-import {sendNotification, createNotificationContent} from 'NotificationManager/NotificationManager';
+import {postNotification, createNotificationContent} from 'NotificationManager/NotificationManager';
 import { v4 as uuidv4 } from 'uuid';
 const request = require("request");
 
@@ -17,42 +17,40 @@ const request = require("request");
  * @param {String} webIdAuthor represents the id of the user autenticated.
  */
 export async function ShareWith(route, webIdFriend, webIdAuthor){
-    console.log('IN');
+    //Sharing the route with the friend (it must be the profile of the friend).
+    
+    const profileFriend = webIdFriend + 'profile/card#me';
+    console.log('FRIEND');
+    console.log(profileFriend);
    
     //check .acl created for the path;
 
     //check friend has an inbox;
 
     //check if it's already shared
-    const shared = await checkPermissions("READ", webIdFriend, route);
-    if(!shared){
+    const shared = await checkPermissions("READ", profileFriend, route);
+    if(true){
+        console.log('ENTERED');
         //set permissions to read in the route
-        const profileFriend = webIdFriend + 'profile/card#me';
-        
-        //setPermissionsTo("READ", route, webIdFriend, webIdAuthor);
         setPermissionsTo("READ", route, profileFriend);
 
 
         //send notification to other user inbox
-        const content = {
-            title: "NEW ROUTE Notification",
-            summary: route,
-            actor: webIdFriend
-        };
-
         const uuid = uuidv4();
         const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, route, new Date(), uuid);
        
 
         try{
-            sendNotification(webIdFriend, contenido, uuid);
+            postNotification(webIdFriend, contenido, uuid);
+            console.log("DONE");
             return true;
         } catch(e){
-            //console.log('There was an error');
+            console.log('There was an error');
+            return false;
         }        
         
     } else {
-        //console.log('The route was already shared.');
+        console.log('The route was already shared.');
         return false;
     }
    

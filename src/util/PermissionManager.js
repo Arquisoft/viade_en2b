@@ -62,6 +62,8 @@ export async function deletePermissions(permission, urlToShare, webIdFriend){
  * @param {*} filePath 
  */
 export async function checkPermissions(permission, webId, filePath){
+    console.log('CHECKING PERMISSIONS OF');
+    console.log(filePath);
     const fetch = auth.fetch.bind(auth);
     const utils = new AclApi(fetch, { autoSave: true });
 
