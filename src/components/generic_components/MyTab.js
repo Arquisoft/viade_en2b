@@ -6,7 +6,17 @@ import MyVideoInfiniteScroll  from '../generic_components/InfiniteScrollVideo';
 
 import * as cache from '../../caches/fileCache/FileCache'
 
-let comentarios = [];
+const comentarios = [{
+    avatar: "https://arquisoft.github.io/viade_en2b/images/developers/alejandro.png",
+    user: "Alejandro",
+    date: "23/04/2020",
+    comment: "funny meme"
+},{
+    avatar: "https://arquisoft.github.io/viade_en2b/images/developers/guillermo.png",
+    user: "Guillermo",
+    date: "23/04/2020",
+    comment: "jajaja roflmao"
+}];
 let images = [];
 let videos = [];
 
@@ -42,7 +52,6 @@ class MyTab extends React.Component {
 render(){
     images.length = 0;
     videos.length = 0;
-    comentarios.length = 0;
 
     let multimedia = [];
     multimedia = cache.default.getFilePathsForRoute(this.props.route);
@@ -60,6 +69,7 @@ render(){
         </div>
     )
 }
+
 }
 
 export default MyTab;

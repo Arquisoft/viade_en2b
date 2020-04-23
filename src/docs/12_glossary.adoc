@@ -1,31 +1,13 @@
 [[section-glossary]]
 == Glossary
 
-
-
-[role="arc42help"]
-****
-.Contents
-The most important domain and technical terms that your stakeholders use when discussing the system.
-
-You can also see the glossary as source for translations if you work in multi-language teams.
-
-.Motivation
-You should clearly define your terms, so that all stakeholders
-
-* have an identical understanding of these terms
-* do not use synonyms and homonyms
-
-.Form
-A table with columns <Term> and <Definition>.
-
-Potentially more columns in case you need translations.
-
-****
-
 [options="header"]
 |===
-| Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| Term | Definition
+| W3C | Short for The World Wide Web Consortium, the W3C is an organization composed by many members and groups around the world that seeks to standarize how resources in the web should be created, linked, found, etc. in order to make it accesible and free for everyone. It has established itself as the most important and well-known organization for standarizing the web.
+| Solid     | "_Solid (derived from "social linked data") is a proposed set of conventions and tools for building decentralized social applications based on Linked Data principles. Solid is modular and extensible and it relies as much as possible on existing W3C standards and protocols._" (taken from link:https://solid.mit.edu/[https://solid.mit.edu/]).
+| Linked Data | The idea of Linked Data lies solely on the base of making data in the web interconnected, so everything can be searched (or queried) through links between different resources (more on link:https://www.w3.org/standards/semanticweb/data[https://www.w3.org/standards/semanticweb/data]).
+| POD     | A Solid POD is a personal storage space that contains documents and that gives the possibility of establishing different permissions to deal with said documents.
+| Test-driven development (TDD) | Type of development that consists in writing the tests while or even the code to be tested that adds any functionality. Tests are normally combined into _units_, which contain one or more tests related to a certain functionality.
+| Behaviour-driven development (BDD) | Derived from TDD, this type of development takes TDD's unit testing and wraps it around and explicit explained of the scenario(s) being tested (similar to user stories), thus asserting the correct behaviour of different use cases.
 |===
