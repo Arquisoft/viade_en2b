@@ -1,6 +1,7 @@
 import { fetchDocument } from "tripledoc";
 import { ldp, schema } from "rdf-namespaces";
 import { message } from "rdf-namespaces/dist/wf";
+import { url } from "rdf-namespaces/dist/cal";
 
 
 const $rdf = require("rdflib");
@@ -8,11 +9,6 @@ const ns = require("solid-namespace")();
 
 
 const request = require("request");
-//const ns = require('solid-namespace')($rdf);
-
-
-//From the user inbox, retrieve all the notifications (marked as 'read'-> más adelante)
-//Add the URL to a file located in /viade/shared/globalSharedWithMe.js
 
 /**
  * Listing the notifications urls
@@ -20,9 +16,15 @@ const request = require("request");
  */
 export async function getNotifications(inboxPath) {
     let notificationDocuments = [];
+    let urls = [];
+
+
+    urls = await getNotificationURLS(inboxPath);
     notificationDocuments = await getNotificationDocuments(inboxPath);
+
     console.log(notificationDocuments);
-    let not2 = processSharedRoutes(notificationDocuments);
+
+    let not2 = processSharedRoutes(notificationDocuments, urls);
 
     console.log("NOTIFICATIONS RETRIEVED");
     console.log(not2);
@@ -45,12 +47,12 @@ export async function getNotificationDocuments(inboxPath) {
         for (var i = 0; i < containerURLS.length; i++) {
             try {
                 //FETCH DE LA NOTIFICACIÓN
-                var doc = await fetchDocument(containerURLS[i].replace("/viade", "/viade/inbox"));
+                console.log(containerURLS[i]);
+                
+                var doc = await fetchDocument(containerURLS[i]);
 
                 if (doc) {
                     result = [...result, doc];
-                    console.log('RESULT');
-                    console.log(result);
 
                 }
             } catch (e) {
@@ -69,18 +71,18 @@ export async function getNotificationDocuments(inboxPath) {
 export async function getNotificationURLS(inboxPath) {
     var inbox = inboxPath;
     var containerDoc = await fetchDocument(inbox);
+    var result = [];
 
     //if the document exists
     if (containerDoc) {
         var subject = containerDoc.getSubject(inbox);
+        
         var containerURLS = subject.getAllRefs(ldp.contains);
-
-        var result = [];
         for (var i = 0; i < containerURLS.length; i++) {
             try {
+                
                 //LISTANDO LAS URLS DE LAS NOTIFICACIONES
                 result.push(containerURLS[i]);
-                console.log(result);
             } catch (e) {
                 console.log("Error");
             }
@@ -90,19 +92,17 @@ export async function getNotificationURLS(inboxPath) {
     return [];
 }
 
-export async function processSharedRoutes(notificationDocuments) {
+export async function processSharedRoutes(notificationDocuments, urls) {
     var result = [];
 
     if (notificationDocuments.length > 0) {
         for (let i = 0; i < notificationDocuments.length; i++) {
 
+            let urlRoute = urls[i];
             //getting the subject by the notification title
             var message = notificationDocuments[i]
-                .getSubject("https://testingclrmrnd.inrupt.net/viade/inbox/44904d92-1319-45f2-9079-817fdcbdd72b.ttl");
+                .getSubject(urlRoute);
             const route = message.getString(ns.as("summary"));
-
-            console.log('ROUTE');
-            console.log(route);
 
             result.push(route);
         }
