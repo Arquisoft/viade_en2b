@@ -1,10 +1,10 @@
 export default class Comment{
-    constructor(routeUrl,text,sender){
+    constructor(fileUrl,text,sender,date){
         this.jsonComment = {
-            "route":routeUrl,
-            "comment":text,
-            "postedBy":sender,
-            "date": Date.now()
+            "fileUrl":routeUrl,
+            "text":text,
+            "author":sender,
+            "dateCreated": date
         }
     }
 }

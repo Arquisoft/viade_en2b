@@ -1,15 +1,19 @@
-export default class LoadRouteComments{
+import Comment from "../Entities/Comment";
 
-    async loadComments(route,callback){
-        if(route.commentsUrl===null || route.commentsUrl===undefined||route.commentsUrl===""){
-            let createdUrl = await createCommentsFile(route.name,callback);
-            if(createdUrl!==null && createdUrl!==undefined && createdUrl!==""){
-                route.commentsUrl=createdUrl;
+
+export default class LoadRouteComments {
+
+    async loadComments(route, callback) {
+        if (route.commentsUrl === null || route.commentsUrl === undefined || route.commentsUrl === "") {
+            let createdUrl = await createCommentsFile(route.name, callback);
+            if (createdUrl !== null && createdUrl !== undefined && createdUrl !== "") {
+                route.commentsUrl = createdUrl;
+
 
             }
             return [];
-        }else{
-            let comments = await getComments(route.commentsUrl,callback);
+        } else {
+            let comments = await getComments(route.commentsUrl, callback);
             return comments;
 
         }
@@ -17,7 +21,44 @@ export default class LoadRouteComments{
 
     }
 
-    async createCommentsFile(routeName,callback){
+    async getComments(commentsUrl, callback) {
+        const auth = require('solid-auth-client')
+        const FC = require('solid-file-client')
+        const fc = new FC(auth)
+
+        let session = await auth.currentSession();
+
+        if (!session || session.webId === undefined || session.webId === null) {
+            callback();
+        }
+        try {
+            if (await fc.itemExists(commentsUrl)) {
+                //console.log(routesFolder + " exists");
+                try {
+                    let content = await fc.readFile(commentsUrl);
+                    let json = Json.parse(content);
+                    let comments = json.comments;
+                    let commentsArray = [];
+                    for (let i = 0; comments.length; i++) {
+                        let newComment = new Comment(commentsUrl, comments[i].text, comments[i].author, comments[i].dateCreated);
+                        commentsArray.push(newComment);
+                    }
+
+                    return commentsArray;
+                } catch
+                    (error1) {
+                    console.log("Comment couldn't be parsed");
+
+                }
+            }
+        } catch (error) {
+            console.log("Comments couldn't be loaded");
+            return [];
+        }
+
+    }
+
+    async createCommentsFile(routeName, callback) {
         // createFile( fileURL, content, 'application/json', options )
         const auth = require('solid-auth-client')
         const FC = require('solid-file-client')
@@ -25,13 +66,13 @@ export default class LoadRouteComments{
 
         let session = await auth.currentSession();
 
-        if (!session || session.webId === undefined || session.webId === null){
+        if (!session || session.webId === undefined || session.webId === null) {
             callback();
-            }
+        }
 
         try {
 
-            let url = session.webId.substring(0, session.webId.length - 16) + "/viade/comments/"+routeName;
+            let url = session.webId.substring(0, session.webId.length - 16) + "/viade/comments/" + routeName;
             let emptyCommentFile = {
                 "@context": {
                     "@version": 1.1,
@@ -39,11 +80,11 @@ export default class LoadRouteComments{
                         "@container": "@list",
                         "@id": "viade:comments"
                     },
-                    "comment":{
+                    "comment": {
                         "@id": "viade:comment",
                         "@type": "@id"
                     },
-                    "author":{ "@id": "schema:author", "@type": "@id" },
+                    "author": {"@id": "schema:author", "@type": "@id"},
                     "dateCreated": {
                         "@id": "viade:dateCreated",
                         "@type": "xsd:date"
@@ -58,7 +99,7 @@ export default class LoadRouteComments{
                 "comments": []
 
             };
-            await fc.createFile(url,JSON.stringify(emptyCommentFile),"application/json+ld");
+            await fc.createFile(url, JSON.stringify(emptyCommentFile), "application/json+ld");
             return url;
 
 
@@ -73,7 +114,6 @@ export default class LoadRouteComments{
         return "";
 
     }
-
 
 
 }
