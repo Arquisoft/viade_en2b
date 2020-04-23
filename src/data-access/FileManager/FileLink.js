@@ -13,24 +13,27 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
   let fileClient = new SolidFileClient(auth, { enableLogging: true });
   let session = await auth.currentSession();
   let storageRoot = session.webId.split("profile")[0];
-  let buildRoutePath = storageRoot + routesFolder + routeName + ".json";
+  let buildRouteFolderPath = storageRoot + routesFolder;
   let attachementDate = getAttachmentDate();
-  if (await fileClient.itemExists(buildRoutePath)) {
-    // get the route
-    let routeFile = await fileClient.readFile(buildRoutePath);
-    let route = JSON.parse(routeFile);
-    // check the media subject
-    if (!route.media) {
-      route.media = [];
-    }
-    // for each file
-    // add a new ref to a media subject
-    fileUris.forEach((fileUri) => {
-      route.media.push({ "@id": fileUri, dateTime: attachementDate });
+  if (await fileClient.itemExists(buildRouteFolderPath)) {
+    let viadeRoutes = await fileClient.readFolder(storageRoot + routesFolder);
+    let routeFiles = viadeRoutes.files;
+
+    routeFiles.forEach(async (file) => {
+      if (file.url.match(new RegExp(`${routeName}\..*`))) {
+        let routeFile = await fileClient.readFile(file.url);
+        let route = JSON.parse(routeFile);
+        if (!route.media) {
+          route.media = [];
+        }
+
+        fileUris.forEach((fileUri) => {
+          route.media.push({ "@id": fileUri, dateTime: attachementDate });
+        });
+        fileClient
+          .putFile(file.url, JSON.stringify(route), file.type)
+          .catch(handleFetchError);
+      }
     });
-    // save the updated route
-    fileClient
-      .putFile(buildRoutePath, JSON.stringify(route), "application/json")
-      .catch(handleFetchError);
   }
 };
