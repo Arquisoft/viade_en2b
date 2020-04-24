@@ -4,8 +4,11 @@ import {
   HashRouter as Router,
   Route,
   Switch,
-  useHistory,
+  Redirect,
 } from "react-router-dom";
+
+import RefreshRoute from "./components/spec_components/RefreshRoute";
+
 import MainPage from "./components/pages/MainPage";
 import LoginPage from "./components/pages/LoginPage";
 import FriendsPage from "./components/pages/FriendList";
@@ -16,9 +19,11 @@ import NotificationsPage from "./components/pages/NotificationsPage";
 import SaveRoutePage from "./components/pages/SaveRoutePage";
 import ImportGpxPage from "./components/pages/ImportGpxPage";
 import FriendGroupsPage from "./components/pages/FriendGroupsPage";
+import SeeFriendsOfGroupPage from "./components/pages/SeeFriendsOfGroupPage";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Provider } from "react-redux";
 //import axios from "axios";
 import * as cache from "caches/routeCache/RouteCache";
 
@@ -36,6 +41,12 @@ function notificationsRecieved() {
 }
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+  handleSession = () => {
+    this.props.history.push("/home");
+  };
   state = {
     render: 0,
   };
@@ -50,6 +61,20 @@ class App extends Component {
           render: 1,
         });
     }, 5000);
+    if (
+      window.performance &&
+      window.performance.navigation.type == 1 &&
+      window.location.href.charAt(window.location.href.length - 1) != "/"
+    ) {
+      console.log("mongoi");
+      console.log(window.location.pathname);
+      return (
+        <Router>
+          <Redirect to="/" />
+        </Router>
+      );
+    }
+    console.log(window.location.href);
     if (this.state.render > 0)
       return (
         <Fragment>
@@ -59,6 +84,7 @@ class App extends Component {
             transition={Bounce}
             autoClose={2000}
           />
+
           <Router>
             <Fragment>
               <Switch>
@@ -76,6 +102,11 @@ class App extends Component {
                 <Route exact path="/saveroute" component={SaveRoutePage} />
                 <Route exact path="/gpx" component={ImportGpxPage} />
                 <Route exact path="/groups" component={FriendGroupsPage} />
+                <Route
+                  exact
+                  path="/groupdetails"
+                  component={SeeFriendsOfGroupPage}
+                />
               </Switch>
             </Fragment>
           </Router>
