@@ -1,16 +1,31 @@
+import AddComment from "../../CommentsManager/AddComment"
+import CreateCommentsFile from "../../CommentsManager/CreateCommentsFile"
+import LoadRouteComments from "../../CommentsManager/GetComments"
+export async function createCommentsFile(routeName,callback){
+        let commentFileCreator = new CreateCommentsFile();
+        let fileUrl = await commentFileCreator.createCommentsFile(routeName,callback);
+        return fileUrl;
 
 
-export default function getCommentsForRoute(commentsUrl,callback){
+}
+export async function getCommentsForRoute(commentsUrl,callback){
+        let loader = new LoadRouteComments();
+        let comments = await loader.getComments(commentsUrl,callback);
+        return comments;
 
 }
 
-export default function postCommentInRoute(route,comment,callback){
 
 
-        let comments = getCommentsForRoute(route,callaback);
-        let addComment = new AddComment();
-        //let comment = new Comment(foundRoute.url,comment.text,comment.sender);
+export async function postCommentInRoute(routeComUrl,comment,callback){
+        let loader = new LoadRouteComments();
+        let comments = await loader.loadCommentsJson(commentsUrl,callback);
+        comments.push(comment);
+        let postComment = new AddComment();
+        await postComment.addComment(routeComUrl,comments,callback);
 
-        addComment.addComment(comment,callback);
+
+
+
 
 }
