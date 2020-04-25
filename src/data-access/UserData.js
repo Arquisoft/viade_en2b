@@ -1,4 +1,4 @@
-import {useLDflexValue, useLDflexList } from '@solid/react';
+import { useLDflexValue, useLDflexList } from '@solid/react';
 import Friend from '../Entities/Friend';
 
 const { default: data } = require('@solid/query-ldflex');
@@ -15,7 +15,7 @@ export function GetUserName() {
 
 export async function GetUserProfileImage() {
   const photo = useLDflexValue('user.vcard_hasPhoto') || 'unknown';
-  return photo.value;    
+  return photo.value;
 };
 
 /**
@@ -31,8 +31,8 @@ export async function GetUserFriends() {
   let friendsAux = [];
 
   //For each value (LDflexValue) in friends(LDflexValue [])
-  friends.forEach(async friendLDflexValue =>{
-    
+  friends.forEach(async friendLDflexValue => {
+
     let friendWebIdLDflexValue = friendLDflexValue.value;
     const webId = data[friendWebIdLDflexValue];
     const webIdString = webId.toString();
@@ -42,9 +42,9 @@ export async function GetUserFriends() {
     const profilePic = await GetSpecificProfileImage(webId);
 
     let friendAux = new Friend(webId, name, profilePic, webIdString);
-   
+
     friendsAux.push(friendAux);
-  });  
+  });
 
   return friendsAux;
 };
@@ -60,27 +60,37 @@ export function GetNumberOfFriends() {
   return friends.length;
 };
 
+
 /**
  * Functions for retrieving data from specific users. 
  */
 
-export async function GetSpecificName(webId) {
-  const personName = await webId.name;
-  try{
-    return personName.value;
-  } catch (TypeError ){
+export async function GetSpecificName(profileCardMe) {
+  const personName = await profileCardMe.name;
   
-    return webId.toString().substring(8, webId.toString().length - 1);
+  try {
+    return personName.value;
+  } catch (TypeError) {
+    const name = await data[profileCardMe].name;
+    
+    try {
+      return name.value;
+    } catch (TypeError) {
+      return profileCardMe.toString().substring(8, profileCardMe.toString().length - 1);
+    }
   }
-};
+
+}
+
+
 
 export async function GetSpecificProfileImage(webId) {
-  const photo = await webId.vcard_hasPhoto;     
-  try{
+  const photo = await webId.vcard_hasPhoto;
+  try {
     return photo.value;
-  } catch (TypeError ){
-    
+  } catch (TypeError) {
+
     return "images/userPictureUndefined"
-  } 
+  }
 };
 

@@ -1,14 +1,11 @@
 import React from 'react';
-import { LoggedIn, LoggedOut} from '@solid/react';
+import { LoggedIn, LoggedOut } from '@solid/react';
 import cache from '../../caches/routeCache/RouteCache'
 import * as friendCache from 'caches/friendCache/FriendCache';
-import {ShareWith} from 'ShareManager/ShareRoute';
-import {getNotifications} from 'NotificationManager/NotificationManager';
-import { sharedRoutesList} from 'ShareManager/RetrieveRoute';
+import { ShareWith } from 'ShareManager/ShareRoute';
+import { getNotifications } from 'NotificationManager/NotificationManager';
+import { sharedRoutesList } from 'ShareManager/RetrieveRoute';
 
-import { LoggedIn, LoggedOut } from "@solid/react";
-import cache from "../../caches/routeCache/RouteCache";
-import * as friendCache from "caches/friendCache/FriendCache";
 import data from "@solid/query-ldflex";
 import BurgerMenu from "../generic_components/BurgerMenu";
 import * as userprofile from "../../data-access/UserData";
@@ -130,7 +127,7 @@ class Login extends React.Component {
     }
   }
 
-  viewImageLoaded = () => {};
+  viewImageLoaded = () => { };
   render() {
     const { image } = this.state;
 
@@ -169,6 +166,22 @@ class Login extends React.Component {
               </LoggedOut>
               <LoggedIn>
                 <p>{this.state.name}</p>
+
+                <button
+                  className="login100-form-btn"
+                  onClick={() => getNotifications("https://testingclrmrnd.inrupt.net/viade/inbox/")}
+                >
+                  Notifications
+                </button>
+
+                
+                <button
+                  className="login100-form-btn"
+                  onClick={() => ShareWith( "https://clrmrnd.inrupt.net/viade/routes/Rusia.json", "https://testingclrmrnd.inrupt.net/", "https://clrmrnd.inrupt.net/")}
+                >
+                  Share
+                </button>
+
                 <button
                   className="login100-form-btn"
                   onClick={(e) => this.logout(e, auth)}

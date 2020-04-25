@@ -1,5 +1,5 @@
 import {setPermissionsTo, checkPermissions} from 'util/PermissionManager';
-import {postNotification, createNotificationContent} from 'NotificationManager/NotificationManager';
+import {createNotificationSummary, postNotification, createNotificationContent} from 'NotificationManager/NotificationManager';
 import { v4 as uuidv4 } from 'uuid';
 const request = require("request");
 
@@ -36,8 +36,10 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
 
 
         //send notification to other user inbox
+        const summary = createNotificationSummary("https://clrmrnd/inrupt.net/", route, "https://testingclrmrnd.inrupt.net/", new Date());
         const uuid = uuidv4();
-        const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, route, new Date(), uuid);
+        console.log(summary.toString());
+        const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, summary.toString(), new Date(), uuid);
        
 
         try{

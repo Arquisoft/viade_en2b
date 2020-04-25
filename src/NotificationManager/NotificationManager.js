@@ -1,11 +1,11 @@
 import { fetchDocument } from "tripledoc";
-import { ldp, schema } from "rdf-namespaces";
-import { message } from "rdf-namespaces/dist/wf";
-import { url } from "rdf-namespaces/dist/cal";
-
+import { ldp } from "rdf-namespaces";
+import Notification from 'Entities/Notification';
+import {GetSpecificName} from 'data-access/UserData';
 
 const $rdf = require("rdflib");
-const ns = require("solid-namespace")();
+const ns = require('solid-namespace')($rdf);
+
 
 
 const request = require("request");
@@ -16,18 +16,11 @@ const request = require("request");
  */
 export async function getNotifications(inboxPath) {
     let notificationDocuments = [];
-    let urls = [];
-
-
-    urls = await getNotificationURLS(inboxPath);
     notificationDocuments = await getNotificationDocuments(inboxPath);
 
+    console.log("NOTIFICATIONS RETRIEVED");
     console.log(notificationDocuments);
 
-    let not2 = processSharedRoutes(notificationDocuments, urls);
-
-    console.log("NOTIFICATIONS RETRIEVED");
-    console.log(not2);
 }
 
 /**
@@ -52,7 +45,18 @@ export async function getNotificationDocuments(inboxPath) {
                 var doc = await fetchDocument(containerURLS[i]);
 
                 if (doc) {
-                    result = [...result, doc];
+                    
+                    //Notification url
+                    const url = containerURLS[i];
+
+                    var subject = doc.getSubject(url);
+
+                    //From here get typeNotification && author && path
+                    const summary = subject.getString(ns.as("summary"));
+
+                    //Processing the summary information
+                    let notification = processNotificationInfo(url, summary);
+                    result.push(notification);
 
                 }
             } catch (e) {
@@ -63,6 +67,64 @@ export async function getNotificationDocuments(inboxPath) {
     }
     return [];
 }
+
+//ROUTE_https://clrmrnd/inrupt.net/_https://clrmrnd.inrupt.net/viade/routes/Rusia.json_Sat Apr 25 2020 17:11:07 GMT+0200 (hora de verano de Europa central)
+async function processNotificationInfo(url, summary){
+    let notification = new Notification();
+
+    try{
+        let info = summary.split("_");
+        console.log(info);
+
+        let type = info[0];
+        switch(type){
+            case "ROUTE":
+
+                //author
+                let webId = info[1];
+                const profile = webId + "profile/card#me";     
+                const authorName = await GetSpecificName("https://clrmrnd.inrupt.net/profile/card#me");
+                
+                
+                //path
+                const routePath = info[2];
+                //date
+                const date = info[3];
+
+
+                notification = new Notification(url, type, routePath, authorName, webId, date);
+
+                console.log('HABEMUS NOTIFICATION')
+                console.log(notification);
+
+
+                //Crea o modifica el archivo de sharedRoutes añadiendo la url
+                addToSharedFolder(notification);
+
+                break;
+
+            case "COMMENT":
+                break;
+
+            default:
+                console.log('NOTIFICATION NOT FROM THIS APP: VIADE_EN2B');
+                break;
+
+            
+        }
+
+        return notification;
+
+    } catch(Error){
+        console.log("The notification could not be processed, it may be possible that is not a notification from this app.")
+        return false;
+    }
+}
+
+function addToSharedFolder(notification){
+
+}
+
 
 /**
  * Returns the current list of notifications.
@@ -92,23 +154,7 @@ export async function getNotificationURLS(inboxPath) {
     return [];
 }
 
-export async function processSharedRoutes(notificationDocuments, urls) {
-    var result = [];
 
-    if (notificationDocuments.length > 0) {
-        for (let i = 0; i < notificationDocuments.length; i++) {
-
-            let urlRoute = urls[i];
-            //getting the subject by the notification title
-            var message = notificationDocuments[i]
-                .getSubject(urlRoute);
-            const route = message.getString(ns.as("summary"));
-
-            result.push(route);
-        }
-    }
-    return result;
-}
 
 /**
 * Method that allows to send a notification to a 
@@ -137,6 +183,7 @@ export async function postNotification(webIdFriend, content, uuid) {
         })
 }
 
+
 export function createNotificationContent(type, title, webId, routePath, time, uuid) {
     return `@prefix terms: <http://purl.org/dc/terms#>.
           @prefix as: <https://www.w3.org/ns/activitystreams#> .
@@ -148,32 +195,43 @@ export function createNotificationContent(type, title, webId, routePath, time, u
           <${webId + `viade/inbox/` + uuid + `.ttl`}> a as:${type} ;
           schema:license <https://creativecommons.org/licenses/by-sa/4.0/>;
           terms:title "${title}" ;
-          as:summary "${routePath}" ;
+          as:summary "${routePath}" ;         
           as:actor <${webId}> ;
           solid:read "false"^^xsd:boolean ;
           as:published "${ time}"^^xsd:dateTime .`
 }
 
+export function createNotificationSummary(webIdAuthor, routePath, webIdTo, date) { 
 
-export function createNotificationJSONLD(webIdAuthor, routePath, webIdTo) {
+    return "ROUTE" + "_" + webIdAuthor + "_" + routePath + "_" + date;
+}
+
+export function createNotificationSummaryJSON(webIdAuthor, routePath, webIdTo, date) {
     return JSON.stringify(
 
         {
             "@context": "https://www.w3.org/ns/activitystreams",
-            "summary": "NEW ROUTE",
-            "type": "RouteShared",
+            "summary": "ROUTE",
+            "type": "RouteType",
 
             "actor": {
                 "type": "Person",
                 "name": webIdAuthor
             },
+
             "object": {
-                "type": "route",
+                "type": "Resource",
                 "name": routePath
             },
+
             "target": {
                 "type": "Person",
                 "name": webIdTo
+            },
+
+            "published": {
+                "type": "Date",
+                "name": date
             }
 
         }
