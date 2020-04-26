@@ -1,5 +1,6 @@
 import * as RouteGateway from "data-access/gateways/RouteGateway";
 import FileCache from "../fileCache/FileCache";
+import * as CommentsGateway from "../../data-access/gateways/CommentsGateway";
 
 export default {
   routes: [],
@@ -47,6 +48,13 @@ export default {
         this.routes = [];
       }
     }
+    let comment = {
+      "author":"violeta",
+      "text":"this is a test",
+      "dateCreated":"today"
+    };
+    //await CommentsGateway.postCommentInRoute("https://violetaruizm.inrupt.net/viade/comments/PruebaComments.jsonld",comment,callback)
+    console.log( await CommentsGateway.getCommentsForRoute("https://violetaruizm.inrupt.net/viade/comments/PruebaComments.jsonld",callback));
     return this.routes;
   },
   setSelected(route) {

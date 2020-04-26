@@ -13,7 +13,8 @@ export default class AddComment{
             return false;}
 
         try {
-
+console.log("Posting file: "+JSON.stringify(comments));
+console.log("at: "+url);
             await fc.createFile(url,JSON.stringify(comments),"application/json");
             return true;
 

@@ -5,8 +5,11 @@ export default class LoadRouteComments {
 
     async loadComments(route, callback) {
         let comments = [];
-       if(route.commentsUrl!==null && route.commentsUrl!==undefined && route.commentsUrl!==""){
-           comments = this.parseJsonToEntity(await this.loadCommentsJson(route.commentsUrl,callback));
+       if(route!==null && route!==undefined && route!==""){
+           let commentsJson = await this.loadCommentsJson(route,callback);
+           console.log("Json comments file:" +JSON.stringify(commentsJson));
+           console.log(commentsJson.comments);
+           comments = this.parseJsonToEntity(route,commentsJson.comments);
 
        }
        return comments;
@@ -26,10 +29,10 @@ export default class LoadRouteComments {
             callback();
         }
         try {
-            if (await fc.itemExists(commentsUrl)) {
+            if (await fc.itemExists(route)) {
                 //console.log(routesFolder + " exists");
                 try {
-                    let content = await fc.readFile(commentsUrl);
+                    let content = await fc.readFile(route);
                     let json = JSON.parse(content);
                     return json;
                 } catch
@@ -39,15 +42,18 @@ export default class LoadRouteComments {
                 }
             }
         } catch (error) {
+            console.log(error);
             console.log("Comments couldn't be loaded");
            return '';
         }
 
     }
 
-    parseJsonToEntity(comments){
+    parseJsonToEntity(commentsUrl,comments){
         let commentsArray = [];
-        for (let i = 0; comments.length; i++) {
+        console.log(comments.length);
+        for (let i = 0; i< comments.length; i++) {
+
             let newComment = new Comment(commentsUrl, comments[i].text, comments[i].author, comments[i].dateCreated);
             commentsArray.push(newComment);
         }

@@ -10,7 +10,7 @@ export async function createCommentsFile(routeName,callback){
 }
 export async function getCommentsForRoute(commentsUrl,callback){
         let loader = new LoadRouteComments();
-        let comments = await loader.getComments(commentsUrl,callback);
+        let comments = await loader.loadComments(commentsUrl,callback);
         return comments;
 
 }
@@ -19,10 +19,19 @@ export async function getCommentsForRoute(commentsUrl,callback){
 
 export async function postCommentInRoute(routeComUrl,comment,callback){
         let loader = new LoadRouteComments();
-        let comments = await loader.loadCommentsJson(commentsUrl,callback);
-        comments.push(comment);
+        let commentsJson = await loader.loadCommentsJson(routeComUrl,callback);
+        //console.log(comments);
+        commentsJson.comments.push(comment);
+        console.log("this is the comments Json: "+JSON.stringify(commentsJson));
         let postComment = new AddComment();
-        await postComment.addComment(routeComUrl,comments,callback);
+        let posted = await postComment.addComment(routeComUrl,commentsJson,callback);
+        if(posted){
+                console.log("comment posted")
+                commentsJson = await  loader.loadCommentsJson(routeComUrl,callback);
+                console.log("this is the comments Json: "+JSON.stringify(commentsJson));
+        }else{
+                console.log("wtf");
+        }
 
 
 
