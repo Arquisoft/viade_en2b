@@ -1,7 +1,6 @@
 import {setPermissionsTo, checkPermissions} from 'util/PermissionManager';
 import {createNotificationSummary, postNotification, createNotificationContent} from 'NotificationManager/NotificationManager';
 import { v4 as uuidv4 } from 'uuid';
-const request = require("request");
 
 
 /**

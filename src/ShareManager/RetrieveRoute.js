@@ -38,9 +38,7 @@ export async function sharedRoutesList(routesURL) {
  */
 
 export async function retrieveSharedRoutes(sharedPath) {
-  const auth = require("solid-auth-client");
-  const FC = require("solid-file-client");
-  const fc = new FC(auth);
+  
   let routesJSONS = [];
 
   let content = await fc.readFolder(sharedPath);
