@@ -20,6 +20,7 @@ import SaveRoutePage from "./components/pages/SaveRoutePage";
 import ImportGpxPage from "./components/pages/ImportGpxPage";
 import FriendGroupsPage from "./components/pages/FriendGroupsPage";
 import SeeFriendsOfGroupPage from "./components/pages/SeeFriendsOfGroupPage";
+import CreateFriendGroupPage from "./components/pages/CreateFriendGroupPage";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -106,6 +107,11 @@ class App extends Component {
                   exact
                   path="/groupdetails"
                   component={SeeFriendsOfGroupPage}
+                />
+                <Route
+                  exact
+                  path="/creategroup"
+                  component={CreateFriendGroupPage}
                 />
               </Switch>
             </Fragment>

@@ -51,6 +51,11 @@ class FriendGroupsPage extends React.Component {
         <main>
           <BurgerMenu pageWrapId="page-wrap" container="outer-container" />
           <div className="App friends" id="page-wrap">
+            <div className="backList">
+              <Router>
+                <Link to="/creategroup">Create Group</Link>
+              </Router>
+            </div>
             <section className="sectionFriends">
               <h1>List of Groups</h1>
               <ul className="listgroups">
