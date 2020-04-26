@@ -7,8 +7,11 @@ export default {
     this.groups = groups_param;
   },
   async getGroups(handleSession) {
-    await friendmanager.load(handleSession);
-    return this.groups;
+    if (this.groups.length > 0) return this.groups;
+    else {
+      await friendmanager.load(handleSession);
+      return this.groups;
+    }
   },
   clear() {
     this.groups = [];

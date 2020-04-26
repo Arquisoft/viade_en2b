@@ -2,6 +2,7 @@ import React from "react";
 import BurgerMenu from "../generic_components/BurgerMenu";
 import CardLayout from "../generic_components/Card";
 import CustomLoader from "components/generic_components/CustomLoader";
+import CustomListButton from "components/generic_components/CustomListButton";
 import GenericButton from "components/generic_components/GenericButton";
 import * as cache from "caches/friendGroupCache/FriendGroupCache";
 import * as friendcache from "caches/friendCache/FriendCache";
@@ -27,8 +28,12 @@ class CreateFriendGroupPage extends React.Component {
   componentDidMount() {
     //this.setState({ loading: true, friends: friendcache.default.getFriends() });
   }
-  addFriendsToGroup(friendWebId) {
-    friendsToGroup.push({ url: friendWebId });
+  manageFriendsToGroup(friendWebId) {
+    var length = friendsToGroup.length;
+    friendsToGroup = friendsToGroup.filter((item) => item.url !== friendWebId);
+    if (friendsToGroup.length == length)
+      friendsToGroup.push({ url: friendWebId });
+
     console.log(friendsToGroup);
   }
   getFriendsToGroup() {
@@ -62,16 +67,15 @@ class CreateFriendGroupPage extends React.Component {
                       return (
                         <li id={"group" + index} key={index} className="liCard">
                           <div className="itemgroup">
-                            <button
+                            <CustomListButton
                               className="itemelement"
+                              message={item.name}
                               onClick={() => {
-                                this.addFriendsToGroup(
+                                this.manageFriendsToGroup(
                                   friends[index].webIdString
                                 );
                               }}
-                            >
-                              {item.name}
-                            </button>
+                            />
                           </div>
                         </li>
                       );
@@ -88,13 +92,14 @@ class CreateFriendGroupPage extends React.Component {
                   />
                   <form>
                     <GenericButton
-                      className="submitRoute"
+                      className="submitGroup"
                       message="Save Group"
                       onClick={() => {
                         friendmanager.creategroup(
                           this.getFriendsToGroup(),
                           this.state.nameGroup
                         );
+                        window.location.reload();
                       }}
                     />
                   </form>

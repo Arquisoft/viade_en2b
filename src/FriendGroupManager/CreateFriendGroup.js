@@ -78,7 +78,7 @@ export default {
       },
       identifier: new_id,
       name: groupname,
-      users: [users],
+      users: users,
     };
 
     return template;

@@ -22,6 +22,7 @@ class FriendGroupsPage extends React.Component {
   componentDidMount() {
     cache.default.getGroups(this.handleSession).then((groups) => {
       this.setState({ loading: false, groups: groups });
+      cache.default.setGroups(groups);
     });
   }
 
@@ -62,17 +63,16 @@ class FriendGroupsPage extends React.Component {
                 {groups.map((item, index) => {
                   return (
                     <li id={"group" + index} key={index} className="liCard">
-                      <Router>
-                        <Link
-                          className="buttonGroup"
-                          onClick={(e) => {
-                            this.selectDetails(e, groups[index]);
-                          }}
-                          to="/groupdetails"
-                        >
-                          {item.name}
-                        </Link>
-                      </Router>
+                      <CardLayout
+                        header={item.name}
+                        image="https://www.pngitem.com/pimgs/m/4-49786_people-people-icon-png-file-transparent-png.png"
+                        link="/groupdetails"
+                        className="linkRoute"
+                        action={(e) => {
+                          this.selectDetails(e, groups[index]);
+                        }}
+                        iconName="map"
+                      />
                     </li>
                   );
                 })}
@@ -93,3 +93,16 @@ class FriendGroupsPage extends React.Component {
   }
 }
 export default FriendGroupsPage;
+/*
+<Router>
+                        <Link
+                          className="buttonGroup"
+                          onClick={(e) => {
+                            this.selectDetails(e, groups[index]);
+                          }}
+                          to="/groupdetails"
+                        >
+                          {item.name}
+                        </Link>
+                      </Router>
+*/
