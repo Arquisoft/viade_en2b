@@ -4,27 +4,34 @@ const auth = require("solid-auth-client");
 const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 var groups_path = "viade/groups";
-export default class CreateFriendGroup {
-  addtogroup(groupId, webId) {}
+export default {
+  friends: [],
+
+  addToNewGroup(friend) {
+    this.friends.push(friend);
+  },
+
+  addtogroup(groupId, webId) {},
 
   async creategroup(users, groupname) {
     let session = await auth.currentSession();
     let group_folder =
-      session.webId.substring(0, session.webId.length - 16) + "/viade/groups/";
+      session.webId.substring(0, session.webId.length - 16) +
+      "/viade/groups/" +
+      groupname;
 
-    if (!this.checkexistance(groupname, group_folder)) {
-      let new_id = this.create_UUID();
-      var group = JSON.stringify(this.group_template(groupname, users, new_id));
-      var file = new File([group], groupname + " " + new_id + ".jsonld", {
-        type: "application/ld+json",
-      });
-      this.updateFile(group_folder, file, file.type);
-    }
-  }
+    let new_id = this.create_UUID();
+    var group = JSON.stringify(this.group_template(groupname, users, new_id));
+    var file = new File([group], groupname + " " + new_id + ".jsonld", {
+      type: "application/ld+json",
+    });
+    console.log(file);
+    this.updateFile(group_folder, file, file.type);
+  },
 
-  updateFile = (path, content, contentType) => {
+  async updateFile(path, content, contentType) {
     return fileClient.putFile(path, content, contentType).catch(console.log);
-  };
+  },
 
   async checkexistance(id, group_folder) {
     if (await fileClient.itemExists(group_folder)) {
@@ -42,7 +49,7 @@ export default class CreateFriendGroup {
     } else {
       return false;
     }
-  }
+  },
 
   group_template(groupname, users, new_id) {
     var template = {
@@ -75,7 +82,7 @@ export default class CreateFriendGroup {
     };
 
     return template;
-  }
+  },
 
   create_UUID() {
     var dt = new Date().getTime();
@@ -88,5 +95,5 @@ export default class CreateFriendGroup {
       }
     );
     return uuid;
-  }
-}
+  },
+};

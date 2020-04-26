@@ -12,6 +12,7 @@ import data from "@solid/query-ldflex";
 
 import { Image, List } from "semantic-ui-react";
 var friends = [];
+var friendsToGroup = [];
 class CreateFriendGroupPage extends React.Component {
   constructor(props) {
     super(props);
@@ -19,11 +20,24 @@ class CreateFriendGroupPage extends React.Component {
     this.state = {
       loading: false,
       friends: [],
+      nameGroup: "",
     };
   }
 
   componentDidMount() {
     //this.setState({ loading: true, friends: friendcache.default.getFriends() });
+  }
+  addFriendsToGroup(friendWebId) {
+    friendsToGroup.push({ url: friendWebId });
+    console.log(friendsToGroup);
+  }
+  getFriendsToGroup() {
+    return friendsToGroup;
+  }
+
+  nameToGroup(name) {
+    this.setState({ nameGroup: name.target.value });
+    console.log(this.state.nameGroup);
   }
 
   viewLoaded = (friends) => {
@@ -51,7 +65,9 @@ class CreateFriendGroupPage extends React.Component {
                             <button
                               className="itemelement"
                               onClick={() => {
-                                alert(index);
+                                this.addFriendsToGroup(
+                                  friends[index].webIdString
+                                );
                               }}
                             >
                               {item.name}
@@ -65,11 +81,21 @@ class CreateFriendGroupPage extends React.Component {
                 <section className="saveSection">
                   <label for="textInput">Group Name</label>
                   <br />
-                  <input className="textInput" type="text" />
+                  <input
+                    className="textInput"
+                    type="text"
+                    onChange={this.nameToGroup.bind(this)}
+                  />
                   <form>
                     <GenericButton
                       className="submitRoute"
                       message="Save Group"
+                      onClick={() => {
+                        friendmanager.creategroup(
+                          this.getFriendsToGroup(),
+                          this.state.nameGroup
+                        );
+                      }}
                     />
                   </form>
                 </section>
