@@ -29,14 +29,14 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
 
     //check if it's already shared
     const shared = await checkPermissions("READ", profileFriend, route);
-    if(true){
-        console.log('ENTERED');
+    if(!shared){
+        
         //set permissions to read in the route
         setPermissionsTo("READ", route, profileFriend);
 
 
         //send notification to other user inbox
-        const summary = createNotificationSummary("https://clrmrnd.inrupt.net/", route, "https://testingclrmrnd.inrupt.net/", new Date());
+        const summary = createNotificationSummary(webIdAuthor, route, webIdFriend, new Date());
         const uuid = uuidv4();
         console.log(summary.toString());
         const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, summary.toString(), new Date(), uuid);

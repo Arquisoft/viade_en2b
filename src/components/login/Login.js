@@ -169,28 +169,6 @@ class Login extends React.Component {
 
                 <button
                   className="login100-form-btn"
-                  onClick={() => getNotifications("https://testingclrmrnd.inrupt.net/viade/inbox/")}
-                >
-                  Notifications
-                </button>
-
-
-                <button
-                  className="login100-form-btn"
-                  onClick={() => sharedRoutesList("https://testingclrmrnd.inrupt.net/viade/shared/")}
-                >
-                  Routes
-                </button>
-                
-                <button
-                  className="login100-form-btn"
-                  onClick={() => ShareWith( "https://clrmrnd.inrupt.net/viade/routes/Rusia.json", "https://testingclrmrnd.inrupt.net/", "https://clrmrnd.inrupt.net/")}
-                >
-                  Share
-                </button>
-
-                <button
-                  className="login100-form-btn"
                   onClick={(e) => this.logout(e, auth)}
                 >
                   Log out

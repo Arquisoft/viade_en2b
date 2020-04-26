@@ -12,18 +12,7 @@ const fc = new FC(auth);
 
 const request = require("request");
 
-/**
- * Listing the notifications urls
- * @param {*} inboxPath 
- */
-export async function getNotifications(inboxPath) {
-    let notificationDocuments = [];
-    notificationDocuments = await getNotificationDocuments(inboxPath);
 
-    console.log("NOTIFICATIONS RETRIEVED");
-    console.log(notificationDocuments);
-
-}
 
 /**
  * Returns the current list of notifications.
@@ -76,8 +65,7 @@ async function processNotificationInfo(url, summary) {
 
     try {
         let info = summary.split("_");
-        console.log(info);
-
+        
         let type = info[0];
         switch (type) {
             case "ROUTE":
@@ -86,7 +74,7 @@ async function processNotificationInfo(url, summary) {
                 let webId = info[1];
                 const profile = webId + "profile/card#me";
                 const webIdForName = await GetSpecificWebId(webId);
-                const authorName = await GetSpecificName("https://clrmrnd.inrupt.net/profile/card#me");
+                const authorName = await GetSpecificName(profile);
 
 
                 //path
@@ -103,8 +91,8 @@ async function processNotificationInfo(url, summary) {
 
                 //Crea o modifica el archivo de sharedRoutes añadiendo la url
                 addToSharedFolder(notification, "https://testingclrmrnd.inrupt.net/");
-
-                break;
+                return notification;
+                
 
             case "COMMENT":
                 break;
