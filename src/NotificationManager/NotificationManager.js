@@ -1,12 +1,14 @@
 import { fetchDocument } from "tripledoc";
 import { ldp } from "rdf-namespaces";
 import Notification from 'Entities/Notification';
-import {GetSpecificName} from 'data-access/UserData';
+import { GetSpecificName, GetSpecificWebId } from 'data-access/UserData';
 
 const $rdf = require("rdflib");
 const ns = require('solid-namespace')($rdf);
 
-
+const auth = require("solid-auth-client");
+const FC = require("solid-file-client");
+const fc = new FC(auth);
 
 const request = require("request");
 
@@ -41,11 +43,11 @@ export async function getNotificationDocuments(inboxPath) {
             try {
                 //FETCH DE LA NOTIFICACIÓN
                 console.log(containerURLS[i]);
-                
+
                 var doc = await fetchDocument(containerURLS[i]);
 
                 if (doc) {
-                    
+
                     //Notification url
                     const url = containerURLS[i];
 
@@ -69,37 +71,38 @@ export async function getNotificationDocuments(inboxPath) {
 }
 
 //ROUTE_https://clrmrnd/inrupt.net/_https://clrmrnd.inrupt.net/viade/routes/Rusia.json_Sat Apr 25 2020 17:11:07 GMT+0200 (hora de verano de Europa central)
-async function processNotificationInfo(url, summary){
+async function processNotificationInfo(url, summary) {
     let notification = new Notification();
 
-    try{
+    try {
         let info = summary.split("_");
         console.log(info);
 
         let type = info[0];
-        switch(type){
+        switch (type) {
             case "ROUTE":
 
                 //author
                 let webId = info[1];
-                const profile = webId + "profile/card#me";     
+                const profile = webId + "profile/card#me";
+                const webIdForName = await GetSpecificWebId(webId);
                 const authorName = await GetSpecificName("https://clrmrnd.inrupt.net/profile/card#me");
-                
-                
+
+
                 //path
                 const routePath = info[2];
                 //date
                 const date = info[3];
 
 
-                notification = new Notification(url, type, routePath, authorName, webId, date);
+                notification = new Notification(url, type, routePath, authorName, webIdForName, date);
 
                 console.log('HABEMUS NOTIFICATION')
                 console.log(notification);
 
 
                 //Crea o modifica el archivo de sharedRoutes añadiendo la url
-                addToSharedFolder(notification);
+                addToSharedFolder(notification, "https://testingclrmrnd.inrupt.net/");
 
                 break;
 
@@ -110,19 +113,75 @@ async function processNotificationInfo(url, summary){
                 console.log('NOTIFICATION NOT FROM THIS APP: VIADE_EN2B');
                 break;
 
-            
+
         }
 
         return notification;
 
-    } catch(Error){
+    } catch (Error) {
         console.log("The notification could not be processed, it may be possible that is not a notification from this app.")
         return false;
     }
 }
 
-function addToSharedFolder(notification){
+async function addToSharedFolder(notification, myWebId) {
+    console.log('IN ADD TO SHARED FOLDER');
+    //build path
 
+    let path = myWebId + "viade/shared/" + notification.authorWebId + ".jsonld";
+
+
+    try {
+        //checking if the path exists
+        let exists = await fc.itemExists(path).catch(Error).then(console.log('ERROR'));
+        console.log(exists);
+        if (!exists) {
+            createFileShared(path, notification);
+
+        } else {
+            addRouteToFile(path, notification);
+        }
+    } catch (Error) {
+        console.log('Error: not found');
+    }
+
+
+}
+
+async function addRouteToFile(path, notification) {
+    //push id
+    const file = await fc.readFile(path);
+    let routeJson = JSON.parse(file);
+    routeJson.routes.push({ "@id": notification.urlResource });
+    //store
+    fc.createFile(path, JSON.stringify(routeJson), "text/jsonld");
+    
+}
+
+function createFileShared(path, notification) {
+    //saveSharedFile
+    const content = functionCreateSharedFileContent(notification);
+    console.log(content);
+    fc.createFile(path, content, "text/jsonld");
+}
+
+function functionCreateSharedFileContent(notification) {
+    return JSON.stringify({
+        "@context": {
+            "@version": 1.1,
+            "routes": {
+                "@container": "@list",
+                "@id": "viade:routes"
+            },
+            "viade": "http://arquisoft.github.io/viadeSpec/"
+        },
+        "routes": [
+            {
+                "@id": notification.urlResource
+
+            }
+        ]
+    });
 }
 
 
@@ -138,11 +197,11 @@ export async function getNotificationURLS(inboxPath) {
     //if the document exists
     if (containerDoc) {
         var subject = containerDoc.getSubject(inbox);
-        
+
         var containerURLS = subject.getAllRefs(ldp.contains);
         for (var i = 0; i < containerURLS.length; i++) {
             try {
-                
+
                 //LISTANDO LAS URLS DE LAS NOTIFICACIONES
                 result.push(containerURLS[i]);
             } catch (e) {
@@ -175,8 +234,8 @@ export async function postNotification(webIdFriend, content, uuid) {
         }
     },
         function (error, response, content) {
-            if (error) { 
-                return false; 
+            if (error) {
+                return false;
             } else {
                 return true;
             }
@@ -201,7 +260,7 @@ export function createNotificationContent(type, title, webId, routePath, time, u
           as:published "${ time}"^^xsd:dateTime .`
 }
 
-export function createNotificationSummary(webIdAuthor, routePath, webIdTo, date) { 
+export function createNotificationSummary(webIdAuthor, routePath, webIdTo, date) {
 
     return "ROUTE" + "_" + webIdAuthor + "_" + routePath + "_" + date;
 }

@@ -36,7 +36,7 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
 
 
         //send notification to other user inbox
-        const summary = createNotificationSummary("https://clrmrnd/inrupt.net/", route, "https://testingclrmrnd.inrupt.net/", new Date());
+        const summary = createNotificationSummary("https://clrmrnd.inrupt.net/", route, "https://testingclrmrnd.inrupt.net/", new Date());
         const uuid = uuidv4();
         console.log(summary.toString());
         const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, summary.toString(), new Date(), uuid);

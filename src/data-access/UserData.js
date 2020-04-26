@@ -67,18 +67,26 @@ export function GetNumberOfFriends() {
 
 export async function GetSpecificName(profileCardMe) {
   const personName = await profileCardMe.name;
-  
+
   try {
     return personName.value;
   } catch (TypeError) {
     const name = await data[profileCardMe].name;
-    
+
     try {
       return name.value;
     } catch (TypeError) {
       return profileCardMe.toString().substring(8, profileCardMe.toString().length - 1);
     }
   }
+
+}
+
+
+
+export async function GetSpecificWebId(webId) {
+
+  return webId.toString().substring(8, webId.toString().length - 1);
 
 }
 
