@@ -4,7 +4,7 @@ import cache from '../../caches/routeCache/RouteCache'
 import * as friendCache from 'caches/friendCache/FriendCache';
 import { ShareWith } from 'ShareManager/ShareRoute';
 import { getNotifications } from 'NotificationManager/NotificationManager';
-import { sharedRoutesList } from 'ShareManager/RetrieveRoute';
+import { retrieveSharedRoutes, listAllURLShared, sharedRoutesList } from 'ShareManager/RetrieveRoute';
 
 import data from "@solid/query-ldflex";
 import BurgerMenu from "../generic_components/BurgerMenu";
@@ -174,6 +174,13 @@ class Login extends React.Component {
                   Notifications
                 </button>
 
+
+                <button
+                  className="login100-form-btn"
+                  onClick={() => sharedRoutesList("https://testingclrmrnd.inrupt.net/viade/shared/")}
+                >
+                  Routes
+                </button>
                 
                 <button
                   className="login100-form-btn"
