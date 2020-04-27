@@ -1,5 +1,5 @@
 import File from "../Entities/File";
-import Route from "../Entities/BasicRoute";
+import BasicRoute from "../Entities/BasicRoute";
 import RouteFile from "../Entities/RouteFile";
 
 export default class RoutesLoader {
