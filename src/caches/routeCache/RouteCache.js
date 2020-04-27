@@ -48,13 +48,6 @@ export default {
         this.routes = [];
       }
     }
-    let comment = {
-      "author":"violeta",
-      "text":"this is a test",
-      "dateCreated":"today"
-    };
-    //await CommentsGateway.postCommentInRoute("https://violetaruizm.inrupt.net/viade/comments/PruebaComments.jsonld",comment,callback)
-    console.log( await CommentsGateway.getCommentsForRoute("https://violetaruizm.inrupt.net/viade/comments/PruebaComments.jsonld",callback));
     return this.routes;
   },
   setSelected(route) {

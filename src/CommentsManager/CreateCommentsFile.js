@@ -42,7 +42,8 @@ export default class CreateCommentsFile{
                 "comments": []
 
             };
-            await fc.createFile(url, JSON.stringify(emptyCommentFile), "application/json+ld");
+            console.log("new file "+JSON.stringify(emptyCommentFile));
+            await fc.createFile(url+".jsonld", JSON.stringify(emptyCommentFile), "text/plain");
             return url;
 
 
