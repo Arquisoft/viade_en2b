@@ -3,11 +3,11 @@ const feature = loadFeature("./e2e/features/login.feature");
 const puppeteer = require("puppeteer");
 
 defineFeature(feature, (test) => {
-
   let user = "viadeen2bpod";
   let pass = "ASW1920en2b$";
   let browser;
   let page;
+
   beforeAll(async () => {
     browser = await puppeteer.launch();
     page = await browser.newPage();
@@ -25,6 +25,13 @@ defineFeature(feature, (test) => {
     when(
       "The user has reached the page to login and clicks the button to do so",
       async () => {
+        await expect(page).toClick("button", { text: "Log In" });
+        await expect(page).toClick("button", { text: "Solid Community" });
+        await expect(page).toClick("button", { text: "Go" });
+        await expect(page).toFillForm("form", {
+          username: user,
+          password: pass,
+        });
         await expect(page).toClick("button", { text: "Log In" });
       }
     );
