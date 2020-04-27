@@ -8,13 +8,16 @@ export default class RoutesLoader {
     const FC = require("solid-file-client");
     const fc = new FC(auth);
     let routes = [];
+    let urls = [];
     let session = await auth.currentSession();
+
     //let popupUri = 'https://solid.community/common/popup.html';
     if (!session || session.webId === undefined || session.webId === null) {
       //session = await auth.popupLogin({popupUri});
       callback();
       return { routes: [], files: [] };
     }
+    localStorage.setItem("session", JSON.stringify(session));
     //alert('Logged in as ' + session.webId);
     let routesFolder =
       session.webId.substring(0, session.webId.length - 16) + "/viade/routes/"; //"/public/Routes/";
@@ -27,6 +30,7 @@ export default class RoutesLoader {
 
         for (let i = 0; i < files.length; i++) {
           let fileContent = await fc.readFile(files[i].url);
+          urls.push(files[i].url);
           routes.push(fileContent);
         }
       } catch (error) {
@@ -41,7 +45,7 @@ export default class RoutesLoader {
 
     let rou = this.jsonToEntity(this.routesToJson(routes));
     //localStorage.setItem('rutas', JSON.stringify(rou));
-
+    localStorage.setItem("urls", JSON.stringify(urls));
     return rou;
   }
 
@@ -102,7 +106,7 @@ export default class RoutesLoader {
       try {
         console.log(routes[i]);
         let route = JSON.parse(routes[i]);
-        
+
         jsonRoutes.push(route);
       } catch (e) {
         console.log(
