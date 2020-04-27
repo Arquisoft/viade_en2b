@@ -1,12 +1,12 @@
 import SolidFileClient from "solid-file-client";
-
+import * as cache from "caches/friendGroupCache/FriendGroupCache";
 const auth = require("solid-auth-client");
 const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 var groups_path = "viade/groups";
 export default {
   friends: [],
-
+  empty() {},
   addToNewGroup(friend) {
     this.friends.push(friend);
   },
@@ -29,6 +29,9 @@ export default {
     });
     console.log(file);
     this.updateFile(group_folder, file, file.type);
+    /* var updateGroups = cache.default.getGroups(this.empty());
+    updateGroups.push(JSON.parse(group));
+    cache.default.setGroups(updateGroups);*/
   },
 
   async updateFile(path, content, contentType) {

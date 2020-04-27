@@ -46,7 +46,7 @@ class BurgerMenu extends Component {
             </Link>
 
             <Link id="groups-friends" className="menu-item" to="/groups">
-              <i className="fa fa-fw fas fa-cog"></i>
+              <i className="fa fa fa-plus-circle"></i>
               <span>Groups Friends</span>
             </Link>
 
