@@ -15,14 +15,16 @@ export default {
 
   async creategroup(users, groupname) {
     let session = await auth.currentSession();
+    let new_id = this.create_UUID();
+
+    let namefile = groupname + " " + new_id + ".jsonld";
     let group_folder =
       session.webId.substring(0, session.webId.length - 16) +
       "/viade/groups/" +
-      groupname;
+      namefile;
 
-    let new_id = this.create_UUID();
     var group = JSON.stringify(this.group_template(groupname, users, new_id));
-    var file = new File([group], groupname + " " + new_id + ".jsonld", {
+    var file = new File([group], namefile, {
       type: "application/ld+json",
     });
     console.log(file);

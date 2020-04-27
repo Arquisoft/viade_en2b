@@ -33,9 +33,6 @@ class FriendGroupsPage extends React.Component {
       friend.url = item.url;
 
       group_final.push(friend);
-
-      console.log("Pathetic");
-      console.table(friend);
     });
 
     cache.default.setGroupSelected(group_final);
