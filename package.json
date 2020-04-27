@@ -36,6 +36,7 @@
     "react-spinkit": "^3.0.0",
     "react-tiny-fab": "^3.4.0",
     "react-toastify": "^5.5.0",
+    "redux": "^4.0.5",
     "semantic-ui-react": "^0.88.2",
     "solid-acl-utils": "github:otto-aa/solid-acl-utils",
     "solid-auth-client": "^2.4.1",

@@ -1,0 +1,130 @@
+.friends {
+  padding-top: 120px;
+}
+
+.groupsContainer {
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.sectionFriends {
+  margin: 25px;
+  padding: 20px;
+  margin-top: 0px;
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.buttonGroup {
+  font-size: 22px;
+  font-weight: 700;
+
+  padding: 15px;
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.buttonGroup:hover {
+  background: lightgray;
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.backList {
+  font-size: 22px;
+  font-weight: 700;
+  display: block;
+  position: absolute;
+  width: 20%;
+  padding: 15px;
+  margin: 40px;
+  top: 0;
+  right: 0;
+
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.headerGroup {
+  padding: 20px;
+}
+
+.submitGroup {
+  padding: 20px;
+
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.createGroup {
+  padding: 20px;
+  margin: 10px;
+
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.selectMembersSection {
+  width: 50%;
+  margin: 10px;
+  padding: 10px;
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.saveSection {
+  width: 50%;
+  margin: 10px;
+  padding: 10px;
+  font-size: 22px;
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.selectMembersSection {
+  width: 50%;
+  margin: 10px;
+  padding: 10px;
+  font-size: 22px;
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.itemgroup {
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.itemelement {
+  padding: 5px;
+  margin: 5px;
+  height: 80%;
+  width: 80%;
+}
