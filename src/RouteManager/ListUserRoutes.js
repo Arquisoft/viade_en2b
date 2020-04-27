@@ -1,5 +1,5 @@
 import File from "../Entities/File";
-import Route from "../Entities/BasicRoute";
+import BasicRoute from "../Entities/BasicRoute";
 import RouteFile from "../Entities/RouteFile";
 
 export default class RoutesLoader {
@@ -71,8 +71,9 @@ export default class RoutesLoader {
           let fileContent = await fc.readFile(files[i].url);
           try {
             let tempRoute = JSON.parse(fileContent);
+            console.log(tempRoute);
             if (tempRoute.name === name) {
-              let route = new Route(tempRoute.name, tempRoute.itinerary);
+              let route = new BasicRoute(tempRoute.name, tempRoute.points);
               route.setUrl(files[i].url);
               route.setJsonFormat(tempRoute);
               console.log("Match " + route.url);
@@ -99,7 +100,9 @@ export default class RoutesLoader {
     let jsonRoutes = [];
     for (let i = 0; i < routes.length; i++) {
       try {
+        console.log(routes[i]);
         let route = JSON.parse(routes[i]);
+        
         jsonRoutes.push(route);
       } catch (e) {
         console.log(
@@ -119,8 +122,8 @@ export default class RoutesLoader {
       try {
         console.log(routes[i]);
         let name = routes[i].name;
-        let it = routes[i].itinerary;
-        let route = new Route(name, it);
+        let it = routes[i].points;
+        let route = new BasicRoute(name, it);
         route.setJsonFormat(routes[i]);
         entRoutes.push(route);
         console.log("Route " + route.name + " was created succesfully");
