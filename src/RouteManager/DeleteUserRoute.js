@@ -22,7 +22,8 @@ export default class DeleteUserRoute{
         if (!session || session.webId === undefined || session.webId === null)
             session = await auth.popupLogin({popupUri});
    
-        let routesFolder = session.webId.substring(0, session.webId.length - 16) + "/public/Routes/";
+        let routesFolder = session.webId.substring(0, session.webId.length - 16) + //"/public/Routes/";
+                            "/viade/routes/";
         
         if (await fc.itemExists(routesFolder)) {
             try {

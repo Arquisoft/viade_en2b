@@ -1,12 +1,15 @@
-import React from "react";
+import React from 'react';
+import { LoggedIn, LoggedOut } from '@solid/react';
+import cache from '../../caches/routeCache/RouteCache'
+import * as friendCache from 'caches/friendCache/FriendCache';
+import { ShareWith } from 'ShareManager/ShareRoute';
+import { getNotifications } from 'NotificationManager/NotificationManager';
+import { retrieveSharedRoutes, listAllURLShared, sharedRoutesList } from 'ShareManager/RetrieveRoute';
 
-import { LoggedIn, LoggedOut } from "@solid/react";
-import cache from "../../caches/routeCache/RouteCache";
-import * as friendCache from "caches/friendCache/FriendCache";
 import data from "@solid/query-ldflex";
 import BurgerMenu from "../generic_components/BurgerMenu";
 import * as userprofile from "../../data-access/UserData";
-
+import * as folderCreator from "../../data-access/FileManager/FolderCreator";
 import "assets/css/Login.css";
 
 const $rdf = require("rdflib");
@@ -79,6 +82,7 @@ class Login extends React.Component {
         this.setState({ name: "Welcome, Guest" });
       } else this.setState({ name: "Welcome, " + name });
     });
+    this.createFolder();
   }
 
   async logout(e, auth) {
@@ -123,8 +127,11 @@ class Login extends React.Component {
       //errorToaster(error.message, 'Error');
     }
   }
+  async createFolder(){
+    folderCreator.default.main();
+  }
 
-  viewImageLoaded = () => {};
+  viewImageLoaded = () => { };
   render() {
     const { image } = this.state;
 
@@ -163,6 +170,7 @@ class Login extends React.Component {
               </LoggedOut>
               <LoggedIn>
                 <p>{this.state.name}</p>
+
                 <button
                   className="login100-form-btn"
                   onClick={(e) => this.logout(e, auth)}

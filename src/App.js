@@ -1,6 +1,14 @@
 import React, { Component, Fragment } from "react";
 
-import { HashRouter as Router, Route, Switch,useHistory } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+
+import RefreshRoute from "./components/spec_components/RefreshRoute";
+
 import MainPage from "./components/pages/MainPage";
 import LoginPage from "./components/pages/LoginPage";
 import FriendsPage from "./components/pages/FriendList";
@@ -10,46 +18,74 @@ import AboutPage from "./components/pages/AboutPage";
 import NotificationsPage from "./components/pages/NotificationsPage";
 import SaveRoutePage from "./components/pages/SaveRoutePage";
 import ImportGpxPage from "./components/pages/ImportGpxPage";
-
+import FriendGroupsPage from "./components/pages/FriendGroupsPage";
+import SeeFriendsOfGroupPage from "./components/pages/SeeFriendsOfGroupPage";
+import CreateFriendGroupPage from "./components/pages/CreateFriendGroupPage";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Provider } from "react-redux";
 //import axios from "axios";
 import * as cache from "caches/routeCache/RouteCache";
-
 
 import "./App.css";
 
 var lastRouteReceived = [];
-  function notificationsRecieved() {
-    if (cache.default.getSelected() != lastRouteReceived) {
-      lastRouteReceived = cache.default.getSelected();
-      toast.info("Route Selected", {
-        draggable: true,
-        position: toast.POSITION.TOP_CENTER
-      });
-    }
+function notificationsRecieved() {
+  if (cache.default.getSelected() != lastRouteReceived) {
+    lastRouteReceived = cache.default.getSelected();
+    toast.info("Route Selected", {
+      draggable: true,
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
+}
 
 class App extends Component {
-  state = {
-    render: 0
+  constructor(props) {
+    super(props);
   }
-  
+  handleSession = () => {
+    this.props.history.push("/home");
+  };
+  state = {
+    render: 0,
+  };
+
   render() {
     setInterval(() => {
-        notificationsRecieved()
-      }, 2000)
+      notificationsRecieved();
+    }, 2000);
     setTimeout(() => {
-      if(this.state.render === 0)
+      if (this.state.render === 0)
         this.setState({
-          render: 1
-        })
+          render: 1,
+        });
     }, 5000);
-    if(this.state.render > 0)
+    if (
+      window.performance &&
+      window.performance.navigation.type == 1 &&
+      window.location.href.charAt(window.location.href.length - 1) != "/"
+    ) {
+      console.log("mongoi");
+      console.log(window.location.pathname);
+      return (
+        <Router>
+          <Redirect to="/" />
+        </Router>
+      );
+    }
+    console.log(window.location.href);
+    if (this.state.render > 0)
       return (
         <Fragment>
-          <ToastContainer closeOnClick draggable={true} transition={Bounce} autoClose={2000} />
+          <ToastContainer
+            closeOnClick
+            draggable={true}
+            transition={Bounce}
+            autoClose={2000}
+          />
+
           <Router>
             <Fragment>
               <Switch>
@@ -59,19 +95,34 @@ class App extends Component {
                 <Route exact path="/friends-list" component={FriendsPage} />
                 <Route exact path="/upload" component={DropzonePage} />
                 <Route exact path="/about" component={AboutPage} />
-                <Route exact path="/notifications" component={NotificationsPage} />
-                <Route exact path="/saveroute" component={SaveRoutePage}/>
-                <Route exact path="/gpx" component={ImportGpxPage}/>
+                <Route
+                  exact
+                  path="/notifications"
+                  component={NotificationsPage}
+                />
+                <Route exact path="/saveroute" component={SaveRoutePage} />
+                <Route exact path="/gpx" component={ImportGpxPage} />
+                <Route exact path="/groups" component={FriendGroupsPage} />
+                <Route
+                  exact
+                  path="/groupdetails"
+                  component={SeeFriendsOfGroupPage}
+                />
+                <Route
+                  exact
+                  path="/creategroup"
+                  component={CreateFriendGroupPage}
+                />
               </Switch>
             </Fragment>
           </Router>
         </Fragment>
       );
     else {
-      return(
+      return (
         <Fragment>
           <video id="viadegif" height="800" autoPlay muted>
-            <source src="videos/ViaDe.mp4" type="video/mp4"/>
+            <source src="videos/ViaDe.mp4" type="video/mp4" />
           </video>
         </Fragment>
       );
