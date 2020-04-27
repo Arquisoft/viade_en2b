@@ -9,7 +9,7 @@ import { retrieveSharedRoutes, listAllURLShared, sharedRoutesList } from 'ShareM
 import data from "@solid/query-ldflex";
 import BurgerMenu from "../generic_components/BurgerMenu";
 import * as userprofile from "../../data-access/UserData";
-
+import * as folderCreator from "../../data-access/FileManager/FolderCreator";
 import "assets/css/Login.css";
 
 const $rdf = require("rdflib");
@@ -82,6 +82,7 @@ class Login extends React.Component {
         this.setState({ name: "Welcome, Guest" });
       } else this.setState({ name: "Welcome, " + name });
     });
+    this.createFolder();
   }
 
   async logout(e, auth) {
@@ -125,6 +126,9 @@ class Login extends React.Component {
     } catch (error) {
       //errorToaster(error.message, 'Error');
     }
+  }
+  async createFolder(){
+    folderCreator.default.main();
   }
 
   viewImageLoaded = () => { };
