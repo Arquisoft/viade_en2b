@@ -73,7 +73,7 @@ export default class RoutesLoader {
                         let tempRoute = JSON.parse(fileContent);
                         if (tempRoute.name === name) {
 
-                            let route = new BasicRoute(tempRoute.name, tempRoute.itinerary);
+                            let route = new BasicRoute(tempRoute.name, tempRoute.points);
                             let comUrl;
                             if (tempRoute.commentsUrl != undefined) {
                                 comUrl = tempRoute.commentsUrl;
@@ -132,12 +132,15 @@ export default class RoutesLoader {
             try {
                 console.log(routes[i]);
                 let name = routes[i].name;
-                let it = routes[i].itinerary;
+                let it = routes[i].points;
                 let comUrl;
+                if(routes[i].hasOwnProperty("commentsUrl")){
                 if (routes[i].commentsUrl != undefined) {
                     comUrl = routes[i].commentsUrl;
                 } else {
-                    comUrl = '';
+                    comUrl = "";
+                }}else{
+                    comUrl="";
                 }
                 let route = new BasicRoute(name, it);
                 route.commentsUrl = comUrl;
