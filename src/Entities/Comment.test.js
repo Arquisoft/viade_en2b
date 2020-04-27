@@ -1,6 +1,6 @@
 import Comment from "./Comment";
 
-test("instance is created correctly", () => {
+test("Instance is created correctly", () => {
 
 
     let br = new Comment("www.pod.net/viade/comments/routeComments.jsonld","This is a message",
