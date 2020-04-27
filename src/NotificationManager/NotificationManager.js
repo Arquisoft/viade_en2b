@@ -16,9 +16,10 @@ const request = require("request");
  * Returns the current list of notifications.
  * Ex: "https://testingclrmrnd.inrupt.net/viade/inbox/"
  */
-export async function getNotificationDocuments(inboxPath) {
+export async function getNotificationDocuments(inboxPath, webIdAuthor) {
   var inbox = inboxPath;
   var containerDoc = await fetchDocument(inbox);
+  
 
   //if the document exists
   if (containerDoc) {
@@ -30,7 +31,6 @@ export async function getNotificationDocuments(inboxPath) {
       try {
         //FETCH DE LA NOTIFICACIÓN
         console.log(containerURLS[i]);
-
         var doc = await fetchDocument(containerURLS[i]);
 
         if (doc) {
@@ -43,7 +43,7 @@ export async function getNotificationDocuments(inboxPath) {
           const summary = subject.getString(ns.as("summary"));
 
           //Processing the summary information
-          let notification = processNotificationInfo(url, summary);
+          let notification = processNotificationInfo(url, summary, webIdAuthor);
           result.push(notification);
         }
       } catch (e) {
@@ -56,7 +56,7 @@ export async function getNotificationDocuments(inboxPath) {
 }
 
 //ROUTE_https://clrmrnd/inrupt.net/_https://clrmrnd.inrupt.net/viade/routes/Rusia.json_Sat Apr 25 2020 17:11:07 GMT+0200 (hora de verano de Europa central)
-async function processNotificationInfo(url, summary) {
+async function processNotificationInfo(url, summary, webIdAuthor) {
   let notification = new Notification();
 
   try {
@@ -89,7 +89,7 @@ async function processNotificationInfo(url, summary) {
         console.log(notification);
 
         //Crea o modifica el archivo de sharedRoutes añadiendo la url
-        addToSharedFolder(notification, webId);
+        addToSharedFolder(notification, webIdAuthor);
         return notification;
 
       case "COMMENT":
@@ -114,7 +114,8 @@ async function addToSharedFolder(notification, myWebId) {
   //build path
 
   let path = myWebId + "viade/shared/" + notification.authorWebId + ".jsonld";
-
+  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+  console.log(path);
   try {
     //checking if the path exists
     let exists = await fc
