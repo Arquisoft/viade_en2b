@@ -1,5 +1,7 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import {Comment} from 'semantic-ui-react';
+import '../../assets/css/commentsContainer.css';
 
 
 class MyCommentInfiniteScroll extends React.Component {
@@ -33,20 +35,31 @@ class MyCommentInfiniteScroll extends React.Component {
           dataLength={this.state.items.length}
           next={this.fetchMoreData}
           hasMore={this.state.hasMore}
-          loader={<h4>Estoy cargando moreno</h4>}
+          loader={<h4>Loading...</h4>}
           endMessage = {
             <p style={{textAlign: 'center'}}>
                 <b>Yay! You have seen it all</b>
             </p>
           }
           scrollableTarget= {this.props.scrollParent}
-
         >
+        <Comment.Group>
+          <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css'/>
           {this.state.items.map((i, index) => (
-            <div key={index}>
-                {i}
+            <div className="commentsContainer" key={index}>
+                 <Comment>
+                  <Comment.Avatar src = {i.avatar} />
+                  <Comment.Content>
+                    <Comment.Author as = 'span'>{i.user}</Comment.Author>
+                    <Comment.Metadata>
+                      <div>{i.date}</div>
+                    </Comment.Metadata>
+                    <Comment.Text>{i.comment}</Comment.Text>
+                  </Comment.Content>
+             </Comment>
             </div>
           ))}
+          </Comment.Group>
         </InfiniteScroll>
       </div>
     );
