@@ -73,7 +73,7 @@ export default class RoutesLoader {
                         let tempRoute = JSON.parse(fileContent);
                         if (tempRoute.name === name) {
 
-                            let route = new Route(tempRoute.name, tempRoute.itinerary);
+                            let route = new BasicRoute(tempRoute.name, tempRoute.itinerary);
                             let comUrl;
                             if (tempRoute.commentsUrl != undefined) {
                                 comUrl = tempRoute.commentsUrl;
@@ -139,7 +139,7 @@ export default class RoutesLoader {
                 } else {
                     comUrl = '';
                 }
-                let route = new Route(name, it);
+                let route = new BasicRoute(name, it);
                 route.commentsUrl = comUrl;
                 route.setJsonFormat(routes[i]);
                 entRoutes.push(route);
