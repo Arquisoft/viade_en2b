@@ -37,7 +37,7 @@ defineFeature(feature, (test) => {
         });
         await expect(popup).toClick("button", { text: "Log In" });
       }
-    );
+    ); 
 
     then("The user is logged in", async () => {
       await page.waitFor(5000);
