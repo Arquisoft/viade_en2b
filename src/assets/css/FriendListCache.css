@@ -1,0 +1,58 @@
+.friends {
+  padding-top: 120px;
+}
+
+.groupsContainer {
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.sectionFriends {
+  margin: 25px;
+  padding: 20px;
+  margin-top: 0px;
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.buttonGroup {
+  font-size: 22px;
+  font-weight: 700;
+
+  padding: 15px;
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.buttonGroup:hover {
+  background: lightgray;
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
+
+.backList {
+  font-size: 22px;
+  font-weight: 700;
+  display: block;
+  position: absolute;
+  width: 20%;
+  padding: 15px;
+  margin: 40px;
+  top: 0;
+  right: 0;
+
+  border-radius: var(--border-radius);
+
+  background: var(--bg-color);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
+}
