@@ -82,10 +82,11 @@ class AboutPage extends React.Component {
           <header className="bodyHeader"></header>
           <section className="sectionViade">
             <h2>ViaDe</h2>
-            <p>Do you walk? Run? Bike? With ViaDe, you'll be able to create, manage, and share routes you take with your friends! Login credentials and data retrieval is done using Solid, an industry-leading technology backed by the creator of the World Wide Web himself, Tim Berners-Lee.</p>
+            <p>Do you walk? Run? Bike? With ViaDe, you'll be able to create, manage, and share routes you take with your friends! Login credentials and data storage and retrieval is done using Solid, an industry-leading technology backed by the creator of the World Wide Web himself, Tim Berners-Lee.</p>
             <p>En2B is a group of Computer Engineering students from Asturias, Spain. We're really excited to bring the world our web application, made with lots of effort and love.</p>
           </section>
           <section className="sectionDevelopers">
+            <h2> The team </h2>
             <ul className = "developerContainer">
             {developers.map((item, index)=>{
                    return (
