@@ -20,7 +20,7 @@ defineFeature(feature, (test) => {
     });
 
     when(
-      "The user has reached the page to login and clicks the button to do so",
+      "The user has reached the page to login, clicks the button to do so and fills the data",
       async () => {
         await expect(page).toClick("button", { text: "Log In" });
         const newPagePromise = new Promise((x) =>

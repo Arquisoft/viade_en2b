@@ -1,7 +1,0 @@
-Feature: Test
- Testing a User login
-
-  Scenario: The user is not logged in the application
-    Given Given a logout user
-    When When the user has reach the page
-    Then User is logged
