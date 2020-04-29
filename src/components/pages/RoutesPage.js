@@ -30,6 +30,7 @@ class RoutesPage extends React.Component {
     });
     cache.default.setReload(false);
     this.urls = JSON.parse(localStorage.getItem("urls"));
+    console.log(this.urls);
   }
 
   viewDetails(route) {
@@ -96,9 +97,10 @@ class RoutesPage extends React.Component {
                             this.viewDetails(routes[index]);
                           }}
                           detailsIconName="info"
-                          shareAction={cache.default.setSelectedToShare(
-                            this.urls[index]
-                          )}
+                          shareIconName="share"
+                          shareAction={(e) => {
+                            cache.default.setSelectedToShare(this.urls[index]);
+                          }}
                         />
                       </div>
                     </li>

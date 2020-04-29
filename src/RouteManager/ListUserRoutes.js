@@ -31,6 +31,7 @@ export default class RoutesLoader {
         for (let i = 0; i < files.length; i++) {
           let fileContent = await fc.readFile(files[i].url);
           urls.push(files[i].url);
+          console.log(files[i].url);
           routes.push(fileContent);
         }
       } catch (error) {
@@ -45,6 +46,7 @@ export default class RoutesLoader {
 
     let rou = this.jsonToEntity(this.routesToJson(routes));
     //localStorage.setItem('rutas', JSON.stringify(rou));
+    console.log(urls);
     localStorage.setItem("urls", JSON.stringify(urls));
     return rou;
   }
