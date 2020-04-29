@@ -5,6 +5,7 @@ import * as friendCache from 'caches/friendCache/FriendCache';
 import { ShareWith } from 'ShareManager/ShareRoute';
 import { getNotifications } from 'NotificationManager/NotificationManager';
 import { retrieveSharedRoutes, listAllURLShared, sharedRoutesList } from 'ShareManager/RetrieveRoute';
+import {setPermissionsTo} from 'util/PermissionManager';
 
 import data from "@solid/query-ldflex";
 import BurgerMenu from "../generic_components/BurgerMenu";
@@ -170,6 +171,15 @@ class Login extends React.Component {
               </LoggedOut>
               <LoggedIn>
                 <p>{this.state.name}</p>
+
+                <button
+                  className="login100-form-btn"
+                  onClick={() => setPermissionsTo("READ", "https://clrmrnd.inrupt.net/viade/","https://testingclrmrnd2.inrupt.net/profile/card#me", "https://clrmrnd.inrupt.net/")}
+                >
+                  Set permissions
+                </button>
+
+                
 
                 <button
                   className="login100-form-btn"
