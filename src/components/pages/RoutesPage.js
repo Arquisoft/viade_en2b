@@ -39,8 +39,7 @@ class RoutesPage extends React.Component {
           var fullroutes = this.state.routes;
           console.table("FULLROUYTES");
           console.table(fullroutes);
-          fullroutes.pop();
-          fullroutes = [...routes, ...fullroutes];
+          fullroutes = [...fullroutes, ...routes];
           console.table("FULLROUYTES");
           console.table(fullroutes);
 

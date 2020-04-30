@@ -46,6 +46,7 @@ export class MapContainer extends React.Component {
       });
       route = ruta;
     } else if (route) {
+      console.log(route);
       var puntos = route.geoCoordinates;
       puntos.forEach((punto) => {
         ruta.push({

@@ -16,6 +16,7 @@ export async function sharedRoutesList(routesURL) {
   const sharedPath = routesURL;
   const url = await retrieveSharedRoutes(sharedPath);
 
+  console.log("ME PEGO UN TIRO");
   let routes = [];
   let routes_routes = [];
   for (let i = 0; i < url.length; i++) {
@@ -25,6 +26,7 @@ export async function sharedRoutesList(routesURL) {
     let route = await loadSpecificUserRoutesFiles(urlRoute);
     console.log(route);
     routes.push(route);
+
     routes_routes.push(route.routes[0]);
   }
   console.table(routes_routes);
@@ -42,14 +44,17 @@ export async function sharedRoutesList(routesURL) {
 
 export async function retrieveSharedRoutes(sharedPath) {
   let routesJSONS = [];
-
+  var urls_cache = JSON.parse(localStorage.getItem("urls"));
   let content = await fc.readFolder(sharedPath);
   let files = content.files;
   console.log("LENGTH OF FILES : " + files.length);
   for (let i = 0; i < files.length; i++) {
     let fileContent = await fc.readFile(files[i].url);
     routesJSONS.push(fileContent);
+    //urls_cache.push(files[i].url);
   }
+
+  //localStorage.setItem("urls", JSON.stringify(urls_cache));
   const url = jsonURLRetrieve(toJson(routesJSONS));
   return url;
 }
