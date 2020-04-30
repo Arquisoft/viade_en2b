@@ -90,7 +90,8 @@ async function processNotificationInfo(url, summary) {
 
 
                 //Crea o modifica el archivo de sharedRoutes añadiendo la url
-                addToSharedFolder(notification, "https://testingclrmrnd.inrupt.net/");
+                //Siendo el webId https://clrmrnd.inrupt.net/
+                addToSharedFolder(notification, webId);
                 return notification;
                 
 

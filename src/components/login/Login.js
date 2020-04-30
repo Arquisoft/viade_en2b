@@ -172,19 +172,7 @@ class Login extends React.Component {
               <LoggedIn>
                 <p>{this.state.name}</p>
 
-                <button
-                  className="login100-form-btn"
-                  onClick={() => setPermissionsTo("READ", "https://clrmrnd.inrupt.net/viade/","https://testingclrmrnd2.inrupt.net/profile/card#me", "https://clrmrnd.inrupt.net/")}
-                >
-                  Set permissions
-                </button>
-
-                <button
-                  className="login100-form-btn"
-                  onClick={() => ShareWith("https://clrmrnd.inrupt.net/viade/routes/Ruta%20Clara.json", "https://clrmrnd")}
-                >
-                  Set permissions
-                </button>
+                
 
                 <button
                   className="login100-form-btn"
