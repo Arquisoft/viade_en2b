@@ -4,7 +4,7 @@ exports[`Render Correct 1`] = `
 <MyImageInfiniteScroll
   content={
     Object {
-      "dateAttached": 2012-01-22T06:32:32.000Z,
+      "dateAttached": 2012-01-22T05:32:32.000Z,
       "name": "hola",
     }
   }
