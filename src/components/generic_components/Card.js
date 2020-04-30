@@ -8,7 +8,7 @@ class CardLayout extends Component {
     let linkHide = this.props.link === undefined;
     let externalHide = this.props.externalLink === undefined;
     let detailsHide = this.props.detailsLink === undefined;
-
+    let shareHide = this.props.shareIconName === undefined;
     return (
       <div>
         <Card className="claim_Card">
@@ -71,11 +71,12 @@ class CardLayout extends Component {
               </Link>
               <Link
                 className="linkRoute"
+                hidden={shareHide}
                 to="/shareroute"
                 onClick={this.props.shareAction}
               >
                 <Popup
-                  trigger={<Icon name="info" />}
+                  trigger={<Icon name={this.props.shareIconName} />}
                   mouseEnterDelay={250}
                   content="Share the route with with friends"
                   position="bottom center"

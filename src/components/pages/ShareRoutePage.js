@@ -27,12 +27,9 @@ const ShareRoutePage = () => {
                       image={item.profilePicture}
                       header={item.name}
                       description={item.webIdString}
-                      externalLink={item.webIdString}
-                      externalIconName="user"
                       numberOfFriends={item.numberOfFriends}
-                      detailsClassName="linkRoute"
-                      detailsLink="/routes"
-                      detailsAction={(e) => {
+                      shareIconName="share"
+                      shareAction={(e) => {
                         e.preventDefault();
                         ShareWith(
                           routecache.default.getSelectedToShare(),
@@ -40,7 +37,6 @@ const ShareRoutePage = () => {
                           session.webId
                         );
                       }}
-                      detailsIconName="info"
                     />
                   </li>
                 );
