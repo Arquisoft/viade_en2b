@@ -17,7 +17,7 @@ class SaveRoute extends Component {
     //this.fileInputRef = React.createRef();
   }
   descriptionToRoute(description) {
-    this.setState({ nameRoute: description.target.value });
+    this.setState({ description: description.target.value });
   }
   nameToRute(name) {
     this.setState({ nameRoute: name.target.value });
@@ -25,9 +25,9 @@ class SaveRoute extends Component {
   }
   saveRouteToPod() {
     if (this.state.nameRoute !== "" && RealTimeRoute.default.getRouteIsOver()) {
-      RealTimeRoute.default.setNameAndUpload(this.state.nameRoute);
+      //RealTimeRoute.default.setNameAndUpload(this.state.nameRoute);
       //Change setNameAndUpload
-      //RealTimeRoute.default.setNameAndUpload(this.state.nameRoute, this.state.description);
+      RealTimeRoute.default.setNameAndUpload(this.state.nameRoute, this.state.description);
 
       this.props.onFinish();
     }

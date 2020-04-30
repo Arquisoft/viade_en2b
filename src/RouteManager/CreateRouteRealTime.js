@@ -14,8 +14,8 @@ export default {
   stop() {
     stop();
   },
-  setNameAndUpload(name) {
-    route.putNameToRoute(name);
+  setNameAndUpload(name, description) {
+    route.putNameToRoute(name, description);
     route.getRoute();
   },
   getRouteIsOver() {
@@ -27,6 +27,7 @@ class RouteCreator {
   constructor() {
     this.geoCoordinates = [];
     this.nameRoute = "";
+    this.descriptionRoute = "";
     this.routeIsOver = false;
   }
 
@@ -45,22 +46,25 @@ class RouteCreator {
     });
     return aux;
   }
-  putNameToRoute(name) {
+  putNameToRoute(name, description) {
     this.nameRoute = name;
+    this.descriptionRoute = description;
   }
   getRouteNotUpload() {
-    let r = new BasicRoute(this.nameRoute, this.geoCoordinates);
+    let r = new BasicRoute(this.nameRoute, this.geoCoordinates, this.descriptionRoute);
 
     return r;
   }
   getRoute() {
-    let r = new BasicRoute(this.nameRoute, this.geoCoordinates);
+    let r = new BasicRoute(this.nameRoute, this.geoCoordinates, this.descriptionRoute);
+    console.log(r);
     CreateRoute.default.createNormalBasic(r);
   }
 
   resetRoute() {
     this.geoCoordinates = [];
     this.nameRoute = "";
+    this.descriptionRoute = "";
   }
 }
 

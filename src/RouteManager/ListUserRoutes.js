@@ -79,7 +79,7 @@ export default class RoutesLoader {
             let tempRoute = JSON.parse(fileContent);
             console.log(tempRoute);
             if (tempRoute.name === name) {
-              let route = new BasicRoute(tempRoute.name, tempRoute.points);
+              let route = new BasicRoute(tempRoute.name, tempRoute.points, tempRoute.description);
               route.setUrl(files[i].url);
               route.setJsonFormat(tempRoute);
               console.log("Match " + route.url);
@@ -129,7 +129,8 @@ export default class RoutesLoader {
         console.log(routes[i]);
         let name = routes[i].name;
         let it = routes[i].points;
-        let route = new BasicRoute(name, it);
+        let desc = routes[i].description;
+        let route = new BasicRoute(name, it, desc);
         route.setJsonFormat(routes[i]);
         entRoutes.push(route);
         console.log("Route " + route.name + " was created succesfully");

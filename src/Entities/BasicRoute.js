@@ -1,7 +1,7 @@
 export default class BasicRoute {
-  constructor(name, geoCoordinates) {
+  constructor(name, geoCoordinates, description) {
     this.name = name;
-
+    this.description = description;
     this.geoCoordinates = Array.from(geoCoordinates);
     this.url = "";
     this.jsonFormat = "";
