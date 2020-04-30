@@ -22,7 +22,7 @@ class BurgerMenu extends Component {
         <nav className="bm-item-list">
           <h2 className="bm-item" tabIndex="0">
             <img className="fa fa-fw fa-2x" src="ViaDe.png"></img>
-            <span> ViAde</span>
+            <span> ViaDe</span>
           </h2>
           <Router>
             <Link id="home" className="menu-item" to="/">

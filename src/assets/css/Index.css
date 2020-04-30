@@ -7,6 +7,7 @@
     --font-size: 20px;
     
     --primary-color: #509A50;
+    --primary-color-darker: #417E41;
     --secondary-color: #54C054;
     
     --font-color: #686868;
@@ -47,6 +48,22 @@
     
     --box-shadow-up: -6px -6px 12px var(--shadow-color-up);
     --box-shadow-down: 6px 6px 12px var(--shadow-color-down);
+}
+
+/*---------------------------------------------*/
+
+.Toastify__toast--warning {
+  background: var(--primary-color) !important;
+  
+  border-radius: 10px !important;
+}
+
+.Toastify__toast--warning:hover {
+  background: var(--primary-color-darker) !important;
+}
+
+.Toastify__close-button--warning:hover {
+  color: white !important;
 }
 
 
@@ -106,7 +123,6 @@ ul, li {
 	list-style-type: none;
 }
 
-
 /*---------------------------------------------*/
 input {
 	outline: none;
@@ -121,8 +137,6 @@ textarea {
 textarea:focus, input:focus {
   border-color: transparent !important;
 }
-
-
 
 /* Has fewer columns in mobile, min width 250px*/ 
 ul {
