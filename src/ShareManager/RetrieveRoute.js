@@ -28,6 +28,7 @@ export async function sharedRoutesList(routesURL) {
     routes.push(route);
 
     routes_routes.push(route.routes[0]);
+    cache.default.setSharedRoutes(routes_routes);
   }
   return routes;
 }
