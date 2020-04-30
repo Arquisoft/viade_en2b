@@ -83,7 +83,7 @@ class App extends Component {
             closeOnClick
             draggable={true}
             transition={Bounce}
-            autoClose={2000}
+            autoClose={3200}
           />
 
           <Router>

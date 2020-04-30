@@ -20,7 +20,7 @@
     --bg-color: #ebebeb;
     --bg-color-pressed: #d4d4d4;
     
-    --input-bg-color: #f6f6f6;
+    --input-bg-color: #F9F9F9;
     
     --heading-color: #292922;
     
@@ -48,22 +48,6 @@
     
     --box-shadow-up: -6px -6px 12px var(--shadow-color-up);
     --box-shadow-down: 6px 6px 12px var(--shadow-color-down);
-}
-
-/*---------------------------------------------*/
-
-.Toastify__toast--warning {
-  background: var(--primary-color) !important;
-  
-  border-radius: 10px !important;
-}
-
-.Toastify__toast--warning:hover {
-  background: var(--primary-color-darker) !important;
-}
-
-.Toastify__close-button--warning:hover {
-  color: white !important;
 }
 
 
@@ -109,12 +93,12 @@ a:hover {
 }
 
 /*---------------------------------------------*/
-h1,h2,h3,h4,h5,h6,p {
+h1,h2,h3,h4,h5,h6,p,label {
   color: var(--font-color);
 	margin: 0px;
 }
 
-p {
+p,label {
   font-size: var(--font-size);
 }
 
@@ -127,6 +111,21 @@ ul, li {
 input {
 	outline: none;
 	border: none;
+  
+  color: var(--font-color);
+  background-color: var(--input-bg-color);
+  
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+
+  margin-bottom: 12px;
+  
+  /* border: var(--font-color) 1px solid; */
+  border-radius: var(--border-radius);
+  
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down);
 }
 
 textarea {
@@ -175,6 +174,28 @@ ul {
   margin: auto;
   object-fit: fill;
 }
+
+/*---------------------------------------------*/
+
+.Toastify__toast--warning {
+  background: var(--primary-color) !important;
+  
+  border-radius: 10px !important;
+}
+
+.Toastify__toast--warning:hover {
+  background: var(--primary-color-darker) !important;
+}
+
+.Toastify__close-button--warning {
+  box-shadow: none;
+}
+
+.Toastify__close-button--warning:hover {
+  color: white !important;
+}
+
+/*---------------------------------------------*/
 
 input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; }
