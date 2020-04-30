@@ -53,9 +53,9 @@ defineFeature(feature, (test) => {
 
     when("The user selects a route and uploads a file", async () => {
       await page.waitFor(2000);
+      await jestPuppeteer.debug();
       await expect(page).toClick("[href='#/']");
       await page.waitFor(5000);
-      await jestPuppeteer.debug();
       await page.waitFor("button[class='rtf--mb']");
       await expect(page).toClick("button", { class: "rtf--mb" });
       await page.waitFor(1000);
