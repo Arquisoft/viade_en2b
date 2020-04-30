@@ -73,14 +73,14 @@ export default class RoutesLoader {
                         let tempRoute = JSON.parse(fileContent);
                         if (tempRoute.name === name) {
 
-                            let route = new BasicRoute(tempRoute.name, tempRoute.points);
+                            let route = new BasicRoute(tempRoute.name, tempRoute.points, tempRoute.description);
                             let comUrl;
-                            if (tempRoute.commentsUrl != undefined) {
+                            if (tempRoute.comments != undefined) {
                                 comUrl = tempRoute.commentsUrl;
                             } else {
                                 comUrl = '';
                             }
-                            route.commentsUrl = comUrl;
+                            route.comments = comUrl;
                             route.setUrl(files[i].url);
                             route.setJsonFormat(tempRoute);
                             console.log("Match " + route.url);
@@ -133,16 +133,17 @@ export default class RoutesLoader {
                 console.log(routes[i]);
                 let name = routes[i].name;
                 let it = routes[i].points;
+                let desc = routes[i].description;
                 let comUrl;
-                if(routes[i].hasOwnProperty("commentsUrl")){
-                if (routes[i].commentsUrl != undefined) {
-                    comUrl = routes[i].commentsUrl;
+                if(routes[i].hasOwnProperty("comments")){
+                if (routes[i].comments != undefined) {
+                    comUrl = routes[i].comments;
                 } else {
                     comUrl = "";
                 }}else{
                     comUrl="";
                 }
-                let route = new BasicRoute(name, it);
+                let route = new BasicRoute(name, it, desc);
                 route.commentsUrl = comUrl;
                 route.setJsonFormat(routes[i]);
                 entRoutes.push(route);
