@@ -3,14 +3,19 @@ import * as comments from "../data-access/gateways/CommentsGateway";
 
 export default {
   createNormalBasic(route) {
-    let str = parseRouteToString(route);
+    let str = getRouteInString(route);
     RouteUpload.main(route.name, str);
-  }
+  },
+  getNormalBasicJSON(route) {
+    let str = getRouteInString(route);
+    localStorage.setItem("routePreview", route);
+  },
 };
 
-async function parseRouteToString(route) {
+function getRouteInString(route) {
   let str = getContext();
   str += '"name" : "' + route.name + '",';
+  str += '"description" : "' + route.description +'",'; 
   str += '"points" : [';
   let aux = [];
   route.geoCoordinates.map((a) => {
@@ -24,12 +29,10 @@ async function parseRouteToString(route) {
     }
   });
   str = str.substring(0, str.length - 1);
-  str += '], "comments": "'+ await comments.createCommentsFile(route.name)+ '.jsonld",';
-  str += '"media": []}';
+  str += "]}";
   console.log(str);
   return str;
 }
-
 function getContext() {
   return (
     '{"@context": {"@version": 1.1,' +
