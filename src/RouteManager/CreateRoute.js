@@ -24,7 +24,7 @@ async function parseRouteToString(route) {
     }
   });
   str = str.substring(0, str.length - 1);
-  str += '], "comments": ' +"\"" + await comments.createCommentsFile(route.name)+ ".jsonld\"";
+  str += '], "comments": ' +'"' + await comments.createCommentsFile(route.name)+ '.jsonld"';
   str += "}";
   console.log(str);
   return str;
