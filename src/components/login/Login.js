@@ -179,7 +179,12 @@ class Login extends React.Component {
                   Set permissions
                 </button>
 
-                
+                <button
+                  className="login100-form-btn"
+                  onClick={() => ShareWith("https://clrmrnd.inrupt.net/viade/routes/Ruta%20Clara.json", "https://clrmrnd")}
+                >
+                  Set permissions
+                </button>
 
                 <button
                   className="login100-form-btn"
