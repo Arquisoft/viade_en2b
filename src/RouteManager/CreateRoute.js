@@ -29,8 +29,7 @@ async function getRouteInString(route) {
     }
   });
   str = str.substring(0, str.length - 1);
-  str += '], "comments": "'+ await comments.createCommentsFile(route.name)+ '.jsonld",';
-  str += '"media": []}';
+  str += "]}";
   console.log(str);
   return str;
 }
