@@ -20,17 +20,16 @@ export async function sharedRoutesList(routesURL) {
   console.log(url);
   let routes = [];
   let routes_routes = [];
-  if(url) {
-    for (let i = 0; i < url.length; i++) {
-      //now, retrieving the specific route from the different urls
-      let urlRoute = url[i];
-      console.log(urlRoute);
-      let route = await loadSpecificUserRoutesFiles(urlRoute);
-      console.log(route);
-      routes.push(route);
-  
-      routes_routes.push(route.routes[0]);
-    }
+  for (let i = 0; i < url.length; i++) {
+    //now, retrieving the specific route from the different urls
+    let urlRoute = url[i];
+
+    let route = await loadSpecificUserRoutesFiles(urlRoute);
+
+    routes.push(route);
+
+    routes_routes.push(route.routes[0]);
+    cache.default.setSharedRoutes(routes_routes);
   }
   return routes;
 }

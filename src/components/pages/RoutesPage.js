@@ -44,6 +44,7 @@ class RoutesPage extends React.Component {
           console.table("FULLROUYTES");
           console.table(fullroutes);
 */
+
           this.setState({ loading: false, sharedRoutes: routes });
         });
       });
@@ -51,7 +52,6 @@ class RoutesPage extends React.Component {
 
     cache.default.setReload(false);
     this.urls = JSON.parse(localStorage.getItem("urls"));
-    console.log(this.urls);
   }
 
   viewDetails(route) {
@@ -78,16 +78,12 @@ class RoutesPage extends React.Component {
   };
 
   viewLoaded = (routes, sharedRoutes) => {
-    console.log("AQIOOOOOOOOO");
-    console.table(routes);
     let filteredRoutes = routes.filter((ruta) => {
-      console.log(ruta);
       return (
         ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       );
     });
     let filteredSharedRoutes = sharedRoutes.filter((ruta) => {
-      console.log(ruta);
       return (
         ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       );
@@ -151,13 +147,13 @@ class RoutesPage extends React.Component {
                           className="linkRoute"
                           description={item.description}
                           action={(e) => {
-                            cache.default.setSelected(routes[index]);
+                            cache.default.setSelected(sharedRoutes[index]);
                           }}
                           iconName="map"
                           detailsClassName="linkRoute"
                           detailsLink="/routes"
                           detailsAction={(e) => {
-                            this.viewDetails(routes[index]);
+                            this.viewDetails(sharedRoutes[index]);
                           }}
                           detailsIconName="info"
                         />
