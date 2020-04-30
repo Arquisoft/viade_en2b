@@ -111,15 +111,15 @@ class Dropzone extends Component {
             className="Icon"
             src="baseline-cloud_upload-24px.svg"
           />
-          <span>Upload Files</span>
+          <a>Upload file</a>
         </div>
         <MultimediaViewer files={this.state.files} />
         <form>
           <GenericButton
-            className="submitUpload"
-            value="Upload Archives"
+            className="submitUpload buttonGeneric"
+            value="Upload file"
             onClick={this.onUpload}
-            message="Upload Archives"
+            message="Upload file"
           />
         </form>
       </React.Fragment>

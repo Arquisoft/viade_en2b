@@ -80,7 +80,7 @@ class RoutesPage extends React.Component {
                     <div className="routeListElementContainter">
                       <CardLayout
                         header={item.name}
-                        image="images/daddy.png"
+                        image="images/defaultRouteImage.svg"
                         link = "/"
                         className="linkRoute"
 
