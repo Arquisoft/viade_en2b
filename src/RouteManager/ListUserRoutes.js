@@ -112,6 +112,7 @@ export default class RoutesLoader {
         let jsonRoutes = [];
         for (let i = 0; i < routes.length; i++) {
             try {
+                console.log(routes[i])
                 let route = JSON.parse(routes[i]);
                 jsonRoutes.push(route);
             } catch (e) {
