@@ -6,18 +6,19 @@ const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 
 export async function createContentAcl(url, nameResource) {
+  let resource = nameResource.toString();
   let aclString = `
   @prefix : <#>.
   @prefix n0: <http://www.w3.org/ns/auth/acl#>.
-  @prefix ${nameResource}: <./>.
+  @prefix ${resource}: <./>.
   @prefix n1: <http://xmlns.com/foaf/0.1/>.
   @prefix c: </profile/card#>.
 
   :ControlReadWrite
       a n0:Authorization;
-      n0:accessTo ${nameResource}:;
+      n0:accessTo ${resource}:;
       n0:agent c:me;
-      n0:default ${nameResource}:;
+      n0:default ${resource}:;
       n0:mode n0:Control, n0:Read, n0:Write.
   `
   console.log(aclString)

@@ -23,12 +23,16 @@ async function createFolders() {
   let comments = `${path}viade/comments/`;  
   let inbox = `${path}viade/inbox/`;  
   let shared = `${path}viade/shared/`;
+  let groups = `${path}viade/groups/`;
   
   
   createContentAcl(viade, "viade");
 
   fileClient.createFolder(routes);
   createContentAcl(routes, "routes");
+
+  fileClient.createFolder(groups);
+  createContentAcl(groups, "groups");
 
   fileClient.createFolder(comments);
   createContentAcl(comments, "comments");
