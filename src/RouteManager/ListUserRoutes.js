@@ -134,7 +134,7 @@ export default class RoutesLoader {
                 let name = routes[i].name;
                 let it = routes[i].points;
                 let comUrl;
-                if(routes[i].hasOwnProperty("commentsUrl")){
+                if(routes[i].hasOwnProperty("comments")){
                 if (routes[i].comments != undefined) {
                     comUrl = routes[i].comments;
                 } else {
