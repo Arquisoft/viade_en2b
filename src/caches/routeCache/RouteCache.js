@@ -8,10 +8,25 @@ export default {
   selectedDetails: "",
   routeToUpload: "",
   reload: false,
-  getSelectedToUpload(){
+  selectedToShare: "",
+  sharedRoutes: [],
+  async getSharedRoutes() {
+    console.log(this.sharedRoutes);
+    return this.sharedRoutes;
+  },
+  setSharedRoutes(route) {
+    this.sharedRoutes = route;
+  },
+  getSelectedToShare() {
+    return this.selectedToShare;
+  },
+  setSelectedToShare(route) {
+    this.selectedToShare = route;
+  },
+  getSelectedToUpload() {
     return this.routeToUpload;
   },
-  setSelectedToUpload(route){
+  setSelectedToUpload(route) {
     this.routeToUpload = route;
   },
   addRoute(route) {
@@ -81,7 +96,7 @@ export default {
   getSelectedDetails() {
     return this.selectedDetails;
   },
-  setReload(reload){
+  setReload(reload) {
     this.reload = reload;
-  }
+  },
 };
