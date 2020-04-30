@@ -5,6 +5,8 @@ export default class BasicRoute {
     this.geoCoordinates = Array.from(geoCoordinates);
     this.url = "";
     this.jsonFormat = "";
+    this.commentsUrl="";
+    this.comments = [];
   }
 
   setUrl(url) {

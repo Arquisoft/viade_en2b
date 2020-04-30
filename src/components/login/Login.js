@@ -128,7 +128,11 @@ class Login extends React.Component {
     }
   }
   async createFolder(){
-    folderCreator.default.main();
+    try {
+      folderCreator.default.main();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   viewImageLoaded = () => { };
