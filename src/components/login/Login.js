@@ -3,7 +3,7 @@ import { LoggedIn, LoggedOut } from '@solid/react';
 import cache from '../../caches/routeCache/RouteCache'
 import * as friendCache from 'caches/friendCache/FriendCache';
 import { ShareWith } from 'ShareManager/ShareRoute';
-import { getNotifications } from 'NotificationManager/NotificationManager';
+import { getNotificationDocuments } from 'NotificationManager/NotificationManager';
 import { retrieveSharedRoutes, listAllURLShared, sharedRoutesList } from 'ShareManager/RetrieveRoute';
 
 import data from "@solid/query-ldflex";
@@ -174,7 +174,7 @@ class Login extends React.Component {
               </LoggedOut>
               <LoggedIn>
                 <p>{this.state.name}</p>
-
+                
                 <button
                   className="login100-form-btn"
                   onClick={(e) => this.logout(e, auth)}

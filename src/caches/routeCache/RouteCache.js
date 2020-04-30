@@ -9,6 +9,14 @@ export default {
   routeToUpload: "",
   reload: false,
   selectedToShare: "",
+  sharedRoutes: [],
+  async getSharedRoutes() {
+    console.log(this.sharedRoutes);
+    return this.sharedRoutes;
+  },
+  setSharedRoutes(route) {
+    this.sharedRoutes = route;
+  },
   getSelectedToShare() {
     return this.selectedToShare;
   },
@@ -59,9 +67,19 @@ export default {
   },
   setSelected(route) {
     let found = this.routes.find((obj) => route.name === obj.name);
+    console.log("Found");
+    console.log(found);
+    let foundShare = this.sharedRoutes.find((obj) => route.name === obj.name);
+    console.log("ShareFound");
+    console.log(foundShare);
 
     if (found) {
       this.selected = found;
+      return;
+    }
+
+    if (foundShare) {
+      this.selected = foundShare;
       return;
     }
 
@@ -74,7 +92,7 @@ export default {
     }
     this.selected = found;
   },
-  getSelected() {
+  async getSelected() {
     return this.selected;
   },
   clear() {
