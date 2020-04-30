@@ -1,31 +1,26 @@
-  .dropzonePage {
-    text-align: center;
-    background-color: rgb(177, 207, 250);
+.dropzonePage {
+  text-align: center;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    position: absolute;
-    z-index: 1110;
-    width: 200px;
-    height: 200px;
-   
-  }
-  
-  .CardZone {
-    border-radius: 36px;
-    position: relative;
-    background-color: rgb(248, 248, 251);
-    padding: 64px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    box-shadow: 0 15px 30px 10000px rgba(0, 0, 0, 0.5), 0 15px 35px 0 rgba(0, 0, 0, 0.5);
-    box-sizing: border-box;
-    display:table-cell;
-    vertical-align:middle;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  position: absolute;
+  z-index: 1110;
+  width: 200px;
+  height: 200px;
+}
 
-  
+.CardZone {
+  border-radius: 36px;
+  position: relative;
+  padding: 64px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-shadow: 0 15px 30px 10000px rgba(0, 0, 0, 0.5), 0 15px 35px 0 rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  display:table-cell;
+  vertical-align:middle;
+}

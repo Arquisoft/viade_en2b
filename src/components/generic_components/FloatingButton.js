@@ -13,7 +13,11 @@ const FloatingButton = (props) => {
 let history = useHistory();
 const [recording,setRecording] = useState(false); 
 const startRecording = ()=>{
+<<<<<<< HEAD
     toast.warning("Route recording started", {
+=======
+    toast.warning("Recording route...", {
+>>>>>>> 3545e370971467599c122c3426bc39e7ecace2f6
         draggable: true,
         position: toast.POSITION.TOP_CENTER
       });
@@ -22,7 +26,11 @@ const startRecording = ()=>{
     RealTimeRoute.default.main()
 }
  const  finishRecording = ()=>{
+<<<<<<< HEAD
      toast.warning("Route recording stopped", {
+=======
+     toast.warning("Recording stopped", {
+>>>>>>> 3545e370971467599c122c3426bc39e7ecace2f6
         draggable: true,
         position: toast.POSITION.TOP_CENTER
       });
