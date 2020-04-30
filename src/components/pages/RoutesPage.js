@@ -16,6 +16,7 @@ class RoutesPage extends React.Component {
     this.state = {
       loading: true,
       routes: "",
+      sharedRoutes: "",
       search: "",
       showDetails: false,
     };
@@ -36,14 +37,14 @@ class RoutesPage extends React.Component {
 
       sharedRoutesList(path).then((rutas) => {
         cache.default.getSharedRoutes().then((routes) => {
-          var fullroutes = this.state.routes;
+          /*var fullroutes = this.state.routes;
           console.table("FULLROUYTES");
           console.table(fullroutes);
           fullroutes = [...fullroutes, ...routes];
           console.table("FULLROUYTES");
           console.table(fullroutes);
-
-          this.setState({ loading: false, routes: fullroutes });
+*/
+          this.setState({ loading: false, sharedRoutes: routes });
         });
       });
     });
@@ -76,10 +77,16 @@ class RoutesPage extends React.Component {
     this.props.history.push("/login");
   };
 
-  viewLoaded = (routes) => {
+  viewLoaded = (routes, sharedRoutes) => {
     console.log("AQIOOOOOOOOO");
     console.table(routes);
     let filteredRoutes = routes.filter((ruta) => {
+      console.log(ruta);
+      return (
+        ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+      );
+    });
+    let filteredSharedRoutes = sharedRoutes.filter((ruta) => {
       console.log(ruta);
       return (
         ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
@@ -99,6 +106,7 @@ class RoutesPage extends React.Component {
                 action={this.updateSearch.bind(this)}
                 list="listRoute"
               />
+              <h1>My routes</h1>
               <ul className="listRoute">
                 {filteredRoutes.map((item, index) => {
                   return (
@@ -130,6 +138,34 @@ class RoutesPage extends React.Component {
                   );
                 })}
               </ul>
+              <h1>Shared routes</h1>
+              <ul className="listRoute">
+                {filteredSharedRoutes.map((item, index) => {
+                  return (
+                    <li id={"route" + index} key={index} className="liCard">
+                      <div className="routeListElementContainter">
+                        <CardLayout
+                          header={item.name}
+                          image="images/daddy.png"
+                          link="/"
+                          className="linkRoute"
+                          description={item.description}
+                          action={(e) => {
+                            cache.default.setSelected(routes[index]);
+                          }}
+                          iconName="map"
+                          detailsClassName="linkRoute"
+                          detailsLink="/routes"
+                          detailsAction={(e) => {
+                            this.viewDetails(routes[index]);
+                          }}
+                          detailsIconName="info"
+                        />
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </section>
           </div>
         </main>
@@ -147,7 +183,11 @@ class RoutesPage extends React.Component {
     const { loading } = this.state;
     return (
       <React.Fragment>
-        {loading ? <CustomLoader /> : this.viewLoaded(this.state.routes)}
+        {loading ? (
+          <CustomLoader />
+        ) : (
+          this.viewLoaded(this.state.routes, this.state.sharedRoutes)
+        )}
       </React.Fragment>
     );
   }
