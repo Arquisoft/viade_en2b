@@ -1,7 +1,7 @@
 import {setPermissionsTo, checkPermissions} from 'util/PermissionManager';
 import {createNotificationSummary, postNotification, createNotificationContent} from 'NotificationManager/NotificationManager';
 import { v4 as uuidv4 } from 'uuid';
-
+import RoutesLoader from 'RouteManager/ListUserRoutes';
 
 /**
  * Function that allows a user to share a route with a friend.
@@ -16,6 +16,9 @@ import { v4 as uuidv4 } from 'uuid';
  * @param {String} webIdAuthor represents the id of the user autenticated.
  */
 export async function ShareWith(route, webIdFriend, webIdAuthor){
+
+    let loader = new RoutesLoader();
+
     //Sharing the route with the friend (it must be the profile of the friend).
     
     const profileFriend = webIdFriend + 'profile/card#me';
@@ -33,6 +36,13 @@ export async function ShareWith(route, webIdFriend, webIdAuthor){
         //set permissions to read in the route
         setPermissionsTo("READ", route, profileFriend);
 
+        //retrieving media of the route
+        let routeFile = loader.getMediaAttachedToRoute(route);
+        let media = routeFile.files;
+
+        for(let i = 0; i< media.length; i++){
+            setPermissionsTo("READ", route, profileFriend);
+        }
 
         //send notification to other user inbox
         const summary = createNotificationSummary(webIdAuthor, route, webIdFriend, new Date());

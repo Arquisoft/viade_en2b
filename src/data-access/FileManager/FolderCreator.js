@@ -25,19 +25,19 @@ async function createFolders() {
   let shared = `${path}viade/shared/`;
   
   
-  createContentAcl(viade);
+  createContentAcl(viade, "viade");
 
   fileClient.createFolder(routes);
-  createContentAcl(routes);
+  createContentAcl(routes, "routes");
 
   fileClient.createFolder(comments);
-  createContentAcl(comments);
+  createContentAcl(comments, "comments");
 
   fileClient.createFolder(inbox);
   createContentAclInbox(inbox);
 
   fileClient.createFolder(shared);
-  createContentAcl(shared);
+  createContentAcl(shared, "shared");
   
   console.log("se ha llamado");
 }

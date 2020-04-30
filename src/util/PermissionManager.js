@@ -41,21 +41,16 @@ export async function setPermissionsTo(permission, urlToShare, webIdFriend, webI
         } catch (er) {
             console.error('The permission could not be added');
             console.error(er)
-            throw er
-        }
-
-       
+            //throw er
+        }      
 
 
     } catch (Error) {
         console.log("The acl of the route was not yet created")
         console.log(Error);
-        throw Error;
+        //throw Error;
     }
-
 }
-
-
 
 
 /**

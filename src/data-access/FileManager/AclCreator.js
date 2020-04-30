@@ -5,24 +5,27 @@ import { AccessControlList } from '@inrupt/solid-react-components';
 const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 
-export async function createContentAcl(url) {
+export async function createContentAcl(url, nameResource) {
   let aclString = `
   @prefix : <#>.
-  @prefix vi: <./>.
-  @prefix acl: <http://www.w3.org/ns/auth/acl#>.
+  @prefix n0: <http://www.w3.org/ns/auth/acl#>.
+  @prefix ${nameResource}: <./>.
+  @prefix n1: <http://xmlns.com/foaf/0.1/>.
   @prefix c: </profile/card#>.
-  :owner
-  a acl:Authorization;
-  acl:accessTo <${url}>;
-  acl:agent c:me;
-  acl:mode acl:Control, acl:Read, acl:Write.`
 
+  :ControlReadWrite
+      a n0:Authorization;
+      n0:accessTo ${nameResource}:;
+      n0:agent c:me;
+      n0:default ${nameResource}:;
+      n0:mode n0:Control, n0:Read, n0:Write.
+  `
   console.log(aclString)
   try {
     await fileClient.createFile(url + '.acl', aclString, "text/turtle");
     console.log('CREATED ACL '+url);
   } catch (e) {
-    alert(e)
+    //alert(e)
   }
 }
 
