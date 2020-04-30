@@ -12,7 +12,7 @@ export default {
   },
 };
 
-function getRouteInString(route) {
+async function getRouteInString(route) {
   let str = getContext();
   str += '"name" : "' + route.name + '",';
   str += '"description" : "' + route.description +'",'; 
@@ -29,7 +29,8 @@ function getRouteInString(route) {
     }
   });
   str = str.substring(0, str.length - 1);
-  str += "]}";
+  str += '], "comments": "'+ await comments.createCommentsFile(route.name)+ '.jsonld",';
+  str += '"media": []}';
   console.log(str);
   return str;
 }
