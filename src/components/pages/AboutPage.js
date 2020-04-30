@@ -56,7 +56,7 @@ class AboutPage extends React.Component {
       link: "mailto:UO258454@uniovi.es",
       numberOfFriends: ""
     }, {
-      image: 'images/developers/clara.png',
+      image: 'images/developers/clara.jpg',
       name: "Clara",
       meta: "Back-end",
       description: "Clara is the one to thank for when you're logging in, sharing your routes or commenting on other people's shared routes. Basically, thank her if you have any friends using this app with you.",
