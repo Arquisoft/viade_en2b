@@ -2,7 +2,9 @@ import { fetchDocument } from "tripledoc";
 import { ldp } from "rdf-namespaces";
 import Notification from "Entities/Notification";
 import { GetSpecificName, GetSpecificWebId } from "data-access/UserData";
+
 import cache from "caches/notificationCache/NotificationCache";
+
 const $rdf = require("rdflib");
 const ns = require("solid-namespace")($rdf);
 
@@ -42,11 +44,7 @@ export async function getNotificationDocuments(inboxPath, webIdAuthor) {
           const summary = subject.getString(ns.as("summary"));
 
           //Processing the summary information
-          let notification = await processNotificationInfo(
-            url,
-            summary,
-            webIdAuthor
-          );
+          let notification = processNotificationInfo(url, summary, webIdAuthor);
           result.push(notification);
         }
       } catch (e) {
@@ -117,6 +115,7 @@ async function processNotificationInfo(url, summary, webIdAuthor) {
 async function addToSharedFolder(notification, myWebId) {
   console.log("IN ADD TO SHARED FOLDER");
   //build path
+
 
   let path = myWebId + "/viade/shared/" + notification.authorWebId + ".jsonld";
   console.log(path);

@@ -4,7 +4,9 @@ import getStyle from "./MapStyles.js";
 import getKey from "ApiKey.js";
 import * as cache from "caches/routeCache/RouteCache";
 import CustomLoader from "components/generic_components/CustomLoader";
+
 import { ToastContainer, toast, Bounce } from "react-toastify";
+
 import ConfigCache from "caches/ConfigCache.js";
 
 export class MapContainer extends React.Component {
@@ -28,6 +30,7 @@ export class MapContainer extends React.Component {
   }
 
   componentDidMount() {
+
     toast.info("Route Selected", {
       draggable: true,
       position: toast.POSITION.TOP_CENTER,
@@ -35,11 +38,17 @@ export class MapContainer extends React.Component {
     cache.default.getSelected().then((rutita) => {
       this.setState({ loading: false, route: rutita, dark: ConfigCache.dark });
     });
+
+    let rutita = cache.default.getSelected();
+    this.setState({ loading: false, route: rutita, dark: ConfigCache.dark });
+
   }
 
   viewLoaded = (route, dark) => {
     var ruta = [];
+
     console.log(route);
+
     if (localStorage.getItem("routePreview")) {
       let dots = JSON.parse(localStorage.getItem("routePreview"));
       console.log(dots.geoCoordinates);

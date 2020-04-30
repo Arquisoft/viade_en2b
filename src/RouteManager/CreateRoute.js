@@ -1,18 +1,26 @@
 import RouteUpload from "../data-access/FileManager/RouteUpload";
 
+import * as comments from "../data-access/gateways/CommentsGateway";
+
 export default {
   createNormalBasic(route) {
-    let str = getRouteInString(route);
-    RouteUpload.main(route.name, str);
+    getRouteInString(route).then((str)=>{
+
+        RouteUpload.main(route.name,str);
+    });
+    //RouteUpload.main(route.name, str);
   },
   getNormalBasicJSON(route) {
-    let str = getRouteInString(route);
-    localStorage.setItem("routePreview", route);
+    getRouteInString(route).then( (strRoute)=> {
+        localStorage.setItem("routePreview",route);
+    });
+   // localStorage.setItem("routePreview", route);
   },
 };
 
-function getRouteInString(route) {
+async function getRouteInString(route) {
   let str = getContext();
+  let commentsUrl = await comments.createCommentsFile(route.name)+".jsonld";
   str += '"name" : "' + route.name + '",';
   str += '"description" : "' + route.description +'",'; 
   str += '"points" : [';
@@ -28,7 +36,8 @@ function getRouteInString(route) {
     }
   });
   str = str.substring(0, str.length - 1);
-  str += "]}";
+  str += '], "comments": "'+ commentsUrl+'"}';
+  //str += "]}";
   console.log(str);
   return str;
 }
