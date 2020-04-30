@@ -98,8 +98,6 @@ export default class RoutesLoader {
                 console.log(error)         // A full error response
                 console.log(error.status)  // Just the status code of the error
                 console.log(error.message) // Just the status code and statusText
-
-
             }
         } else {
             console.log("user has no routes directory");
@@ -120,7 +118,10 @@ export default class RoutesLoader {
                     "Route " +
                     i +
                     " couldn't be transformed to json because the format is wrong"
+                    
                 );
+                console.log(e);
+                console.log("Error 2");
             }
         }
         return jsonRoutes;
