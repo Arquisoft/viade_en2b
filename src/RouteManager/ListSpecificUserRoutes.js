@@ -1,5 +1,5 @@
 import File from "../Entities/File";
-import Route from "../Entities/BasicRoute";
+import BasicRoute from "../Entities/BasicRoute";
 import RouteFile from "../Entities/RouteFile";
 
 export async function loadSpecificUserRoutesFiles(urlRoute) {
@@ -13,7 +13,6 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
     if (await fc.itemExists(urlRoute)) {
       try {
         let fileContent = await fc.readFile(urlRoute);
-        
         routes.push(fileContent);
         
       } catch (error) {
@@ -56,14 +55,16 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
     let entFiles = [];
     for (let i = 0; i < routes.length; i++) {
       try {
+        console.log(routes[i]);
         let name = routes[i].name;
-        let it = routes[i].itinerary;
-        let route = new Route(name, it);
+        let it = routes[i].points;
+        let route = new BasicRoute(name, it);
+        route.setJsonFormat(routes[i]);
         entRoutes.push(route);
         console.log("Route " + route.name + " was created succesfully");
 
         if (routes[i].media) {
-          entFiles.push(getMediaAttachedToRoute(routes[i]));
+          entFiles.push(this.getMediaAttachedToRoute(routes[i]));
         }
       } catch (e) {
         console.log(

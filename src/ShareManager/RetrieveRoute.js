@@ -22,8 +22,10 @@ export async function sharedRoutesList(routesURL) {
   for (let i = 0; i < url.length; i++) {
     //now, retrieving the specific route from the different urls
     let urlRoute = url[i];
-    
-    routes.push(loadSpecificUserRoutesFiles(urlRoute));
+    console.log(urlRoute);
+    let route = await loadSpecificUserRoutesFiles(urlRoute);  
+    console.log(route);  
+    routes.push(route);
   }
   console.log(routes);
 }

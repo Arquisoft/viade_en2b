@@ -1,5 +1,6 @@
 import * as RouteGateway from "data-access/gateways/RouteGateway";
 import FileCache from "../fileCache/FileCache";
+import * as CommentsGateway from "../../data-access/gateways/CommentsGateway";
 
 export default {
   routes: [],

@@ -114,7 +114,6 @@ async function addToSharedFolder(notification, myWebId) {
   //build path
 
   let path = myWebId + "viade/shared/" + notification.authorWebId + ".jsonld";
-  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
   console.log(path);
   try {
     //checking if the path exists
