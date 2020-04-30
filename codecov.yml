@@ -2,3 +2,5 @@ ignore:
   - "src/index.js"
   - "e2e"
   - "src/RouteManager/UpdateRoute.js"
+  - "src/caches/fileCache/FileCache.js"
+  - "src/components/pages/NotificationsPage.js"

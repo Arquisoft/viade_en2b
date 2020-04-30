@@ -108,6 +108,7 @@ class RoutesPage extends React.Component {
                   return (
                     <li id={"route" + index} key={index} className="liCard">
                       <div className="routeListElementContainter">
+                        {console.log(item)}
                         <CardLayout
                           header={item.name}
                           image="images/daddy.png"
