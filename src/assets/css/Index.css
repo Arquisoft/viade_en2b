@@ -50,6 +50,22 @@
     --box-shadow-down: 6px 6px 12px var(--shadow-color-down);
 }
 
+/*---------------------------------------------*/
+
+.Toastify__toast--warning {
+  background: var(--primary-color) !important;
+  
+  border-radius: 10px !important;
+}
+
+.Toastify__toast--warning:hover {
+  background: var(--primary-color-darker) !important;
+}
+
+.Toastify__close-button--warning:hover {
+  color: white !important;
+}
+
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
