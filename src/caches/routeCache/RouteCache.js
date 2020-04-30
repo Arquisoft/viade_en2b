@@ -11,6 +11,7 @@ export default {
   selectedToShare: "",
   sharedRoutes: [],
   async getSharedRoutes() {
+    console.log(this.sharedRoutes);
     return this.sharedRoutes;
   },
   setSharedRoutes(route) {
