@@ -21,7 +21,7 @@ class AboutPage extends React.Component {
   viewLoaded() {
     let developers = [
     {
-      image: 'images/developers/andres.png',
+      image: 'images/developers/andres.jpg',
       name: "Andrés",
       meta: "Back-end",
       description: "Andrés pretty much carried the team through the early parts of thinking about implementing SOLID. He's the one that focused the most on following the specifications we had to, and reprimanded us when we were straying from the righteous path. Also, he had the idea for the logo. It's a good logo.",
