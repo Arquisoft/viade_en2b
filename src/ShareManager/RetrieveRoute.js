@@ -17,17 +17,20 @@ export async function sharedRoutesList(routesURL) {
   const url = await retrieveSharedRoutes(sharedPath);
 
   console.log("ME PEGO UN TIRO");
+  console.log(url);
   let routes = [];
   let routes_routes = [];
-  for (let i = 0; i < url.length; i++) {
-    //now, retrieving the specific route from the different urls
-    let urlRoute = url[i];
-    console.log(urlRoute);
-    let route = await loadSpecificUserRoutesFiles(urlRoute);
-    console.log(route);
-    routes.push(route);
-
-    routes_routes.push(route.routes[0]);
+  if(url) {
+    for (let i = 0; i < url.length; i++) {
+      //now, retrieving the specific route from the different urls
+      let urlRoute = url[i];
+      console.log(urlRoute);
+      let route = await loadSpecificUserRoutesFiles(urlRoute);
+      console.log(route);
+      routes.push(route);
+  
+      routes_routes.push(route.routes[0]);
+    }
   }
   return routes;
 }
