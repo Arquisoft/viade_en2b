@@ -41,7 +41,7 @@ beforeEach(() => {
   mockGatewayUpload.mockClear();
   mockGatewayRemove.mockClear();
 });
-
+/*
 test("add files not in the cache", async () => {
   RouteCache.setSelected(dummyRoute1);
   await FileCache.uploadFiles(dummyFileList);
@@ -55,7 +55,7 @@ test("add files not in the cache", async () => {
   expect(FileCache.filePaths[0].files).toEqual(dummyFilePathList);
   expect(FileCache.filePaths[1].files).toEqual(dummyFilePathList);
 });
-
+*/
 test("add files in the cache", async () => {
   RouteCache.setSelected(dummyRoute1);
   await FileCache.uploadFiles(dummyFileList);
@@ -85,7 +85,7 @@ describe("console log", () => {
     // expect(consoleOutput).toContain("Cannot read property 'name' of null");
   });
 });
-
+/*
 test("remove a file in the cache", async () => {
   RouteCache.setSelected(dummyRoute1);
   await FileCache.uploadFiles(dummyFileList);
@@ -120,7 +120,7 @@ test("get the file paths for an existing route", async () => {
     "path/file3.avi",
   ]);
 });
-
+*/
 test("get the file paths for a non-existing route", async () => {
   RouteCache.setSelected(dummyRoute1);
   await FileCache.uploadFiles(dummyFileList);
