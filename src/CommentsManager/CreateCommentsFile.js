@@ -42,6 +42,7 @@ export default class CreateCommentsFile{
                 "comments": []
 
             };
+            console.log("This is the name of the route" +routeName);
             console.log("new file "+JSON.stringify(emptyCommentFile));
             await fc.createFile(url+".jsonld", JSON.stringify(emptyCommentFile), "text/plain");
             return url;

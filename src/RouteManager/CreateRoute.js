@@ -14,6 +14,7 @@ export default {
 
 async function getRouteInString(route) {
   let str = getContext();
+  let commentsUrl = await comments.createCommentsFile(route.name);
   str += '"name" : "' + route.name + '",';
   str += '"description" : "' + route.description +'",'; 
   str += '"points" : [';
@@ -29,7 +30,7 @@ async function getRouteInString(route) {
     }
   });
   str = str.substring(0, str.length - 1);
-  str += '], "comments": "'+ await comments.createCommentsFile(route.name)+ '.jsonld"}'; 
+  str += '], "comments": "'+ 'andsjdn'+'"}';
   //str += "]}";
   console.log(str);
   return str;

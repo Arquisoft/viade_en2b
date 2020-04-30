@@ -75,12 +75,12 @@ export default class RoutesLoader {
 
                             let route = new BasicRoute(tempRoute.name, tempRoute.points);
                             let comUrl;
-                            if (tempRoute.commentsUrl != undefined) {
+                            if (tempRoute.comments != undefined) {
                                 comUrl = tempRoute.commentsUrl;
                             } else {
                                 comUrl = '';
                             }
-                            route.commentsUrl = comUrl;
+                            route.comments = comUrl;
                             route.setUrl(files[i].url);
                             route.setJsonFormat(tempRoute);
                             console.log("Match " + route.url);
@@ -135,8 +135,8 @@ export default class RoutesLoader {
                 let it = routes[i].points;
                 let comUrl;
                 if(routes[i].hasOwnProperty("commentsUrl")){
-                if (routes[i].commentsUrl != undefined) {
-                    comUrl = routes[i].commentsUrl;
+                if (routes[i].comments != undefined) {
+                    comUrl = routes[i].comments;
                 } else {
                     comUrl = "";
                 }}else{
