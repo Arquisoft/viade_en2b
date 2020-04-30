@@ -30,7 +30,6 @@ export class MapContainer extends React.Component {
   }
 
   componentDidMount() {
-
     toast.info("Route Selected", {
       draggable: true,
       position: toast.POSITION.TOP_CENTER,
@@ -38,10 +37,6 @@ export class MapContainer extends React.Component {
     cache.default.getSelected().then((rutita) => {
       this.setState({ loading: false, route: rutita, dark: ConfigCache.dark });
     });
-
-    let rutita = cache.default.getSelected();
-    this.setState({ loading: false, route: rutita, dark: ConfigCache.dark });
-
   }
 
   viewLoaded = (route, dark) => {
