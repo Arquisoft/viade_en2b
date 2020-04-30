@@ -9,6 +9,13 @@ export default {
   routeToUpload: "",
   reload: false,
   selectedToShare: "",
+  sharedRoutes: [],
+  async getSharedRoutes() {
+    return this.sharedRoutes;
+  },
+  setSharedRoutes(route) {
+    this.sharedRoutes = route;
+  },
   getSelectedToShare() {
     return this.selectedToShare;
   },

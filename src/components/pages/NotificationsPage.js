@@ -3,20 +3,15 @@ import "assets/css/NotificationsPage.css";
 import CustomLoader from "components/generic_components/CustomLoader";
 import BurgerMenu from "../generic_components/BurgerMenu";
 import { getNotificationDocuments } from "NotificationManager/NotificationManager";
-
+import cache from "caches/notificationCache/NotificationCache";
 class NotificationsPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loading: false, //now, in the future will be false
+      loading: true, //now, in the future will be false
       routes: "",
-      notifications: [
-        {
-          authorName: "Empty",
-          message: "No notifications",
-        },
-      ],
+      notifications: [],
     };
   }
 
@@ -61,6 +56,8 @@ class NotificationsPage extends React.Component {
                         <div className="commentInfo">
                           <p className="header">
                             <i className="fa fas fa-bell"></i>
+                            {console.log(item)}
+                            {console.log(item.authorName)}
                             {item.authorName}
                           </p>
                           <p className="description">{item.message}</p>

@@ -2,7 +2,7 @@ import { fetchDocument } from "tripledoc";
 import { ldp } from "rdf-namespaces";
 import Notification from "Entities/Notification";
 import { GetSpecificName, GetSpecificWebId } from "data-access/UserData";
-
+import cache from "caches/notificationCache/NotificationCache";
 const $rdf = require("rdflib");
 const ns = require("solid-namespace")($rdf);
 
@@ -19,7 +19,6 @@ const request = require("request");
 export async function getNotificationDocuments(inboxPath, webIdAuthor) {
   var inbox = inboxPath;
   var containerDoc = await fetchDocument(inbox);
-  
 
   //if the document exists
   if (containerDoc) {
@@ -43,13 +42,19 @@ export async function getNotificationDocuments(inboxPath, webIdAuthor) {
           const summary = subject.getString(ns.as("summary"));
 
           //Processing the summary information
-          let notification = processNotificationInfo(url, summary, webIdAuthor);
+          let notification = await processNotificationInfo(
+            url,
+            summary,
+            webIdAuthor
+          );
           result.push(notification);
         }
       } catch (e) {
         console.log("Error");
       }
     }
+    cache.setNotifications(result);
+    // localStorage.setItem("notifications", JSON.stringify(result));
     return result;
   }
   return [];
@@ -113,7 +118,7 @@ async function addToSharedFolder(notification, myWebId) {
   console.log("IN ADD TO SHARED FOLDER");
   //build path
 
-  let path = myWebId + "viade/shared/" + notification.authorWebId + ".jsonld";
+  let path = myWebId + "/viade/shared/" + notification.authorWebId + ".jsonld";
   console.log(path);
   try {
     //checking if the path exists
