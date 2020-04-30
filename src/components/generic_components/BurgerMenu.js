@@ -59,6 +59,17 @@ class BurgerMenu extends Component {
               <i className="fa fa-fw fas fa-info-circle"></i>
               <span>About</span>
             </Link>
+
+            <Link id="contact" className="menu-item" to="/">
+              <i className="fa fa-fw fas far fa-address-card"></i>
+              <span>Contact</span>
+            </Link>
+
+            <Link id="settings" className="menu-item" to="/">
+              <i className="fa fa-fw fas fa-cog"></i>
+              <span>Settings</span>
+            </Link>
+
             <ThemeSwitch />
           </Router>
         </nav>

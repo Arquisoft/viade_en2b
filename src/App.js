@@ -21,7 +21,7 @@ import ImportGpxPage from "./components/pages/ImportGpxPage";
 import FriendGroupsPage from "./components/pages/FriendGroupsPage";
 import SeeFriendsOfGroupPage from "./components/pages/SeeFriendsOfGroupPage";
 import CreateFriendGroupPage from "./components/pages/CreateFriendGroupPage";
-import ShareRoutePage from "./components/pages/ShareRoutePage";
+
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
@@ -113,7 +113,6 @@ class App extends Component {
                   path="/creategroup"
                   component={CreateFriendGroupPage}
                 />
-                <Route exact path="/shareroute" component={ShareRoutePage} />
               </Switch>
             </Fragment>
           </Router>
