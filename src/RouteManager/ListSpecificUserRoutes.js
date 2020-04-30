@@ -25,9 +25,6 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
     console.log("user has no routes directory");
   }
 
-  console.log("ROUTEs");
-  console.log(routes);
-
   let rou = jsonToEntity(routesToJson(routes));
 
   return rou;
@@ -55,7 +52,6 @@ function jsonToEntity(routes) {
   let entFiles = [];
   for (let i = 0; i < routes.length; i++) {
     try {
-      console.log(routes[i]);
       let name = routes[i].name;
       let it = routes[i].points;
       let route = new BasicRoute(name, it);
