@@ -4,7 +4,7 @@ import * as comments from "../data-access/gateways/CommentsGateway";
 export default {
   createNormalBasic(route) {
     getRouteInString(route).then((str)=>{
-        console.log("Text got from promise "+str);
+
         RouteUpload.main(route.name,str);
     });
     //RouteUpload.main(route.name, str);
