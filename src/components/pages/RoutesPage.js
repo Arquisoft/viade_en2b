@@ -86,7 +86,7 @@ class RoutesPage extends React.Component {
                           image="images/daddy.png"
                           link="/"
                           className="linkRoute"
-                          description="Well, there should be a description..."
+                          description={item.description}
                           action={(e) => {
                             cache.default.setSelected(routes[index]);
                           }}

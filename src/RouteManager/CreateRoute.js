@@ -14,6 +14,7 @@ export default {
 function getRouteInString(route) {
   let str = getContext();
   str += '"name" : "' + route.name + '",';
+  str += '"description" : "' + route.description +'",'; 
   str += '"points" : [';
   let aux = [];
   route.geoCoordinates.map((a) => {
