@@ -24,6 +24,7 @@ async function createFolders() {
   let inbox = `${path}viade/inbox/`;  
   let shared = `${path}viade/shared/`;
   let groups = `${path}viade/groups/`;
+  let resources = `${path}viade/resources/`;
   
   
   createContentAcl(viade, "viade");
@@ -42,6 +43,9 @@ async function createFolders() {
 
   fileClient.createFolder(shared);
   createContentAcl(shared, "shared");
+
+  fileClient.createFolder(resources);
+  createContentAcl(resources, "resources");
   
   console.log("se ha llamado");
 }

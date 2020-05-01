@@ -1,8 +1,8 @@
 import * as auth from "solid-auth-client";
 import SolidFileClient from "solid-file-client";
 import mime from "mime";
-
 import { handleFetchError } from "./FileUtils";
+import {createContentAcl, createContentAclInbox} from "../../data-access/FileManager/AclCreator";
 
 const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
@@ -24,6 +24,8 @@ export const uploadFiles = async (fileList) => {
   let path = session.webId.split("profile")[0];
   const promises = Array.from(fileList).map((file) => {
     let buildPath = `${path}viade/resources/${file.name}`;
+    //create acl here? Better not
+    //createContentAcl(buildPath, file.name);
     return updateFile(
       buildPath,
       file,
@@ -40,13 +42,14 @@ export const uploadFiles = async (fileList) => {
 
 const updateFile = (path, content, contentType) => {
   console.log("updateFile");
-  return fileClient.putFile(path, content, contentType).catch(handleFetchError);
+  fileClient.putFile(path, content.name, contentType).catch(handleFetchError);  
+  return createContentAcl(path, content.name);
 };
 
 const validContentType = (fileList) => {
   let valid = true;
   fileList.forEach((file) => {
-    if (!(fileItem.isImage(file.name) || fileItem.isVideo(file.name))) {
+    if (!(fileItem.isImage(file.name.toString()) || fileItem.isVideo(file.name))) {
       valid = false;
     }
   });

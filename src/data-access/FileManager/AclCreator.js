@@ -6,7 +6,12 @@ const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 
 export async function createContentAcl(url, nameResource) {
-  let resource = nameResource.toString();
+  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+  console.log('URL'+url);
+  console.log('RESOURCE' + nameResource);
+  let resource = nameResource+ "";
+  console.log(resource);
+
   let aclString = `
   @prefix : <#>.
   @prefix n0: <http://www.w3.org/ns/auth/acl#>.
@@ -23,10 +28,12 @@ export async function createContentAcl(url, nameResource) {
   `
   console.log(aclString)
   try {
+
     await fileClient.createFile(url + '.acl', aclString, "text/turtle");
     console.log('CREATED ACL '+url);
   } catch (e) {
     //alert(e)
+    console.log('THE ACL COULD NOT BE ADDED ');
   }
 }
 

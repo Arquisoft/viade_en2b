@@ -1,6 +1,5 @@
 import * as auth from "solid-auth-client";
 import SolidFileClient from "solid-file-client";
-
 import { handleFetchError } from "./FileUtils";
 
 const routesFolder = "viade/routes/";
@@ -10,11 +9,13 @@ const getAttachmentDate = () => {
 };
 
 export const linkFilesToRoute = async (fileUris, routeName) => {
+
   let fileClient = new SolidFileClient(auth, { enableLogging: true });
   let session = await auth.currentSession();
   let storageRoot = session.webId.split("profile")[0];
   let buildRouteFolderPath = storageRoot + routesFolder;
   let attachementDate = getAttachmentDate();
+
   if (await fileClient.itemExists(buildRouteFolderPath)) {
     let viadeRoutes = await fileClient.readFolder(storageRoot + routesFolder);
     let routeFiles = viadeRoutes.files;
@@ -28,7 +29,9 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
         }
 
         fileUris.forEach((fileUri) => {
-          route.media.push({ "@id": fileUri, dateTime: attachementDate });
+          route.media.push({ "@id": fileUri, dateTime: attachementDate });  
+          //create acl here?
+          //createContentAcl(fileUri, );        
         });
         fileClient
           .putFile(file.url, JSON.stringify(route), file.type)
