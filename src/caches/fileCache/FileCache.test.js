@@ -126,8 +126,12 @@ test("get the file paths for a non-existing route", async () => {
   await FileCache.uploadFiles(dummyFileList);
   let filePaths = FileCache.getFilePathsForRoute(dummyRoute2);
 
-  expect(filePaths.length).toBe(0);
-  expect(filePaths).toEqual([]);
+  expect(filePaths.length).toBe(3);
+  expect(filePaths).toEqual([
+    "path/file1.png",
+    "path/file2.jpg",
+    "path/file3.avi",
+  ]);
 });
 
 test("add filepaths to the cache", () => {

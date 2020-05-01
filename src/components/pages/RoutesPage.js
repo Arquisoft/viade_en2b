@@ -51,7 +51,6 @@ class RoutesPage extends React.Component {
     });
 
     cache.default.setReload(false);
-    this.urls = JSON.parse(localStorage.getItem("urls"));
   }
 
   viewDetails(route) {
@@ -110,7 +109,6 @@ class RoutesPage extends React.Component {
                   return (
                     <li id={"route" + index} key={index} className="liCard">
                       <div className="routeListElementContainter">
-                        {console.log(item)}
                         <CardLayout
                           header={item.name}
                           image="images/daddy.png"
@@ -129,7 +127,7 @@ class RoutesPage extends React.Component {
                           detailsIconName="info"
                           shareIconName="share"
                           shareAction={(e) => {
-                            cache.default.setSelectedToShare(this.urls[index]);
+                            cache.default.setSelectedToShare(item.url);
                           }}
                         />
                       </div>

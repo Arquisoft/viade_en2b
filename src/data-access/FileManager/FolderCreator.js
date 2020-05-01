@@ -3,13 +3,12 @@ import SolidFileClient from "solid-file-client";
 
 const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
-
-export default{
-    main(){
-        createFolders();
-    }
-}
-async function createFolders(){
+export default {
+  async main() {
+    createFolders();
+  },
+};
+async function createFolders() {
   let session = await auth.currentSession();
   if (!session || session.webId === undefined || session.webId === null) {
     throw new Error("You are not logged in.");
