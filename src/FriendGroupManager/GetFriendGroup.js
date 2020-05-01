@@ -20,8 +20,9 @@ export default {
         let content = await fc.readFolder(group_folder);
 
         let files = content.files;
-
+        console.log("Cargado carpeta");
         for (let i = 0; i < files.length; i++) {
+          console.log(files[i]);
           let fileContent = await fc.readFile(files[i].url);
           groups.push(fileContent);
         }

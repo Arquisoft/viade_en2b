@@ -8,6 +8,12 @@ const getAttachmentDate = () => {
   return new Date().toISOString();
 };
 
+export const checkLinkableRoute = async (routeName) => {
+  let session = await auth.currentSession();
+  let storageRoot = session.webId.split("profile")[0];
+  return routeName.includes(storageRoot);
+}
+
 export const linkFilesToRoute = async (fileUris, routeName) => {
 
   let fileClient = new SolidFileClient(auth, { enableLogging: true });
@@ -21,7 +27,7 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
     let routeFiles = viadeRoutes.files;
 
     routeFiles.forEach(async (file) => {
-      if (file.url.match(new RegExp(`${routeName}\..*`))) {
+      if (file.url.match(routeName)) {
         let routeFile = await fileClient.readFile(file.url);
         let route = JSON.parse(routeFile);
         if (!route.media) {

@@ -8,10 +8,25 @@ export default {
   selectedDetails: "",
   routeToUpload: "",
   reload: false,
-  getSelectedToUpload(){
+  selectedToShare: "",
+  sharedRoutes: [],
+  async getSharedRoutes() {
+    console.log(this.sharedRoutes);
+    return this.sharedRoutes;
+  },
+  setSharedRoutes(route) {
+    this.sharedRoutes = route;
+  },
+  getSelectedToShare() {
+    return this.selectedToShare;
+  },
+  setSelectedToShare(route) {
+    this.selectedToShare = route;
+  },
+  getSelectedToUpload() {
     return this.routeToUpload;
   },
-  setSelectedToUpload(route){
+  setSelectedToUpload(route) {
     this.routeToUpload = route;
   },
   addRoute(route) {
@@ -52,9 +67,20 @@ export default {
   },
   setSelected(route) {
     let found = this.routes.find((obj) => route.name === obj.name);
+    console.log("Found");
+    console.log(found);
+    let foundShare = this.sharedRoutes.find((obj) => route.name === obj.name);
+    console.log("ShareFound");
+    console.log(foundShare);
 
     if (found) {
+      console.log(`Route selected: ${found}`);
       this.selected = found;
+      return;
+    }
+
+    if (foundShare) {
+      this.selected = foundShare;
       return;
     }
 
@@ -67,13 +93,17 @@ export default {
     }
     this.selected = found;
   },
-  getSelected() {
+  async getSelected() {
     return this.selected;
   },
   clear() {
     this.routes = [];
     this.selected = "";
     this.selectedDetails = "";
+    this.routeToUpload = "";
+    this.reload = false;
+    this.selectedToShare = "";
+    this.sharedRoutes = [];
   },
   setSelectedDetails(route) {
     this.selectedDetails = route;
@@ -81,7 +111,7 @@ export default {
   getSelectedDetails() {
     return this.selectedDetails;
   },
-  setReload(reload){
+  setReload(reload) {
     this.reload = reload;
-  }
+  },
 };

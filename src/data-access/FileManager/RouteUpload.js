@@ -14,6 +14,7 @@ async function uploadRoute(name, text){
   if (!session || session.webId === undefined || session.webId === null) {
     throw new Error("You are not logged in.");
   }
+  
   var file = new File([text], name+".jsonld", {
   type: "application/ld+json"
   });
