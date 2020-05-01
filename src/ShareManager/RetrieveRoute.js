@@ -18,6 +18,7 @@ export async function sharedRoutesList(routesURL) {
   const url = await retrieveSharedRoutes(sharedPath);
 
   console.log("ME PEGO UN TIRO");
+  console.log(url);
   let routes = [];
   let routes_routes = [];
   let routes_files = [];

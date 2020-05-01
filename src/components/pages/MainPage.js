@@ -28,13 +28,16 @@ const MainPage = () => {
   };
 
   const showZone = () => {
-    if (routecache.default.getSelected() !== "") {
-      setShowDropzone(!showDropzone);
-    } else
-      toast.error("No Route Selected", {
-        draggable: true,
-        position: toast.POSITION.TOP_CENTER,
-      });
+    routecache.default.getSelected().then((selected) => {
+      if (selected !== "") {
+        setShowDropzone(!showDropzone);
+      } else {
+        toast.error("No Route Selected", {
+          draggable: true,
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    });
   };
 
   return (

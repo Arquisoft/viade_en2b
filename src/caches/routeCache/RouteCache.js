@@ -74,6 +74,7 @@ export default {
     console.log(foundShare);
 
     if (found) {
+      console.log(`Route selected: ${found}`);
       this.selected = found;
       return;
     }
@@ -99,6 +100,10 @@ export default {
     this.routes = [];
     this.selected = "";
     this.selectedDetails = "";
+    this.routeToUpload = "";
+    this.reload = false;
+    this.selectedToShare = "";
+    this.sharedRoutes = [];
   },
   setSelectedDetails(route) {
     this.selectedDetails = route;

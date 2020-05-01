@@ -1,10 +1,14 @@
-import React from 'react';
-import { LoggedIn, LoggedOut } from '@solid/react';
-import cache from '../../caches/routeCache/RouteCache'
-import * as friendCache from 'caches/friendCache/FriendCache';
-import { ShareWith } from 'ShareManager/ShareRoute';
-import { getNotificationDocuments } from 'NotificationManager/NotificationManager';
-import { retrieveSharedRoutes, listAllURLShared, sharedRoutesList } from 'ShareManager/RetrieveRoute';
+import React from "react";
+import { LoggedIn, LoggedOut } from "@solid/react";
+import cache from "../../caches/routeCache/RouteCache";
+import * as friendCache from "caches/friendCache/FriendCache";
+import { ShareWith } from "ShareManager/ShareRoute";
+import { getNotificationDocuments } from "NotificationManager/NotificationManager";
+import {
+  retrieveSharedRoutes,
+  listAllURLShared,
+  sharedRoutesList,
+} from "ShareManager/RetrieveRoute";
 
 import data from "@solid/query-ldflex";
 import BurgerMenu from "../generic_components/BurgerMenu";
@@ -67,7 +71,9 @@ class Login extends React.Component {
     e.preventDefault();
     let session = await auth.currentSession();
     let popupUri = "https://solid.community/common/popup.html";
-    if (!session) session = await auth.popupLogin({ popupUri });
+    if (!session) {
+      session = await auth.popupLogin({ popupUri });
+    }
     this.getProfileImage().then((foto) => {
       if (foto == undefined) {
         this.setState({
@@ -127,15 +133,13 @@ class Login extends React.Component {
       //errorToaster(error.message, 'Error');
     }
   }
-  async createFolder(){
-    try {
-      folderCreator.default.main();
-    } catch (error) {
-      console.log(error);
-    }
+  async createFolder() {
+    folderCreator.default.main().then().catch((err) => {
+      console.log(err);
+    });
   }
 
-  viewImageLoaded = () => { };
+  viewImageLoaded = () => {};
   render() {
     const { image } = this.state;
 
@@ -174,7 +178,7 @@ class Login extends React.Component {
               </LoggedOut>
               <LoggedIn>
                 <p>{this.state.name}</p>
-                
+
                 <button
                   className="login100-form-btn"
                   onClick={(e) => this.logout(e, auth)}
