@@ -88,7 +88,7 @@ class Login extends React.Component {
         this.setState({ name: "Welcome, Guest" });
       } else this.setState({ name: "Welcome, " + name });
     });
-    this.createFolder();
+    await this.createFolder();
   }
 
   async logout(e, auth) {
