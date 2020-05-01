@@ -159,7 +159,7 @@ export default class RoutesLoader {
                 console.log("Route " + route.name + " was created succesfully");
 
                 if (routes[i].media) {
-                    entFiles.push(this.getMediaAttachedToRoute(routes[i]));
+                    entFiles.push(this.getMediaAttachedToRoute(routes[i], urls[i]));
                 }
             } catch (e) {
                 console.log(
@@ -173,8 +173,8 @@ export default class RoutesLoader {
     }
 
 
-    getMediaAttachedToRoute(route) {
-        let routeFile = new RouteFile(route.name, []);
+    getMediaAttachedToRoute(route, url) {
+        let routeFile = new RouteFile(url, []);
         for (let i = 0; i < route.media.length; i++) {
             let path = route.media[i]["@id"];
             let date = new Date(route.media[i]["dateTime"]);

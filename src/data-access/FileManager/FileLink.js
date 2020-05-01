@@ -9,6 +9,12 @@ const getAttachmentDate = () => {
   return new Date().toISOString();
 };
 
+export const checkLinkableRoute = async (routeName) => {
+  let session = await auth.currentSession();
+  let storageRoot = session.webId.split("profile")[0];
+  return routeName.includes(storageRoot);
+}
+
 export const linkFilesToRoute = async (fileUris, routeName) => {
   let fileClient = new SolidFileClient(auth, { enableLogging: true });
   let session = await auth.currentSession();
