@@ -2,13 +2,14 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {Comment} from 'semantic-ui-react';
 import '../../assets/css/commentsContainer.css';
+import MyForm  from '../generic_components/MyForm';
 
 
 class MyCommentInfiniteScroll extends React.Component {
   state = {
     items: this.props.content.slice(0,20),
     array_index: 20,
-    hasMore: true
+    hasMore: true,
   };
 
   fetchMoreData = () => {
@@ -29,6 +30,7 @@ class MyCommentInfiniteScroll extends React.Component {
   };
 
   render() {
+    
     return (
       <div>
         <InfiniteScroll
@@ -61,6 +63,7 @@ class MyCommentInfiniteScroll extends React.Component {
           ))}
           </Comment.Group>
         </InfiniteScroll>
+        <MyForm/>
       </div>
     );
   }
