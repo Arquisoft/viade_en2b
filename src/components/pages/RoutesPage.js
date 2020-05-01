@@ -8,7 +8,9 @@ import RouteDetails from "./RouteDetails";
 import { HashRouter as Router, Link } from "react-router-dom";
 import { Icon, Card, Image, Popup } from "semantic-ui-react";
 import * as cache from "caches/routeCache/RouteCache";
+
 import { sharedRoutesList } from "ShareManager/RetrieveRoute";
+
 
 class RoutesPage extends React.Component {
   constructor(props) {
@@ -29,12 +31,10 @@ class RoutesPage extends React.Component {
   componentDidMount() {
     cache.default.getRoutes(this.handleSession).then((rutas) => {
       this.setState({ loading: true, routes: rutas });
-
       var session = JSON.parse(localStorage.getItem("session"));
       var path =
         session.webId.substring(0, session.webId.length - 16) +
         "/viade/shared/";
-
       sharedRoutesList(path).then((rutas) => {
         cache.default.getSharedRoutes().then((routes) => {
           /*var fullroutes = this.state.routes;
@@ -44,7 +44,6 @@ class RoutesPage extends React.Component {
           console.table("FULLROUYTES");
           console.table(fullroutes);
 */
-
           this.setState({ loading: false, sharedRoutes: routes });
         });
       });
@@ -52,6 +51,7 @@ class RoutesPage extends React.Component {
 
     cache.default.setReload(false);
     this.urls = JSON.parse(localStorage.getItem("urls"));
+
   }
 
   viewDetails(route) {
@@ -77,17 +77,20 @@ class RoutesPage extends React.Component {
     this.props.history.push("/login");
   };
 
+
   viewLoaded = (routes, sharedRoutes) => {
     let filteredRoutes = routes.filter((ruta) => {
       return (
         ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       );
     });
+
     let filteredSharedRoutes = sharedRoutes.filter((ruta) => {
       return (
         ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
       );
     });
+
     return (
       <div className="bodyRoutes" id="outer-container">
         {this.state.showDetails ? this.getDetailsZone() : null}
@@ -108,6 +111,7 @@ class RoutesPage extends React.Component {
                   return (
                     <li id={"route" + index} key={index} className="liCard">
                       <div className="routeListElementContainter">
+                        {console.log(item)}
                         <CardLayout
                           header={item.name}
                           image="images/daddy.png"

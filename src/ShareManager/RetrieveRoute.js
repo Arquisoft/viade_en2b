@@ -1,5 +1,6 @@
 import { loadSpecificUserRoutesFiles } from "RouteManager/ListSpecificUserRoutes";
 import * as cache from "caches/routeCache/RouteCache";
+import * as filecache from "caches/fileCache/FileCache";
 const auth = require("solid-auth-client");
 const FC = require("solid-file-client");
 const fc = new FC(auth);
@@ -20,15 +21,22 @@ export async function sharedRoutesList(routesURL) {
   console.log(url);
   let routes = [];
   let routes_routes = [];
-  for (let i = 0; i < url.length; i++) {
-    //now, retrieving the specific route from the different urls
-    let urlRoute = url[i];
+  let routes_files = [];
+  if (url) {
+    console.log("LENGTH OF URL : " + url);
+    for (let i = 0; i < url.length; i++) {
+      //now, retrieving the specific route from the different urls
+      let urlRoute = url[i];
 
-    let route = await loadSpecificUserRoutesFiles(urlRoute);
+      let route = await loadSpecificUserRoutesFiles(urlRoute);
 
-    routes.push(route);
+      routes.push(route);
 
-    routes_routes.push(route.routes[0]);
+      routes_routes.push(route.routes[0]);
+      routes_files.push(route.files[0]);
+    }
+    console.table(routes_routes);
+    filecache.default.addFilePaths(routes_files);
     cache.default.setSharedRoutes(routes_routes);
   }
   return routes;

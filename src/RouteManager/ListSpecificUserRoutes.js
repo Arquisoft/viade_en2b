@@ -54,7 +54,8 @@ function jsonToEntity(routes) {
     try {
       let name = routes[i].name;
       let it = routes[i].points;
-      let route = new BasicRoute(name, it);
+      let description = routes[i].description;
+      let route = new BasicRoute(name, it, description);
       route.setJsonFormat(routes[i]);
       entRoutes.push(route);
       console.log("Route " + route.name + " was created succesfully");
