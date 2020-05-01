@@ -16,17 +16,24 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
   let buildRouteFolderPath = storageRoot + routesFolder;
   let attachementDate = getAttachmentDate();
   if (await fileClient.itemExists(buildRouteFolderPath)) {
-    let routeFile = await fileClient.readFile(routeName);
-    let route = JSON.parse(routeFile);
-    if (!route.media) {
-      route.media = [];
-    }
+    let viadeRoutes = await fileClient.readFolder(storageRoot + routesFolder);
+    let routeFiles = viadeRoutes.files;
 
-    fileUris.forEach((fileUri) => {
-      route.media.push({ "@id": fileUri, dateTime: attachementDate });
+    routeFiles.forEach(async (file) => {
+      if (file.url.match(routeName)) {
+        let routeFile = await fileClient.readFile(file.url);
+        let route = JSON.parse(routeFile);
+        if (!route.media) {
+          route.media = [];
+        }
+
+        fileUris.forEach((fileUri) => {
+          route.media.push({ "@id": fileUri, dateTime: attachementDate });
+        });
+        fileClient
+          .putFile(file.url, JSON.stringify(route), file.type)
+          .catch(handleFetchError);
+      }
     });
-    fileClient
-      .putFile(routeName, JSON.stringify(route), routeFile.type)
-      .catch(handleFetchError);
   }
 };

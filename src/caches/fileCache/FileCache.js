@@ -9,9 +9,7 @@ import routeCache from "../routeCache/RouteCache";
 export default {
   filePaths: [],
   async uploadFiles(files) {
-    let route = routeCache.getSelected();
-    console.log(files);
-    console.log(route);
+    let route = await routeCache.getSelected();
     try {
       let found = this.filePaths.find((rf) => rf.routePath === route.url);
       if (found) {
