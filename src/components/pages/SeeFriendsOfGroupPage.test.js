@@ -8,5 +8,13 @@ Enzyme.configure({ adapter: new Adapter() });
 /////////////////////////
 
 test("SeeFriendsOfGroupPage", () => {
-  expect(SeeFriendsOfGroupPage).toBeDefined();
+  var friendsgroup = <SeeFriendsOfGroupPage />;
+  expect(friendsgroup).toBeDefined();
+});
+
+test("SeeFriendsOfGroupPage state", () => {
+  var friendsgroup = mount(<SeeFriendsOfGroupPage />);
+  friendsgroup.setState({ loading: false });
+  var e = friendsgroup.state.loading;
+  expect(friendsgroup).toBeDefined();
 });

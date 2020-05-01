@@ -8,5 +8,6 @@ Enzyme.configure({ adapter: new Adapter() });
 /////////////////////////
 
 test("ImportGpxPage", () => {
-  expect(ImportGpxPage).toBeDefined();
+  var importpage = mount(<ImportGpxPage />);
+  expect(importpage).toBeDefined();
 });
