@@ -83,7 +83,7 @@ class CreateFriendGroupPage extends React.Component {
                   </ul>
                 </section>
                 <section className="saveSection">
-                  <label for="textInput">Group Name</label>
+                  <label htmlFor="textInput">Group Name</label>
                   <br />
                   <input
                     className="textInput"

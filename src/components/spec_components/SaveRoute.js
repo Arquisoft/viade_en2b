@@ -27,7 +27,10 @@ class SaveRoute extends Component {
     if (this.state.nameRoute !== "" && RealTimeRoute.default.getRouteIsOver()) {
       //RealTimeRoute.default.setNameAndUpload(this.state.nameRoute);
       //Change setNameAndUpload
-      RealTimeRoute.default.setNameAndUpload(this.state.nameRoute, this.state.description);
+      RealTimeRoute.default.setNameAndUpload(
+        this.state.nameRoute,
+        this.state.description
+      );
 
       this.props.onFinish();
     }
@@ -35,7 +38,7 @@ class SaveRoute extends Component {
   render() {
     return (
       <React.Fragment>
-        <label for="textInput">Route Name</label>
+        <label htmlFor="textInput">Route Name</label>
         <input
           ref={this.fileInputRef}
           className="textInput"
@@ -43,7 +46,7 @@ class SaveRoute extends Component {
           onChange={this.nameToRute.bind(this)}
         />
         <div className="textareaDiv">
-          <label for="textareaInput">Route description</label>
+          <label htmlFor="textareaInput">Route description</label>
           <textarea
             rows="2"
             cols="25"

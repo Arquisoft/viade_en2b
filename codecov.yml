@@ -15,3 +15,4 @@ ignore:
   - "src/FriendManager/DeleteFriend.js"
   - "src/FriendGroupManager/GetFriendGroup.js"
   - "src/fileRelatedTests/"
+  - "src/components/generic_components/List.js"
