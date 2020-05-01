@@ -44,7 +44,7 @@ export default class RoutesLoader {
             console.log("user has no routes directory");
         }
 
-        let rou = this.jsonToEntity(this.routesToJson(routes));
+        let rou = this.jsonToEntity(this.routesToJson(routes, urls), urls);
 		localStorage.setItem("urls", JSON.stringify(urls));
         //localStorage.setItem('rutas', JSON.stringify(rou));
 
@@ -114,13 +114,14 @@ export default class RoutesLoader {
         return undefined;
     }
 
-    routesToJson(routes) {
+    routesToJson(routes, urls) {
         let jsonRoutes = [];
         for (let i = 0; i < routes.length; i++) {
             try {
                 let route = JSON.parse(routes[i]);
                 jsonRoutes.push(route);
             } catch (e) {
+                urls.splice(i, 1);
                 console.log(
                     "Route " +
                     i +
@@ -131,9 +132,10 @@ export default class RoutesLoader {
         return jsonRoutes;
     }
 
-    jsonToEntity(routes) {
+    jsonToEntity(routes, urls) {
         let entRoutes = [];
         let entFiles = [];
+        console.table(routes);
         for (let i = 0; i < routes.length; i++) {
             try {
                 console.log(routes[i]);
@@ -151,6 +153,7 @@ export default class RoutesLoader {
                 }
                 let route = new BasicRoute(name, it, desc);
                 route.commentsUrl = comUrl;
+                route.setUrl(urls[i]);
                 route.setJsonFormat(routes[i]);
                 entRoutes.push(route);
                 console.log("Route " + route.name + " was created succesfully");

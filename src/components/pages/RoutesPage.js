@@ -11,7 +11,6 @@ import * as cache from "caches/routeCache/RouteCache";
 
 import { sharedRoutesList } from "ShareManager/RetrieveRoute";
 
-
 class RoutesPage extends React.Component {
   constructor(props) {
     super(props);
@@ -32,26 +31,27 @@ class RoutesPage extends React.Component {
     cache.default.getRoutes(this.handleSession).then((rutas) => {
       this.setState({ loading: true, routes: rutas });
       var session = JSON.parse(localStorage.getItem("session"));
-      var path =
-        session.webId.substring(0, session.webId.length - 16) +
-        "/viade/shared/";
-      sharedRoutesList(path).then((rutas) => {
-        cache.default.getSharedRoutes().then((routes) => {
-          /*var fullroutes = this.state.routes;
-          console.table("FULLROUYTES");
-          console.table(fullroutes);
-          fullroutes = [...fullroutes, ...routes];
-          console.table("FULLROUYTES");
-          console.table(fullroutes);
-*/
-          this.setState({ loading: false, sharedRoutes: routes });
+      if (session) {
+        var path =
+          session.webId.substring(0, session.webId.length - 16) +
+          "/viade/shared/";
+        sharedRoutesList(path).then((rutas) => {
+          cache.default.getSharedRoutes().then((routes) => {
+            /*var fullroutes = this.state.routes;
+            console.table("FULLROUYTES");
+            console.table(fullroutes);
+            fullroutes = [...fullroutes, ...routes];
+            console.table("FULLROUYTES");
+            console.table(fullroutes);
+  */
+            this.setState({ loading: false, sharedRoutes: routes });
+          });
         });
-      });
+      }
     });
 
     cache.default.setReload(false);
     this.urls = JSON.parse(localStorage.getItem("urls"));
-
   }
 
   viewDetails(route) {
@@ -76,7 +76,6 @@ class RoutesPage extends React.Component {
   handleSession = () => {
     this.props.history.push("/login");
   };
-
 
   viewLoaded = (routes, sharedRoutes) => {
     let filteredRoutes = routes.filter((ruta) => {
