@@ -31,7 +31,7 @@ defineFeature(feature, (test) => {
         browser.once("targetcreated", (target) => x(target.page()))
       );
       const popup = await newPagePromise;
-      await popup.waitFor(5000);
+      await popup.waitFor("button", { text: "Solid Community" });
       await expect(popup).toClick("button", { text: "Solid Community" });
       await expect(popup).toClick("button", { text: "Go" });
       await popup.waitFor(10000);
@@ -48,27 +48,21 @@ defineFeature(feature, (test) => {
       await expect(page).toClick("button", { text: "Open Menu" });
       await page.waitFor(1000);
       await expect(page).toClick("[href='#/routes']");
-      await page.waitFor("i[class='map icon']");
+      await page.waitFor("li[id='route0'] i[class='map icon']");
     });
 
     when("The user selects a route and uploads a file", async () => {
       await page.waitFor(10000);
-      console.log("Before clicking");
-      await expect(page).toClick("[href='#/']");
-      console.log("After clicking");
-      console.log("Before waiting");
+      await expect(page).toClick("li[id='route0'] a[href='#/']");
       await page.waitFor(10000);
-      console.log("After waiting");
-      console.log("Before clicking");
-      await page.waitFor("button[class='rtf--mb']");
-      console.log("After clicking");
-      await expect(page).toClick("button", { class: "rtf--mb" });
+      await page.waitFor("button[aria-label='Floating menu']");
+      await expect(page).toClick("button[aria-label='Floating menu']");
       await page.waitFor(1000);
-      await expect(page).toClick("button", { text: "Take Photo" });
+      await expect(page).toClick("button[aria-label='Take Photo']");
       await page.waitFor(1000);
       await expect(page).toUploadFile(
         "input[type='file']",
-        path.join("../../public/images", "Viade.png")
+        path.join("public/images", "Viade.png")
       );
       await page.waitFor(2000);
     });
@@ -79,9 +73,10 @@ defineFeature(feature, (test) => {
         await expect(page).toClick("button", { text: "Open Menu" });
         await page.waitFor(1000);
         await expect(page).toClick("[href='#/routes']");
-        await page.waitFor("i[class='info icon']");
-        await expect(page).toClick("[href='#/routes']");
+        await page.waitFor("li[id='route0'] i[class='info icon']");
         await page.waitFor(1000);
+        await expect(page).toClick("li[id='route0'] a[href='#/routes']");
+        await page.waitFor(3000);
         await expect(page).toClick("a", { text: "Imagenes" });
         await page.waitFor(1000);
         await expect(page).toMatchElement("img", {
