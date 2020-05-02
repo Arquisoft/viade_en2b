@@ -25,3 +25,6 @@ ignore:
   - "src/data-access/FileManager/RouteUpload.js"
   - "src/data-access/FileManager/FolderCreator"
   - "src/data-access/UserData.js"
+  - "src/RouteManager/CreateRouteRealTime.js"
+  - "src/RouteManager/CreateRoute.js"
+  - "src/RouteManager/ListUserSpecificUserRoutes.js"
