@@ -24,7 +24,7 @@ export default {
 
     let session = await auth.currentSession();
 
-        let session = await auth.currentSession();
+
         if (!session || session.webId === undefined || session.webId === null) {
             callback();
         }
