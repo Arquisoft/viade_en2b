@@ -7,16 +7,8 @@ const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 
 export async function createContentAcl(url, nameResource) {
-  console.log('URL'+url);
-  console.log(typeof(nameResource));
-  console.log('RESOURCE' + nameResource);
-
   let withoutSpaces = nameResource.trim();
-  let resource = withoutSpaces+ "";
-  console.log(resource);
-  console.log(typeof(resource));
-
-  
+  let resource = withoutSpaces+ "";  
 
   let aclString = `
   @prefix : <#>.
@@ -75,17 +67,9 @@ export async function createContentAclInbox(url) {
 
 
 export async function createContentAclMedia(url, nameResource) {
-  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-  console.log('URL'+url);
-  console.log(typeof(nameResource));
-  console.log('RESOURCE' + nameResource);
 
   let withoutSpaces = nameResource.trim();
-  let resource = withoutSpaces+ "";
-  console.log(resource);
-  console.log(typeof(resource));
-
-  
+  let resource = withoutSpaces+ ""; 
 
   let aclString = `
   @prefix : <#>.

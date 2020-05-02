@@ -22,7 +22,7 @@ export async function getNotificationDocuments(inboxPath, webIdAuthor) {
   var inbox = inboxPath;
 
   var containerDoc = await fetchDocument(inbox).then().catch((err) => {
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAA');
+    console.log('Error');
     return ;
   });
 

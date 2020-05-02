@@ -19,7 +19,6 @@ export async function setPermissionsTo(permission, urlToShare, webIdFriend, webI
 
     const fetch = auth.fetch.bind(auth);
     const utils = new AclApi(fetch, { autoSave: true });
-    console.log('acl error');
 
     try {
 

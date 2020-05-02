@@ -40,9 +40,7 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
         }
 
         fileUris.forEach((fileUri) => {
-          route.media.push({ "@id": fileUri, dateTime: attachementDate });  
-          //create acl here?
-          //createContentAcl(fileUri, );        
+          route.media.push({ "@id": fileUri, dateTime: attachementDate });         
         });
         fileClient
           .putFile(file.url, JSON.stringify(route), file.type)
