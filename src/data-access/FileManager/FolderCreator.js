@@ -5,7 +5,7 @@ const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 
 export default{
-    main(){
+    async main(){
         createFolders();
     }
 }
