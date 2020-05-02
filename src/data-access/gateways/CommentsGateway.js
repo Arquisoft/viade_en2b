@@ -25,7 +25,7 @@ export async function postCommentInRoute(routeComUrl,comment,callback){
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date+' '+time;
+        var dateTime = date+', '+time;
         comment.dateCreated=dateTime;
         console.log(comment.dateCreated);
         commentsJson.comments.push(comment);

@@ -3,8 +3,7 @@ import { Tab } from 'semantic-ui-react'
 import MyCommentInfiniteScroll  from '../generic_components/InfiniteScrollComment';
 import MyImageInfiniteScroll  from '../generic_components/InfiniteScrollImage';
 import MyVideoInfiniteScroll  from '../generic_components/InfiniteScrollVideo';
-import * as loadComments from '../../CommentsManager/GetComments'
-
+import * as gateway from '../../data-access/gateways/CommentsGateway'
 import * as cache from '../../caches/fileCache/FileCache'
 
 let comentarios = [];
@@ -43,9 +42,9 @@ class MyTab extends React.Component {
 
 componentDidMount(){
 
-    loadComments.default.loadComments(this.props.route.url, ()=>{}).then((comments) => {
-        console.log("COMMENTS MIRA ESTO JAJA SALUDOS", comments);
-    });
+    gateway.getCommentsForRoute(this.props.route.commentsUrl, ()=>{}).then((comment) => {
+        console.log("HOLA QUE TAL ESTOY AQUI:", comment);
+    })
 
 }
 
