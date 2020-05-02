@@ -23,5 +23,4 @@ async function createFolders() {
   fileClient.createFolder(comments);
   fileClient.createFolder(inbox);
   fileClient.createFolder(shared);
-  console.log("se ha llamado");
 }

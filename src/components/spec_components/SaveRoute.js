@@ -21,7 +21,6 @@ class SaveRoute extends Component {
   }
   nameToRute(name) {
     this.setState({ nameRoute: name.target.value });
-    console.log(this.state.nameRoute);
   }
   saveRouteToPod() {
     if (this.state.nameRoute !== "" && RealTimeRoute.default.getRouteIsOver()) {

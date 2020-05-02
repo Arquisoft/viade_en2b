@@ -24,8 +24,6 @@ class NotificationsPage extends React.Component {
     getNotificationDocuments(inbox, webIdAuthor).then((notifications) => {
       this.setState({ loading: false, notifications: notifications });
     });
-
-    console.log(this.state.notifications);
   }
 
   viewLoaded = (notifications) => {
@@ -56,8 +54,6 @@ class NotificationsPage extends React.Component {
                         <div className="commentInfo">
                           <p className="header">
                             <i className="fa fas fa-bell"></i>
-                            {console.log(item)}
-                            {console.log(item.authorName)}
                             {item.authorName}
                           </p>
                           <p className="description">{item.message}</p>

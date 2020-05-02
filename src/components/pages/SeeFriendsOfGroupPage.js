@@ -22,9 +22,7 @@ class FriendGroupsPage extends React.Component {
 
   componentDidMount() {
     friends = friendcache.default.getFriends();
-    console.log("Asdasdas");
-    console.log(friends);
-    console.log("Asdasdas");
+
     cache.default.getGroupSelected(this.handleSession).then((group) => {
       this.setState({ loading: false, group: group });
     });
@@ -35,7 +33,6 @@ class FriendGroupsPage extends React.Component {
   };
 
   viewLoaded = (group) => {
-    console.log(group);
     return (
       <div className="bodyFriends" id="outer-container">
         <main>
@@ -51,8 +48,6 @@ class FriendGroupsPage extends React.Component {
               <h1>List of Members of Group:</h1>
               <ul className="listgroups">
                 {friends.map((item, index) => {
-                  console.log(friends);
-                  console.log(group.some((i) => i.name === item.name));
                   if (group.some((i) => i.url === item.webIdString)) {
                     return (
                       <li id={"group" + index} key={index} className="liCard">

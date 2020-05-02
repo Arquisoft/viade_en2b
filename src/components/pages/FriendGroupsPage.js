@@ -43,7 +43,6 @@ class FriendGroupsPage extends React.Component {
   };
 
   viewLoaded = (groups) => {
-    console.log(groups);
     return (
       <div className="bodyFriends" id="outer-container">
         <main>
