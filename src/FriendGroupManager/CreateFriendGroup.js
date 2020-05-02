@@ -32,7 +32,7 @@ export default {
     
     console.log(file);
     this.updateFile(group_folder, file, file.type);
-    //createContentAcl(group_folder, groupname);
+    createContentAcl(group_folder, groupname);
     /* var updateGroups = cache.default.getGroups(this.empty());
     updateGroups.push(JSON.parse(group));
     cache.default.setGroups(updateGroups);*/

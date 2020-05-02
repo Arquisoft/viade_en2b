@@ -1,16 +1,22 @@
 import * as auth from "solid-auth-client";
 import SolidFileClient from "solid-file-client";
 import { AccessControlList } from '@inrupt/solid-react-components';
+import { type } from "rdf-namespaces/dist/dc";
 
 const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 
 export async function createContentAcl(url, nameResource) {
-  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
   console.log('URL'+url);
+  console.log(typeof(nameResource));
   console.log('RESOURCE' + nameResource);
-  let resource = nameResource+ "";
+
+  let withoutSpaces = nameResource.trim();
+  let resource = withoutSpaces+ "";
   console.log(resource);
+  console.log(typeof(resource));
+
+  
 
   let aclString = `
   @prefix : <#>.
@@ -28,7 +34,7 @@ export async function createContentAcl(url, nameResource) {
   `
   console.log(aclString)
   try {
-    await fileClient.createFile(url + '.acl', aclString, "text/turtle").then().catch((error) => {console.log('It looks like we can not create necessary folders inside your pod'); return;});
+    await fileClient.createFile(url + '.acl', aclString, "text/turtle").then().catch((error) => {console.log('It looks like we can not create necessary folders inside your pod'+url + nameResource); return;});
     console.log('CREATED ACL '+url);
   } catch (e) {
     //alert(e)
@@ -64,6 +70,42 @@ export async function createContentAclInbox(url) {
     console.log('CREATED ACL INBOX');
   } catch (e) {
     alert(e)
+  }
+}
+
+
+export async function createContentAclMedia(url, nameResource) {
+  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+  console.log('URL'+url);
+  console.log(typeof(nameResource));
+  console.log('RESOURCE' + nameResource);
+
+  let withoutSpaces = nameResource.trim();
+  let resource = withoutSpaces+ "";
+  console.log(resource);
+  console.log(typeof(resource));
+
+  
+
+  let aclString = `
+  @prefix : <#>.
+  @prefix n0: <http://www.w3.org/ns/auth/acl#>.
+  @prefix n1: <http://xmlns.com/foaf/0.1/>.
+  @prefix c: </profile/card#>.
+
+  :ControlReadWrite
+      a n0:Authorization;
+      n0:accessTo <${resource}>;
+      n0:agent c:me;
+      n0:mode n0:Control, n0:Read, n0:Write.
+  `
+  console.log(aclString)
+  try {
+    await fileClient.createFile(url + '.acl', aclString, "text/turtle").then().catch((error) => {console.log('It looks like we can not create necessary folders inside your pod'+url + nameResource); return;});
+    console.log('CREATED ACL '+url);
+  } catch (e) {
+    //alert(e)
+    console.log('THE ACL COULD NOT BE ADDED ');
   }
 }
 
