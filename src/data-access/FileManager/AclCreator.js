@@ -28,8 +28,7 @@ export async function createContentAcl(url, nameResource) {
   `
   console.log(aclString)
   try {
-
-    await fileClient.createFile(url + '.acl', aclString, "text/turtle");
+    await fileClient.createFile(url + '.acl', aclString, "text/turtle").then().catch((error) => {console.log('It looks like we can not create necessary folders inside your pod'); return;});
     console.log('CREATED ACL '+url);
   } catch (e) {
     //alert(e)
@@ -61,7 +60,7 @@ export async function createContentAclInbox(url) {
 
   console.log(aclString)
   try {
-    await fileClient.createFile(url + '.acl', aclString, "text/turtle")
+    await fileClient.createFile(url + '.acl', aclString, "text/turtle").then().catch((error) => {console.log('It looks like we can not create necessary folders inside your pod'); return;});
     console.log('CREATED ACL INBOX');
   } catch (e) {
     alert(e)

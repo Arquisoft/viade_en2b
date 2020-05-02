@@ -29,22 +29,22 @@ async function createFolders() {
   
   createContentAcl(viade, "viade");
 
-  fileClient.createFolder(routes);  
+  fileClient.createFolder(routes).then().catch((error)=>{console.log('It looks like we can not create necessary folders inside your pod'); return;});  
   createContentAcl(routes, "routes");
 
-  fileClient.createFolder(groups);
+  fileClient.createFolder(groups).then().catch((error)=>{console.log('It looks like we can not create necessary folders inside your pod'); return;});
   createContentAcl(groups, "groups");
 
-  fileClient.createFolder(comments);
+  fileClient.createFolder(comments).then().catch((error)=>{console.log('It looks like we can not create necessary folders inside your pod'); return;});
   createContentAcl(comments, "comments");
 
-  fileClient.createFolder(inbox);
+  fileClient.createFolder(inbox).then().catch((error)=>{console.log('It looks like we can not create necessary folders inside your pod'); return;});
   createContentAclInbox(inbox);
 
-  fileClient.createFolder(shared);
+  fileClient.createFolder(shared).then().catch((error)=>{console.log('It looks like we can not create necessary folders inside your pod'); return;});
   createContentAcl(shared, "shared");
 
-  fileClient.createFolder(resources);
+  fileClient.createFolder(resources).then().catch((error)=>{console.log('It looks like we can not create necessary folders inside your pod'); return;});
   createContentAcl(resources, "resources");
   
   console.log("se ha llamado");
