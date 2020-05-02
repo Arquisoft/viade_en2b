@@ -114,7 +114,7 @@ test("routes json to entities", () => {
   jsonRoutes.push(route3);
 
   let entityRoutes = rL.jsonToEntity(jsonRoutes);
-
+  console.log(entityRoutes.length);
   expect(entityRoutes.routes.length).toEqual(3);
   expect(entityRoutes.routes[0].name).toEqual("Oviedo");
   expect(entityRoutes.routes[0].geoCoordinates).toBeDefined();

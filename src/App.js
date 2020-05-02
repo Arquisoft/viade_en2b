@@ -21,7 +21,7 @@ import ImportGpxPage from "./components/pages/ImportGpxPage";
 import FriendGroupsPage from "./components/pages/FriendGroupsPage";
 import SeeFriendsOfGroupPage from "./components/pages/SeeFriendsOfGroupPage";
 import CreateFriendGroupPage from "./components/pages/CreateFriendGroupPage";
-
+import ShareRoutePage from "./components/pages/ShareRoutePage";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
@@ -31,7 +31,7 @@ import * as cache from "caches/routeCache/RouteCache";
 import "./App.css";
 
 var lastRouteReceived = [];
-function notificationsRecieved() {
+/*function notificationsRecieved() {
   if (cache.default.getSelected() != lastRouteReceived) {
     lastRouteReceived = cache.default.getSelected();
     toast.info("Route Selected", {
@@ -39,7 +39,7 @@ function notificationsRecieved() {
       position: toast.POSITION.TOP_CENTER,
     });
   }
-}
+}*/
 
 class App extends Component {
   constructor(props) {
@@ -53,9 +53,9 @@ class App extends Component {
   };
 
   render() {
-    setInterval(() => {
+    /* setInterval(() => {
       notificationsRecieved();
-    }, 2000);
+    }, 2000);*/
     setTimeout(() => {
       if (this.state.render === 0)
         this.setState({
@@ -113,6 +113,7 @@ class App extends Component {
                   path="/creategroup"
                   component={CreateFriendGroupPage}
                 />
+                <Route exact path="/shareroute" component={ShareRoutePage} />
               </Switch>
             </Fragment>
           </Router>
