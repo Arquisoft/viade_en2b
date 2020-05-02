@@ -23,10 +23,20 @@ export default class RoutesLoader {
         let routesFolder =
             session.webId.substring(0, session.webId.length - 16) + "/viade/routes/"; //"/public/Routes/";
 
-        if (await fc.itemExists(routesFolder)) {
-            try {
-                let content = await fc.readFolder(routesFolder);
+        //checking permissions to access routeFolder
+        await fc.itemExists(routesFolder).then().catch((err) => {
+            console.log('It looks like we can not access to the path '+routesFolder);
+            return ;
+        });
 
+        if (await fc.itemExists(routesFolder).then().catch((err) => {
+            console.log('It looks like we can not access to the path '+routesFolder);
+            return ;
+             })
+            ) {
+            try {
+
+                let content = await fc.readFolder(routesFolder);
                 let files = content.files;
 
                 for (let i = 0; i < files.length; i++) {

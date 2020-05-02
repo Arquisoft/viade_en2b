@@ -53,18 +53,29 @@ export async function sharedRoutesList(routesURL) {
 export async function retrieveSharedRoutes(sharedPath) {
   let routesJSONS = [];
   var urls_cache = JSON.parse(localStorage.getItem("urls"));
-  let content = await fc.readFolder(sharedPath);
-  let files = content.files;
-  console.log("LENGTH OF FILES : " + files.length);
-  for (let i = 0; i < files.length; i++) {
-    let fileContent = await fc.readFile(files[i].url);
-    routesJSONS.push(fileContent);
-    //urls_cache.push(files[i].url);
-  }
 
-  //localStorage.setItem("urls", JSON.stringify(urls_cache));
-  const url = jsonURLRetrieve(toJson(routesJSONS));
-  return url;
+  let content = await fc.readFolder(sharedPath).then().catch((err) => {
+    console.log('There was a problem reading '+sharedPath);
+    return ;
+  });
+
+  try {
+    let files = content.files;
+    console.log("LENGTH OF FILES : " + files.length);
+    for (let i = 0; i < files.length; i++) {
+      let fileContent = await fc.readFile(files[i].url);
+      routesJSONS.push(fileContent);
+      //urls_cache.push(files[i].url);
+    }
+
+    //localStorage.setItem("urls", JSON.stringify(urls_cache));
+    const url = jsonURLRetrieve(toJson(routesJSONS));
+    return url;
+
+  } catch (error){
+    console.log('It could not be read the folder '+sharedPath);
+  }
+  
 }
 
 /**

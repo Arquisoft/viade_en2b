@@ -20,7 +20,13 @@ const request = require("request");
  */
 export async function getNotificationDocuments(inboxPath, webIdAuthor) {
   var inbox = inboxPath;
-  var containerDoc = await fetchDocument(inbox);
+
+  var containerDoc = await fetchDocument(inbox).then().catch((err) => {
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAA');
+    return ;
+  });
+
+    
 
   //if the document exists
   if (containerDoc) {
