@@ -44,7 +44,11 @@ export async function getNotificationDocuments(inboxPath, webIdAuthor) {
           const summary = subject.getString(ns.as("summary"));
 
           //Processing the summary information
-          let notification = processNotificationInfo(url, summary, webIdAuthor);
+          let notification = await processNotificationInfo(
+            url,
+            summary,
+            webIdAuthor
+          );
           result.push(notification);
         }
       } catch (e) {
@@ -115,7 +119,6 @@ async function processNotificationInfo(url, summary, webIdAuthor) {
 async function addToSharedFolder(notification, myWebId) {
   console.log("IN ADD TO SHARED FOLDER");
   //build path
-
 
   let path = myWebId + "/viade/shared/" + notification.authorWebId + ".jsonld";
   console.log(path);

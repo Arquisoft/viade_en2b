@@ -18,3 +18,10 @@ ignore:
   - "src/components/generic_components/List.js"
   - "src/components/map_components/MapContainer.js"
   - "src/components/map_components/MapRoute.js"
+  - "src/CommentsManager/AddComment.js"
+  - "src/CommentsManager/CreateCommentsFile.js"
+  - "src/CommentsManager/GetComments.js"
+  - "src/data-access/FileManager/GPXparser.js";
+  - "src/data-access/FileManager/RouteUpload.js";
+  - "src/data-access/FileManager/FolderCreator";
+  - "src/data-access/UserData.js";
