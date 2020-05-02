@@ -52,7 +52,7 @@ class MyCommentInfiniteScroll extends React.Component {
                  <Comment>
                   <Comment.Avatar src = {i.avatar} />
                   <Comment.Content>
-                    <Comment.Author as = 'span'>{i.user}</Comment.Author>
+                    <Comment.Author as = 'span'>{i.author}</Comment.Author>
                     <Comment.Metadata>
                       <div>{i.date}</div>
                     </Comment.Metadata>

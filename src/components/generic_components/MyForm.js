@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import addComment from '../../CommentsManager/AddComment'
 import Comment from '../../Entities/Comment'
+import * as cache from 'caches/routeCache/RouteCache'
+
 
 class MyForm extends Component {
   state = {message: ""}
@@ -26,13 +28,13 @@ create_UUID() {
 
     //Create the comment.
     let author = JSON.parse(localStorage.getItem("session")).webId;
-    let url = author.toString().substring(0, author.toString().length-16) + "/viade/comments/" + this.create_UUID();
+    let url = cache.default.getSelectedDetails().commentsUrl;
     var date = new Date();
     var stringDate = date.toDateString() + ", " + date.getHours() + ":" + date.getMinutes()
     var comment = new Comment(url, message, author, stringDate);
 
     console.log(comment)
-    addComment(url, message, () =>{})
+    addComment(url, comment, () =>{})
     //Reset the text area
     this.setState({message: ''});
   }
