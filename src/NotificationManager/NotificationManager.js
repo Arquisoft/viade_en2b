@@ -23,10 +23,10 @@ export async function getNotificationDocuments(inboxPath, webIdAuthor) {
 
   var containerDoc = await fetchDocument(inbox).then().catch((err) => {
     console.log('Error');
-    return ;
+    return;
   });
 
-    
+
 
   //if the document exists
   if (containerDoc) {
@@ -49,15 +49,32 @@ export async function getNotificationDocuments(inboxPath, webIdAuthor) {
           //From here get typeNotification && author && path
           const summary = subject.getString(ns.as("summary"));
 
-          //Processing the summary information
-          let notification = processNotificationInfo(url, summary, webIdAuthor);
-          result.push(notification);
+          console.log('CHECKING IF THE NOTIFICATION IS ALREADY IN CACHE···');
+          
+          let a = [];
+          const n = await cache.getNotifications().then((list) => { a.push(list) });
+          console.log(n);
+
+
+          console.log(cache.getNotifications());
+          //checking if the notification is already in cache
+          let notifications = await cache.getNotificationByUrl(url);
+          console.log(notifications);
+          if (notifications == null) {
+            //Processing the summary information
+            let notification = processNotificationInfo(url, summary, webIdAuthor);
+            result.push(notification);
+          }
+
         }
       } catch (e) {
         console.log("Error");
+        console.log(e);
       }
     }
     cache.setNotifications(result);
+    console.log('ÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑ');
+    console.log(cache.getNotifications());
     // localStorage.setItem("notifications", JSON.stringify(result));
     return result;
   }

@@ -6,7 +6,7 @@ import {
 } from "NotificationManager/NotificationManager";
 import { v4 as uuidv4 } from "uuid";
 import RoutesLoader from 'RouteManager/ListUserRoutes';
-
+import {loadSpecificUserRoutesFiles} from 'RouteManager/ListSpecificUserRoutes';
 /**
  * Function that allows a user to share a route with a friend.
  * Provides READ permissions to the friend over the route of the user autenticated,
@@ -24,29 +24,45 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
   console.log("Route: " + route);
   console.log("Friend ID: " + profileFriend);
   console.log("Author ID: " + profileAuthor);
-    let loader = new RoutesLoader();
+  let loader = new RoutesLoader();
 
   let webIdAuthor = profileAuthor.substring(0, profileAuthor.length - 16);
   webIdAuthor = webIdAuthor + "/";
 
-  
+
   let webIdFriend = profileFriend.substring(0, profileFriend.length - 16);
   webIdFriend = webIdFriend + "/";
 
-        let routeFile = loader.getMediaAttachedToRoute(route);
-        let media = routeFile.files;
-        //retrieving media of the route
+  const routeAtt = route.split('/');
+  const routeName = routeAtt[routeAtt.length-1];
+  console.log(routeName);
+  
+  const routeEntity = await loadSpecificUserRoutesFiles(route);
 
-        for(let i = 0; i< media.length; i++){
-            setPermissionsTo("READ", route, profileFriend);
-        }
+  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+  console.log(route);
+  console.log('Route Entity');
+  console.log(routeEntity);
+  
+  
+  //tienes que pasarle la route y la url.
+  let routeFile = loader.getMediaAttachedToRoute(routeEntity, route);
+  let media = routeFile.files;
+  //retrieving media of the route
 
-        //send notification to other user inbox
-        const summary = createNotificationSummary(webIdAuthor, route, webIdFriend, new Date());
-        const uuid = uuidv4();
-        console.log(summary.toString());
-        const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, summary.toString(), new Date(), uuid);
-       
+  if (media != "undefined" && media != null){
+    for (let i = 0; i < media.length; i++) {
+      setPermissionsTo("READ", route, profileFriend);
+    }
+  }
+  
+
+  //send notification to other user inbox
+  const summary = createNotificationSummary(webIdAuthor, route, webIdFriend, new Date());
+  const uuid = uuidv4();
+  console.log(summary.toString());
+  const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, summary.toString(), new Date(), uuid);
+
 
   //check friend has an inbox;
 

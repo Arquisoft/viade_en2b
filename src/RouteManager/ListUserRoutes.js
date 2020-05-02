@@ -185,12 +185,17 @@ export default class RoutesLoader {
 
     getMediaAttachedToRoute(route, url) {
         let routeFile = new RouteFile(url, []);
-        for (let i = 0; i < route.media.length; i++) {
-            let path = route.media[i]["@id"];
-            let date = new Date(route.media[i]["dateTime"]);
-            let file = new File(path, date);
-            routeFile.addFilePath(file);
+        let media = route.media;
+
+        if (media != null){
+            for (let i = 0; i < route.media.length; i++) {
+                let path = route.media[i]["@id"];
+                let date = new Date(route.media[i]["dateTime"]);
+                let file = new File(path, date);
+                routeFile.addFilePath(file);
+            }
         }
+        
         return routeFile;
     }
 }
