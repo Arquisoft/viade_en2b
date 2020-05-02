@@ -1,7 +1,8 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Comment } from "semantic-ui-react";
-import "../../assets/css/commentsContainer.css";
+import {Comment} from 'semantic-ui-react';
+import '../../assets/css/commentsContainer.css';
+import MyForm  from '../generic_components/MyForm';
 
 class MyCommentInfiniteScroll extends React.Component {
   state = {
@@ -32,6 +33,7 @@ class MyCommentInfiniteScroll extends React.Component {
   };
 
   render() {
+    
     return (
       <div>
         <InfiniteScroll
@@ -56,7 +58,7 @@ class MyCommentInfiniteScroll extends React.Component {
                 <Comment>
                   <Comment.Avatar src={i.avatar} />
                   <Comment.Content>
-                    <Comment.Author as="span">{i.user}</Comment.Author>
+                    <Comment.Author as = 'span'>{i.author}</Comment.Author>
                     <Comment.Metadata>
                       <div>{i.date}</div>
                     </Comment.Metadata>
@@ -67,6 +69,7 @@ class MyCommentInfiniteScroll extends React.Component {
             ))}
           </Comment.Group>
         </InfiniteScroll>
+        <MyForm/>
       </div>
     );
   }
