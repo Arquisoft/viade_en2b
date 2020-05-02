@@ -14,25 +14,43 @@ const { READ, WRITE, APPEND, CONTROL } = Permissions;
  * @param {*} urlToShare url of the resource to be shared.
  * @param {*} webIdFriend id of the person to share the resource with.
  */
-export async function setPermissionsTo(permission, urlToShare, webIdFriend, webIdAuthor){
+export async function setPermissionsTo(permission, urlToShare, webIdFriend, webIdAuthor) {
     const mode = getMode(permission);
 
     const fetch = auth.fetch.bind(auth);
     const utils = new AclApi(fetch, { autoSave: true });
-    console.log('permission error?');
-    const acl = await utils.loadFromFileUrl(urlToShare);
 
-    //Setting permissions
-    let permissions = new Permissions();
-    permissions.add(mode);
+    try {
 
-    //Setting person to grant access to.
-    let agents = new Agents();
-    agents.addWebId(webIdFriend);
+        const acl = await utils.loadFromFileUrl(urlToShare);
 
-    await acl.addRule(permissions, agents);
-    console.log('PERMISSION ADDED');
+        //Setting permissions
+        let permissions = new Permissions();
+        permissions.add(mode);
+
+        //Setting person to grant access to.
+        let agents = new Agents();
+        agents.addWebId(webIdFriend);
+
+        
+        try {
+            await acl.addRule(permissions, agents);
+            console.log('PERMISSION ADDED');
+            
+        } catch (er) {
+            console.error('The permission could not be added');
+            console.error(er)
+            //throw er
+        }      
+
+
+    } catch (Error) {
+        console.log("The acl of the route was not yet created")
+        console.log(Error);
+        //throw Error;
+    }
 }
+
 
 /**
  * Method that deletes a permission for an
@@ -41,7 +59,7 @@ export async function setPermissionsTo(permission, urlToShare, webIdFriend, webI
  * @param {*} urlToShare url of the resource that was shared.
  * @param {*} webIdFriend id of the person that the resource was shared with.
  */
-export async function deletePermissions(permission, urlToShare, webIdFriend){
+export async function deletePermissions(permission, urlToShare, webIdFriend) {
 
     const mode = getMode(permission);
 
@@ -51,7 +69,7 @@ export async function deletePermissions(permission, urlToShare, webIdFriend){
 
     // Revoke permissions
     await acl.deleteRule(mode, webIdFriend);
-    console.log("Done!"); 
+    console.log("Done!");
 }
 
 /**
@@ -61,7 +79,7 @@ export async function deletePermissions(permission, urlToShare, webIdFriend){
  * @param {*} webId 
  * @param {*} filePath 
  */
-export async function checkPermissions(permission, webId, filePath){
+export async function checkPermissions(permission, webId, filePath) {
     console.log('CHECKING PERMISSIONS OF');
     console.log(filePath);
     const fetch = auth.fetch.bind(auth);
@@ -69,7 +87,7 @@ export async function checkPermissions(permission, webId, filePath){
 
     const acl = await utils.loadFromFileUrl(filePath);
 
-    
+
     let mode = getMode(permission);
     const permissions = acl.getPermissionsFor(webId);
     const value = permissions.permissions;
@@ -83,18 +101,18 @@ export async function checkPermissions(permission, webId, filePath){
  * 
  * @param {} permission 
  */
-export function getMode(permission){
-    switch(permission){
-        case("READ"):
+export function getMode(permission) {
+    switch (permission) {
+        case ("READ"):
             return READ;
 
-        case("WRITE"):
+        case ("WRITE"):
             return WRITE;
 
-        case("APPEND"):
+        case ("APPEND"):
             return APPEND;
 
-        case("CONTROL"):
+        case ("CONTROL"):
             return CONTROL;
     }
 }
