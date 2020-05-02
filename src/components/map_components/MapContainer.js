@@ -42,11 +42,9 @@ export class MapContainer extends React.Component {
   viewLoaded = (route, dark) => {
     var ruta = [];
 
-    console.log(route);
-
     if (localStorage.getItem("routePreview")) {
       let dots = JSON.parse(localStorage.getItem("routePreview"));
-      console.log(dots.geoCoordinates);
+
       var puntos = dots.geoCoordinates;
       puntos.forEach((punto) => {
         ruta.push({

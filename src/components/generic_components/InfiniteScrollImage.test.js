@@ -11,18 +11,6 @@ test("Definition", () => {
 
 /////////////////////////
 
-test("Render Correct", () => {
-  const scroll = (
-    <InfiniteScrollImage
-      content={{
-        name: "hola",
-        dateAttached: new Date("January 22, 2012 06:32:32"),
-      }}
-    />
-  );
-  expect(scroll).toMatchSnapshot();
-});
-
 /////////////////////////
 
 test("Test Empty Prop", () => {

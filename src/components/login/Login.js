@@ -96,7 +96,6 @@ class Login extends React.Component {
     e.preventDefault();
     await auth.logout();
     this.getProfileImage().then((foto) => {
-      console.log(foto);
       if (foto == undefined) {
         this.setState({
           image:

@@ -11,7 +11,6 @@ export default {
   selectedToShare: "",
   sharedRoutes: [],
   async getSharedRoutes() {
-    console.log(this.sharedRoutes);
     return this.sharedRoutes;
   },
   setSharedRoutes(route) {
@@ -67,11 +66,8 @@ export default {
   },
   setSelected(route) {
     let found = this.routes.find((obj) => route.name === obj.name);
-    console.log("Found");
-    console.log(found);
+
     let foundShare = this.sharedRoutes.find((obj) => route.name === obj.name);
-    console.log("ShareFound");
-    console.log(foundShare);
 
     if (found) {
       console.log(`Route selected: ${found}`);
