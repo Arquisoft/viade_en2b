@@ -52,11 +52,16 @@ defineFeature(feature, (test) => {
     });
 
     when("The user selects a route and uploads a file", async () => {
-      await page.waitFor(2000);
-      await jestPuppeteer.debug();
+      await page.waitFor(10000);
+      console.log("Before clicking");
       await expect(page).toClick("[href='#/']");
-      await page.waitFor(5000);
+      console.log("After clicking");
+      console.log("Before waiting");
+      await page.waitFor(10000);
+      console.log("After waiting");
+      console.log("Before clicking");
       await page.waitFor("button[class='rtf--mb']");
+      console.log("After clicking");
       await expect(page).toClick("button", { class: "rtf--mb" });
       await page.waitFor(1000);
       await expect(page).toClick("button", { text: "Take Photo" });
