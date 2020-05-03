@@ -31,7 +31,7 @@ class AboutPage extends React.Component {
       image: 'images/developers/fernando.jpg',
       name: "Fernando",
       meta: "UI & UX designer",
-      description: "Fernando has programmed in 15+ different programming languages. He has yet to make something useful. In the repo, he's somehow deleted more than 25,000 lines of code, and added around 12,000. At least the app's pretty, he thinks.",
+      description: "Fernando has programmed in 15+ different programming languages. He has yet to make something useful. In the repo, he's somehow deleted more than 30,000 lines of code, and added around 17,000. At least the app's pretty, he thinks.",
       link: "mailto:UO266754@uniovi.es",
       numberOfFriends: ""
     }, {
