@@ -33,6 +33,7 @@ export default {
     }
   },
   addFilePaths(routeFiles) {
+    console.log(routeFiles);
     this.filePaths = [...routeFiles];
   },
   async removeFile(route, path) {

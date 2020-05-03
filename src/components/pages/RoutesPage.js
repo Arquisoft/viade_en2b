@@ -24,8 +24,20 @@ class RoutesPage extends React.Component {
     this.setState({ search: event.target.value.substr(0, 20) });
   }
   componentDidMount() {
-    cache.default.getRoutes(this.handleSession).then(rutas => {
-      this.setState({ loading: false, routes: rutas });
+    cache.default.getRoutes(this.handleSession).then((rutas) => {
+      this.setState({ loading: true, routes: rutas });
+      var session = JSON.parse(localStorage.getItem("session"));
+      if (session) {
+        var path =
+          session.webId.substring(0, session.webId.length - 16) +
+          "/viade/shared/";
+        sharedRoutesList(path).then(() => {
+          cache.default.getSharedRoutes().then((routes) => {
+            console.log(routes)
+            this.setState({ loading: false, sharedRoutes: routes });
+          });
+        });
+      }
     });
     cache.default.setReload(false);
   }
@@ -49,6 +61,13 @@ class RoutesPage extends React.Component {
     this.props.history.push("/login");
   }
 
+  viewLoaded = (routes, sharedRoutes) => {
+    console.log(sharedRoutes)
+    let filteredRoutes = routes.filter((ruta) => {
+      return (
+        ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+      );
+    });
 
   viewLoaded = routes => {
       let filteredRoutes = routes.filter(ruta => {

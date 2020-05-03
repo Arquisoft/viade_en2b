@@ -7,7 +7,6 @@ const FC = require("solid-file-client");
 const fc = new FC(auth);
 
 export async function loadSpecificUserRoutesFiles(urlRoute) {
-
   let routes = [];
   let urls = [];
   let routesFolder = urlRoute;
@@ -45,8 +44,8 @@ function routesToJson(routes, urls) {
       urls.splice(i, 1);
       console.log(
         "Route " +
-        i +
-        " couldn't be transformed to json because the format is wrong"
+          i +
+          " couldn't be transformed to json because the format is wrong"
       );
     }
   }
@@ -96,26 +95,25 @@ function jsonToEntity(routes, urls) {
   return { routes: entRoutes, files: entFiles };
 }
 
-
 export function getMediaAttachedToRoute(route, url) {
-  console.log('Inside media attached to route');
-
   let routeFile = new RouteFile(url, []);
-  let media = route.media;
-  console.log(media);
 
-  if (media != null) {
-    for (let i = 0; i < route.media.length; i++) {
-      let path = route.media[i]["@id"];
+  for (let i = 0; i < route.media.length; i++) {
+    let path = route.media[i]["@id"];
 
-      if (fc.itemExists(path).then().catch((error) => console.log('You have no permissions to read the media files'))) {
-        let date = new Date(route.media[i]["dateTime"]);
-        let file = new File(path, date);
-        routeFile.addFilePath(file);
-      }
+    if (
+      fc
+        .itemExists(path)
+        .then()
+        .catch((error) =>
+          console.log("You have no permissions to read the media files")
+        )
+    ) {
+      let date = new Date(route.media[i]["dateTime"]);
+      let file = new File(path, date);
+      routeFile.addFilePath(file);
     }
   }
 
   return routeFile;
 }
-

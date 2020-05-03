@@ -29,12 +29,12 @@ export async function sharedRoutesList(routesURL) {
       let urlRoute = url[i];
 
       let route = await loadSpecificUserRoutesFiles(urlRoute);
-      console.log('route');
+      console.log(route);
 
       routes.push(route);
 
-      routes_routes.push(route.routes[0]);
-      routes_files.push(route.files[0]);
+      routes_routes = [...routes_routes, ...route.routes];
+      routes_files = [...routes_files, ...route.files];
     }
     console.table(routes_routes);
     filecache.default.addFilePaths(routes_files);
