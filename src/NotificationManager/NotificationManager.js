@@ -22,20 +22,17 @@ export async function getNotificationDocuments(inboxPath) {
     var inbox = inboxPath;
     var containerDoc = await fetchDocument(inbox);
 
-    //if the document exists
-    if (containerDoc) {
-        var subject = containerDoc.getSubject(inbox);
-        var containerURLS = subject.getAllRefs(ldp.contains);
+  var containerDoc = await fetchDocument(inbox)
+    .then()
+    .catch((err) => {
+      console.log("Error");
+      return;
+    });
 
-        var result = [];
-        for (var i = 0; i < containerURLS.length; i++) {
-            try {
-                //FETCH DE LA NOTIFICACIÓN
-                console.log(containerURLS[i]);
-
-                var doc = await fetchDocument(containerURLS[i]);
-
-                if (doc) {
+  //if the document exists
+  if (containerDoc) {
+    var subject = containerDoc.getSubject(inbox);
+    var containerURLS = subject.getAllRefs(ldp.contains);
 
                     //Notification url
                     const url = containerURLS[i];
@@ -49,14 +46,24 @@ export async function getNotificationDocuments(inboxPath) {
                     let notification = processNotificationInfo(url, summary);
                     result.push(notification);
 
-                }
-            } catch (e) {
-                console.log("Error");
-            }
+          //Processing the summary information
+
+          let notification = await processNotificationInfo(
+            url,
+            summary,
+            webIdAuthor
+          );
+          result.push(notification);
+          deleteNotification(notification.urlNotification);
         }
         return result;
     }
-    return [];
+    cache.setNotifications(result);
+
+    // localStorage.setItem("notifications", JSON.stringify(result));
+    return result;
+  }
+  return [];
 }
 
 //ROUTE_https://clrmrnd/inrupt.net/_https://clrmrnd.inrupt.net/viade/routes/Rusia.json_Sat Apr 25 2020 17:11:07 GMT+0200 (hora de verano de Europa central)
@@ -113,24 +120,18 @@ async function processNotificationInfo(url, summary) {
 }
 
 async function addToSharedFolder(notification, myWebId) {
-    console.log('IN ADD TO SHARED FOLDER');
-    //build path
+  let path = myWebId + "/viade/shared/" + notification.authorWebId + ".jsonld";
+  try {
+    //checking if the path exists
+    let exists = await fc
+      .itemExists(path)
+      .catch(Error)
+      .then(console.log("ERROR"));
 
-    let path = myWebId + "viade/shared/" + notification.authorWebId + ".jsonld";
-
-
-    try {
-        //checking if the path exists
-        let exists = await fc.itemExists(path).catch(Error).then(console.log('ERROR'));
-        console.log(exists);
-        if (!exists) {
-            createFileShared(path, notification);
-
-        } else {
-            addRouteToFile(path, notification);
-        }
-    } catch (Error) {
-        console.log('Error: not found');
+    if (!exists) {
+      createFileShared(path, notification);
+    } else {
+      addRouteToFile(path, notification);
     }
 
 
@@ -210,7 +211,13 @@ export async function getNotificationURLS(inboxPath) {
 * @param {*} content 
 */
 export async function postNotification(webIdFriend, content, uuid) {
-    var inbox = webIdFriend + "/viade/inbox/";
+  var inbox = "";
+  const lastElement = webIdFriend[webIdFriend.length - 1];
+  if (lastElement === "/") {
+    inbox = webIdFriend + "viade/inbox/";
+  } else {
+    inbox = webIdFriend + "/viade/inbox/";
+  }
 
     await request({
         method: "POST",
@@ -276,13 +283,15 @@ export function createNotificationSummaryJSON(webIdAuthor, routePath, webIdTo, d
                 "name": webIdTo
             },
 
-            "published": {
-                "type": "Date",
-                "name": date
-            }
-
-        }
-
-    );
+export async function deleteNotification(url) {
+  if (url != null) {
+    if (await fc.itemExists(url)) {
+      try {
+        fc.delete(url);
+      } catch (error) {
+        alert(error);
+      }
+    }
+    console.log("You are trying to delete something that is null");
+  }
 }
-

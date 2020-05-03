@@ -30,14 +30,22 @@ import * as RealTimeRoute from "../../RouteManager/CreateRouteRealTime";
   render() {
     return (
       <React.Fragment>
-          <label for="textInput">Route Name</label><br/>
-          <input
-            ref={this.fileInputRef}
-            className="textInput"
-            type="text"
-            onChange={this.nameToRute.bind(this)}
-          />
-          
+        <label htmlFor="textInput">Route Name</label>
+        <input
+          ref={this.fileInputRef}
+          className="textInput"
+          type="text"
+          onChange={this.nameToRute.bind(this)}
+        />
+        <div className="textareaDiv">
+          <label htmlFor="textareaInput" id="routeDescriptionInput">Route description</label>
+          <textarea
+            rows="2"
+            cols="25"
+            className="textareaInput"
+            onChange={this.descriptionToRoute.bind(this)}
+          ></textarea>
+        </div>
         <form>
           <GenericButton
             className="submitRoute"

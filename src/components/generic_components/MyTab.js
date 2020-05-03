@@ -55,11 +55,13 @@ render(){
 
     let multimedia = [];
     multimedia = cache.default.getFilePathsForRoute(this.props.route);
-    multimedia.forEach(element => {
-        if(element.contentType === "image/png")
-            images.push(element);
-        else if(element.contentType === "video/mp4")
-            videos.push(element);
+    console.log(multimedia)
+    multimedia.forEach((element) => {
+      if (element.contentType.includes("image")) {
+        images.push(element);
+      } else if (element.contentType.includes("video")) {
+        videos.push(element);
+      }
     });
 
     return(

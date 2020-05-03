@@ -108,7 +108,7 @@ ul, li {
 
 
 /*---------------------------------------------*/
-input {
+input, textarea {
 	outline: none;
 	border: none;
 }

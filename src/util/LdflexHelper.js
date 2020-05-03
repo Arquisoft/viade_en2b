@@ -2,11 +2,11 @@ import auth from "solid-auth-client";
 import ldflex from "@solid/query-ldflex";
 //import { errorToaster } from "@utils";
 
-export const documentExists = async documentUri =>
+export const documentExists = async (documentUri) =>
   auth.fetch(documentUri, {
     headers: {
-      "Content-Type": "text/turtle"
-    }
+      "Content-Type": "text/turtle",
+    },
   });
 
 export const createDoc = async (documentUri, options) => {
@@ -17,7 +17,7 @@ export const createDoc = async (documentUri, options) => {
   }
 };
 
-export const deleteFile = async url => {
+export const deleteFile = async (url) => {
   try {
     return await auth.fetch(url, { method: "DELETE" });
   } catch (e) {
@@ -30,9 +30,9 @@ export const createDocument = async (documentUri, body = "") => {
     const options = {
       method: "PUT",
       headers: {
-        "Content-Type": "text/turtle"
+        "Content-Type": "text/turtle",
       },
-      body
+      body,
     };
     return await createDoc(documentUri, options);
   } catch (e) {
@@ -45,9 +45,9 @@ export const createDocumentWithTurtle = async (documentUri, body = "") => {
     return createDoc(documentUri, {
       method: "PUT",
       headers: {
-        "Content-Type": "text/turtle"
+        "Content-Type": "text/turtle",
       },
-      body
+      body,
     });
   } catch (e) {
     throw e;
@@ -64,7 +64,7 @@ export const createNonExistentDocument = async (documentUri, body = "") => {
   }
 };
 
-export const fetchLdflexDocument = async documentUri => {
+export const fetchLdflexDocument = async (documentUri) => {
   try {
     const result = await documentExists(documentUri);
     if (result.status === 404) return null;
@@ -75,7 +75,7 @@ export const fetchLdflexDocument = async documentUri => {
   }
 };
 
-export const resourceExists = async resourcePath => {
+export const resourceExists = async (resourcePath) => {
   try {
     const result = await auth.fetch(resourcePath);
     return result.status === 403 || result.status === 200;
@@ -84,15 +84,15 @@ export const resourceExists = async resourcePath => {
   }
 };
 
-export const discoverInbox = async document => {
+export const discoverInbox = async (document) => {
   try {
     const documentExists = await resourceExists(document);
     if (!documentExists) return false;
 
     const inboxDocument = await ldflex[document]["ldp:inbox"];
-    console.log(inboxDocument);
+
     const inbox = inboxDocument ? await inboxDocument.value : false;
-    console.log(inbox);
+
     return inbox;
   } catch (error) {
     throw error;
@@ -104,7 +104,7 @@ export const discoverInbox = async document => {
  * @param resourcePath
  * @returns {Promise<string|*>}
  */
-export const getLinkedInbox = async resourcePath => {
+export const getLinkedInbox = async (resourcePath) => {
   try {
     const inboxLinkedPath = await ldflex[resourcePath].inbox;
     if (inboxLinkedPath) {
