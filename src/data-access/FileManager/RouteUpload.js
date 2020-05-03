@@ -22,7 +22,7 @@ async function uploadRoute(name, text) {
 
   let buildPath = `${path}viade/routes/${file.name}`;
 
-  fileClient.createFile(buildPath, file, file.type);
+  await fileClient.createFile(buildPath, file, file.type);
   
   // CREATING THE ACL FOR THE ROUTE
   createContentAclMedia(buildPath, file.name);

@@ -35,15 +35,9 @@ class RoutesPage extends React.Component {
         var path =
           session.webId.substring(0, session.webId.length - 16) +
           "/viade/shared/";
-        sharedRoutesList(path).then((rutas) => {
+        sharedRoutesList(path).then(() => {
           cache.default.getSharedRoutes().then((routes) => {
-            /*var fullroutes = this.state.routes;
-            console.table("FULLROUYTES");
-            console.table(fullroutes);
-            fullroutes = [...fullroutes, ...routes];
-            console.table("FULLROUYTES");
-            console.table(fullroutes);
-  */
+            console.log(routes)
             this.setState({ loading: false, sharedRoutes: routes });
           });
         });
@@ -77,6 +71,7 @@ class RoutesPage extends React.Component {
   };
 
   viewLoaded = (routes, sharedRoutes) => {
+    console.log(sharedRoutes)
     let filteredRoutes = routes.filter((ruta) => {
       return (
         ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
