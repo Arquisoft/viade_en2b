@@ -133,4 +133,29 @@ FileGateway -> FileCache : return filePaths
 FileCache --> FileCache : <<cache filePaths>>
 ....
 
+=== Commenting a route
+Users can leave comments in their own routes or routes that other users have shared with them.
+[plantuml, diagram-sequence, png]
+....
+participant MainPage order 1
+participant RoutesPage order 2
+participant CommentsPage order 3
+participant RouteGateway order 4
+participant CommentsGateway order 5
+participant GetComments order 6
+participant AddComment order 7
+
+RoutesPage -> RouteCache : setSelected(route)
+RoutesPage -> MainPage
+MainPage <- RouteCache : getSelected()
+MainPage -> CommentsPage : <<user writes comment>>
+CommentsPage --> CommentsPage : <<user presses submit comment>>
+CommentsPage -> CommentsGateway : postComment(routeCommentsUrl, comment)
+CommentsGateway -> GetComments : getComments(routeCommentsUrl)
+GetComments -> CommentsGateway : return comments
+CommentsGateway --> CommentsGateway : <<new comment is added to found comments>>
+CommentsGateway -> AddComment : addComment(routeCommentsUrl,comments)
+AddComment -> CommentsGateway : return added
+....
+
 
