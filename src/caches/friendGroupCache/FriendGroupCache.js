@@ -18,6 +18,7 @@ export default {
   },
   setGroupSelected(group) {
     this.groupSelected = group;
+    console.log(this.groupSelected);
   },
   async getGroupSelected(handleSession) {
     return this.groupSelected;

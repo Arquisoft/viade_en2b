@@ -45,20 +45,19 @@ class NotificationsPage extends React.Component {
     return(
       
       <div className="bodyRoutes" id="outer-container">
-        <main>
-          <BurgerMenu pageWrapId="page-wrap" container="outer-container" />
-          <div className="App comments" id="page-wrap">
-            <header className="bodyHeader"></header>
-            <section className="sectionComments">
-              <ul className="listComment">
-                {notifications.map((item, index) => {
-                  return (
-                    <li
-                      id={"comment" + index}
-                      key={index}
-                      className="liComment"
-                    >
-                      <div className="sectionComment">
+      <main>
+          <BurgerMenu 
+          pageWrapId="page-wrap"
+          container="outer-container"
+          />
+        <div className="App comments" id="page-wrap">
+          <header className="bodyHeader"></header>
+          <section className="sectionComments">
+            <ul className="listComment">
+              {comments.map((item, index)=>{
+                return (
+                  <li id={"comment"+index} key={index} className="liComment">
+                    <div className="sectionComment">
                         <div className="commentInfo">
                             <p className="header"><i className="fa fas fa-bell"></i>{ item.title}</p>
                             <p className="description">{item.text}</p>

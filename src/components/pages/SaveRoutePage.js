@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import SaveRoute from "../spec_components/SaveRoute";
-import BurgerMenu from "../generic_components/BurgerMenu";
+import React, { Component } from 'react';
+import SaveRoute from '../spec_components/SaveRoute';
+import BurgerMenu from '../generic_components/BurgerMenu';
 import * as cache from "caches/routeCache/RouteCache";
-import { useHistory } from "react-router-dom";
-import MapContainer from "components/map_components/MapContainer.js";
-import "../../assets/css/SaveRoutePage.css";
+import {useHistory} from "react-router-dom";
+
 import "assets/css/SaveRoutePage.css";
 const SaveRoutePage=()=> {
  
@@ -17,7 +16,7 @@ const SaveRoutePage=()=> {
     let history = useHistory();
     function toDo(params) { //EJEMPLO DE FUNCIÓN PARA PASARLE AL onUpload
       history.push('/routes');
-      
+      console.log(params);
       cache.default.setReload(true);
 
     }
@@ -27,19 +26,19 @@ const SaveRoutePage=()=> {
     return (
       
       <React.Fragment>
-        <BurgerMenu pageWrapId="page-wrap" container="outer-container" />
+            {console.table(cache.default.getSelectedToUpload())}
+        <BurgerMenu pageWrapId="page-wrap" container="outer-container"/>
+      <div className="savePage" id="page-wrap">
+      
 
-        <div className="savePage" id="page-wrap">
-          <div className="cardsave">
-            <SaveRoute onFinish={toDo} />
-            <div
-              className="mapContainerSave"
-              style={{ position: "relative", width: "40vw", height: "40vh" }}
-            >
-              <MapContainer />
-            </div>
+        <div className="cardsave">
+          <SaveRoute onFinish={toDo}/> 
+          <div className="mapContainer">
+           
           </div>
         </div>
+        
+      </div>
       </React.Fragment>
     )
   

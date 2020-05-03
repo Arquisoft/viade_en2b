@@ -19,23 +19,11 @@ export async function sharedRoutesList(routesURL) {
   const url = await retrieveSharedRoutes(sharedPath);
 
   let routes = [];
-  let routes_routes = [];
-  let routes_files = [];
-  if (url) {
-    for (let i = 0; i < url.length; i++) {
-      //now, retrieving the specific route from the different urls
-      let urlRoute = url[i];
-
-      let route = await loadSpecificUserRoutesFiles(urlRoute);
-
-      routes.push(route);
-
-      routes_routes = [...routes_routes, ...route.routes];
-      routes_files = [...routes_files, ...route.files];
-    }
-    console.table(routes_routes);
-    filecache.default.addFilePaths(routes_files);
-    cache.default.setSharedRoutes(routes_routes);
+  for (let i = 0; i < url.length; i++) {
+    //now, retrieving the specific route from the different urls
+    let urlRoute = url[i];
+    
+    routes.push(loadSpecificUserRoutesFiles(urlRoute));
   }
   console.log(routes);
 }
@@ -53,29 +41,15 @@ export async function retrieveSharedRoutes(sharedPath) {
   
   let routesJSONS = [];
 
-  let content = await fc
-    .readFolder(sharedPath)
-    .then()
-    .catch((err) => {
-      console.log("There was a problem reading " + sharedPath);
-      return;
-    });
+  let content = await fc.readFolder(sharedPath);
+  let files = content.files;
 
-  try {
-    let files = content.files;
-
-    for (let i = 0; i < files.length; i++) {
-      let fileContent = await fc.readFile(files[i].url);
-      routesJSONS.push(fileContent);
-      //urls_cache.push(files[i].url);
-    }
-
-    //localStorage.setItem("urls", JSON.stringify(urls_cache));
-    const url = jsonURLRetrieve(toJson(routesJSONS));
-    return url;
-  } catch (error) {
-    console.log("It could not be read the folder " + sharedPath);
+  for (let i = 0; i < files.length; i++) {
+    let fileContent = await fc.readFile(files[i].url);
+    routesJSONS.push(fileContent);
   }
+  const url = jsonURLRetrieve(toJson(routesJSONS));
+  return url;
 }
 
 /**
@@ -114,6 +88,7 @@ function toJson(routes) {
   let jsonRoutes = [];
   for (let i = 0; i < routes.length; i++) {
     try {
+      console.log(routes);
       let route = JSON.parse(routes[i]);
       jsonRoutes.push(route);
     } catch (e) {

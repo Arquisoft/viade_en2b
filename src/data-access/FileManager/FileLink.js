@@ -26,6 +26,7 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
         if (!route.media) {
           route.media = [];
         }
+
         fileUris.forEach((fileUri) => {
           route.media.push({ "@id": fileUri, dateTime: attachementDate });
         });

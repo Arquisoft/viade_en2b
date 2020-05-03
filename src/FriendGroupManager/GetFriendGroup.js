@@ -15,15 +15,7 @@ export default {
     let group_folder =
       session.webId.substring(0, session.webId.length - 16) + "/viade/groups/"; //"/public/groups/";
 
-    if (
-      await fc
-        .itemExists(group_folder)
-        .then()
-        .catch((error) => {
-          console.log("There was a problem reading the folder " + group_folder);
-          return false;
-        })
-    ) {
+    if (await fc.itemExists(group_folder)) {
       try {
         let content = await fc.readFolder(group_folder);
 

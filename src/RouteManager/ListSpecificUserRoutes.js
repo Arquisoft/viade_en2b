@@ -10,30 +10,24 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
     
     let routesFolder = urlRoute;
 
-  if (
-    await fc
-      .itemExists(urlRoute)
-      .then()
-      .catch((error) => {
-        console.log(
-          "You have not being granted the permissions to read this route"
-        );
-      })
-  ) {
-    try {
-      let fileContent = await fc.readFile(urlRoute);
-
-      urls.push(urlRoute);
-      routes.push(fileContent);
-    } catch (error) {
-      console.log("The folder couldn't be read");
-      console.log(error); // A full error response
-      console.log(error.status); // Just the status code of the error
-      console.log(error.message); // Just the status code and statusText
+    if (await fc.itemExists(urlRoute)) {
+      try {
+        let fileContent = await fc.readFile(urlRoute);
+        
+        routes.push(fileContent);
+        
+      } catch (error) {
+        console.log("The folder couldn't be read");
+        console.log(error); // A full error response
+        console.log(error.status); // Just the status code of the error
+        console.log(error.message); // Just the status code and statusText
+      }
+    } else {
+      console.log("user has no routes directory");
     }
 
-  let rou = jsonToEntity(routesToJson(routes, urls), urls);
-  localStorage.setItem("urls", JSON.stringify(urls));
+    console.log('ROUTEs');
+    console.log(routes);
 
     let rou = jsonToEntity(routesToJson(routes));
 
@@ -57,9 +51,16 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
     return jsonRoutes;
   }
 
-function jsonToEntity(routes, urls) {
-  let entRoutes = [];
-  let entFiles = [];
+  function jsonToEntity(routes) {
+    let entRoutes = [];
+    let entFiles = [];
+    for (let i = 0; i < routes.length; i++) {
+      try {
+        let name = routes[i].name;
+        let it = routes[i].itinerary;
+        let route = new Route(name, it);
+        entRoutes.push(route);
+        console.log("Route " + route.name + " was created succesfully");
 
         if (routes[i].media) {
           entFiles.push(getMediaAttachedToRoute(routes[i]));
@@ -70,21 +71,6 @@ function jsonToEntity(routes, urls) {
         );
         console.log(e);
       }
-
-      let route = new BasicRoute(name, it, desc);
-      route.commentsUrl = comUrl;
-      route.setUrl(urls[i]);
-      route.setJsonFormat(routes[i]);
-      entRoutes.push(route);
-
-      if (routes[i].media) {
-        entFiles.push(getMediaAttachedToRoute(routes[i], urls[i]));
-      }
-    } catch (e) {
-      console.log(
-        "Route " + i + " couldn't be parsed because the format is wrong"
-      );
-      console.log(e);
     }
 
     return { routes: entRoutes, files: entFiles };
