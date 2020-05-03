@@ -49,9 +49,15 @@ AddUserRoute --> : <<save in POD>>
 
 The users are capable of sharing a route that has been previously added with their friends. In order to do it, they will just select the route that should be shared and the system will get it from the user's POD. Afterwards, Viade will notificate the user about the state of the sharing process, indicating whether there's been an error or not.
 
-****
-Note: this use case involves an ongoing discussion in the ViadeSpec, therefore it is not fully known yet how it will be implemented and it will stay undocumented for now.
-****
+
+[plantuml, diagram-sequence, png]
+....
+RoutesList -> RoutesCache :  setSelected(route)
+RoutesList -> RoutesList : <<selects share button and selects user>>
+RoutesList -> ShareRoute : ShareWith(user,loggedUser,shareWithUser) 
+ShareWith -> << shares routes, sets permissions and generates notification >>
+ShareRoute -> RoutesList : return created
+....
 
 === Adding a friend
 
@@ -158,4 +164,12 @@ CommentsGateway -> AddComment : addComment(routeCommentsUrl,comments)
 AddComment -> CommentsGateway : return added
 ....
 
+=== Receiving a notification
+Users receive notifications when an user posts a comment in one of their routes or a route is shared with them.
+[plantuml, diagram-sequence, png]
+....
+NotificationPage -> NotificationManager : getNotificationDocuments(inboxPath,webId)
+NotificationManager --> NotificationPage : return notifications
+
+.... 
 
