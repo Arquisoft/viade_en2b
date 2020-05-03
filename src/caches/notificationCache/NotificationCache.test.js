@@ -8,7 +8,7 @@ test("notification cache ", async () => {
 test("set notifications cache ", async () => {
   NotificationCache.default.setNotifications(["Pepe"]);
   var cache = await NotificationCache.default.getNotifications(() => {});
-  expect(cache).toStrictEqual(["Pepe"]);
+  expect(cache).toStrictEqual([["Pepe"]]);
 });
 
 test("clear cache ", async () => {
