@@ -112,7 +112,7 @@ export default class RoutesLoader {
               route.comments = comUrl;
               route.setUrl(files[i].url);
               route.setJsonFormat(tempRoute);
-
+              console.log("Match " + route.url);
               return route;
             }
           } catch (error) {
@@ -156,6 +156,7 @@ export default class RoutesLoader {
     console.table(routes);
     for (let i = 0; i < routes.length; i++) {
       try {
+        console.log(routes[i]);
         let name = routes[i].name;
         let it = routes[i].points;
         let desc = routes[i].description;
@@ -174,6 +175,7 @@ export default class RoutesLoader {
         route.setUrl(urls[i]);
         route.setJsonFormat(routes[i]);
         entRoutes.push(route);
+        console.log("Route " + route.name + " was created succesfully");
 
         if (routes[i].media) {
           entFiles.push(this.getMediaAttachedToRoute(routes[i], urls[i]));
@@ -182,25 +184,24 @@ export default class RoutesLoader {
         console.log(
           "Route " + i + " couldn't be parsed because the format is wrong"
         );
+        console.log(e);
       }
     }
-
+    console.log(entFiles);
     return { routes: entRoutes, files: entFiles };
   }
 
   getMediaAttachedToRoute(route, url) {
     let routeFile = new RouteFile(url, []);
-    let media = route.media;
 
-    if (media != null) {
-      for (let i = 0; i < route.media.length; i++) {
-        let path = route.media[i]["@id"];
-        let date = new Date(route.media[i]["dateTime"]);
-        let file = new File(path, date);
-        routeFile.addFilePath(file);
-      }
+    for (let i = 0; i < route.media.length; i++) {
+      let path = route.media[i]["@id"];
+      let date = new Date(route.media[i]["dateTime"]);
+      let file = new File(path, date);
+      routeFile.addFilePath(file);
     }
 
     return routeFile;
   }
 }
+

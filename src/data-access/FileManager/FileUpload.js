@@ -24,14 +24,13 @@ export const uploadFiles = async (fileList) => {
   let path = session.webId.split("profile")[0];
   const promises = Array.from(fileList).map((file) => {
     let buildPath = `${path}viade/resources/${file.name}`;
-    updateFile(buildPath, file, file.type || mime.getType(file.name)).then(
-      () => {
-        createContentAclMedia(buildPath, file.name);
-        return buildPath;
-      }
-    );
-
-    return;
+    return updateFile(
+      buildPath,
+      file,
+      file.type || mime.getType(file.name)
+    ).then(() => {
+      return buildPath;
+    });
   });
   return Promise.all(promises).catch((err) => {
     handleFetchError(err);
@@ -40,7 +39,7 @@ export const uploadFiles = async (fileList) => {
 
 const updateFile = (path, content, contentType) => {
   return fileClient
-    .putFile(path, content.name, contentType)
+    .putFile(path, content, contentType)
     .catch(handleFetchError);
 };
 
