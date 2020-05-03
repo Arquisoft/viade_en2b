@@ -7,6 +7,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import RoutesLoader from 'RouteManager/ListUserRoutes';
 import { loadSpecificUserRoutesFiles, getMediaAttachedToRoute } from 'RouteManager/ListSpecificUserRoutes';
+import {createContentAcl} from "data-access/FileManager/AclCreator";
 /**
  * Function that allows a user to share a route with a friend.
  * Provides READ permissions to the friend over the route of the user autenticated,
@@ -47,7 +48,8 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
   const contenido = createNotificationContent("Announce", "ROUTE", webIdFriend, summary.toString(), new Date(), uuid);
 
 
-  //check friend has an inbox;
+  //creating an acl if necessary;
+  checkAclOrCreate(route, routeName);
 
   //check if it's already shared (you have to check and set permissions to the /profile/card#me)
   const shared = await checkPermissions("READ", profileFriend, route);
@@ -105,4 +107,17 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
     console.log("The route was already shared.");
     return false;
   }
+}
+
+
+function checkAclOrCreate(url, routeName){
+  const auth = require("solid-auth-client");
+  const FC = require("solid-file-client");
+  const fc = new FC(auth);
+
+  if( ! fc.itemExists(url).then().catch((error) => {return ;})){
+    createContentAcl(url, routeName);
+  }
+
+
 }
