@@ -57,6 +57,7 @@ class FriendGroupsPage extends React.Component {
                           description={item.webIdString}
                           externalLink={item.webIdString}
                           externalIconName="user"
+                          externalPopupContent="Go to profile"
                         />
                       </li>
                     );

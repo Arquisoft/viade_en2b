@@ -98,6 +98,7 @@ class AboutPage extends React.Component {
                        description = {item.description}
                        externalLink = {item.link}
                        externalIconName='mail'
+                       externalPopupContent="Contact email"
                        />
                      </li>
                    );

@@ -67,7 +67,8 @@ class FriendGroupsPage extends React.Component {
                         action={(e) => {
                           this.selectDetails(e, groups[index]);
                         }}
-                        iconName="map"
+                        iconName="users"
+                        popupContent="View group members"
                       />
                     </li>
                   );
