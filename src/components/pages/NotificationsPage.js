@@ -4,6 +4,8 @@ import CustomLoader from "components/generic_components/CustomLoader";
 import BurgerMenu from "../generic_components/BurgerMenu";
 import { getNotificationDocuments } from "NotificationManager/NotificationManager";
 import cache from "caches/notificationCache/NotificationCache";
+import * as auth from "solid-auth-client";
+
 class NotificationsPage extends React.Component {
   constructor(props) {
     super(props);
@@ -15,8 +17,13 @@ class NotificationsPage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    var session = JSON.parse(localStorage.getItem("session"));
+  async componentDidMount() {
+
+    let session = await auth.currentSession();
+    if (!session || session.webId === undefined || session.webId === null) {
+      throw new Error("You are not logged in.");
+    }
+    //var session = JSON.parse(localStorage.getItem("session"));
 
     var webIdAuthor = session.webId.substring(0, session.webId.length - 16);
     var inbox = webIdAuthor + "/viade/inbox/";
