@@ -1,12 +1,10 @@
 import { fetchDocument } from "tripledoc";
 import { ldp } from "rdf-namespaces";
-import Notification from "Entities/Notification";
-import { GetSpecificName, GetSpecificWebId } from "data-access/UserData";
-
-import cache from "caches/notificationCache/NotificationCache";
+import Notification from 'Entities/Notification';
+import { GetSpecificName, GetSpecificWebId } from 'data-access/UserData';
 
 const $rdf = require("rdflib");
-const ns = require("solid-namespace")($rdf);
+const ns = require('solid-namespace')($rdf);
 
 const auth = require("solid-auth-client");
 const FC = require("solid-file-client");
@@ -14,235 +12,227 @@ const fc = new FC(auth);
 
 const request = require("request");
 
+
+
 /**
  * Returns the current list of notifications.
  * Ex: "https://testingclrmrnd.inrupt.net/viade/inbox/"
  */
-export async function getNotificationDocuments(inboxPath, webIdAuthor) {
-  var inbox = inboxPath;
+export async function getNotificationDocuments(inboxPath) {
+    var inbox = inboxPath;
+    var containerDoc = await fetchDocument(inbox);
 
-  var containerDoc = await fetchDocument(inbox).then().catch((err) => {
-    console.log('Error');
-    return;
-  });
+    //if the document exists
+    if (containerDoc) {
+        var subject = containerDoc.getSubject(inbox);
+        var containerURLS = subject.getAllRefs(ldp.contains);
 
+        var result = [];
+        for (var i = 0; i < containerURLS.length; i++) {
+            try {
+                //FETCH DE LA NOTIFICACIÓN
+                console.log(containerURLS[i]);
 
+                var doc = await fetchDocument(containerURLS[i]);
 
-  //if the document exists
-  if (containerDoc) {
-    var subject = containerDoc.getSubject(inbox);
-    var containerURLS = subject.getAllRefs(ldp.contains);
+                if (doc) {
 
-    var result = [];
-    for (var i = 0; i < containerURLS.length; i++) {
-      try {
-        //FETCH DE LA NOTIFICACIÓN
-        var doc = await fetchDocument(containerURLS[i]);
+                    //Notification url
+                    const url = containerURLS[i];
 
-        if (doc) {
-          //Notification url
-          const url = containerURLS[i];
+                    var subject = doc.getSubject(url);
 
-          var subject = doc.getSubject(url);
+                    //From here get typeNotification && author && path
+                    const summary = subject.getString(ns.as("summary"));
 
-          //From here get typeNotification && author && path
-          const summary = subject.getString(ns.as("summary"));
+                    //Processing the summary information
+                    let notification = processNotificationInfo(url, summary);
+                    result.push(notification);
 
-
-          //Processing the summary information
-
-          let notification = await processNotificationInfo(url, summary, webIdAuthor);
-          result.push(notification);          
-          deleteNotification(notification.urlNotification);
-
+                }
+            } catch (e) {
+                console.log("Error");
+            }
         }
-      } catch (e) {
-        console.log("Error");
-      }
+        return result;
     }
-    cache.setNotifications(result);
-    console.log(cache.getNotifications());
-    // localStorage.setItem("notifications", JSON.stringify(result));
-    return result;
-  }
-  return [];
+    return [];
 }
 
 //ROUTE_https://clrmrnd/inrupt.net/_https://clrmrnd.inrupt.net/viade/routes/Rusia.json_Sat Apr 25 2020 17:11:07 GMT+0200 (hora de verano de Europa central)
-async function processNotificationInfo(url, summary, webIdAuthor) {
-  let notification = new Notification();
+async function processNotificationInfo(url, summary) {
+    let notification = new Notification();
 
-  try {
-    let info = summary.split("_");
+    try {
+        let info = summary.split("_");
+        
+        let type = info[0];
+        switch (type) {
+            case "ROUTE":
 
-    let type = info[0];
-    switch (type) {
-      case "ROUTE":
-        //author
-        let webId = info[1];
-        const profile = webId + "profile/card#me";
-        const webIdForName = await GetSpecificWebId(webId);
-        const authorName = await GetSpecificName(profile);
+                //author
+                let webId = info[1];
+                const profile = webId + "profile/card#me";
+                const webIdForName = await GetSpecificWebId(webId);
+                const authorName = await GetSpecificName(profile);
 
-        //path
-        const routePath = info[2];
-        //date
-        const date = info[3];
 
-        notification = new Notification(
-          url,
-          type,
-          routePath,
-          authorName,
-          webIdForName,
-          date
-        );
+                //path
+                const routePath = info[2];
+                //date
+                const date = info[3];
 
-        //Crea o modifica el archivo de sharedRoutes añadiendo la url
-        addToSharedFolder(notification, webIdAuthor);
+
+                notification = new Notification(url, type, routePath, authorName, webIdForName, date);
+
+                console.log('HABEMUS NOTIFICATION')
+                console.log(notification);
+
+
+                //Crea o modifica el archivo de sharedRoutes añadiendo la url
+                addToSharedFolder(notification, "https://testingclrmrnd.inrupt.net/");
+                return notification;
+                
+
+            case "COMMENT":
+                break;
+
+            default:
+                console.log('NOTIFICATION NOT FROM THIS APP: VIADE_EN2B');
+                break;
+
+
+        }
+
         return notification;
 
-      case "COMMENT":
-        break;
-
-      default:
-        console.log("NOTIFICATION NOT FROM THIS APP: VIADE_EN2B");
-        break;
+    } catch (Error) {
+        console.log("The notification could not be processed, it may be possible that is not a notification from this app.")
+        return false;
     }
-
-    return notification;
-  } catch (Error) {
-    console.log(
-      "The notification could not be processed, it may be possible that is not a notification from this app."
-    );
-    return false;
-  }
 }
 
 async function addToSharedFolder(notification, myWebId) {
-  let path = myWebId + "/viade/shared/" + notification.authorWebId + ".jsonld";
-  try {
-    //checking if the path exists
-    let exists = await fc
-      .itemExists(path)
-      .catch(Error)
-      .then(console.log("ERROR"));
-    console.log(exists);
-    if (!exists) {
-      createFileShared(path, notification);
-    } else {
-      addRouteToFile(path, notification);
+    console.log('IN ADD TO SHARED FOLDER');
+    //build path
+
+    let path = myWebId + "viade/shared/" + notification.authorWebId + ".jsonld";
+
+
+    try {
+        //checking if the path exists
+        let exists = await fc.itemExists(path).catch(Error).then(console.log('ERROR'));
+        console.log(exists);
+        if (!exists) {
+            createFileShared(path, notification);
+
+        } else {
+            addRouteToFile(path, notification);
+        }
+    } catch (Error) {
+        console.log('Error: not found');
     }
-  } catch (Error) {
-    console.log("Error: not found");
-  }
+
+
 }
 
 async function addRouteToFile(path, notification) {
-  //push id
-  const file = await fc.readFile(path);
-  let routeJson = JSON.parse(file);
-  routeJson.routes.push({ "@id": notification.urlResource });
-  //store
-  fc.createFile(path, JSON.stringify(routeJson), "text/jsonld");
+    //push id
+    const file = await fc.readFile(path);
+    let routeJson = JSON.parse(file);
+    routeJson.routes.push({ "@id": notification.urlResource });
+    //store
+    fc.createFile(path, JSON.stringify(routeJson), "text/jsonld");
+    
 }
 
 function createFileShared(path, notification) {
-  //saveSharedFile
-  const content = functionCreateSharedFileContent(notification);
-  fc.createFile(path, content, "text/jsonld");
+    //saveSharedFile
+    const content = functionCreateSharedFileContent(notification);
+    console.log(content);
+    fc.createFile(path, content, "text/jsonld");
 }
 
 function functionCreateSharedFileContent(notification) {
-  return JSON.stringify({
-    "@context": {
-      "@version": 1.1,
-      routes: {
-        "@container": "@list",
-        "@id": "viade:routes",
-      },
-      viade: "http://arquisoft.github.io/viadeSpec/",
-    },
-    routes: [
-      {
-        "@id": notification.urlResource,
-      },
-    ],
-  });
+    return JSON.stringify({
+        "@context": {
+            "@version": 1.1,
+            "routes": {
+                "@container": "@list",
+                "@id": "viade:routes"
+            },
+            "viade": "http://arquisoft.github.io/viadeSpec/"
+        },
+        "routes": [
+            {
+                "@id": notification.urlResource
+
+            }
+        ]
+    });
 }
+
 
 /**
  * Returns the current list of notifications.
  * Ex: "https://testingclrmrnd.inrupt.net/viade/inbox/"
  */
 export async function getNotificationURLS(inboxPath) {
-  var inbox = inboxPath;
-  var containerDoc = await fetchDocument(inbox);
-  var result = [];
+    var inbox = inboxPath;
+    var containerDoc = await fetchDocument(inbox);
+    var result = [];
 
-  //if the document exists
-  if (containerDoc) {
-    var subject = containerDoc.getSubject(inbox);
+    //if the document exists
+    if (containerDoc) {
+        var subject = containerDoc.getSubject(inbox);
 
-    var containerURLS = subject.getAllRefs(ldp.contains);
-    for (var i = 0; i < containerURLS.length; i++) {
-      try {
-        //LISTANDO LAS URLS DE LAS NOTIFICACIONES
-        result.push(containerURLS[i]);
-      } catch (e) {
-        console.log("Error");
-      }
+        var containerURLS = subject.getAllRefs(ldp.contains);
+        for (var i = 0; i < containerURLS.length; i++) {
+            try {
+
+                //LISTANDO LAS URLS DE LAS NOTIFICACIONES
+                result.push(containerURLS[i]);
+            } catch (e) {
+                console.log("Error");
+            }
+        }
+        return result;
     }
-    return result;
-  }
-  return [];
+    return [];
 }
+
+
 
 /**
- * Method that allows to send a notification to a
- * friend.
- * @param {} webIdFriend
- * @param {*} content
- */
+* Method that allows to send a notification to a 
+* friend.
+* @param {} webIdFriend 
+* @param {*} content 
+*/
 export async function postNotification(webIdFriend, content, uuid) {
-  var inbox = "";
-  const lastElement = webIdFriend[webIdFriend.length-1];
-  if(lastElement === '/'){
-    console.log('FIXING THE PATH');
-    inbox = webIdFriend + "viade/inbox/";
-  }else{
-    inbox = webIdFriend + "/viade/inbox/";
-  }
+    var inbox = webIdFriend + "/viade/inbox/";
 
-  await request(
-    {
-      method: "POST",
-      uri: inbox,
-      body: content,
-      headers: {
-        slug: uuid,
-        "Content-Type": "text/turtle",
-      },
+    await request({
+        method: "POST",
+        uri: inbox,
+        body: content,
+        headers: {
+            slug: uuid,
+            "Content-Type": "text/turtle"
+        }
     },
-    function (error, response, content) {
-      if (error) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-  );
+        function (error, response, content) {
+            if (error) {
+                return false;
+            } else {
+                return true;
+            }
+        })
 }
 
-export function createNotificationContent(
-  type,
-  title,
-  webId,
-  routePath,
-  time,
-  uuid
-) {
-  return `@prefix terms: <http://purl.org/dc/terms#>.
+
+export function createNotificationContent(type, title, webId, routePath, time, uuid) {
+    return `@prefix terms: <http://purl.org/dc/terms#>.
           @prefix as: <https://www.w3.org/ns/activitystreams#> .
           @prefix schema: <http://schema.org/> .
           @prefix solid: <http://www.w3.org/ns/solid/terms#> .
@@ -255,60 +245,44 @@ export function createNotificationContent(
           as:summary "${routePath}" ;         
           as:actor <${webId}> ;
           solid:read "false"^^xsd:boolean ;
-          as:published "${time}"^^xsd:dateTime .`;
+          as:published "${ time}"^^xsd:dateTime .`
 }
 
-export function createNotificationSummary(
-  webIdAuthor,
-  routePath,
-  webIdTo,
-  date
-) {
-  return "ROUTE" + "_" + webIdAuthor + "_" + routePath + "_" + date;
+export function createNotificationSummary(webIdAuthor, routePath, webIdTo, date) {
+
+    return "ROUTE" + "_" + webIdAuthor + "_" + routePath + "_" + date;
 }
 
-export function createNotificationSummaryJSON(
-  webIdAuthor,
-  routePath,
-  webIdTo,
-  date
-) {
-  return JSON.stringify({
-    "@context": "https://www.w3.org/ns/activitystreams",
-    summary: "ROUTE",
-    type: "RouteType",
+export function createNotificationSummaryJSON(webIdAuthor, routePath, webIdTo, date) {
+    return JSON.stringify(
 
-    actor: {
-      type: "Person",
-      name: webIdAuthor,
-    },
+        {
+            "@context": "https://www.w3.org/ns/activitystreams",
+            "summary": "ROUTE",
+            "type": "RouteType",
 
-    object: {
-      type: "Resource",
-      name: routePath,
-    },
+            "actor": {
+                "type": "Person",
+                "name": webIdAuthor
+            },
 
-    target: {
-      type: "Person",
-      name: webIdTo,
-    },
+            "object": {
+                "type": "Resource",
+                "name": routePath
+            },
 
-    published: {
-      type: "Date",
-      name: date,
-    },
-  });
+            "target": {
+                "type": "Person",
+                "name": webIdTo
+            },
+
+            "published": {
+                "type": "Date",
+                "name": date
+            }
+
+        }
+
+    );
 }
 
-export async function deleteNotification(url) {
-  if (url != null) {
-    if (await fc.itemExists(url)) {
-      try {
-        fc.delete(url);
-      } catch (error) {
-        alert(error);
-      }
-    }
-    console.log('You are trying to delete something that is null')
-  }
-}

@@ -1,6 +1,5 @@
 import * as RouteGateway from "data-access/gateways/RouteGateway";
 import FileCache from "../fileCache/FileCache";
-import * as CommentsGateway from "../../data-access/gateways/CommentsGateway";
 
 export default {
   routes: [],
@@ -8,24 +7,10 @@ export default {
   selectedDetails: "",
   routeToUpload: "",
   reload: false,
-  selectedToShare: "",
-  sharedRoutes: [],
-  async getSharedRoutes() {
-    return this.sharedRoutes;
-  },
-  setSharedRoutes(route) {
-    this.sharedRoutes = route;
-  },
-  getSelectedToShare() {
-    return this.selectedToShare;
-  },
-  setSelectedToShare(route) {
-    this.selectedToShare = route;
-  },
-  getSelectedToUpload() {
+  getSelectedToUpload(){
     return this.routeToUpload;
   },
-  setSelectedToUpload(route) {
+  setSelectedToUpload(route){
     this.routeToUpload = route;
   },
   addRoute(route) {
@@ -67,16 +52,8 @@ export default {
   setSelected(route) {
     let found = this.routes.find((obj) => route.name === obj.name);
 
-    let foundShare = this.sharedRoutes.find((obj) => route.name === obj.name);
-
     if (found) {
-      console.log(`Route selected: ${found}`);
       this.selected = found;
-      return;
-    }
-
-    if (foundShare) {
-      this.selected = foundShare;
       return;
     }
 
@@ -89,17 +66,13 @@ export default {
     }
     this.selected = found;
   },
-  async getSelected() {
+  getSelected() {
     return this.selected;
   },
   clear() {
     this.routes = [];
     this.selected = "";
     this.selectedDetails = "";
-    this.routeToUpload = "";
-    this.reload = false;
-    this.selectedToShare = "";
-    this.sharedRoutes = [];
   },
   setSelectedDetails(route) {
     this.selectedDetails = route;
@@ -107,7 +80,7 @@ export default {
   getSelectedDetails() {
     return this.selectedDetails;
   },
-  setReload(reload) {
+  setReload(reload){
     this.reload = reload;
-  },
+  }
 };
