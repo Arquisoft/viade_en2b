@@ -33,8 +33,8 @@ export async function sharedRoutesList(routesURL) {
 
       routes.push(route);
 
-      routes_routes.push(route.routes);
-      routes_files.push(route.files);
+      routes_routes = [...routes_routes, ...route.routes];
+      routes_files = [...routes_files, ...route.files];
     }
     console.table(routes_routes);
     filecache.default.addFilePaths(routes_files);
