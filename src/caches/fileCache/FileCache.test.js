@@ -131,7 +131,7 @@ test("get the file paths for a non-existing route", async () => {
   //    "path/file1.png",
   //    "path/file2.jpg",
   //    "path/file3.avi",
-  //  ]);
+  //   ]);
 });
 
 test("add filepaths to the cache", () => {
