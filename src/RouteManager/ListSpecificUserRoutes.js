@@ -2,10 +2,12 @@ import File from "../Entities/File";
 import BasicRoute from "../Entities/BasicRoute";
 import RouteFile from "../Entities/RouteFile";
 
+const auth = require("solid-auth-client");
+const FC = require("solid-file-client");
+const fc = new FC(auth);
+
 export async function loadSpecificUserRoutesFiles(urlRoute) {
-  const auth = require("solid-auth-client");
-  const FC = require("solid-file-client");
-  const fc = new FC(auth);
+
   let routes = [];
 
   let routesFolder = urlRoute;
@@ -39,8 +41,8 @@ function routesToJson(routes) {
     } catch (e) {
       console.log(
         "Route " +
-          i +
-          " couldn't be transformed to json because the format is wrong"
+        i +
+        " couldn't be transformed to json because the format is wrong"
       );
     }
   }
@@ -79,8 +81,13 @@ function getMediaAttachedToRoute(route) {
   for (let i = 0; i < route.media.length; i++) {
     let path = route.media[i]["@id"];
     let date = new Date(route.media[i]["dateTime"]);
-    let file = new File(path, date);
-    routeFile.addFilePath(file);
+
+    if (fc.itemExists(path).then().catch((error) => console.log('You have not being authorised to read the media attached to the route ' + route))) {
+      let file = new File(path, date);
+      routeFile.addFilePath(file);
+    }
+
+
   }
   return routeFile;
 }
