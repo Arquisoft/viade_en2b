@@ -36,10 +36,7 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
   const routeName = routeAtt[routeAtt.length - 1];
   console.log(routeName);
 
-  const routeEntity = await loadSpecificUserRoutesFiles(route);
-
-
-
+  
   //send notification to other user inbox
   const summary = createNotificationSummary(webIdAuthor, route, webIdFriend, new Date());
   const uuid = uuidv4();
@@ -58,20 +55,23 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
     setPermissionsTo("READ", route, profileFriend);
 
     //retrieving media of the route
-    if (routeEntity !== null) {
-      if (routeEntity.files !== null ) {
-        if (routeEntity.files[0]) {
+    const routeEntity = await loadSpecificUserRoutesFiles(route);
+    console.log(routeEntity);
+
+    if (routeEntity !== null && routeEntity!== undefined) {
+      if (routeEntity.files !== null && routeEntity.files !== undefined) {
+        if (routeEntity.files[0] !== null && routeEntity.files[0] !== undefined) {
           let media = routeEntity.files[0].files;
 
-          if (media != "undefined" && media != null) {
+          if (media != undefined && media != null) {
             for (let i = 0; i < media.length; i++) {
-              const element = media[i];
+              const element = media[i].filePath;
               //checking if it has acl
-              let nameResource = media[i].split('/');
+              let nameResource = element.split('/');
               let name = nameResource[nameResource.length - 1];
 
               checkAclOrCreateMedia(element, name);
-              setPermissionsTo("READ", element.filePath, profileFriend);
+              setPermissionsTo("READ", element, profileFriend);
             }
           }
         }

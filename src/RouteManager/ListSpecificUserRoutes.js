@@ -11,20 +11,13 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
   let urls = [];
   let routesFolder = urlRoute;
 
-  if (
-    await fc
-      .itemExists(urlRoute)
-      .then()
-      .catch((error) => {
-        console.log(
-          "You have not being granted the permissions to read this route"
-        );
-      })
-  ) {
-    try {
-      let fileContent = await fc.readFile(urlRoute);
+  if (await fc.itemExists(urlRoute).then().catch((error) => { console.log('You have not being granted the permissions to read this route') })) {
+    try {       
+      let fileContent = await fc.readFile(urlRoute); 
+      console.log(urlRoute); 
       urls.push(urlRoute);
       routes.push(fileContent);
+
     } catch (error) {
       console.log("The folder couldn't be read");
       console.log(error); // A full error response
@@ -34,7 +27,8 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
   } else {
     console.log("user has no routes directory");
   }
-  let rou = jsonToEntity(routesToJson(routes, urls), urls);
+
+  let rou = jsonToEntity(routesToJson(routes,urls), urls);
   localStorage.setItem("urls", JSON.stringify(urls));
 
   return rou;
@@ -62,9 +56,9 @@ function jsonToEntity(routes, urls) {
   let entRoutes = [];
   let entFiles = [];
   console.table(routes);
+
   for (let i = 0; i < routes.length; i++) {
     try {
-      console.log(routes[i]);
       let name = routes[i].name;
       let it = routes[i].points;
       let desc = routes[i].description;
@@ -78,6 +72,7 @@ function jsonToEntity(routes, urls) {
       } else {
         comUrl = "";
       }
+
       let route = new BasicRoute(name, it, desc);
       route.commentsUrl = comUrl;
       route.setUrl(urls[i]);
@@ -86,6 +81,7 @@ function jsonToEntity(routes, urls) {
       console.log("Route " + route.name + " was created succesfully");
 
       if (routes[i].media) {
+        console.log(routes[i].media);
         entFiles.push(getMediaAttachedToRoute(routes[i], urls[i]));
       }
     } catch (e) {
