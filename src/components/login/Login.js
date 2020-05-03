@@ -88,14 +88,18 @@ class Login extends React.Component {
         this.setState({ name: "Welcome, Guest" });
       } else this.setState({ name: "Welcome, " + name });
     });
+
+    //Si sigue fallandote Andrés prueba a poner un await
+    //this.createFolder();
+
     folderCreator.default.main();
+
   }
 
   async logout(e, auth) {
     e.preventDefault();
     await auth.logout();
     this.getProfileImage().then((foto) => {
-      console.log(foto);
       if (foto == undefined) {
         this.setState({
           image:
@@ -134,9 +138,12 @@ class Login extends React.Component {
     }
   }
   async createFolder() {
-    folderCreator.default.main().then().catch((err) => {
-      console.log(err);
-    });
+    folderCreator.default
+      .main()
+      .then()
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   viewImageLoaded = () => {};

@@ -6,10 +6,10 @@ const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 
 export default {
-  main() {
+  async main() {
     createFolders();
-  }
-}
+  },
+};
 
 async function createFolders() {
   let session = await auth.currentSession();
@@ -23,6 +23,7 @@ async function createFolders() {
   let comments = `${path}viade/comments/`;  
   let inbox = `${path}viade/inbox/`;  
   let shared = `${path}viade/shared/`;
+
   let groups = `${path}viade/groups/`;
   let resources = `${path}viade/resources/`;
   
@@ -49,4 +50,5 @@ async function createFolders() {
   
   console.log("se ha llamado");
 }
+
 

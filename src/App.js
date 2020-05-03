@@ -67,15 +67,13 @@ class App extends Component {
       window.performance.navigation.type == 1 &&
       window.location.href.charAt(window.location.href.length - 1) != "/"
     ) {
-      console.log("mongoi");
-      console.log(window.location.pathname);
       return (
         <Router>
           <Redirect to="/" />
         </Router>
       );
     }
-    console.log(window.location.href);
+
     if (this.state.render > 0)
       return (
         <Fragment>

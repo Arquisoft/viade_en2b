@@ -50,10 +50,10 @@ export async function getNotificationDocuments(inboxPath, webIdAuthor) {
 
 
           //Processing the summary information
+
           let notification = await processNotificationInfo(url, summary, webIdAuthor);
           result.push(notification);          
           deleteNotification(notification.urlNotification);
-          
 
         }
       } catch (e) {

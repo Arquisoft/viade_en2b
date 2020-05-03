@@ -42,8 +42,10 @@ export const uploadFiles = async (fileList) => {
 };
 
 const updateFile = (path, content, contentType) => {
+
   console.log("updateFile"); 
   return fileClient.putFile(path, content.name, contentType).catch(handleFetchError);  
+
 };
 
 const validContentType = (fileList) => {
