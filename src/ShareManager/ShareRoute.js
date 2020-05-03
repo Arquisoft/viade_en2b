@@ -5,9 +5,8 @@ import {
   createNotificationContent,
 } from "NotificationManager/NotificationManager";
 import { v4 as uuidv4 } from "uuid";
-import RoutesLoader from 'RouteManager/ListUserRoutes';
 import { loadSpecificUserRoutesFiles, getMediaAttachedToRoute } from 'RouteManager/ListSpecificUserRoutes';
-import {createContentAcl} from "data-access/FileManager/AclCreator";
+import {createContentAcl, createContentAclMedia} from "data-access/FileManager/AclCreator";
 /**
  * Function that allows a user to share a route with a friend.
  * Provides READ permissions to the friend over the route of the user autenticated,
@@ -69,6 +68,11 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
           if (media != "undefined" && media != null) {
             for (let i = 0; i < media.length; i++) {
               const element = media[i];
+              //checking if it has acl
+              let nameResource = media[i].split('/');
+              let name= nameResource[nameResource.length -1 ];
+
+              checkAclOrCreateMedia(element, name);
               setPermissionsTo("READ", element.filePath, profileFriend);
             }
           }
@@ -117,6 +121,18 @@ function checkAclOrCreate(url, routeName){
 
   if( ! fc.itemExists(url).then().catch((error) => {return ;})){
     createContentAcl(url, routeName);
+  }
+
+
+}
+
+function checkAclOrCreateMedia(url, mediaName){
+  const auth = require("solid-auth-client");
+  const FC = require("solid-file-client");
+  const fc = new FC(auth);
+
+  if( ! fc.itemExists(url).then().catch((error) => {return ;})){
+    createContentAcl(url, mediaName);
   }
 
 
