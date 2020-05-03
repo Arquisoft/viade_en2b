@@ -45,7 +45,7 @@ class SaveRoute extends Component {
           onChange={this.nameToRute.bind(this)}
         />
         <div className="textareaDiv">
-          <label htmlFor="textareaInput">Route description</label>
+          <label htmlFor="textareaInput" id="routeDescriptionInput">Route description</label>
           <textarea
             rows="2"
             cols="25"
