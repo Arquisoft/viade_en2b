@@ -14,14 +14,12 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
 
   if (await fc.itemExists(urlRoute).then().catch((error) => { console.log('You have not being granted the permissions to read this route') })) {
     try {
-      let content = await fc.readFolder(routesFolder);
-      let files = content.files;
+       
+      let fileContent = await fc.readFile(urlRoute);  
 
-      for (let i = 0; i < files.length; i++) {
-        let fileContent = await fc.readFile(files[i].url);
-        urls.push(files[i].url);
-        routes.push(fileContent);
-      }
+      urls.push(urlRoute);
+      routes.push(fileContent);
+
     } catch (error) {
       console.log("The folder couldn't be read");
       console.log(error); // A full error response
@@ -40,17 +38,17 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
 function routesToJson(routes, urls) {
   let jsonRoutes = [];
   for (let i = 0; i < routes.length; i++) {
-      try {
-          let route = JSON.parse(routes[i]);
-          jsonRoutes.push(route);
-      } catch (e) {
-          urls.splice(i, 1);
-          console.log(
-              "Route " +
-              i +
-              " couldn't be transformed to json because the format is wrong"
-          );
-      }
+    try {
+      let route = JSON.parse(routes[i]);
+      jsonRoutes.push(route);
+    } catch (e) {
+      urls.splice(i, 1);
+      console.log(
+        "Route " +
+        i +
+        " couldn't be transformed to json because the format is wrong"
+      );
+    }
   }
   return jsonRoutes;
 }
@@ -60,39 +58,40 @@ function jsonToEntity(routes, urls) {
   let entFiles = [];
   console.table(routes);
   for (let i = 0; i < routes.length; i++) {
-      try {
-          console.log(routes[i]);
-          let name = routes[i].name;
-          let it = routes[i].points;
-          let desc = routes[i].description;
-          let comUrl;
-          if(routes[i].hasOwnProperty("comments")){
-          if (routes[i].comments != undefined) {
-              comUrl = routes[i].comments;
-          } else {
-              comUrl = "";
-          }}else{
-              comUrl="";
-          }
-          let route = new BasicRoute(name, it, desc);
-          route.commentsUrl = comUrl;
-          route.setUrl(urls[i]);
-          route.setJsonFormat(routes[i]);
-          entRoutes.push(route);
-          console.log("Route " + route.name + " was created succesfully");
-
-          if (routes[i].media) {
-              entFiles.push(this.getMediaAttachedToRoute(routes[i], urls[i]));
-          }
-      } catch (e) {
-          console.log(
-              "Route " + i + " couldn't be parsed because the format is wrong"
-          );
-          console.log(e);
+    try {
+      console.log(routes[i]);
+      let name = routes[i].name;
+      let it = routes[i].points;
+      let desc = routes[i].description;
+      let comUrl;
+      if (routes[i].hasOwnProperty("comments")) {
+        if (routes[i].comments != undefined) {
+          comUrl = routes[i].comments;
+        } else {
+          comUrl = "";
+        }
+      } else {
+        comUrl = "";
       }
+      let route = new BasicRoute(name, it, desc);
+      route.commentsUrl = comUrl;
+      route.setUrl(urls[i]);
+      route.setJsonFormat(routes[i]);
+      entRoutes.push(route);
+      console.log("Route " + route.name + " was created succesfully");
+
+      if (routes[i].media) {
+        entFiles.push(this.getMediaAttachedToRoute(routes[i], urls[i]));
+      }
+    } catch (e) {
+      console.log(
+        "Route " + i + " couldn't be parsed because the format is wrong"
+      );
+      console.log(e);
+    }
   }
 
-  return {routes: entRoutes, files: entFiles};
+  return { routes: entRoutes, files: entFiles };
 }
 
 

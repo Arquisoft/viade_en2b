@@ -29,6 +29,7 @@ export async function sharedRoutesList(routesURL) {
       let urlRoute = url[i];
 
       let route = await loadSpecificUserRoutesFiles(urlRoute);
+      console.log('route');
 
       routes.push(route);
 
