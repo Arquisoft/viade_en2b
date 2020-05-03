@@ -15,8 +15,6 @@ export const checkLinkableRoute = async (routeName) => {
 }
 
 export const linkFilesToRoute = async (fileUris, routeName) => {
-
-  console.log(fileUris);
   let fileClient = new SolidFileClient(auth, { enableLogging: true });
   let session = await auth.currentSession();
   let storageRoot = session.webId.split("profile")[0];

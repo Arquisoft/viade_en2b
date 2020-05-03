@@ -24,23 +24,20 @@ export const uploadFiles = async (fileList) => {
   let path = session.webId.split("profile")[0];
   const promises = Array.from(fileList).map((file) => {
     let buildPath = `${path}viade/resources/${file.name}`;
-    return updateFile(buildPath, file, file.type || mime.getType(file.name)).then(
-      async () => {
-        await createContentAclMedia(buildPath, file.name);
-        return buildPath;
-      }
+    return updateFile(
+      buildPath,
+      file,
+      file.type || mime.getType(file.name)
     );
   });
   return Promise.all(promises).catch((err) => {
-    console.log("error");
     handleFetchError(err);
   });
 };
 
 const updateFile = (path, content, contentType) => {
-  console.log("updateFile");
   return fileClient
-    .putFile(path, content.name, contentType)
+    .putFile(path, content, contentType)
     .catch(handleFetchError);
 };
 

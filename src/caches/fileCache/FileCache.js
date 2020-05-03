@@ -12,21 +12,14 @@ export default {
     let route = await routeCache.getSelected();
     try {
       let found = this.filePaths.find((rf) => rf.routePath === route.url);
+      console.log(found);
       if (found) {
-        uploadFiles(found.routePath, files).then((paths) =>
-          paths.forEach((path) => {
-            try {
-              found.addFilePath(path);
-            } catch (err) {}
-          })
-        );
+        uploadFiles(found.routePath, files);
       } else {
         let filesMap = new RouteFile(route.url, []);
         this.filePaths = [...this.filePaths, filesMap];
 
-        uploadFiles(filesMap.routePath, files).then((paths) =>
-          paths.forEach((path) => filesMap.addFilePath(path))
-        );
+        uploadFiles(filesMap.routePath, files);
       }
     } catch (err) {
       console.log(err.message);
