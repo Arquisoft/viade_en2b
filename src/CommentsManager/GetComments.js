@@ -51,10 +51,9 @@ export default class LoadRouteComments {
 
     parseJsonToEntity(commentsUrl,comments){
         let commentsArray = [];
-        console.log(comments.length);
         for (let i = 0; i< comments.length; i++) {
-
-            let newComment = new Comment(commentsUrl, comments[i].text, comments[i].author, comments[i].dateCreated);
+            let newComment = new Comment(commentsUrl, comments[i].jsonComment.text,
+                comments[i].jsonComment.author, comments[i].dateCreated);
             commentsArray.push(newComment);
         }
 

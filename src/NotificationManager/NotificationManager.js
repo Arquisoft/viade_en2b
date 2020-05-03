@@ -37,7 +37,6 @@ export async function getNotificationDocuments(inboxPath, webIdAuthor) {
     for (var i = 0; i < containerURLS.length; i++) {
       try {
         //FETCH DE LA NOTIFICACIÓN
-        console.log(containerURLS[i]);
         var doc = await fetchDocument(containerURLS[i]);
 
         if (doc) {
@@ -49,31 +48,19 @@ export async function getNotificationDocuments(inboxPath, webIdAuthor) {
           //From here get typeNotification && author && path
           const summary = subject.getString(ns.as("summary"));
 
-          console.log('CHECKING IF THE NOTIFICATION IS ALREADY IN CACHE···');
-          
-          let a = [];
-          const n = await cache.getNotifications().then((list) => { a.push(list) });
-          console.log(n);
 
+          //Processing the summary information
 
-          console.log(cache.getNotifications());
-          //checking if the notification is already in cache
-          let notifications = await cache.getNotificationByUrl(url);
-          console.log(notifications);
-          if (notifications == null) {
-            //Processing the summary information
-            let notification = processNotificationInfo(url, summary, webIdAuthor);
-            result.push(notification);
-          }
+          let notification = await processNotificationInfo(url, summary, webIdAuthor);
+          result.push(notification);          
+          deleteNotification(notification.urlNotification);
 
         }
       } catch (e) {
         console.log("Error");
-        console.log(e);
       }
     }
     cache.setNotifications(result);
-    console.log('ÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑÑ');
     console.log(cache.getNotifications());
     // localStorage.setItem("notifications", JSON.stringify(result));
     return result;
@@ -111,9 +98,6 @@ async function processNotificationInfo(url, summary, webIdAuthor) {
           date
         );
 
-        console.log("HABEMUS NOTIFICATION");
-        console.log(notification);
-
         //Crea o modifica el archivo de sharedRoutes añadiendo la url
         addToSharedFolder(notification, webIdAuthor);
         return notification;
@@ -136,12 +120,7 @@ async function processNotificationInfo(url, summary, webIdAuthor) {
 }
 
 async function addToSharedFolder(notification, myWebId) {
-  console.log("IN ADD TO SHARED FOLDER");
-  //build path
-
-
   let path = myWebId + "/viade/shared/" + notification.authorWebId + ".jsonld";
-  console.log(path);
   try {
     //checking if the path exists
     let exists = await fc
@@ -171,7 +150,6 @@ async function addRouteToFile(path, notification) {
 function createFileShared(path, notification) {
   //saveSharedFile
   const content = functionCreateSharedFileContent(notification);
-  console.log(content);
   fc.createFile(path, content, "text/jsonld");
 }
 
@@ -227,7 +205,14 @@ export async function getNotificationURLS(inboxPath) {
  * @param {*} content
  */
 export async function postNotification(webIdFriend, content, uuid) {
-  var inbox = webIdFriend + "/viade/inbox/";
+  var inbox = "";
+  const lastElement = webIdFriend[webIdFriend.length-1];
+  if(lastElement === '/'){
+    console.log('FIXING THE PATH');
+    inbox = webIdFriend + "viade/inbox/";
+  }else{
+    inbox = webIdFriend + "/viade/inbox/";
+  }
 
   await request(
     {
@@ -313,4 +298,17 @@ export function createNotificationSummaryJSON(
       name: date,
     },
   });
+}
+
+export async function deleteNotification(url) {
+  if (url != null) {
+    if (await fc.itemExists(url)) {
+      try {
+        fc.delete(url);
+      } catch (error) {
+        alert(error);
+      }
+    }
+    console.log('You are trying to delete something that is null')
+  }
 }

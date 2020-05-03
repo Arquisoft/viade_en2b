@@ -2,7 +2,7 @@ const SolidAclUtils = require('solid-acl-utils');
 const auth = require('solid-auth-client');
 
 
-const { AclApi, AclDoc, AclParser, AclRule, Permissions, Agents } = SolidAclUtils;
+const { AclApi, Permissions, Agents } = SolidAclUtils;
 const { READ, WRITE, APPEND, CONTROL } = Permissions;
 
 //Acl creation
@@ -114,5 +114,10 @@ export function getMode(permission) {
 
         case ("CONTROL"):
             return CONTROL;
+        default:
+            return 'The format is wrong'
     }
 }
+
+
+

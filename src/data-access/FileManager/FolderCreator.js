@@ -27,6 +27,7 @@ async function createFolders() {
   let comments = `${path}viade/comments/`;
   let inbox = `${path}viade/inbox/`;
   let shared = `${path}viade/shared/`;
+
   let groups = `${path}viade/groups/`;
   let resources = `${path}viade/resources/`;
 

@@ -13,7 +13,7 @@ const SaveRoutePage = () => {
   function toDo(params) {
     //EJEMPLO DE FUNCIÓN PARA PASARLE AL onUpload
     history.push("/routes");
-    console.log(params);
+
     cache.default.setReload(true);
   }
   function emptyTrigger() {
