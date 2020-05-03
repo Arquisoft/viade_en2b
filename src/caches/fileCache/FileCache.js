@@ -33,8 +33,11 @@ export default {
     }
   },
   addFilePaths(routeFiles) {
-    console.log(routeFiles);
-    this.filePaths = [...routeFiles];
+    routeFiles.forEach(routeFile => {
+      if(!this.filePaths.find(rf => rf.routePath === routeFile.routePath)) {
+        this.filePaths.push(routeFile);
+      }
+    })
   },
   async removeFile(route, path) {
     this.filePaths.forEach((rf) => {
@@ -46,8 +49,9 @@ export default {
   },
   getFilePathsForRoute(route) {
     console.log(route)
+    console.log(this.filePaths)
     let routeFile = this.filePaths.find((rf) => rf.routePath === route.url);
-    console.log(routeFile.files)
+    console.log(routeFile)
     return routeFile ? [...routeFile.files] : [];
   },
 };

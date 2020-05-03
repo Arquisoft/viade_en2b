@@ -93,6 +93,7 @@ class MyTab extends React.Component {
     let multimedia = [];
 
     multimedia = cache.default.getFilePathsForRoute(this.props.route);
+    console.log(multimedia)
     multimedia.forEach((element) => {
       if (element.contentType.includes("image")) {
         images.push(element);
