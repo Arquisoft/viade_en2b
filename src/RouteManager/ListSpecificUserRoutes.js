@@ -9,7 +9,7 @@ const fc = new FC(auth);
 export async function loadSpecificUserRoutesFiles(urlRoute) {
 
   let routes = [];
-
+  let urls = [];
   let routesFolder = urlRoute;
 
   if (await fc.itemExists(urlRoute).then().catch((error) => { console.log('You have not being granted the permissions to read this route') })) {
@@ -31,10 +31,8 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
   } else {
     console.log("user has no routes directory");
   }
-  let rou = this.jsonToEntity(this.routesToJson(routes, urls), urls);
+  let rou = jsonToEntity(routesToJson(routes, urls), urls);
   localStorage.setItem("urls", JSON.stringify(urls));
-
-  let rou = jsonToEntity(routesToJson(routes));
 
   return rou;
 }
