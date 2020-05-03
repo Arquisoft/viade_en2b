@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "../../assets/css/Dropzone.css";
 import MultimediaViewer from "./MultimediaViewer";
 
-import cache from "caches/fileCache/FileCache";
 import GenericButton from "../generic_components/GenericButton";
 
 class Dropzone extends Component {

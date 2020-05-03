@@ -121,7 +121,7 @@ class App extends Component {
       return (
         <Fragment>
           <video id="viadegif" autoPlay muted>
-            <source src="https://arquisoft.github.io/viade_en2b/videos/ViaDe.mp4" type="video/mp4" />
+            <source src="videos/ViaDe.mp4" type="video/mp4" />
           </video>
         </Fragment>
       );

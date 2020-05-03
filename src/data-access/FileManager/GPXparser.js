@@ -2,9 +2,7 @@
 import GeoCoordinate from "../../Entities/GeoCoordinate";
 import BasicRoute from "../../Entities/BasicRoute";
 import * as CreateRoute from "../../RouteManager/CreateRoute";
-import GPX from "viade-gpx-parse"
 import { parseGpx} from "viade-gpx-parse";
-import { tracks } from "rdf-namespaces/dist/schema";
 
 export default {
     parseFile(file){
@@ -54,7 +52,6 @@ export default {
 
         parseGpx(string, function (error, gpxData){
             let routes = [];
-            let geoCoordinates = [];
             let tracks = gpxData.tracks;
 
             tracks.forEach(track => {

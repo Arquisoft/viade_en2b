@@ -67,7 +67,6 @@ export default class RoutesLoader {
         const fc = new FC(auth);
 
         let session = await auth.currentSession();
-        let popupUri = "https://solid.community/common/popup.html";
         if (!session || session.webId === undefined || session.webId === null) {
             callback();
             return undefined;
@@ -91,7 +90,7 @@ export default class RoutesLoader {
 
                             let route = new BasicRoute(tempRoute.name, tempRoute.points, tempRoute.description);
                             let comUrl;
-                            if (tempRoute.comments != undefined) {
+                            if (tempRoute.comments !== undefined) {
                                 comUrl = tempRoute.commentsUrl;
                             } else {
                                 comUrl = '';
@@ -154,7 +153,7 @@ export default class RoutesLoader {
                 let desc = routes[i].description;
                 let comUrl;
                 if(routes[i].hasOwnProperty("comments")){
-                if (routes[i].comments != undefined) {
+                if (routes[i].comments !== undefined) {
                     comUrl = routes[i].comments;
                 } else {
                     comUrl = "";

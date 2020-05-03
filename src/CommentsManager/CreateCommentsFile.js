@@ -55,10 +55,5 @@ export default class CreateCommentsFile{
             console.log(error.message) // Just the status code and statusText
             return "";
         }
-
-        return "";
-
     }
-
-
 }
