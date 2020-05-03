@@ -1,43 +1,58 @@
-  import React, { Component } from "react";
+import React, { Component } from "react";
 
 import MultimediaViewer from "./MultimediaViewer";
 
 import cache from "caches/fileCache/FileCache";
 import GenericButton from "../generic_components/GenericButton";
 import * as RealTimeRoute from "../../RouteManager/CreateRouteRealTime";
-
-
- class SaveRoute extends Component {
+import "../../assets/css/SaveRoute.css";
+class SaveRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
       nameRoute: "",
-      files: []
+      description: "",
+      files: [],
     };
     //this.fileInputRef = React.createRef();
   }
-
-  nameToRute(name){
-    this.setState({nameRoute: name.target.value});
-    console.log(this.state.nameRoute)
+  descriptionToRoute(description) {
+    this.setState({ description: description.target.value });
   }
-  saveRouteToPod(){
-    if(this.state.nameRoute !== "" && RealTimeRoute.default.getRouteIsOver()){
-      RealTimeRoute.default.setNameAndUpload(this.state.nameRoute);
+  nameToRute(name) {
+    this.setState({ nameRoute: name.target.value });
+  }
+  saveRouteToPod() {
+    if (this.state.nameRoute !== "" && RealTimeRoute.default.getRouteIsOver()) {
+      //RealTimeRoute.default.setNameAndUpload(this.state.nameRoute);
+      //Change setNameAndUpload
+      RealTimeRoute.default.setNameAndUpload(
+        this.state.nameRoute,
+        this.state.description
+      );
+
       this.props.onFinish();
     }
   }
   render() {
     return (
       <React.Fragment>
-          <label for="textInput">Route Name</label><br/>
-          <input
-            ref={this.fileInputRef}
-            className="textInput"
-            type="text"
-            onChange={this.nameToRute.bind(this)}
-          />
-          
+        <label htmlFor="textInput">Route Name</label>
+        <input
+          ref={this.fileInputRef}
+          className="textInput"
+          type="text"
+          onChange={this.nameToRute.bind(this)}
+        />
+        <div className="textareaDiv">
+          <label htmlFor="textareaInput">Route description</label>
+          <textarea
+            rows="2"
+            cols="25"
+            className="textareaInput"
+            onChange={this.descriptionToRoute.bind(this)}
+          ></textarea>
+        </div>
         <form>
           <GenericButton
             className="submitRoute"
