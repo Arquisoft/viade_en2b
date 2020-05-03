@@ -3,7 +3,7 @@ node_js:
   - 12.14.0
 cache:
   directories:
-  - node_modules
+    - node_modules
 before_install:
   - sudo apt-get update
   - sudo apt-get -y install ruby openjdk-8-jre
@@ -14,6 +14,7 @@ script:
   - CI=false npm run build
   - npm run docs
   - npm run test:e2e
+  - node --max-old-space-size=8192 index.js #increase to 8gb
 deploy:
   provider: pages
   skip_cleanup: true
