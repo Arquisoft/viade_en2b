@@ -58,12 +58,15 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
     setPermissionsTo("READ", route, profileFriend);
 
     //retrieving media of the route
-    if (routeEntity !== null) {
-      if (routeEntity.files !== null ) {
-        if (routeEntity.files[0] !== null && routeEntity.files[0] !== "undefined") {
+    if (routeEntity !== null && routeEntity!== undefined) {
+      if (routeEntity.files !== null && routeEntity.files !== undefined) {
+        if (routeEntity.files[0] !== null && routeEntity.files[0] !== undefined) {
           let media = routeEntity.files[0].files;
 
-          if (media != "undefined" && media != null) {
+          console.log('AAAAAAAAAAAAAAAAA');
+          console.log(media);
+
+          if (media != undefined && media != null) {
             for (let i = 0; i < media.length; i++) {
               const element = media[i];
               //checking if it has acl
