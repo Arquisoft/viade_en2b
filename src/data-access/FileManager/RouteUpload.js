@@ -1,6 +1,6 @@
 import * as auth from "solid-auth-client";
 import SolidFileClient from "solid-file-client";
-import {createContentAcl} from "../../data-access/FileManager/AclCreator";
+import {createContentAclMedia} from "../../data-access/FileManager/AclCreator";
 const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 export default {
@@ -25,6 +25,6 @@ async function uploadRoute(name, text) {
   fileClient.createFile(buildPath, file, file.type);
   
   // CREATING THE ACL FOR THE ROUTE
-  createContentAcl(buildPath, file.name);
+  createContentAclMedia(buildPath, file.name);
 }
 

@@ -13,13 +13,11 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
   let routesFolder = urlRoute;
 
   if (await fc.itemExists(urlRoute).then().catch((error) => { console.log('You have not being granted the permissions to read this route') })) {
-    try {
-       
+    try {       
       let fileContent = await fc.readFile(urlRoute);  
-
       urls.push(urlRoute);
       routes.push(fileContent);
-
+      
     } catch (error) {
       console.log("The folder couldn't be read");
       console.log(error); // A full error response
