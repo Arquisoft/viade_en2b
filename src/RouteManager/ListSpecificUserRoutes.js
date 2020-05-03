@@ -60,19 +60,13 @@ function jsonToEntity(routes, urls) {
 
   for (let i = 0; i < routes.length; i++) {
     try {
-      console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
-      console.log(routes[i]);
       let name = routes[i].name;
-      console.log(name);
       let it = routes[i].points;
-      console.log(it);
       let desc = routes[i].description;
-      console.log(desc);
       let comUrl;
       if (routes[i].hasOwnProperty("comments")) {
         if (routes[i].comments != undefined) {
           comUrl = routes[i].comments;
-          console.log(routes[i].comments);
         } else {
           comUrl = "";
         }
@@ -88,7 +82,6 @@ function jsonToEntity(routes, urls) {
       console.log("Route " + route.name + " was created succesfully");
 
       if (routes[i].media) {
-        console.log('CCCCCCCCCCCCCCCC');
         console.log(routes[i].media);
         entFiles.push(getMediaAttachedToRoute(routes[i], urls[i]));
       }
