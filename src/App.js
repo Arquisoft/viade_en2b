@@ -21,7 +21,7 @@ import ImportGpxPage from "./components/pages/ImportGpxPage";
 import FriendGroupsPage from "./components/pages/FriendGroupsPage";
 import SeeFriendsOfGroupPage from "./components/pages/SeeFriendsOfGroupPage";
 import CreateFriendGroupPage from "./components/pages/CreateFriendGroupPage";
-
+import ShareRoutePage from "./components/pages/ShareRoutePage";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
@@ -31,7 +31,7 @@ import * as cache from "caches/routeCache/RouteCache";
 import "./App.css";
 
 var lastRouteReceived = [];
-function notificationsRecieved() {
+/*function notificationsRecieved() {
   if (cache.default.getSelected() != lastRouteReceived) {
     lastRouteReceived = cache.default.getSelected();
     toast.info("Route Selected", {
@@ -39,7 +39,7 @@ function notificationsRecieved() {
       position: toast.POSITION.TOP_CENTER,
     });
   }
-}
+}*/
 
 class App extends Component {
   constructor(props) {
@@ -53,9 +53,9 @@ class App extends Component {
   };
 
   render() {
-    setInterval(() => {
+    /* setInterval(() => {
       notificationsRecieved();
-    }, 2000);
+    }, 2000);*/
     setTimeout(() => {
       if (this.state.render === 0)
         this.setState({
@@ -67,15 +67,13 @@ class App extends Component {
       window.performance.navigation.type == 1 &&
       window.location.href.charAt(window.location.href.length - 1) != "/"
     ) {
-      console.log("mongoi");
-      console.log(window.location.pathname);
       return (
         <Router>
           <Redirect to="/" />
         </Router>
       );
     }
-    console.log(window.location.href);
+
     if (this.state.render > 0)
       return (
         <Fragment>
@@ -83,7 +81,7 @@ class App extends Component {
             closeOnClick
             draggable={true}
             transition={Bounce}
-            autoClose={2000}
+            autoClose={3200}
           />
 
           <Router>
@@ -113,6 +111,7 @@ class App extends Component {
                   path="/creategroup"
                   component={CreateFriendGroupPage}
                 />
+                <Route exact path="/shareroute" component={ShareRoutePage} />
               </Switch>
             </Fragment>
           </Router>
@@ -121,7 +120,7 @@ class App extends Component {
     else {
       return (
         <Fragment>
-          <video id="viadegif" height="800" autoPlay muted>
+          <video id="viadegif" autoPlay muted>
             <source src="videos/ViaDe.mp4" type="video/mp4" />
           </video>
         </Fragment>

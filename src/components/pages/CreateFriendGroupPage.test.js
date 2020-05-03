@@ -8,5 +8,11 @@ Enzyme.configure({ adapter: new Adapter() });
 /////////////////////////
 
 test("CreateFriendGroupPage", () => {
+  var creategroup = mount(<CreateFriendGroupPage />);
+  expect(CreateFriendGroupPage).toBeDefined();
+});
+
+test("CreateFriendGroupPage state", () => {
+  var creategroup = mount(<CreateFriendGroupPage />);
   expect(CreateFriendGroupPage).toBeDefined();
 });
