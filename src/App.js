@@ -81,7 +81,7 @@ class App extends Component {
             closeOnClick
             draggable={true}
             transition={Bounce}
-            autoClose={2000}
+            autoClose={3200}
           />
 
           <Router>
@@ -120,7 +120,7 @@ class App extends Component {
     else {
       return (
         <Fragment>
-          <video id="viadegif" height="800" autoPlay muted>
+          <video id="viadegif" autoPlay muted>
             <source src="videos/ViaDe.mp4" type="video/mp4" />
           </video>
         </Fragment>

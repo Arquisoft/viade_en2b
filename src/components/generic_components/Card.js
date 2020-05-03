@@ -35,7 +35,7 @@ class CardLayout extends Component {
                 <Popup
                   trigger={<Icon name={this.props.iconName} />}
                   mouseEnterDelay={250}
-                  content="Show route in map"
+                  content={this.props.popupContent}
                   position="bottom center"
                 />
               </Link>
@@ -51,7 +51,7 @@ class CardLayout extends Component {
                 <Popup
                   trigger={<Icon name={this.props.externalIconName} />}
                   mouseEnterDelay={250}
-                  content="Contact email"
+                  content={this.props.externalPopupContent}
                   position="bottom center"
                 />
               </a>
@@ -65,7 +65,7 @@ class CardLayout extends Component {
                 <Popup
                   trigger={<Icon name={this.props.detailsIconName} />}
                   mouseEnterDelay={250}
-                  content="Shows the messages and multimedia of the route"
+                  content={this.props.detailsPopupContent}
                   position="bottom center"
                 />
               </Link>

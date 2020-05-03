@@ -1,7 +1,6 @@
 import GeoCoordinate from "../Entities/GeoCoordinate";
 import BasicRoute from "../Entities/BasicRoute";
 import * as CreateRoute from "./CreateRoute";
-import * as routecache from "caches/routeCache/RouteCache";
 
 export default {
   main() {
@@ -43,6 +42,7 @@ class RouteCreator {
       if (a.lat === coords.lat && a.lng === coords.lng) {
         aux = true;
       }
+      return 0;
     });
     return aux;
   }
@@ -89,11 +89,11 @@ async function main() {
       error,
       options
     );
-
+    
     await sleep(2000);
   }
   //navigator.geolocation.clearWatch(id);
-
+  
   //route.getRoute();
 }
 

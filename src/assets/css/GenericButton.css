@@ -17,6 +17,9 @@ button {
   font-weight: 700;
 
   color: var(--font-color);
+  
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down);
 
   -webkit-appearance: none;
   -webkit-font-smoothing: antialiased;

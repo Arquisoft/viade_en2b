@@ -2,21 +2,11 @@ import React from "react";
 import { LoggedIn, LoggedOut } from "@solid/react";
 import cache from "../../caches/routeCache/RouteCache";
 import * as friendCache from "caches/friendCache/FriendCache";
-import { ShareWith } from "ShareManager/ShareRoute";
-import { getNotificationDocuments } from "NotificationManager/NotificationManager";
-import {
-  retrieveSharedRoutes,
-  listAllURLShared,
-  sharedRoutesList,
-} from "ShareManager/RetrieveRoute";
-
 import data from "@solid/query-ldflex";
 import BurgerMenu from "../generic_components/BurgerMenu";
-import * as userprofile from "../../data-access/UserData";
 import * as folderCreator from "../../data-access/FileManager/FolderCreator";
 import "assets/css/Login.css";
 
-const $rdf = require("rdflib");
 const auth = require("solid-auth-client");
 
 class Login extends React.Component {

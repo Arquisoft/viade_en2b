@@ -5,7 +5,7 @@ import getKey from "ApiKey.js";
 import * as cache from "caches/routeCache/RouteCache";
 import CustomLoader from "components/generic_components/CustomLoader";
 
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import { toast } from "react-toastify";
 
 import ConfigCache from "caches/ConfigCache.js";
 
@@ -54,7 +54,7 @@ export class MapContainer extends React.Component {
       });
       route = ruta;
     } else if (route) {
-      var puntos = route.geoCoordinates;
+      puntos = route.geoCoordinates;
       puntos.forEach((punto) => {
         ruta.push({
           lat: parseFloat(punto.latitude),

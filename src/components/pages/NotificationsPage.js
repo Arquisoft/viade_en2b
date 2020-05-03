@@ -3,7 +3,6 @@ import "assets/css/NotificationsPage.css";
 import CustomLoader from "components/generic_components/CustomLoader";
 import BurgerMenu from "../generic_components/BurgerMenu";
 import { getNotificationDocuments } from "NotificationManager/NotificationManager";
-import cache from "caches/notificationCache/NotificationCache";
 class NotificationsPage extends React.Component {
   constructor(props) {
     super(props);
