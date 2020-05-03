@@ -49,7 +49,7 @@ class AboutPage extends React.Component {
       link: "mailto:UO258629@uniovi.es",
       numberOfFriends: ""
     }, {
-      image: 'images/developers/violeta.png',
+      image: 'images/developers/violeta.jpg',
       name: "Violeta",
       meta: "Back-end",
       description: "Violeta is the quietest member of the group, but she does the work she's got like anybody else. Mainly, this work has been route listing and some testing that you don't get to see. Maybe she's too busy thinking about the code to talk. Or could it be puppies?",
