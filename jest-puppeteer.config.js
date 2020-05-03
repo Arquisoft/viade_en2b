@@ -5,10 +5,10 @@ module.exports = {
     launchTimeout: 1000000,
     debug: true,
   },
-  /*
+  ///*
   launch: {
     headless: false,
     devtools: true,
   }
-  */
+  //*/
 };
