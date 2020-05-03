@@ -17,19 +17,15 @@ export async function sharedRoutesList(routesURL) {
   const sharedPath = routesURL;
   const url = await retrieveSharedRoutes(sharedPath);
 
-  console.log("ME PEGO UN TIRO");
-  console.log(url);
   let routes = [];
   let routes_routes = [];
   let routes_files = [];
   if (url) {
-    console.log("LENGTH OF URL : " + url);
     for (let i = 0; i < url.length; i++) {
       //now, retrieving the specific route from the different urls
       let urlRoute = url[i];
 
       let route = await loadSpecificUserRoutesFiles(urlRoute);
-      console.log(route);
 
       routes.push(route);
 
@@ -55,14 +51,17 @@ export async function retrieveSharedRoutes(sharedPath) {
   let routesJSONS = [];
   var urls_cache = JSON.parse(localStorage.getItem("urls"));
 
-  let content = await fc.readFolder(sharedPath).then().catch((err) => {
-    console.log('There was a problem reading '+sharedPath);
-    return ;
-  });
+  let content = await fc
+    .readFolder(sharedPath)
+    .then()
+    .catch((err) => {
+      console.log("There was a problem reading " + sharedPath);
+      return;
+    });
 
   try {
     let files = content.files;
-    console.log("LENGTH OF FILES : " + files.length);
+
     for (let i = 0; i < files.length; i++) {
       let fileContent = await fc.readFile(files[i].url);
       routesJSONS.push(fileContent);
@@ -72,11 +71,9 @@ export async function retrieveSharedRoutes(sharedPath) {
     //localStorage.setItem("urls", JSON.stringify(urls_cache));
     const url = jsonURLRetrieve(toJson(routesJSONS));
     return url;
-
-  } catch (error){
-    console.log('It could not be read the folder '+sharedPath);
+  } catch (error) {
+    console.log("It could not be read the folder " + sharedPath);
   }
-  
 }
 
 /**
@@ -114,7 +111,6 @@ function toJson(routes) {
   let jsonRoutes = [];
   for (let i = 0; i < routes.length; i++) {
     try {
-      console.log(routes);
       let route = JSON.parse(routes[i]);
       jsonRoutes.push(route);
     } catch (e) {

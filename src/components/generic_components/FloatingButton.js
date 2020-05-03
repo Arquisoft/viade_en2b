@@ -3,7 +3,6 @@ import {useHistory, Redirect} from "react-router-dom";
 import { Fab, Action } from 'react-tiny-fab';
 import 'react-tiny-fab/dist/styles.css';
 import * as RealTimeRoute from "../../RouteManager/CreateRouteRealTime";
-import RouteCache from "../../caches/routeCache/RouteCache";
 
 import { ToastContainer, toast, Bounce } from "react-toastify";
 
@@ -14,8 +13,7 @@ const FloatingButton = (props) => {
 let history = useHistory();
 const [recording,setRecording] = useState(false); 
 const startRecording = ()=>{
-    RouteCache.setSelected("");
-    toast.warning("Recording Route", {
+    toast.info("Route recording started", {
         draggable: true,
         position: toast.POSITION.TOP_CENTER
       });
@@ -24,7 +22,7 @@ const startRecording = ()=>{
     RealTimeRoute.default.main()
 }
  const  finishRecording = ()=>{
-     toast.warning("Recording Stop", {
+      toast.info("Route recording stopped", { 
         draggable: true,
         position: toast.POSITION.TOP_CENTER
       });
@@ -33,10 +31,6 @@ const startRecording = ()=>{
     RealTimeRoute.default.stop();
     //props.showSaveRoute();
     history.push('/saveroute')
-
-    
-    
-    
 }
 
    

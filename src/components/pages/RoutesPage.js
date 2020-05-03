@@ -114,12 +114,14 @@ class RoutesPage extends React.Component {
                             cache.default.setSelected(routes[index]);
                           }}
                           iconName="map"
+                          popupContent="Show on map"
                           detailsClassName="linkRoute"
                           detailsLink="/routes"
                           detailsAction={(e) => {
                             this.viewDetails(routes[index]);
                           }}
                           detailsIconName="info"
+                          detailsPopupContent="Show messages and multimedia"
                           shareIconName="share"
                           shareAction={(e) => {
                             cache.default.setSelectedToShare(item.url);
@@ -146,12 +148,14 @@ class RoutesPage extends React.Component {
                             cache.default.setSelected(sharedRoutes[index]);
                           }}
                           iconName="map"
+                          popupContent="Show on map"
                           detailsClassName="linkRoute"
                           detailsLink="/routes"
                           detailsAction={(e) => {
                             this.viewDetails(sharedRoutes[index]);
                           }}
                           detailsIconName="info"
+                          detailsPopupContent="Show messages and multimedia"
                         />
                       </div>
                     </li>
