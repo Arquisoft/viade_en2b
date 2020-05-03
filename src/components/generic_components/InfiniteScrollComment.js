@@ -11,6 +11,7 @@ class MyCommentInfiniteScroll extends React.Component {
     hasMore: true,
   };
 
+
   fetchMoreData = () => {
     // a fake async api call like which sends
     // 20 more records in 1.5 secs
@@ -24,20 +25,19 @@ class MyCommentInfiniteScroll extends React.Component {
         ),
         array_index: this.state.array_index + 20,
       });
-    }, 1000);
+    }, 100);
     if (this.props.content.length <= this.state.array_index) {
       this.setState({
         hasMore: false,
       });
     }
   };
-
-  render() {
-    
-    return (
+  
+  viewLoaded = (items) => {
+    return(
       <div>
         <InfiniteScroll
-          dataLength={this.state.items.length}
+          dataLength={items.length}
           next={this.fetchMoreData}
           hasMore={this.state.hasMore}
           loader={<h4>Loading...</h4>}
@@ -53,16 +53,16 @@ class MyCommentInfiniteScroll extends React.Component {
               rel="stylesheet"
               href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css"
             />
-            {this.state.items.map((i, index) => (
+            {items.map((i, index) => (
               <div className="commentsContainer" key={index}>
                 <Comment>
-                  <Comment.Avatar src={i.avatar} />
                   <Comment.Content>
-                    <Comment.Author as = 'span'>{i.author}</Comment.Author>
+                    <Comment.Author as = 'span'>{ i.jsonComment.author.substring(8, i.jsonComment.author.length - 1)
+                        .split('.')[0]}</Comment.Author>
                     <Comment.Metadata>
-                      <div>{i.date}</div>
+                      <div>{i.jsonComment.dateCreated}</div>
                     </Comment.Metadata>
-                    <Comment.Text>{i.comment}</Comment.Text>
+                    <Comment.Text>{i.jsonComment.text}</Comment.Text>
                   </Comment.Content>
                 </Comment>
               </div>
@@ -71,6 +71,14 @@ class MyCommentInfiniteScroll extends React.Component {
         </InfiniteScroll>
         <MyForm/>
       </div>
+    )
+  }
+
+  render() {
+    return (
+         <React.Fragment>
+          {this.viewLoaded(this.props.content)}
+        </React.Fragment>
     );
   }
 }

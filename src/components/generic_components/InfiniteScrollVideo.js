@@ -21,7 +21,7 @@ class MyVideoInfiniteScroll extends React.Component {
         ),
         array_index: this.state.array_index + 20,
       });
-    }, 1000);
+    }, 100);
     if (this.props.content.length <= this.state.array_index) {
       this.setState({
         hasMore: false,
