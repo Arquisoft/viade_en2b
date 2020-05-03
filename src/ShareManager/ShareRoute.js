@@ -57,8 +57,6 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
     //set permissions to read in the route
     setPermissionsTo("READ", route, profileFriend);
 
-
-
     //retrieving media of the route
     if (routeEntity !== null) {
       if (routeEntity.files !== null ) {
