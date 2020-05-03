@@ -61,8 +61,8 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
 
     //retrieving media of the route
     if (routeEntity !== null) {
-      if (routeEntity.files !== null) {
-        if (routeEntity.files[0] !== null) {
+      if (routeEntity.files !== null ) {
+        if (routeEntity.files[0] !== null && routeEntity.files[0] !== "undefined") {
           let media = routeEntity.files[0].files;
 
           if (media != "undefined" && media != null) {
