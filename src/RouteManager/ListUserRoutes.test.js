@@ -12,14 +12,12 @@ test("pod routes to json", () => {
   let route1 =
     "{\n" +
     '\t"name" : "Oviedo",\n' +
-    '\t"itinerary" :[\n' +
+    '\t"points" :[\n' +
     "\t\t{\n" +
-    '\t\t"@type" : "GeoCoordinates",\n' +
     '\t\t"latitude" : "45.6768",\n' +
     '\t\t"longitude" : "47.7665"\n' +
     "\t\t},\n" +
     "\t\t{\n" +
-    '\t\t"@type" : "GeoCoordinates",\n' +
     '\t\t"latitude" : "45.6768",\n' +
     '\t\t"longitude" : "47.7665"\n' +
     "\t\t}\n" +
@@ -28,14 +26,12 @@ test("pod routes to json", () => {
   let route2 =
     "{\n" +
     '\t"name" : "Gijon",\n' +
-    '\t"itinerary" : [\n' +
+    '\t"points" : [\n' +
     "\t\t{\n" +
-    '\t\t"@type" : "GeoCoordinates",\n' +
     '\t\t"latitude" : "85.6768",\n' +
     '\t\t"longitude" : "77.7665"\n' +
     "\t\t},\n" +
     "\t\t{\n" +
-    '\t\t"@type" : "GeoCoordinates",\n' +
     '\t\t"latitude" : "105.6768",\n' +
     '\t\t"longitude" : "127.7665"\n' +
     "\t\t}\n" +
@@ -44,14 +40,12 @@ test("pod routes to json", () => {
   let route3 =
     "{\n" +
     '\t"name" : "Avilés",\n' +
-    '\t"itinerary" : [\n' +
+    '\t"points" : [\n' +
     "\t\t{\n" +
-    '\t\t"@type" : "GeoCoordinates",\n' +
     '\t\t"latitude" : "85.6768",\n' +
     '\t\t"longitude" : "77.7665"\n' +
     "\t\t},\n" +
     "\t\t{\n" +
-    '\t\t"@type" : "GeoCoordinates",\n' +
     '\t\t"latitude" : "105.6768",\n' +
     '\t\t"longitude" : "127.7665"\n' +
     "\t\t}\n" +
@@ -65,25 +59,23 @@ test("pod routes to json", () => {
   expect(jsonRoutes).toBeDefined();
   expect(jsonRoutes.length).toEqual(3);
   expect(jsonRoutes[0].name).toEqual("Oviedo");
-  expect(jsonRoutes[0].itinerary).toBeDefined();
+  expect(jsonRoutes[0].points).toBeDefined();
   expect(jsonRoutes[1].name).toEqual("Gijon");
-  expect(jsonRoutes[1].itinerary).toBeDefined();
+  expect(jsonRoutes[1].points).toBeDefined();
   expect(jsonRoutes[2].name).toEqual("Avilés");
-  expect(jsonRoutes[2].itinerary).toBeDefined();
+  expect(jsonRoutes[2].points).toBeDefined();
 });
 
 test("routes json to entities", () => {
   let rL = new RoutesLoader();
   let route1 = {
     name: "Oviedo",
-    itinerary: [
+    points: [
       {
-        "@type": "GeoCoordinates",
         latitude: "45.6768",
         longitude: "47.7665",
       },
       {
-        "@type": "GeoCoordinates",
         latitude: "45.6768",
         longitude: "47.7665",
       },
@@ -91,14 +83,12 @@ test("routes json to entities", () => {
   };
   let route2 = {
     name: "Gijon",
-    itinerary: [
+    points: [
       {
-        "@type": "GeoCoordinates",
         latitude: "85.6768",
         longitude: "77.7665",
       },
       {
-        "@type": "GeoCoordinates",
         latitude: "105.6768",
         longitude: "127.7665",
       },
@@ -107,14 +97,12 @@ test("routes json to entities", () => {
 
   let route3 = {
     name: "Avilés",
-    itinerary: [
+    points: [
       {
-        "@type": "GeoCoordinates",
         latitude: "85.6768",
         longitude: "77.7665",
       },
       {
-        "@type": "GeoCoordinates",
         latitude: "105.6768",
         longitude: "127.7665",
       },
