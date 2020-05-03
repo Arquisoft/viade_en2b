@@ -206,7 +206,14 @@ export async function getNotificationURLS(inboxPath) {
  * @param {*} content
  */
 export async function postNotification(webIdFriend, content, uuid) {
-  var inbox = webIdFriend + "/viade/inbox/";
+  var inbox = "";
+  const lastElement = webIdFriend[webIdFriend.length-1];
+  if(lastElement === '/'){
+    console.log('FIXING THE PATH');
+    inbox = webIdFriend + "viade/inbox/";
+  }else{
+    inbox = webIdFriend + "/viade/inbox/";
+  }
 
   await request(
     {
