@@ -82,7 +82,14 @@ export async function GetSpecificName(profileCardMe) {
 
 }
 
-
+export async function GetSpecificEmail(profileCardMe){
+  const name = await data[profileCardMe].vcard_hasPhoto;
+  try{
+    return name.value;
+  } catch(TypeError){
+    console.log('A');
+  }
+}
 
 export async function GetSpecificWebId(webId) {
 

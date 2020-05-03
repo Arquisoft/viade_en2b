@@ -4,7 +4,7 @@ export default {
     return this.notifications;
   },
   setNotifications(result) {
-    this.notifications = result;
+    this.notifications.push(result);
   },
   clear() {
     this.notifications = [];

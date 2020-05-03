@@ -88,8 +88,12 @@ class Login extends React.Component {
         this.setState({ name: "Welcome, Guest" });
       } else this.setState({ name: "Welcome, " + name });
     });
+
     //Si sigue fallandote Andrés prueba a poner un await
-    this.createFolder();
+    //this.createFolder();
+
+    folderCreator.default.main();
+
   }
 
   async logout(e, auth) {
@@ -181,6 +185,8 @@ class Login extends React.Component {
               </LoggedOut>
               <LoggedIn>
                 <p>{this.state.name}</p>
+
+                
 
                 <button
                   className="login100-form-btn"

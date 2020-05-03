@@ -2,15 +2,17 @@ import File from "../Entities/File";
 import BasicRoute from "../Entities/BasicRoute";
 import RouteFile from "../Entities/RouteFile";
 
+const auth = require("solid-auth-client");
+const FC = require("solid-file-client");
+const fc = new FC(auth);
+
 export async function loadSpecificUserRoutesFiles(urlRoute) {
-  const auth = require("solid-auth-client");
-  const FC = require("solid-file-client");
-  const fc = new FC(auth);
+
   let routes = [];
 
   let routesFolder = urlRoute;
 
-  if (await fc.itemExists(urlRoute)) {
+  if (await fc.itemExists(urlRoute).then().catch((error) => { console.log('You have not being granted the permissions to read this route') })) {
     try {
       let fileContent = await fc.readFile(urlRoute);
       console.table(fileContent);
@@ -39,8 +41,8 @@ function routesToJson(routes) {
     } catch (e) {
       console.log(
         "Route " +
-          i +
-          " couldn't be transformed to json because the format is wrong"
+        i +
+        " couldn't be transformed to json because the format is wrong"
       );
     }
   }
@@ -74,13 +76,27 @@ function jsonToEntity(routes) {
   return { routes: entRoutes, files: entFiles };
 }
 
-function getMediaAttachedToRoute(route) {
-  let routeFile = new RouteFile(route.name, []);
-  for (let i = 0; i < route.media.length; i++) {
-    let path = route.media[i]["@id"];
-    let date = new Date(route.media[i]["dateTime"]);
-    let file = new File(path, date);
-    routeFile.addFilePath(file);
+
+export function getMediaAttachedToRoute(route, url) {
+  console.log('Inside media attached to route');
+
+
+  let routeFile = new RouteFile(url, []);
+  let media = route.media;
+  console.log(media);
+
+  if (media != null) {
+    for (let i = 0; i < route.media.length; i++) {
+      let path = route.media[i]["@id"];
+
+      if(fc.itemExists(path).then().catch((error) => console.log('You have no permissions to read the media files'))){
+        let date = new Date(route.media[i]["dateTime"]);
+        let file = new File(path, date);
+        routeFile.addFilePath(file);
+      }      
+    }
   }
+
   return routeFile;
 }
+
