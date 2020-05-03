@@ -23,10 +23,20 @@ export default class RoutesLoader {
         let routesFolder =
             session.webId.substring(0, session.webId.length - 16) + "/viade/routes/"; //"/public/Routes/";
 
-        if (await fc.itemExists(routesFolder)) {
-            try {
-                let content = await fc.readFolder(routesFolder);
+        //checking permissions to access routeFolder
+        await fc.itemExists(routesFolder).then().catch((err) => {
+            console.log('It looks like we can not access to the path '+routesFolder);
+            return ;
+        });
 
+        if (await fc.itemExists(routesFolder).then().catch((err) => {
+            console.log('It looks like we can not access to the path '+routesFolder);
+            return ;
+             })
+            ) {
+            try {
+
+                let content = await fc.readFolder(routesFolder);
                 let files = content.files;
 
                 for (let i = 0; i < files.length; i++) {
@@ -175,12 +185,17 @@ export default class RoutesLoader {
 
     getMediaAttachedToRoute(route, url) {
         let routeFile = new RouteFile(url, []);
-        for (let i = 0; i < route.media.length; i++) {
-            let path = route.media[i]["@id"];
-            let date = new Date(route.media[i]["dateTime"]);
-            let file = new File(path, date);
-            routeFile.addFilePath(file);
+        let media = route.media;
+
+        if (media != null){
+            for (let i = 0; i < route.media.length; i++) {
+                let path = route.media[i]["@id"];
+                let date = new Date(route.media[i]["dateTime"]);
+                let file = new File(path, date);
+                routeFile.addFilePath(file);
+            }
         }
+        
         return routeFile;
     }
 }
