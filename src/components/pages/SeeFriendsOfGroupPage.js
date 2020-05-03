@@ -2,10 +2,13 @@ import React from "react";
 import BurgerMenu from "../generic_components/BurgerMenu";
 import CardLayout from "../generic_components/Card";
 import CustomLoader from "components/generic_components/CustomLoader";
+import GenericButton from "components/generic_components/GenericButton";
 import * as cache from "caches/friendGroupCache/FriendGroupCache";
 import * as friendcache from "caches/friendCache/FriendCache";
+import friendmanager from "FriendGroupManager/FriendGroupManager";
 import { HashRouter as Router, Link } from "react-router-dom";
 import "../../assets/css/FriendListCache.css";
+import data from "@solid/query-ldflex";
 var friends = [];
 class FriendGroupsPage extends React.Component {
   constructor(props) {
@@ -19,7 +22,9 @@ class FriendGroupsPage extends React.Component {
 
   componentDidMount() {
     friends = friendcache.default.getFriends();
-
+    console.log("Asdasdas");
+    console.log(friends);
+    console.log("Asdasdas");
     cache.default.getGroupSelected(this.handleSession).then((group) => {
       this.setState({ loading: false, group: group });
     });
@@ -30,6 +35,7 @@ class FriendGroupsPage extends React.Component {
   };
 
   viewLoaded = (group) => {
+    console.log(group);
     return (
       <div className="bodyFriends" id="outer-container">
         <main>
@@ -45,6 +51,8 @@ class FriendGroupsPage extends React.Component {
               <h1>List of Members of Group:</h1>
               <ul className="listgroups">
                 {friends.map((item, index) => {
+                  console.log(friends);
+                  console.log(group.some((i) => i.name === item.name));
                   if (group.some((i) => i.url === item.webIdString)) {
                     return (
                       <li id={"group" + index} key={index} className="liCard">
@@ -54,7 +62,6 @@ class FriendGroupsPage extends React.Component {
                           description={item.webIdString}
                           externalLink={item.webIdString}
                           externalIconName="user"
-                          externalPopupContent="Go to profile"
                         />
                       </li>
                     );

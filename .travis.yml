@@ -3,7 +3,7 @@ node_js:
   - 12.14.0
 cache:
   directories:
-    - node_modules
+  - node_modules
 before_install:
   - sudo apt-get update
   - sudo apt-get -y install ruby openjdk-8-jre

@@ -22,16 +22,16 @@ class BurgerMenu extends Component {
         <nav className="bm-item-list">
           <h2 className="bm-item" tabIndex="0">
             <img className="fa fa-fw fa-2x" src="ViaDe.png"></img>
-            <span> ViaDe</span>
+            <span> ViAde</span>
           </h2>
           <Router>
             <Link id="home" className="menu-item" to="/">
-              <i className="fa fa-fw fas fa-map"></i>
+              <i className="fa fa-fw fas fa-home"></i>
               <span>Home</span>
             </Link>
 
             <Link id="add-route" className="menu-item" to="/notifications">
-              <i className="fa fa-fw far fa-bell"></i>
+              <i className="fa fa-fw far fa-map"></i>
               <span>Notifications</span>
             </Link>
 
@@ -41,13 +41,13 @@ class BurgerMenu extends Component {
             </Link>
 
             <Link id="list-friends" className="menu-item" to="/friends-list">
-              <i className="fa fa-fw fas fa-user"></i>
+              <i className="fa fa-fw fas fa-users"></i>
               <span>List Friends</span>
             </Link>
 
             <Link id="groups-friends" className="menu-item" to="/groups">
-              <i className="fa fa-fw fas fa-users"></i>
-              <span>Friend Groups</span>
+              <i className="fa fa fa-plus-circle"></i>
+              <span>Groups Friends</span>
             </Link>
 
             <Link id="gpx" className="menu-item" to="/gpx">
@@ -58,6 +58,16 @@ class BurgerMenu extends Component {
             <Link id="about" className="menu-item" to="/about">
               <i className="fa fa-fw fas fa-info-circle"></i>
               <span>About</span>
+            </Link>
+
+            <Link id="contact" className="menu-item" to="/">
+              <i className="fa fa-fw fas far fa-address-card"></i>
+              <span>Contact</span>
+            </Link>
+
+            <Link id="settings" className="menu-item" to="/">
+              <i className="fa fa-fw fas fa-cog"></i>
+              <span>Settings</span>
             </Link>
 
             <ThemeSwitch />
