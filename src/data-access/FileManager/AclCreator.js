@@ -7,6 +7,7 @@ const fileClient = new SolidFileClient(auth, { enableLogging: true });
 
 
 export async function createContentAcl(url, nameResource) {
+  
   let withoutSpaces = nameResource.trim();
   let resource = withoutSpaces+ "";  
 
