@@ -4,3 +4,30 @@
 == Deployment View
 
 **TBD**
+
+@startuml
+node "Mobile Phone" as android {
+    node "Web app" as app {
+        node "Proprietary code" as owncode
+        node "SOLID library" as solidlib
+    }
+}
+node "Web browser" as browser {
+    node "Web app" as webapp {
+        node "Proprietary code" as owncode2
+        node "SOLID library" as solidlib2
+    }
+}
+database poddb [
+    <b>Pods server</b>
+    ----
+    
+]
+cloud "Maps API" as map
+owncode --> solidlib
+owncode2 --> solidlib2
+solidlib --> poddb : read/write
+solidlib2 --> poddb : read/write
+owncode --> map
+owncode2 --> map
+@enduml
