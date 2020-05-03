@@ -49,7 +49,7 @@ export async function sharedRoutesList(routesURL) {
  */
 
 export async function retrieveSharedRoutes(sharedPath) {
-  console.log('BBBBBBBBBBBBBBBBBB');
+  console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
   console.log(sharedPath);
   let routesJSONS = [];
   var urls_cache = JSON.parse(localStorage.getItem("urls"));
@@ -64,6 +64,8 @@ export async function retrieveSharedRoutes(sharedPath) {
 
   try {
     let files = content.files;
+    console.log(files);
+    console.log(files.length);
 
     for (let i = 0; i < files.length; i++) {
       console.log(files[i].url);
