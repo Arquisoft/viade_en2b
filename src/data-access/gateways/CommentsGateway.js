@@ -1,7 +1,6 @@
 import AddComment from "../../CommentsManager/AddComment"
 import CreateCommentsFile from "../../CommentsManager/CreateCommentsFile"
 import LoadRouteComments from "../../CommentsManager/GetComments"
-import {dateCreated} from "rdf-namespaces/dist/schema";
 
 export async function createCommentsFile(routeName,callback){
         let commentFileCreator = new CreateCommentsFile();

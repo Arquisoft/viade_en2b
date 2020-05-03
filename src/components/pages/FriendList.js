@@ -26,6 +26,7 @@ const FriendsPage = () => {
                       description={item.webIdString}
                       externalLink={item.webIdString}
                       externalIconName="user"
+                      externalPopupContent="Go to profile"
                       numberOfFriends={item.numberOfFriends}
                     />
                   </li>

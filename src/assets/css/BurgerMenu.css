@@ -32,6 +32,11 @@
   width: 24px;
 }
 
+/* Disabling shadows for clickable cross button */
+.bm-cross-button button {
+  box-shadow: none;
+}
+
 /* Color/shape of close button cross */
 .bm-cross {
   background: var(--font-color);
