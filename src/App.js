@@ -121,8 +121,8 @@ class App extends Component {
     else {
       return (
         <Fragment>
-          <video id="viadegif" height="800" autoPlay muted>
-            <source src="videos/ViaDe.mp4" type="video/mp4" />
+          <video id="viadegif" autoPlay muted>
+            <source src="https://arquisoft.github.io/viade_en2b/videos/ViaDe.mp4" type="video/mp4" />
           </video>
         </Fragment>
       );

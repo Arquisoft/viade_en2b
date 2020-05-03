@@ -180,8 +180,11 @@ ul {
   margin-right: auto;
 }
 
-.viadegif {
-  margin: auto;
+#viadegif {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
   object-fit: fill;
 }
 
