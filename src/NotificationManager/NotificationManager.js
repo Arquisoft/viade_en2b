@@ -2,7 +2,6 @@ import { fetchDocument } from "tripledoc";
 import { ldp } from "rdf-namespaces";
 import Notification from "Entities/Notification";
 import { GetSpecificName, GetSpecificWebId } from "data-access/UserData";
-import SolidFileClient from "solid-file-client";
 
 import cache from "caches/notificationCache/NotificationCache";
 
