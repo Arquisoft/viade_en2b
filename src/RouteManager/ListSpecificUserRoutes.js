@@ -14,7 +14,8 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
 
   if (await fc.itemExists(urlRoute).then().catch((error) => { console.log('You have not being granted the permissions to read this route') })) {
     try {       
-      let fileContent = await fc.readFile(urlRoute);  
+      let fileContent = await fc.readFile(urlRoute); 
+      console.log(urlRoute); 
       urls.push(urlRoute);
       routes.push(fileContent);
 
@@ -28,7 +29,7 @@ export async function loadSpecificUserRoutesFiles(urlRoute) {
     console.log("user has no routes directory");
   }
 
-  let rou = jsonToEntity(routesToJson(routes,urls));
+  let rou = jsonToEntity(routesToJson(routes,urls), urls);
   localStorage.setItem("urls", JSON.stringify(urls));
 
   return rou;
@@ -56,22 +57,29 @@ function jsonToEntity(routes, urls) {
   let entRoutes = [];
   let entFiles = [];
   console.table(routes);
+
   for (let i = 0; i < routes.length; i++) {
     try {
+      console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
       console.log(routes[i]);
       let name = routes[i].name;
+      console.log(name);
       let it = routes[i].points;
+      console.log(it);
       let desc = routes[i].description;
+      console.log(desc);
       let comUrl;
       if (routes[i].hasOwnProperty("comments")) {
         if (routes[i].comments != undefined) {
           comUrl = routes[i].comments;
+          console.log(routes[i].comments);
         } else {
           comUrl = "";
         }
       } else {
         comUrl = "";
       }
+
       let route = new BasicRoute(name, it, desc);
       route.commentsUrl = comUrl;
       route.setUrl(urls[i]);
@@ -80,6 +88,8 @@ function jsonToEntity(routes, urls) {
       console.log("Route " + route.name + " was created succesfully");
 
       if (routes[i].media) {
+        console.log('CCCCCCCCCCCCCCCC');
+        console.log(routes[i].media);
         entFiles.push(getMediaAttachedToRoute(routes[i], urls[i]));
       }
     } catch (e) {
