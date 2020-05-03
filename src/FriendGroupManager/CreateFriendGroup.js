@@ -1,8 +1,7 @@
 import SolidFileClient from "solid-file-client";
 import * as cache from "caches/friendGroupCache/FriendGroupCache";
 import {
-  createContentAcl,
-  createContentAclInbox,
+  createContentAclMedia
 } from "data-access/FileManager/AclCreator";
 
 const auth = require("solid-auth-client");
@@ -34,7 +33,7 @@ export default {
     });
 
     this.updateFile(group_folder, file, file.type);
-    createContentAcl(group_folder, groupname);
+    createContentAclMedia(group_folder, groupname);
     /* var updateGroups = cache.default.getGroups(this.empty());
     updateGroups.push(JSON.parse(group));
     cache.default.setGroups(updateGroups);*/
