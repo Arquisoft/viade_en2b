@@ -9,42 +9,42 @@ import routeCache from "../routeCache/RouteCache";
 export default {
   filePaths: [],
   async uploadFiles(files) {
-    let route = routeCache.getSelected();
+    let route = await routeCache.getSelected();
     try {
-      let found = this.filePaths.find((rf) => rf.routePath === route.name);
+      let found = this.filePaths.find((rf) => rf.routePath === route.url);
+      console.log(found);
       if (found) {
-        uploadFiles(found.routePath, files).then((paths) =>
-          paths.forEach((path) => {
-            try {
-              found.addFilePath(path);
-            } catch (err) {}
-          })
-        );
+        uploadFiles(found.routePath, files);
       } else {
-        let filesMap = new RouteFile(route.name, []);
+        let filesMap = new RouteFile(route.url, []);
         this.filePaths = [...this.filePaths, filesMap];
 
-        uploadFiles(filesMap.routePath, files).then((paths) =>
-          paths.forEach((path) => filesMap.addFilePath(path))
-        );
+        uploadFiles(filesMap.routePath, files);
       }
     } catch (err) {
       console.log(err.message);
     }
   },
   addFilePaths(routeFiles) {
-    this.filePaths = [...routeFiles];
+    routeFiles.forEach(routeFile => {
+      if(!this.filePaths.find(rf => rf.routePath === routeFile.routePath)) {
+        this.filePaths.push(routeFile);
+      }
+    })
   },
   async removeFile(route, path) {
     this.filePaths.forEach((rf) => {
-      if (rf.routePath === route.name && rf.hasPath(path)) {
+      if (rf.routePath === route.url && rf.hasPath(path)) {
         rf.removeFilePath(path);
       }
     });
     await removeFileAttached(route, path);
   },
   getFilePathsForRoute(route) {
-    let routeFile = this.filePaths.find((rf) => rf.routePath === route.name);
+    console.log(route)
+    console.log(this.filePaths)
+    let routeFile = this.filePaths.find((rf) => rf.routePath === route.url);
+    console.log(routeFile)
     return routeFile ? [...routeFile.files] : [];
   },
 };

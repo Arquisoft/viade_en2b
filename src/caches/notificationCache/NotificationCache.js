@@ -1,15 +1,12 @@
-
-
 export default {
-  notifications: [], 
+  notifications: [],
   async getNotifications(callback) {
-    if (this.routes.length !== 0) {
-      return this.notifications;
-    }
-    
+    return this.notifications;
   },
-  
+  setNotifications(result) {
+    this.notifications.push(result);
+  },
   clear() {
     this.notifications = [];
-  }
+  },
 };
