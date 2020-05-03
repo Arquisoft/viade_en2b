@@ -28,7 +28,9 @@ export const uploadFiles = async (fileList) => {
       buildPath,
       file,
       file.type || mime.getType(file.name)
-    );
+    ).then(() => {
+      return buildPath;
+    });
   });
   return Promise.all(promises).catch((err) => {
     handleFetchError(err);
