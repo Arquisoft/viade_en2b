@@ -5,8 +5,7 @@ export default class LoadRouteComments {
     let comments = [];
     if (route) {
       let commentsJson = await this.loadCommentsJson(route, callback);
-      console.log("Json comments file:" + JSON.stringify(commentsJson));
-      console.log(commentsJson.comments);
+
       if (commentsJson.comments) {
         comments = this.parseJsonToEntity(route, commentsJson.comments);
       }

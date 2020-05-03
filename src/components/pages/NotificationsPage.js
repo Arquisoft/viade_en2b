@@ -43,7 +43,6 @@ class NotificationsPage extends React.Component {
             <section className="sectionComments">
               <ul className="listComment">
                 {notifications.map((item, index) => {
-                  console.log(item);
                   return (
                     <li
                       id={"comment" + index}
