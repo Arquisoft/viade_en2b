@@ -17,7 +17,6 @@ export async function sharedRoutesList(routesURL) {
   
   const sharedPath = routesURL;
   const url = await retrieveSharedRoutes(sharedPath);
-  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
 
   console.log(url);
   let routes = [];
@@ -51,8 +50,6 @@ export async function sharedRoutesList(routesURL) {
  */
 
 export async function retrieveSharedRoutes(sharedPath) {
-  console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
-  console.log(sharedPath);
   let routesJSONS = [];
   let urlsToReturn = [];
   var urls_cache = JSON.parse(localStorage.getItem("urls"));
@@ -73,15 +70,23 @@ export async function retrieveSharedRoutes(sharedPath) {
 
     for (let i = 0; i < files.length; i++) {
       console.log('WE ARE INSIDE EACH FILE OF SHARED ROUTES')
-      console.log('HERE IS WHAT YOU  WANT');
+      console.log('HERE IS WHAT YOU WANT');
       console.log(files[i].url);
       let fileContent = await fc.readFile(files[i].url);
       
       routesJSONS.push(fileContent);
       //urls_cache.push(files[i].url);
+      console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+      console.log(files[i].url);
       const url = jsonURLRetrieve(toJson(fileContent));
-      console.log(url);
-      urlsToReturn.push(url);
+      console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
+      for(let i = 0; i< url.length; i++){
+        console.log(i);
+        console.log(url[i]);
+        urlsToReturn.push(url[i]);
+      }
+      console.log(urlsToReturn);
+      
     }
 
     //localStorage.setItem("urls", JSON.stringify(urls_cache));
