@@ -72,18 +72,27 @@ export async function retrieveSharedRoutes(sharedPath) {
     console.log(files.length);
 
     for (let i = 0; i < files.length; i++) {
-      console.log(files[i].url);
       console.log('WE ARE INSIDE EACH FILE OF SHARED ROUTES')
+      console.log('HERE IS WHAT YOU  WANT');
+      console.log(files[i].url);
       let fileContent = await fc.readFile(files[i].url);
+      
       routesJSONS.push(fileContent);
       //urls_cache.push(files[i].url);
       const url = jsonURLRetrieve(toJson(fileContent));
+      console.log(url);
       urlsToReturn.push(url);
     }
 
     //localStorage.setItem("urls", JSON.stringify(urls_cache));
     
+    //return urlsToReturn;
+    const url = jsonURLRetrieve(toJson(routesJSONS));
+    console.log('FINAL RESULT');
+    console.log(url);
+    console.log(urlsToReturn);
     return urlsToReturn;
+
   } catch (error) {
     console.log("It could not be read the folder " + sharedPath);
   }
@@ -98,15 +107,24 @@ function jsonURLRetrieve(routes) {
   let routesShared = [];
   let routesURL = [];
 
+  console.log('IM SURE HERE');
+  console.log(routes);
   for (let i = 0; i < routes.length; i++) {
     try {
+      
       let routesRetrieved = routes[i].routes;
+      console.log('Routes retrieved');
+      console.log(routesRetrieved);
+
       for (let i = 0; i < routesRetrieved.length; i++) {
+        console.log(routesRetrieved[i]);
         const routeURL = routesRetrieved[i]["@id"];
+        console.log('Undefined?');
+        console.log(routeURL);
         routesURL.push(routeURL);
       }
 
-      routesShared.push(routes[i].routes);
+      routesShared.push(routes[i]);
       return routesURL;
     } catch (e) {
       // console.log(
@@ -119,23 +137,28 @@ function jsonURLRetrieve(routes) {
   //return { routes: entRoutes, files: entFiles };
 }
 
+//lo hace bien
 function toJson(routes) {
   console.log('HERE IS THE PROBLEM MAYBE');
   console.log("Inside toJson");
+  console.log(routes);
   let jsonRoutes = [];
-  for (let i = 0; i < routes.length; i++) {
+ // for (let i = 0; i < routes.length; i++) {
+   let routeA = "";
     try {
-      let route = JSON.parse(routes[i]);
+      routeA = routes; //routes[i]
+      console.log(routeA);
+      let route = JSON.parse(routeA);
       console.log(route);
       jsonRoutes.push(route);
     } catch (e) {
-      //console.log(
-      //  "Route " +
-      //    i +
-      //    " couldn't be transformed to json because the format is wrong"
-      //);
+      console.log(
+        "Route " +
+        routeA+
+          " couldn't be transformed to json because the format is wrong"
+      );
     }
-  }
+  //}
   console.log(jsonRoutes);
   return jsonRoutes;
 }
