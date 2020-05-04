@@ -170,6 +170,5 @@ Users receive notifications when an user posts a comment in one of their routes 
 ....
 NotificationPage -> NotificationManager : getNotificationDocuments(inboxPath,webId)
 NotificationManager --> NotificationPage : return notifications
-
 .... 
 
