@@ -3,31 +3,50 @@
 
 == Deployment View
 
-**TBD**
+The deployment is fairly simple, as our application was designed as a web app. When accessing the web page via any modern browser, be it desktop or phone, the react app with our code gets loaded into memory, and checks if you are already logged onto any SOLID service. If you are, your data will automatically be downloaded from that server using HTTP GET requests to your profile URI.
 
+When in the main page, the app also asks the Google Maps API for a map to display to the user, customized to our own style. When the user makes any modification to their data, an HTTP POST request is sent to the appropriate pod. For example, when sharing a route, the appropriate POST request is done to the destination pod, different from the users (and possibly in a different server).
+
+[plantuml, deployment-diagram, png]
+....
 @startuml
-node "Mobile Phone" as android {
+node "Mobile Phone Browser" as android {
     node "Web app" as app {
         node "Proprietary code" as owncode
         node "SOLID library" as solidlib
     }
 }
-node "Web browser" as browser {
+node "Desktop web browser" as browser {
     node "Web app" as webapp {
         node "Proprietary code" as owncode2
         node "SOLID library" as solidlib2
     }
 }
-database poddb [
-    <b>Pods server</b>
+database poddb0 [
+    <b>Solid community</b>
     ----
-    
+    Pod server
 ]
-cloud "Maps API" as map
+database poddb1 [
+    <b>Inrupt server</b>
+    ----
+    Pod server
+]
+database poddb2 [
+    <b>Generic server</b>
+    ----
+    Pod server
+]
+cloud "Google Maps API" as map
 owncode --> solidlib
 owncode2 --> solidlib2
-solidlib --> poddb : read/write
-solidlib2 --> poddb : read/write
-owncode --> map
+solidlib --> poddb0 : HTTP GET
+solidlib --> poddb1
+solidlib2 --> poddb1
+solidlib --> poddb2
+solidlib2 --> poddb2 : HTTP POST
+
+owncode --> map :"      HTTP GET"
 owncode2 --> map
 @enduml
+....

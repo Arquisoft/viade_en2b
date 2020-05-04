@@ -22,7 +22,7 @@ This module and component-oriented design will make the division of the developm
 === Decisions on how to achieve quality goals
 
 * **Agile methodology**. The team set on developing with an agile methodology in mind: use of kanban, use of issues to enhance communication, division of tasks in small and doable user stories, and giving feedback to each other when possible (connecting to previous point).
-* **Heavy testing**. Test-driven development and behaviour driven development are a must to achieve any form of quality. When creating user stories, as many testing scenarios as possible will accompany them to ensure what the new functionality must achieve and what it should not do. This will lose time when creating the functionalities, but it will help the agility of the development in the long run.
+* **Testing**. Test-driven development and behaviour driven development are a must to achieve any form of quality. When creating user stories, as many testing scenarios as possible will accompany them to ensure what the new functionality must achieve and what it should not do. This will lose time when creating the functionalities, but it will help the agility of the development in the long run.
 * **Coordination and communication**. The team will coordinate itself through discussing as much as possible every problem or idea, as well as giving feedback in pull requests and issues in development.
 
 === Organizational decisions
