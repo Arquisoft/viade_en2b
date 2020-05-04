@@ -7,6 +7,7 @@
     --font-size: 20px;
     
     --primary-color: #509A50;
+    --primary-color-darker: #417E41;
     --secondary-color: #54C054;
     
     --font-color: #686868;
@@ -16,10 +17,13 @@
     --icon-color: var(--primary-color);
     --icon-color-hover: var(--secondary-color);
     
+    --bg-color-highlight: #F4F4F4;
     --bg-color: #ebebeb;
     --bg-color-pressed: #d4d4d4;
     
-    --input-bg-color: #f6f6f6;
+    --color-border: #dfdfdf;
+    
+    --input-bg-color: #F9F9F9;
     
     --heading-color: #292922;
     
@@ -35,8 +39,11 @@
     --font-color-placeholder: #A0A0A0;
     --font-color-hover: var(--font-color);
     
+    --bg-color-highlight: #3D3D3D;
     --bg-color: #3F3F3F;
     --bg-color-pressed: #2A2A2A;
+    
+    --color-border: #323232;
     
     --input-bg-color: #555555;
     
@@ -92,12 +99,12 @@ a:hover {
 }
 
 /*---------------------------------------------*/
-h1,h2,h3,h4,h5,h6,p {
+h1,h2,h3,h4,h5,h6,p,label {
   color: var(--font-color);
 	margin: 0px;
 }
 
-p {
+p,label {
   font-size: var(--font-size);
 }
 
@@ -106,11 +113,29 @@ ul, li {
 	list-style-type: none;
 }
 
+img {
+  color: var(--font-color-placeholder);
+}
 
 /*---------------------------------------------*/
-input {
+input, textarea {
 	outline: none;
 	border: none;
+  
+  color: var(--font-color);
+  background-color: var(--input-bg-color);
+  
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+
+  margin-bottom: 12px;
+  
+  /* border: var(--font-color) 1px solid; */
+  border-radius: var(--border-radius);
+  
+  box-shadow:  var(--box-shadow-up),
+                var(--box-shadow-down);
 }
 
 textarea {
@@ -121,8 +146,6 @@ textarea {
 textarea:focus, input:focus {
   border-color: transparent !important;
 }
-
-
 
 /* Has fewer columns in mobile, min width 250px*/ 
 ul {
@@ -157,10 +180,37 @@ ul {
   margin-right: auto;
 }
 
-.viadegif {
-  margin: auto;
+#viadegif {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
   object-fit: fill;
 }
+
+/*---------------------------------------------*/
+
+.Toastify__toast {
+  border-radius: 10px !important;
+}
+
+.Toastify__toast--info {
+  background: var(--primary-color) !important;
+}
+
+.Toastify__toast--info:hover {
+  background: var(--primary-color-darker) !important;
+}
+
+.Toastify__close-button {
+  box-shadow: none;
+}
+
+.Toastify__close-button:hover {
+  color: white !important;
+}
+
+/*---------------------------------------------*/
 
 input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; }

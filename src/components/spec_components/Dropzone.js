@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "../../assets/css/Dropzone.css";
 import MultimediaViewer from "./MultimediaViewer";
 
-import cache from "caches/fileCache/FileCache";
 import GenericButton from "../generic_components/GenericButton";
 
 class Dropzone extends Component {
@@ -111,15 +110,15 @@ class Dropzone extends Component {
             className="Icon"
             src="baseline-cloud_upload-24px.svg"
           />
-          <span>Upload Files</span>
+          <a>Upload file</a>
         </div>
         <MultimediaViewer files={this.state.files} />
         <form>
           <GenericButton
-            className="submitUpload"
-            value="Upload Archives"
+            className="submitUpload buttonGeneric"
+            value="Upload file"
             onClick={this.onUpload}
-            message="Upload Archives"
+            message="Upload file"
           />
         </form>
       </React.Fragment>

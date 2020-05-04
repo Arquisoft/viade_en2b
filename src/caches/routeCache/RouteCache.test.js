@@ -114,15 +114,15 @@ test("select a route not in the cache nor in the pod", () => {
   expect(RouteCache.selected).toBeFalsy();
 });
 
-test("get the selected route when none is selected", () => {
-  let found = RouteCache.getSelected();
+test("get the selected route when none is selected", async () => {
+  let found = await RouteCache.getSelected();
   expect(found).toBeFalsy();
 });
 
-test("get the non-null selected route", () => {
+test("get the non-null selected route", async () => {
   RouteCache.addRoute(dummyRoute1);
   RouteCache.setSelected(dummyRoute1);
-  let cachedRoute = RouteCache.getSelected();
+  let cachedRoute = await RouteCache.getSelected();
 
   expect(cachedRoute).toEqual(dummyRoute1);
 });

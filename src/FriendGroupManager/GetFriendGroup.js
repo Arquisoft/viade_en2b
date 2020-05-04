@@ -1,4 +1,8 @@
 import cache from "caches/friendGroupCache/FriendGroupCache";
+import {
+  createContentAclMedia
+} from "data-access/FileManager/AclCreator";
+
 export default {
   async getUserGroupFriends(callback) {
     const auth = require("solid-auth-client");
@@ -15,13 +19,26 @@ export default {
     let group_folder =
       session.webId.substring(0, session.webId.length - 16) + "/viade/groups/"; //"/public/groups/";
 
-    if (await fc.itemExists(group_folder)) {
+    if (
+      await fc
+        .itemExists(group_folder)
+        .then()
+        .catch((error) => {
+          console.log("There was a problem reading the folder " + group_folder);
+          return false;
+        })
+    ) {
       try {
+        //check acl and if not add it
+        
         let content = await fc.readFolder(group_folder);
-
         let files = content.files;
 
         for (let i = 0; i < files.length; i++) {
+          const ur = files[i].url;
+          const name = ur.split("/");
+          const finalName = name[name.length - 1 ];
+          checkAclOrCreateMedia(files[i].url, finalName);
           let fileContent = await fc.readFile(files[i].url);
           groups.push(fileContent);
         }
@@ -47,3 +64,20 @@ export default {
     return groupsfinal;
   },
 };
+
+function checkAclOrCreateMedia(url, mediaName) {
+  const auth = require("solid-auth-client");
+  const FC = require("solid-file-client");
+  const fc = new FC(auth);
+
+  if (
+    !fc
+      .itemExists(url)
+      .then()
+      .catch((error) => {
+        return;
+      })
+  ) {
+    createContentAclMedia(url, mediaName);
+  }
+}

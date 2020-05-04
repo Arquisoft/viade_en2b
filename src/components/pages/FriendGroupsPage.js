@@ -2,14 +2,10 @@ import React from "react";
 import BurgerMenu from "../generic_components/BurgerMenu";
 import CardLayout from "../generic_components/Card";
 import CustomLoader from "components/generic_components/CustomLoader";
-import GenericButton from "components/generic_components/GenericButton";
 import * as cache from "caches/friendGroupCache/FriendGroupCache";
-import friendmanager from "FriendGroupManager/FriendGroupManager";
 import { HashRouter as Router, Link } from "react-router-dom";
 import "../../assets/css/FriendListCache.css";
-import data from "@solid/query-ldflex";
 
-var friends = [];
 class FriendGroupsPage extends React.Component {
   constructor(props) {
     super(props);
@@ -43,7 +39,6 @@ class FriendGroupsPage extends React.Component {
   };
 
   viewLoaded = (groups) => {
-    console.log(groups);
     return (
       <div className="bodyFriends" id="outer-container">
         <main>
@@ -68,7 +63,8 @@ class FriendGroupsPage extends React.Component {
                         action={(e) => {
                           this.selectDetails(e, groups[index]);
                         }}
-                        iconName="map"
+                        iconName="users"
+                        popupContent="View group members"
                       />
                     </li>
                   );

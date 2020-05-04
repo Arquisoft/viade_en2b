@@ -33,8 +33,6 @@ class CreateFriendGroupPage extends React.Component {
     friendsToGroup = friendsToGroup.filter((item) => item.url !== friendWebId);
     if (friendsToGroup.length == length)
       friendsToGroup.push({ url: friendWebId });
-
-    console.log(friendsToGroup);
   }
   getFriendsToGroup() {
     return friendsToGroup;
@@ -42,7 +40,6 @@ class CreateFriendGroupPage extends React.Component {
 
   nameToGroup(name) {
     this.setState({ nameGroup: name.target.value });
-    console.log(this.state.nameGroup);
   }
 
   viewLoaded = (friends) => {
@@ -83,7 +80,7 @@ class CreateFriendGroupPage extends React.Component {
                   </ul>
                 </section>
                 <section className="saveSection">
-                  <label for="textInput">Group Name</label>
+                  <label htmlFor="textInput">Group Name</label>
                   <br />
                   <input
                     className="textInput"

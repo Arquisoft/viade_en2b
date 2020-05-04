@@ -20,6 +20,7 @@ class ThemeSwitch extends Component {
         <label className="switch">
           <input className="theme-switch"
             type="checkbox"
+            defaultChecked={ConfigCache.dark}
             onClick={toggleTheme}
           />
           <span className="slider round"></span>
