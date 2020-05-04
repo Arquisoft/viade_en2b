@@ -7,7 +7,7 @@ The deployment is fairly simple, as our application was designed as a web app. W
 
 When in the main page, the app also asks the Google Maps API for a map to display to the user, customized to our own style. When the user makes any modification to their data, an HTTP POST request is sent to the appropriate pod. For example, when sharing a route, the appropriate POST request is done to the destination pod, different from the users (and possibly in a different server).
 
-[plantuml, diagram-sequence, png]
+[plantuml, deployment-diagram, png]
 ....
 @startuml
 node "Mobile Phone Browser" as android {
