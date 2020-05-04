@@ -140,7 +140,7 @@ class RoutesPage extends React.Component {
                       <div className="routeListElementContainter">
                         <CardLayout
                           header={item.name}
-                          image="images/daddy.png"
+                          image="images/daddy.jpg"
                           link="/"
                           className="linkRoute"
                           description={item.description}
