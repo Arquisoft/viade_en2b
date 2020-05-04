@@ -14,9 +14,11 @@ const fc = new FC(auth);
  * for example "https://testingclrmrnd.inrupt.net/viade/shared/"
  */
 export async function sharedRoutesList(routesURL) {
+  
   const sharedPath = routesURL;
   const url = await retrieveSharedRoutes(sharedPath);
   console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+
   console.log(url);
   let routes = [];
   let routes_routes = [];
@@ -52,6 +54,7 @@ export async function retrieveSharedRoutes(sharedPath) {
   console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
   console.log(sharedPath);
   let routesJSONS = [];
+  let urlsToReturn = [];
   var urls_cache = JSON.parse(localStorage.getItem("urls"));
 
   let content = await fc
@@ -64,19 +67,23 @@ export async function retrieveSharedRoutes(sharedPath) {
 
   try {
     let files = content.files;
+    console.log('FILES');
     console.log(files);
     console.log(files.length);
 
     for (let i = 0; i < files.length; i++) {
       console.log(files[i].url);
+      console.log('WE ARE INSIDE EACH FILE OF SHARED ROUTES')
       let fileContent = await fc.readFile(files[i].url);
       routesJSONS.push(fileContent);
       //urls_cache.push(files[i].url);
+      const url = jsonURLRetrieve(toJson(fileContent));
+      urlsToReturn.push(url);
     }
 
     //localStorage.setItem("urls", JSON.stringify(urls_cache));
-    const url = jsonURLRetrieve(toJson(routesJSONS));
-    return url;
+    
+    return urlsToReturn;
   } catch (error) {
     console.log("It could not be read the folder " + sharedPath);
   }
@@ -113,11 +120,13 @@ function jsonURLRetrieve(routes) {
 }
 
 function toJson(routes) {
+  console.log('HERE IS THE PROBLEM MAYBE');
   console.log("Inside toJson");
   let jsonRoutes = [];
   for (let i = 0; i < routes.length; i++) {
     try {
       let route = JSON.parse(routes[i]);
+      console.log(route);
       jsonRoutes.push(route);
     } catch (e) {
       //console.log(
@@ -127,5 +136,6 @@ function toJson(routes) {
       //);
     }
   }
+  console.log(jsonRoutes);
   return jsonRoutes;
 }
