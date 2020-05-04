@@ -1,8 +1,7 @@
 import SolidFileClient from "solid-file-client";
 import * as cache from "caches/friendGroupCache/FriendGroupCache";
 import {
-  createContentAcl,
-  createContentAclInbox,
+  createContentAclMedia
 } from "data-access/FileManager/AclCreator";
 
 const auth = require("solid-auth-client");
@@ -22,7 +21,7 @@ export default {
     let session = await auth.currentSession();
     let new_id = this.create_UUID();
 
-    let namefile = groupname + " " + new_id + ".jsonld";
+    let namefile = groupname + new_id + ".jsonld";
     let group_folder =
       session.webId.substring(0, session.webId.length - 16) +
       "/viade/groups/" +
@@ -34,7 +33,7 @@ export default {
     });
 
     this.updateFile(group_folder, file, file.type);
-    createContentAcl(group_folder, groupname);
+    createContentAclMedia(group_folder, namefile);
     /* var updateGroups = cache.default.getGroups(this.empty());
     updateGroups.push(JSON.parse(group));
     cache.default.setGroups(updateGroups);*/

@@ -16,7 +16,8 @@ const fc = new FC(auth);
 export async function sharedRoutesList(routesURL) {
   const sharedPath = routesURL;
   const url = await retrieveSharedRoutes(sharedPath);
-
+  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+  console.log(url);
   let routes = [];
   let routes_routes = [];
   let routes_files = [];
@@ -48,6 +49,8 @@ export async function sharedRoutesList(routesURL) {
  */
 
 export async function retrieveSharedRoutes(sharedPath) {
+  console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
+  console.log(sharedPath);
   let routesJSONS = [];
   var urls_cache = JSON.parse(localStorage.getItem("urls"));
 
@@ -61,8 +64,11 @@ export async function retrieveSharedRoutes(sharedPath) {
 
   try {
     let files = content.files;
+    console.log(files);
+    console.log(files.length);
 
     for (let i = 0; i < files.length; i++) {
+      console.log(files[i].url);
       let fileContent = await fc.readFile(files[i].url);
       routesJSONS.push(fileContent);
       //urls_cache.push(files[i].url);
