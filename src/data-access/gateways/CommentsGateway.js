@@ -40,9 +40,4 @@ export async function postCommentInRoute(routeComUrl, comment, callback) {
                 }
         }
 
-
-
-
-
-
 }
