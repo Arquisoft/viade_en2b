@@ -20,7 +20,7 @@ class MyTab extends React.Component {
   panes = () => {
     return [
       {
-        menuItem: "Comentarios",
+        menuItem: "Comments",
         pane: {
           key: "tabComentarios",
           content: (
@@ -38,7 +38,7 @@ class MyTab extends React.Component {
         },
       },
       {
-        menuItem: "Imagenes",
+        menuItem: "Images",
         pane: {
           key: "tabImagenes",
           content: (
