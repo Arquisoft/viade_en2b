@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "comments": { "@container": "@list", "@id": "viade:comments" },
+    "description": { "@id": "schema:description", "@type": "xs:string" },
+    "media": { "@container": "@list", "@id": "viade:media" },
+    "name": { "@id": "schema:name", "@type": "xs:string" },
+    "points": { "@container": "@list", "@id": "viade:points" },
+    "latitude": { "@id": "schema:latitude", "@type": "xs:double" },
+    "longitude": { "@id": "schema:longitude", "@type": "xs:double" },
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "http://schema.org/",
+    "viade": "http://arquisoft.github.io/viadeSpec/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "name": "RibadesellaCosta",
+  "description": "Costa de ribadesella",
+  "points": [
+    { "latitude": 43.46829890208012, "longitude": -5.083322525024414 },
+    { "latitude": 43.473034654300356, "longitude": -5.085554122924805 },
+    { "latitude": 43.47415622547562, "longitude": -5.094051361083984 },
+    { "latitude": 43.47297234418028, "longitude": -5.103235244750977 },
+    { "latitude": 43.47421853437505, "longitude": -5.109930038452148 },
+    { "latitude": 43.47720928599532, "longitude": -5.118513107299805 },
+    { "latitude": 43.48219354309532, "longitude": -5.124006271362305 },
+    { "latitude": 43.48107212109665, "longitude": -5.129499435424805 }
+  ],
+  "comments": "https://migi.solid.community/viade/comments/RibadesellaCostaComments.jsonld"
+}
