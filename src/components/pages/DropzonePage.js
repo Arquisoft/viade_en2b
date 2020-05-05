@@ -3,7 +3,7 @@ import Dropzone from "../spec_components/Dropzone";
 import "../../assets/css/DropzonePage.css";
 import cache from "caches/fileCache/FileCache";
 import routeCache from "caches/routeCache/RouteCache";
-
+import { ToastContainer, toast, Bounce } from "react-toastify";
 class DropzonePage extends Component {
   componentWillMount() {
     document.addEventListener("mousedown", this.handleClick, false);
@@ -22,7 +22,10 @@ class DropzonePage extends Component {
     function toDo(params) {
       //EJEMPLO DE FUNCIÓN PARA PASARLE AL onUpload
       cache.uploadFiles([...params]);
-
+      toast.info("Upload files correctly to the route", {
+        draggable: true,
+        position: toast.POSITION.TOP_CENTER,
+      });
       routeCache.setReload(true);
     }
     function emptyTrigger() {

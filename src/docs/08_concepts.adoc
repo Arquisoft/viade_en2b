@@ -5,14 +5,18 @@
 As this project does not have a properly said database(using sql for example) we will use the pods as the database storing the different data as files with a the format decided as the standard, which in the lasts weeks at least regarding both groups of our lab is storing data in jsonld file in the pod.
 
 .Architecture
-Right now our project has a more or less layered architecture as we tried to divide the project in the presentation layer and logic layer having an intemidiate layer to interact between the two.
+Our project was intended to have a more or less layered architecture dividing the funcionalities in layers, we used gateways for accessing data, intermidiate classes for linking the gateways and the presentation layer.
 
 .Technical decisions
 As the project advanced we decided several things that affected the project in one way or another here are some decisions that we made.
 
-* Decide to use jsonld as the file to save the data.
-* Decide to create a route in real time while the user is doing it as all the team members
+* We decided to use jsonld as the file to save the data as the first suggestions in the viade_spec were more inclined to do this.
+* We decided to create a route in real time while the user is doing it as all the team members
 decided that it makes sense to do it this way.
+* We decided to prioritize funcionalities over testing in general as we thougt that we had no time to do all that we´d like to do.
+* We decided to leave behind the initial idea of using react native for a phone app due to not having enough time to develop 2 different versions of the app and meeting the funcional objectives.
+* We decided to follow the idea of accepting GPX files in the app as other groups did the same as this offers another grade of interoperability.
+* When the turtle discussion rose in the viade_spec we decided to stay with the viade_spec initial idea of using jsonld for the data stored in the pods.
 
 .Modules and libraries
 We used several modules/libraries that made several of the funcionalities possible and without them it would have been impossible for us to develop them, some of the libraries/modules are listed and explained next.
