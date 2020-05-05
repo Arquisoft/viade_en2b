@@ -4,6 +4,7 @@ import CardLayout from "../generic_components/Card";
 import * as cache from "caches/friendCache/FriendCache";
 import * as routecache from "caches/routeCache/RouteCache";
 import { ShareWith } from "ShareManager/ShareRoute";
+import { toast } from "react-toastify";
 import "../../assets/css/FriendList.css";
 
 var friends = [];
@@ -31,6 +32,13 @@ const ShareRoutePage = () => {
                       shareIconName="share"
                       shareAction={(e) => {
                         e.preventDefault();
+                        toast.info(
+                         "Route successfully shared with " + item.name,
+                         {
+                           draggable: true,
+                           position: toast.POSITION.TOP_CENTER,
+                         }
+                       );
                         ShareWith(
                           routecache.default.getSelectedToShare(),
                           item.webIdString,

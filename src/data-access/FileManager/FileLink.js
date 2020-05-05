@@ -15,7 +15,6 @@ export const checkLinkableRoute = async (routeName) => {
 }
 
 export const linkFilesToRoute = async (fileUris, routeName) => {
-
   let fileClient = new SolidFileClient(auth, { enableLogging: true });
   let session = await auth.currentSession();
   let storageRoot = session.webId.split("profile")[0];
@@ -33,7 +32,6 @@ export const linkFilesToRoute = async (fileUris, routeName) => {
         if (!route.media) {
           route.media = [];
         }
-
         fileUris.forEach((fileUri) => {
           route.media.push({ "@id": fileUri, dateTime: attachementDate });         
         });

@@ -21,12 +21,12 @@ const request = require("request");
 export async function getNotificationDocuments(inboxPath, webIdAuthor) {
   var inbox = inboxPath;
 
-  var containerDoc = await fetchDocument(inbox).then().catch((err) => {
-    console.log('Error');
-    return;
-  });
-
-
+  var containerDoc = await fetchDocument(inbox)
+    .then()
+    .catch((err) => {
+      console.log("Error");
+      return;
+    });
 
   //if the document exists
   if (containerDoc) {
@@ -48,20 +48,22 @@ export async function getNotificationDocuments(inboxPath, webIdAuthor) {
           //From here get typeNotification && author && path
           const summary = subject.getString(ns.as("summary"));
 
-
           //Processing the summary information
 
-          let notification = await processNotificationInfo(url, summary, webIdAuthor);
-          result.push(notification);          
+          let notification = await processNotificationInfo(
+            url,
+            summary,
+            webIdAuthor
+          );
+          result.push(notification);
           deleteNotification(notification.urlNotification);
-
         }
       } catch (e) {
         console.log("Error");
       }
     }
     cache.setNotifications(result);
-    console.log(cache.getNotifications());
+
     // localStorage.setItem("notifications", JSON.stringify(result));
     return result;
   }
@@ -127,7 +129,7 @@ async function addToSharedFolder(notification, myWebId) {
       .itemExists(path)
       .catch(Error)
       .then(console.log("ERROR"));
-    console.log(exists);
+
     if (!exists) {
       createFileShared(path, notification);
     } else {
@@ -206,11 +208,10 @@ export async function getNotificationURLS(inboxPath) {
  */
 export async function postNotification(webIdFriend, content, uuid) {
   var inbox = "";
-  const lastElement = webIdFriend[webIdFriend.length-1];
-  if(lastElement === '/'){
-    console.log('FIXING THE PATH');
+  const lastElement = webIdFriend[webIdFriend.length - 1];
+  if (lastElement === "/") {
     inbox = webIdFriend + "viade/inbox/";
-  }else{
+  } else {
     inbox = webIdFriend + "/viade/inbox/";
   }
 
@@ -309,6 +310,6 @@ export async function deleteNotification(url) {
         alert(error);
       }
     }
-    console.log('You are trying to delete something that is null')
+    console.log("You are trying to delete something that is null");
   }
 }

@@ -28,16 +28,16 @@ class ImportGpxPage extends React.Component {
       //Function To Trigger
     }
     return (
-      <div className="wrapper">
-       <BurgerMenu pageWrapId="wrapper" container="gpxPage"/>
-      <div ref={node => this.node = node } className="gpxPage">
-        
-       
-        <div className="GpxZone">
-          <Dropzone hideUpload={() => {}} onUpload={toDo} onFilesAdded={emptyTrigger} /> 
+      <div className="bodyGpx">
+       <BurgerMenu pageWrapId="page-wrap" container="gpxPage"/>
+         <div className="App gpx" id="page-wrap">
+          <div ref={node => this.node = node } className="gpxCard">
+          
+            <div className="GpxZone">
+              <Dropzone hideUpload={() => {}} onUpload={toDo} onFilesAdded={emptyTrigger} /> 
+            </div>
+          </div>
         </div>
-    
-      </div>
       </div>
     )
   }

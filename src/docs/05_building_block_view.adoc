@@ -1,5 +1,4 @@
 [[section-building-block-view]]
-
 == Building Block View
 
 === Whitebox Overall System
@@ -62,6 +61,8 @@ To note: there's only one instance of each cache present in the application, thu
 ** **Module _configCache_**: This cache only stores the chosen interface mode (light/dark mode), to pass the state between views. It does not make petitions or receive data from the Data Access Layer, as it does not need to.
 ** **Module _fileCache_**: Stores and makes petitions related to files that a user has attached to routes. It communicates with the route cache to receive or give information about the files of a route.
 ** **Module _routeCache_**: Stores and makes petitions regarding routes stored in a user's POD. It communicates with the file cache to receive or give information about the files attached to its routes.
+** **Module _notificationCache_**: Controls the notifications sent to the user, saves them and appropiately treats them.
+** **Module _friendGrouopCache_**: This cache simply manages the groups of friends and caches them.
 
 * **Directory/File location**: `viade_en2b/src/caches`.
 
@@ -69,13 +70,29 @@ To note: there's only one instance of each cache present in the application, thu
 
 image:05_BuildingBlocks-Level 2 - Data.svg["Data access layer structure"]
 
-* **Purpose/Responsibility**: Retrieve and save data from the authenticated user's Pod related to the functionalities of the application. This layer will receive information by the control layer and make use of web standards to move the needed data accordingly.
+* **Purpose/Responsibility**: Retrieve and save data from the authenticated user's Pod related to the functionalities of the application. This layer will receive information by the control layer and make use of web standards to move the needed data accordingly. Inside the black box "Managers" are all the managers dealing with the access to Solid data, explained below.
 
 * **Contained Building Blocks**:
 ** **Module _gateways_**: As its name says, it contains gateways that bar the passing of data between the control layer and the other submodules in the data access layer; this gateways will redirect the petitions to the correspondent submodules.
 ** **Module _FileManager_**: Module that interacts with the files the user has attached to the routes in the POD.
 ** **Module _RouteManager_**: Module that deals with the creation, updating, deletion and listing of routes in the user's POD.
 ** **Module _FriendManager_**: Module that deals with the Solid friends of the user interacting with the application.
+** **Module _FriendGroupManager_**: Module that deals with the groups of Solid friends created within the application.
+** **Module _NotificationManager_**: Module that deals with the notifications sent and received to the POD from the app by the user.
+** **Module _ShareManager_**: Module that deals with the sharing options of the application and distributes the data accordingly in the user's POD.
 
 
-* **Directory/File location**: `viade_en2b/src/data-access`.
+* **Directory/File location**: `viade_en2b/src/data-access` and `viade_en2b/src`.
+
+
+[options="header",cols="1,2"]
+|===
+|Symbol|Explanation
+| image:05_BuildingBlocks-Legend-User["User"] | A user using the application.
+| image:05_BuildingBlocks-Legend-WhiteBox.svg["Whitebox"] | A whitebox module. It is a module that does not encapsulate any other notable modules inside it.
+| image:05_BuildingBlocks-Legend-BlackBox.svg["Blackbox"] | A blackbox module. It is a module that contains inside other modules that need to be explained in detail.
+| image:05_BuildingBlocks-Legend-Association.svg["Association"] | Association between two modules indicating that a part of a module directly access other part of other module.
+| image:05_BuildingBlocks-Legend-Dependency.svg["Dependency"] | Association between two modules indicating that an access to any module is not direct and may be done through external-to-the-application modules.
+| image:05_BuildingBlocks-Legend-POD.svg["POD"] | A Solid POD of a user.
+| image:05_BuildingBlocks-Legend-Module.svg["Module"] | A high-level module encapsulating more notable modules inside it. It is composed of whitebox and blackbox modules. A high-level module represents in detail a blackbox module in a higher level.
+|===

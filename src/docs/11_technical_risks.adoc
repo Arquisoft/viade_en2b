@@ -19,13 +19,14 @@ We also faced several difficulties that translated as technical debts:
 |===
 2+^|Technical debts
 s|Code debts s|Description
+|Code obfuscation|Once the project grew, the code became more and more obfuscated to the point that editing some part of a functionality broke both the app and the tests.
+|Coupled design|Related to the previous issue, all the modules related depend too much on each other and difficult working on the code.
 ||
 s|Design debts s|Description
 |React Native|The project was initially thought to be developed in both React and React Native. But it was later decided, after much investigation and thought put into it, that it was not going to be possible to provide both applications, so the team sticked to the web application.
 ||
 s|Test debts s|Description
 |Jest|The team had to inadvertently learn how to work with the Jest library and a couple of other testing utilities to be able to test the project being developed.
-|Cucumber|The team also had to learn to create scenario testing using Cucumber, Jest and Pupeteer.
-||
-s|Documentation debts s|Description
+|Cucumber|The team also had to learn to create scenario testing using Cucumber, Jest and Puppeteer.
+|Load test|Although much hours were put into trying make Gatling work with the Docker containers of the Node Solid Server and the application, it was ultimately not possible to do it in time.
 |===

@@ -35,15 +35,9 @@ class RoutesPage extends React.Component {
         var path =
           session.webId.substring(0, session.webId.length - 16) +
           "/viade/shared/";
-        sharedRoutesList(path).then((rutas) => {
+        sharedRoutesList(path).then(() => {
           cache.default.getSharedRoutes().then((routes) => {
-            /*var fullroutes = this.state.routes;
-            console.table("FULLROUYTES");
-            console.table(fullroutes);
-            fullroutes = [...fullroutes, ...routes];
-            console.table("FULLROUYTES");
-            console.table(fullroutes);
-  */
+            console.log(routes)
             this.setState({ loading: false, sharedRoutes: routes });
           });
         });
@@ -77,6 +71,7 @@ class RoutesPage extends React.Component {
   };
 
   viewLoaded = (routes, sharedRoutes) => {
+    console.log(sharedRoutes)
     let filteredRoutes = routes.filter((ruta) => {
       return (
         ruta.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
@@ -111,7 +106,7 @@ class RoutesPage extends React.Component {
                       <div className="routeListElementContainter">
                         <CardLayout
                           header={item.name}
-                          image="images/daddy.png"
+                          image="images/daddy.jpg"
                           link="/"
                           className="linkRoute"
                           description={item.description}
@@ -119,12 +114,14 @@ class RoutesPage extends React.Component {
                             cache.default.setSelected(routes[index]);
                           }}
                           iconName="map"
+                          popupContent="Show on map"
                           detailsClassName="linkRoute"
                           detailsLink="/routes"
                           detailsAction={(e) => {
                             this.viewDetails(routes[index]);
                           }}
                           detailsIconName="info"
+                          detailsPopupContent="Show messages and multimedia"
                           shareIconName="share"
                           shareAction={(e) => {
                             cache.default.setSelectedToShare(item.url);
@@ -143,7 +140,7 @@ class RoutesPage extends React.Component {
                       <div className="routeListElementContainter">
                         <CardLayout
                           header={item.name}
-                          image="images/daddy.png"
+                          image="images/daddy.jpg"
                           link="/"
                           className="linkRoute"
                           description={item.description}
@@ -151,12 +148,14 @@ class RoutesPage extends React.Component {
                             cache.default.setSelected(sharedRoutes[index]);
                           }}
                           iconName="map"
+                          popupContent="Show on map"
                           detailsClassName="linkRoute"
                           detailsLink="/routes"
                           detailsAction={(e) => {
                             this.viewDetails(sharedRoutes[index]);
                           }}
                           detailsIconName="info"
+                          detailsPopupContent="Show messages and multimedia"
                         />
                       </div>
                     </li>

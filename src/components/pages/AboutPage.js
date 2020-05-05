@@ -21,7 +21,7 @@ class AboutPage extends React.Component {
   viewLoaded() {
     let developers = [
     {
-      image: 'images/developers/andres.png',
+      image: 'images/developers/andres.jpg',
       name: "Andrés",
       meta: "Back-end",
       description: "Andrés pretty much carried the team through the early parts of thinking about implementing SOLID. He's the one that focused the most on following the specifications we had to, and reprimanded us when we were straying from the righteous path. Also, he had the idea for the logo. It's a good logo.",
@@ -31,7 +31,7 @@ class AboutPage extends React.Component {
       image: 'images/developers/fernando.jpg',
       name: "Fernando",
       meta: "UI & UX designer",
-      description: "Fernando has programmed in 15+ different programming languages. He has yet to make something useful. In the repo, he's somehow deleted more than 25,000 lines of code, and added around 12,000. At least the app's pretty, he thinks.",
+      description: "Fernando has programmed in 15+ different programming languages. He has yet to make something useful. In the repo, he's somehow deleted more than 30,000 lines of code, and added around 17,000. At least the app's pretty, he thinks.",
       link: "mailto:UO266754@uniovi.es",
       numberOfFriends: ""
     }, {
@@ -49,14 +49,14 @@ class AboutPage extends React.Component {
       link: "mailto:UO258629@uniovi.es",
       numberOfFriends: ""
     }, {
-      image: 'images/developers/violeta.png',
+      image: 'images/developers/violeta.jpg',
       name: "Violeta",
       meta: "Back-end",
       description: "Violeta is the quietest member of the group, but she does the work she's got like anybody else. Mainly, this work has been route listing and some testing that you don't get to see. Maybe she's too busy thinking about the code to talk. Or could it be puppies?",
       link: "mailto:UO258454@uniovi.es",
       numberOfFriends: ""
     }, {
-      image: 'images/developers/clara.png',
+      image: 'images/developers/clara.jpg',
       name: "Clara",
       meta: "Back-end",
       description: "Clara is the one to thank for when you're logging in, sharing your routes or commenting on other people's shared routes. Basically, thank her if you have any friends using this app with you.",
@@ -82,10 +82,11 @@ class AboutPage extends React.Component {
           <header className="bodyHeader"></header>
           <section className="sectionViade">
             <h2>ViaDe</h2>
-            <p>Do you walk? Run? Bike? With ViaDe, you'll be able to create, manage, and share routes you take with your friends! Login credentials and data retrieval is done using Solid, an industry-leading technology backed by the creator of the World Wide Web himself, Tim Berners-Lee.</p>
+            <p>Do you walk? Run? Bike? With ViaDe, you'll be able to create, manage, and share routes you take with your friends! Login credentials and data storage and retrieval is done using Solid, an industry-leading technology backed by the creator of the World Wide Web himself, Tim Berners-Lee.</p>
             <p>En2B is a group of Computer Engineering students from Asturias, Spain. We're really excited to bring the world our web application, made with lots of effort and love.</p>
           </section>
           <section className="sectionDevelopers">
+            <h2> The team </h2>
             <ul className = "developerContainer">
             {developers.map((item, index)=>{
                    return (
@@ -97,6 +98,7 @@ class AboutPage extends React.Component {
                        description = {item.description}
                        externalLink = {item.link}
                        externalIconName='mail'
+                       externalPopupContent="Contact email"
                        />
                      </li>
                    );

@@ -14,16 +14,14 @@ const fc = new FC(auth);
  * for example "https://testingclrmrnd.inrupt.net/viade/shared/"
  */
 export async function sharedRoutesList(routesURL) {
+
   const sharedPath = routesURL;
   const url = await retrieveSharedRoutes(sharedPath);
 
-  console.log("ME PEGO UN TIRO");
-  console.log(url);
   let routes = [];
   let routes_routes = [];
   let routes_files = [];
   if (url) {
-    console.log("LENGTH OF URL : " + url);
     for (let i = 0; i < url.length; i++) {
       //now, retrieving the specific route from the different urls
       let urlRoute = url[i];
@@ -32,8 +30,8 @@ export async function sharedRoutesList(routesURL) {
 
       routes.push(route);
 
-      routes_routes.push(route.routes[0]);
-      routes_files.push(route.files[0]);
+      routes_routes = [...routes_routes, ...route.routes];
+      routes_files = [...routes_files, ...route.files];
     }
     console.table(routes_routes);
     filecache.default.addFilePaths(routes_files);
@@ -52,30 +50,40 @@ export async function sharedRoutesList(routesURL) {
 
 export async function retrieveSharedRoutes(sharedPath) {
   let routesJSONS = [];
+  let urlsToReturn = [];
   var urls_cache = JSON.parse(localStorage.getItem("urls"));
 
-  let content = await fc.readFolder(sharedPath).then().catch((err) => {
-    console.log('There was a problem reading '+sharedPath);
-    return ;
-  });
+  let content = await fc
+    .readFolder(sharedPath)
+    .then()
+    .catch((err) => {
+      console.log("There was a problem reading " + sharedPath);
+      return;
+    });
 
   try {
     let files = content.files;
-    console.log("LENGTH OF FILES : " + files.length);
+
     for (let i = 0; i < files.length; i++) {
       let fileContent = await fc.readFile(files[i].url);
+
       routesJSONS.push(fileContent);
-      //urls_cache.push(files[i].url);
+      const url = jsonURLRetrieve(toJson(fileContent));
+      for (let i = 0; i < url.length; i++) {
+        urlsToReturn.push(url[i]);
+      }
+
     }
 
     //localStorage.setItem("urls", JSON.stringify(urls_cache));
-    const url = jsonURLRetrieve(toJson(routesJSONS));
-    return url;
 
-  } catch (error){
-    console.log('It could not be read the folder '+sharedPath);
+    //return urlsToReturn;
+    const url = jsonURLRetrieve(toJson(routesJSONS));
+    return urlsToReturn;
+
+  } catch (error) {
+    console.log("It could not be read the folder " + sharedPath);
   }
-  
 }
 
 /**
@@ -89,13 +97,15 @@ function jsonURLRetrieve(routes) {
 
   for (let i = 0; i < routes.length; i++) {
     try {
+
       let routesRetrieved = routes[i].routes;
+
       for (let i = 0; i < routesRetrieved.length; i++) {
         const routeURL = routesRetrieved[i]["@id"];
         routesURL.push(routeURL);
       }
 
-      routesShared.push(routes[i].routes);
+      routesShared.push(routes[i]);
       return routesURL;
     } catch (e) {
       // console.log(
@@ -108,21 +118,22 @@ function jsonURLRetrieve(routes) {
   //return { routes: entRoutes, files: entFiles };
 }
 
+//lo hace bien
 function toJson(routes) {
-  console.log("Inside toJson");
   let jsonRoutes = [];
-  for (let i = 0; i < routes.length; i++) {
-    try {
-      console.log(routes);
-      let route = JSON.parse(routes[i]);
-      jsonRoutes.push(route);
-    } catch (e) {
-      //console.log(
-      //  "Route " +
-      //    i +
-      //    " couldn't be transformed to json because the format is wrong"
-      //);
-    }
+  // for (let i = 0; i < routes.length; i++) {
+  let routeA = "";
+  try {
+    routeA = routes; //routes[i]
+    let route = JSON.parse(routeA);
+    jsonRoutes.push(route);
+  } catch (e) {
+    console.log(
+      "Route " +
+      routeA +
+      " couldn't be transformed to json because the format is wrong"
+    );
   }
+  //}
   return jsonRoutes;
 }
