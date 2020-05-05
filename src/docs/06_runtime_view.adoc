@@ -55,7 +55,7 @@ The users are capable of sharing a route that has been previously added with the
 RoutesList -> RoutesCache :  setSelected(route)
 RoutesList -> RoutesList : <<selects share button and selects user>>
 RoutesList -> ShareRoute : ShareWith(user,loggedUser,shareWithUser) 
-ShareWith -> << shares routes, sets permissions and generates notification >>
+ShareWith -> : << shares routes, sets permissions and generates notification >>
 ShareRoute -> RoutesList : return created
 ....
 
@@ -170,6 +170,5 @@ Users receive notifications when an user posts a comment in one of their routes 
 ....
 NotificationPage -> NotificationManager : getNotificationDocuments(inboxPath,webId)
 NotificationManager --> NotificationPage : return notifications
-
 .... 
 
