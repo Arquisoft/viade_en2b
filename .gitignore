@@ -34,3 +34,5 @@ yarn-error.log*
 
 
 *.json
+
+node-solid-server
