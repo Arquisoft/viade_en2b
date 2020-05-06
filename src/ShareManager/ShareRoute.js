@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { setPermissionsTo, checkPermissions, setPermissionsForEditor } from "util/PermissionManager";
 import {
   createNotificationSummary,
@@ -11,6 +12,8 @@ import {
   createContentAclMedia,
   createContentAclComments
 } from "data-access/FileManager/AclCreator";
+
+
 /**
  * Function that allows a user to share a route with a friend.
  * Provides READ permissions to the friend over the route of the user autenticated,
@@ -35,30 +38,15 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
   const routeAtt = route.split("/");
   const routeName = routeAtt[routeAtt.length - 1];
 
-  //send notification to other user inbox
-  const summary = createNotificationSummary(
-    webIdAuthor,
-    route,
-    webIdFriend,
-    new Date()
-  );
-  const uuid = uuidv4();
-
-  const contenido = createNotificationContent(
-    "Announce",
-    "ROUTE",
-    webIdFriend,
-    summary.toString(),
-    new Date(),
-    uuid
-  );
 
   //creating an acl if necessary;
+  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAA');
   checkAclOrCreate(route, routeName);
 
   //check if it's already shared (you have to check and set permissions to the /profile/card#me)
   const shared = await checkPermissions("READ", profileFriend, route);
   if (!shared) {
+
     //set permissions to read in the route
     setPermissionsTo("READ", route, profileFriend);
 
@@ -87,6 +75,7 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
         }
       }
     }
+    
 
     //retrieving url of the comments
     const urlComments = webIdAuthor + 'viade/comments/' + routeName;
@@ -115,8 +104,8 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
       webIdFriend,
       new Date()
     );
-    const uuid = uuidv4();
 
+    const uuid = uuidv4();
     const contenido = createNotificationContent(
       "Announce",
       "ROUTE",
@@ -130,18 +119,40 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
       postNotification(webIdFriend, contenido, uuid)
         .then()
         .catch((error) =>
-          console.log(
-            "It seems that the other user has not an inbox with the proper specifications"
+
+
+          toast.error(
+            "The user " + webIdFriend + " do not have an inbox with the correct specifications",
+            {
+              draggable: true,
+              position: toast.POSITION.TOP_CENTER,
+            }
           )
+
+
         );
 
       return true;
     } catch (e) {
-      console.log("There was an error");
+
+      toast.error(
+        "We could not post the notification in the other user's inbox",
+        {
+          draggable: true,
+          position: toast.POSITION.TOP_CENTER,
+        }
+      )
+
       return false;
     }
   } else {
-    console.log("The route was already shared.");
+    toast.warn(
+      "This route was already shared",
+      {
+        draggable: true,
+        position: toast.POSITION.TOP_CENTER,
+      }
+    )
     return false;
   }
 }

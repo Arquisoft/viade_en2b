@@ -32,18 +32,14 @@ const ShareRoutePage = () => {
                       shareIconName="share"
                       shareAction={(e) => {
                         e.preventDefault();
-                        toast.info(
-                         "Route successfully shared with " + item.name,
-                         {
-                           draggable: true,
-                           position: toast.POSITION.TOP_CENTER,
-                         }
-                       );
+
                         ShareWith(
                           routecache.default.getSelectedToShare(),
                           item.webIdString,
                           session.webId
                         );
+
+
                       }}
                     />
                   </li>
