@@ -17,12 +17,17 @@ class NotificationsPage extends React.Component {
   componentDidMount() {
     var session = JSON.parse(localStorage.getItem("session"));
 
-    var webIdAuthor = session.webId.substring(0, session.webId.length - 16);
-    var inbox = webIdAuthor + "/viade/inbox/";
+    if (session != null) {
+      var webIdAuthor = session.webId.substring(0, session.webId.length - 16);
+      var inbox = webIdAuthor + "/viade/inbox/";
 
-    getNotificationDocuments(inbox, webIdAuthor).then((notifications) => {
-      this.setState({ loading: false, notifications: notifications });
-    });
+      getNotificationDocuments(inbox, webIdAuthor).then((notifications) => {
+        this.setState({ loading: false, notifications: notifications });
+      });
+    } else{
+      console.log('There is no session');
+    }
+
   }
 
   viewLoaded = (notifications) => {
