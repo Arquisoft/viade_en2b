@@ -2,14 +2,13 @@
   padding-top: 60px;
 }
 
-.sectionFriends{
+.sectionFriends {
   margin: 25px;
   padding: 20px;
-  
+
   border-radius: var(--border-radius);
-  
+
   background: var(--bg-color);
-  
-  box-shadow:  var(--box-shadow-up),
-                var(--box-shadow-down);
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down);
 }
