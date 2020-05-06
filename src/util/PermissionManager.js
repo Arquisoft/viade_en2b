@@ -40,11 +40,13 @@ export async function setPermissionsTo(
     } catch (er) {
       console.error("The permission could not be added");
       console.error(er);
+      return false;
       //throw er
     }
   } catch (Error) {
     console.log("The acl of the route was not yet created");
     console.log(Error);
+    return false;
     //throw Error;
   }
 }

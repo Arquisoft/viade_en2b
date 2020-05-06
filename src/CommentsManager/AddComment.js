@@ -1,6 +1,8 @@
-export default class AddComment{
+import { createContentAclComments } from "data-access/FileManager/AclCreator";
 
-    async addComment(url,comments,callback){
+export default class AddComment {
+
+    async addComment(url, comments, callback) {
         // createFile( fileURL, content, 'application/json', options )
         const auth = require('solid-auth-client')
         const FC = require('solid-file-client')
@@ -8,18 +10,19 @@ export default class AddComment{
 
         let session = await auth.currentSession();
 
-        if (!session || session.webId === undefined || session.webId === null){
+        if (!session || session.webId === undefined || session.webId === null) {
             callback();
-            return false;}
+            return false;
+        }
 
         try {
 
             //try catch
-            console.log('WHEN ADDINGD THE COMMENT');
-            console.log(url);
-            
             await fc.createFile(url, JSON.stringify(comments), 'text/plain');
-
+            //obtaining data for creating the right permissions
+            const nameResource = url.split('/');
+            const name = nameResource[nameResource.length - 1];
+            createContentAclComments(url, name);
             return true;
 
 

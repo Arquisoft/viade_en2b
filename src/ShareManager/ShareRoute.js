@@ -59,9 +59,11 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
   const shared = await checkPermissions("READ", profileFriend, route);
   if (!shared) {
     //set permissions to read in the route
+    console.log('Permissions to the route');
     setPermissionsTo("READ", route, profileFriend);
 
     //retrieving media of the route
+    console.log('Permissions to the media');
     const routeEntity = await loadSpecificUserRoutesFiles(route);
 
     if (routeEntity !== null && routeEntity !== undefined) {
@@ -85,6 +87,38 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
           }
         }
       }
+    }
+
+    //retrieving url of the comments
+    // if exists set permission to other user -> read && write
+    // if x exists ???
+
+    const urlComments = webIdAuthor + 'viade/comments/' + routeName;
+
+    // trying with normal name
+    // just try to add the permission
+    try {
+      let permissionRead = await setPermissionsTo("READ", urlComments, profileFriend);
+      let permissionWrite = await setPermissionsTo("WRITE", urlComments, profileFriend);
+
+      if (!permissionRead && !permissionWrite) {
+
+        //trying with name of the route formatted nameRouteComments.jsonld
+
+        const nameFormatComments = routeName.split('.');
+
+        var nameFormatted = nameFormatComments[nameFormatComments.length -2] + 'Comments.' + nameFormatComments[nameFormatComments.length -1];
+
+        const urlF = webIdAuthor + 'viade/comments/' + nameFormatted;
+        let permissionReadF = setPermissionsTo("READ", urlF, profileFriend);
+        let permissionWriteF = setPermissionsTo("WRITE", urlF, profileFriend);
+
+        
+
+      }
+
+    } catch (error) {
+      console.log('The other user has not the file for the comments');
     }
 
     //send notification to other user inbox

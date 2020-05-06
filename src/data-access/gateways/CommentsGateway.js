@@ -22,7 +22,6 @@ export async function postCommentInRoute(routeComUrl, comment, callback) {
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         var dateTime = date + ', ' + time;
         comment.dateCreated = dateTime;
-        console.log(comment.dateCreated);
 
         if (commentsJson.comments !== undefined) {
                 commentsJson.comments.push(comment);
