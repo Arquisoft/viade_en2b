@@ -22,7 +22,7 @@ export default class AddComment {
             //obtaining data for creating the right permissions
             const nameResource = url.split('/');
             const name = nameResource[nameResource.length - 1];
-            createContentAclComments(url, name);
+            this.checkAclOrCreateAclComments(url, name);
             return true;
 
 
@@ -35,4 +35,23 @@ export default class AddComment {
         }
 
     }
+
+    checkAclOrCreateAclComments(url, name) {
+        const auth = require("solid-auth-client");
+        const FC = require("solid-file-client");
+        const fc = new FC(auth);
+      
+        if (
+          !fc
+            .itemExists(url)
+            .then()
+            .catch((error) => {
+              return;
+            })
+        ) {
+          createContentAclComments(url, name);
+        }
+      }
 }
+
+
