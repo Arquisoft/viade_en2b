@@ -1,4 +1,4 @@
-import { setPermissionsTo, checkPermissions } from "util/PermissionManager";
+import { setPermissionsTo, checkPermissions, setPermissionsForEditor } from "util/PermissionManager";
 import {
   createNotificationSummary,
   postNotification,
@@ -17,7 +17,7 @@ import {
  * and sends a notification to the inbox of the friend, containing the url of that
  * route.
  *
- * Example: ShareWith( "https://clrmrnd.inrupt.net/viade/routes/Rusia.json", "https://testingclrmrnd.inrupt.net/profile/card#me", "https://clrmrnd.inrupt.net/profile/card#me")
+ * Example: ShareWith( "https://x.inrupt.net/viade/routes/Rusia.json", "https://x.inrupt.net/profile/card#me", "https://x.inrupt.net/profile/card#me")
  *
  * @param {String} route path to the route the user wants to share.
  * @param {String} profileFriend represents profile card of the friend.
@@ -60,11 +60,9 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
   const shared = await checkPermissions("READ", profileFriend, route);
   if (!shared) {
     //set permissions to read in the route
-    console.log('Permissions to the route');
     setPermissionsTo("READ", route, profileFriend);
 
     //retrieving media of the route
-    console.log('Permissions to the media');
     const routeEntity = await loadSpecificUserRoutesFiles(route);
 
     if (routeEntity !== null && routeEntity !== undefined) {
@@ -91,41 +89,23 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
     }
 
     //retrieving url of the comments
-    // if exists set permission to other user -> read && write
-    // if x exists ???
-
-    console.log('PERMISSIONS COMMENTS');
     const urlComments = webIdAuthor + 'viade/comments/' + routeName;
 
-    console.log(urlComments);
-    
     // trying with normal name
     // just try to add the permission
     try {
-      let permissionRead = await setPermissionsTo("READ", urlComments, profileFriend);
-      let permissionWrite = await setPermissionsTo("WRITE", urlComments, profileFriend);
 
-      console.log(permissionRead);
-      console.log(permissionWrite);
-      if (!permissionRead && !permissionWrite) {
 
-        //trying with name of the route formatted nameRouteComments.jsonld
+      //trying with name of the route formatted nameRouteComments.jsonld
 
-        const nameFormatComments = routeName.split('.');
-        var nameFormatted = nameFormatComments[nameFormatComments.length -2] + 'Comments.' + nameFormatComments[nameFormatComments.length -1];
-
-        const urlF = webIdAuthor + 'viade/comments/' + nameFormatted;
-
-        createContentAclComments(urlF, nameFormatted);
-        let permissionReadF = setPermissionsTo("READ", urlF, profileFriend);
-        let permissionWriteF = setPermissionsTo("WRITE", urlF, profileFriend);
-
-        
-
-      }
+      const nameFormatComments = routeName.split('.');
+      var nameFormatted = nameFormatComments[nameFormatComments.length - 2] + 'Comments.' + nameFormatComments[nameFormatComments.length - 1];
+      const urlF = webIdAuthor + 'viade/comments/' + nameFormatted;      
+      checkAclOrCreateAclComments(urlF, nameFormatted);
+      setPermissionsForEditor(urlF, profileFriend);
 
     } catch (error) {
-      console.log('The other user has not the file for the comments');
+      console.log('The other user has not the file for the comments or not the specific format that this app uses');
     }
 
     //send notification to other user inbox
@@ -197,5 +177,25 @@ function checkAclOrCreateMedia(url, mediaName) {
       })
   ) {
     createContentAclMedia(url, mediaName);
+  }
+}
+
+//createContentAclComments
+
+
+function checkAclOrCreateAclComments(url, name) {
+  const auth = require("solid-auth-client");
+  const FC = require("solid-file-client");
+  const fc = new FC(auth);
+
+  if (
+    !fc
+      .itemExists(url)
+      .then()
+      .catch((error) => {
+        return;
+      })
+  ) {
+    createContentAclComments(url, name);
   }
 }
