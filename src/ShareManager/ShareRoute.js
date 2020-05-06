@@ -1,4 +1,4 @@
-import { setPermissionsTo, checkPermissions } from "util/PermissionManager";
+import { setPermissionsTo, checkPermissions, setPermissionsForEditor } from "util/PermissionManager";
 import {
   createNotificationSummary,
   postNotification,
@@ -9,6 +9,7 @@ import { loadSpecificUserRoutesFiles } from "RouteManager/ListSpecificUserRoutes
 import {
   createContentAcl,
   createContentAclMedia,
+  createContentAclComments
 } from "data-access/FileManager/AclCreator";
 /**
  * Function that allows a user to share a route with a friend.
@@ -16,7 +17,7 @@ import {
  * and sends a notification to the inbox of the friend, containing the url of that
  * route.
  *
- * Example: ShareWith( "https://clrmrnd.inrupt.net/viade/routes/Rusia.json", "https://testingclrmrnd.inrupt.net/profile/card#me", "https://clrmrnd.inrupt.net/profile/card#me")
+ * Example: ShareWith( "https://x.inrupt.net/viade/routes/Rusia.json", "https://x.inrupt.net/profile/card#me", "https://x.inrupt.net/profile/card#me")
  *
  * @param {String} route path to the route the user wants to share.
  * @param {String} profileFriend represents profile card of the friend.
@@ -85,6 +86,26 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
           }
         }
       }
+    }
+
+    //retrieving url of the comments
+    const urlComments = webIdAuthor + 'viade/comments/' + routeName;
+
+    // trying with normal name
+    // just try to add the permission
+    try {
+
+
+      //trying with name of the route formatted nameRouteComments.jsonld
+
+      const nameFormatComments = routeName.split('.');
+      var nameFormatted = nameFormatComments[nameFormatComments.length - 2] + 'Comments.' + nameFormatComments[nameFormatComments.length - 1];
+      const urlF = webIdAuthor + 'viade/comments/' + nameFormatted;      
+      checkAclOrCreateAclComments(urlF, nameFormatted);
+      setPermissionsForEditor(urlF, profileFriend);
+
+    } catch (error) {
+      console.log('The other user has not the file for the comments or not the specific format that this app uses');
     }
 
     //send notification to other user inbox
@@ -156,5 +177,25 @@ function checkAclOrCreateMedia(url, mediaName) {
       })
   ) {
     createContentAclMedia(url, mediaName);
+  }
+}
+
+//createContentAclComments
+
+
+function checkAclOrCreateAclComments(url, name) {
+  const auth = require("solid-auth-client");
+  const FC = require("solid-file-client");
+  const fc = new FC(auth);
+
+  if (
+    !fc
+      .itemExists(url)
+      .then()
+      .catch((error) => {
+        return;
+      })
+  ) {
+    createContentAclComments(url, name);
   }
 }
