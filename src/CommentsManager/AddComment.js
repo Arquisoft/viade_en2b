@@ -14,7 +14,12 @@ export default class AddComment{
 
         try {
 
+            //try catch
+            console.log('WHEN ADDINGD THE COMMENT');
+            console.log(url);
+            
             await fc.createFile(url, JSON.stringify(comments), 'text/plain');
+
             return true;
 
 
