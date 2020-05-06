@@ -5,6 +5,8 @@ import BurgerMenu from "../generic_components/BurgerMenu";
 import SearchBar from "../generic_components/SearchBar";
 import CardLayout from "../generic_components/Card";
 import RouteDetails from "./RouteDetails";
+import { toast} from "react-toastify";
+
 import { HashRouter as Router, Link } from "react-router-dom";
 import { Icon, Card, Image, Popup } from "semantic-ui-react";
 import * as cache from "caches/routeCache/RouteCache";
@@ -112,6 +114,12 @@ class RoutesPage extends React.Component {
                           description={item.description}
                           action={(e) => {
                             cache.default.setSelected(routes[index]);
+
+                            toast.info("Route Selected", {
+                              draggable: true,
+                              position: toast.POSITION.TOP_CENTER,
+                            });
+
                           }}
                           iconName="map"
                           popupContent="Show on map"
@@ -182,8 +190,8 @@ class RoutesPage extends React.Component {
         {loading ? (
           <CustomLoader />
         ) : (
-          this.viewLoaded(this.state.routes, this.state.sharedRoutes)
-        )}
+            this.viewLoaded(this.state.routes, this.state.sharedRoutes)
+          )}
       </React.Fragment>
     );
   }

@@ -5,6 +5,7 @@ import {
 } from "data-access/gateways/FileGateway";
 
 import routeCache from "../routeCache/RouteCache";
+import { toast } from "react-toastify";
 
 export default {
   filePaths: [],
@@ -14,20 +15,45 @@ export default {
       let found = this.filePaths.find((rf) => rf.routePath === route.url);
       console.log(found);
       if (found) {
-        uploadFiles(found.routePath, files);
+        uploadFiles(found.routePath, files).then().catch((error) => {
+          toast.error(
+            "The file could not be uploaded. Try a .jpg, .png, etc...",
+            {
+              draggable: true,
+              position: toast.POSITION.TOP_CENTER,
+            }
+          )
+        });
+        
+
       } else {
         let filesMap = new RouteFile(route.url, []);
         this.filePaths = [...this.filePaths, filesMap];
 
-        uploadFiles(filesMap.routePath, files);
+        uploadFiles(filesMap.routePath, files).then().catch((error) => {
+          toast.error(
+            "The file could not be uploaded. Try a .jpg, .png, etc...",
+            {
+              draggable: true,
+              position: toast.POSITION.TOP_CENTER,
+            }
+          )
+        });        
       }
     } catch (err) {
-      console.log(err.message);
+      toast.error(
+        "We do not accept the format of this file. Try with a .jpg, .png, ...",
+        {
+          draggable: true,
+          position: toast.POSITION.TOP_CENTER,
+        }
+      )
+      
     }
   },
   addFilePaths(routeFiles) {
     routeFiles.forEach(routeFile => {
-      if(!this.filePaths.find(rf => rf.routePath === routeFile.routePath)) {
+      if (!this.filePaths.find(rf => rf.routePath === routeFile.routePath)) {
         this.filePaths.push(routeFile);
       }
     })

@@ -95,11 +95,14 @@ class MyTab extends React.Component {
     multimedia = cache.default.getFilePathsForRoute(this.props.route);
     console.log(multimedia)
     multimedia.forEach((element) => {
-      if (element.contentType.includes("image")) {
-        images.push(element);
-      } else if (element.contentType.includes("video")) {
-        videos.push(element);
+      if(element.contentType !== null){
+        if (element.contentType.includes("image")) {
+          images.push(element);
+        } else if (element.contentType.includes("video")) {
+          videos.push(element);
+        }
       }
+      
     });
     return (
       <div className="MyTabDiv">

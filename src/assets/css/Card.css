@@ -1,15 +1,16 @@
 .ui.card {
   margin-top: 10px !important;
   margin-bottom: 10px !important;
-  
-  overflow: hidden !important;
-  
-  border-radius: var(--border-radius) !important;
-  
-  box-shadow:  var(--box-shadow-up),
-                var(--box-shadow-down) !important;
-}
 
+  overflow: hidden !important;
+
+  border-radius: var(--border-radius) !important;
+
+  box-shadow: var(--box-shadow-up), var(--box-shadow-down) !important;
+}
+.spacespan {
+  margin: 15px;
+}
 .ui.card > .content {
   background-color: var(--bg-color) !important;
 }

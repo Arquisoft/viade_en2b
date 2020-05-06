@@ -40,14 +40,19 @@ export async function setPermissionsTo(
     } catch (er) {
       console.error("The permission could not be added");
       console.error(er);
+      return false;
       //throw er
     }
   } catch (Error) {
     console.log("The acl of the route was not yet created");
     console.log(Error);
+    return false;
     //throw Error;
   }
 }
+
+
+
 
 /**
  * Method that deletes a permission for an
@@ -84,6 +89,47 @@ export async function checkPermissions(permission, webId, filePath) {
   const permissions = acl.getPermissionsFor(webId);
   const value = permissions.permissions;
   return value.has(mode);
+}
+
+
+export async function setPermissionsForEditor(
+  
+  urlToShare,
+  webIdFriend,
+  webIdAuthor
+) {
+  let mode = getMode("READ");
+
+  const fetch = auth.fetch.bind(auth);
+  const utils = new AclApi(fetch, { autoSave: true });
+
+  try {
+    const acl = await utils.loadFromFileUrl(urlToShare);
+
+    //Setting permissions
+    let permissions = new Permissions();
+    permissions.add(mode);
+    mode = getMode("WRITE");
+    permissions.add(mode);
+
+    //Setting person to grant access to.
+    let agents = new Agents();
+    agents.addWebId(webIdFriend);
+
+    try {
+      await acl.addRule(permissions, agents);
+    } catch (er) {
+      console.error("The permission could not be added");
+      console.error(er);
+      return false;
+      //throw er
+    }
+  } catch (Error) {
+    console.log("The acl of the route was not yet created");
+    console.log(Error);
+    return false;
+    //throw Error;
+  }
 }
 
 /**

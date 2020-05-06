@@ -25,7 +25,7 @@ export async function createContentAcl(url, nameResource) {
       n0:default ${resource}:;
       n0:mode n0:Control, n0:Read, n0:Write.
   `
-  console.log(aclString)
+  
   try {
     await fileClient.createFile(url + '.acl', aclString, "text/turtle").then().catch((error) => {console.log('It looks like we can not create necessary folders inside your pod'+url + nameResource); return;});
     console.log('CREATED ACL '+url);
@@ -57,7 +57,7 @@ export async function createContentAclInbox(url) {
       n0:mode n0:Control, n0:Read, n0:Write.
   `
 
-  console.log(aclString)
+ 
   try {
     await fileClient.createFile(url + '.acl', aclString, "text/turtle").then().catch((error) => {console.log('It looks like we can not create necessary folders inside your pod'); return;});
     console.log('CREATED ACL INBOX');
@@ -84,7 +84,7 @@ export async function createContentAclMedia(url, nameResource) {
       n0:agent c:me;
       n0:mode n0:Control, n0:Read, n0:Write.
   `
-  console.log(aclString)
+ 
   try {
     await fileClient.createFile(url + '.acl', aclString, "text/turtle").then().catch((error) => {console.log('It looks like we can not create necessary folders inside your pod'+url + nameResource); return;});
     console.log('CREATED ACL '+url);
@@ -93,5 +93,35 @@ export async function createContentAclMedia(url, nameResource) {
     console.log('THE ACL COULD NOT BE ADDED ');
   }
 }
+
+
+export async function createContentAclComments(url, nameResource) {
+
+  let withoutSpaces = nameResource.replace(" ", "%20");
+  let resource = withoutSpaces+ ""; 
+
+  let aclString = `
+  @prefix : <#>.
+  @prefix n0: <http://www.w3.org/ns/auth/acl#>.
+  @prefix n1: <http://xmlns.com/foaf/0.1/>.
+  @prefix c: </profile/card#>.
+
+  :ControlReadWrite
+      n0:accessTo <${resource}>;
+      n0:agent c:me;
+      n0:mode n0:Control, n0:Read, n0:Write.
+  `
+ 
+  try {
+    await fileClient.createFile(url + '.acl', aclString, "text/turtle").then().catch((error) => {console.log('It looks like we can not create necessary folders inside your pod'+url + nameResource); return;});
+    console.log('CREATED ACL COMMENTS '+url);
+  } catch (e) {
+    //alert(e)
+    console.log('THE ACL COULD NOT BE ADDED ');
+  }
+}
+
+
+
 
 
