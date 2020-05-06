@@ -11,17 +11,6 @@ services:
     build: .
     ports:
       - "3000:3000"
-  gatling:
-    image: denvazh/gatling
-    command: -s viade_en2b.LoadTestLoginExample
-    depends_on:
-      - solidserver
-      - sampleweb
-    volumes:
-      - /home/ssiuser/gatling-charts-highcharts-bundle-3.3.1/conf:/opt/gatling/conf
-      - /home/ssiuser/gatling-charts-highcharts-bundle-3.3.1/user-files:/opt/gatling/user-files
-      - /home/ssiuser/gatling-charts-highcharts-bundle-3.3.1/results:/opt/gatling/results
-    network_mode: "host"
 volumes:
   soliddata:
     external: false
