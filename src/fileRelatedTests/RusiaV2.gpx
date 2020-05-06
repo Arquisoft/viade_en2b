@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx creator="WTracks"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+  <name>RusiaV2</name>
+  <desc>Una Ruta por rusia mejor</desc>
+  <author><name>WTracks</name></author>
+  <link href='https://opoto.github.io/wtracks/'>
+    <text>WTracks</text>
+    <type>text/html</type>
+  </link>
+  <time>2020-05-01T22:24:40.853Z</time>
+  <bounds minlat="55.75081098101478" minlon="757.6100635528566" maxlat="55.761617711949356" maxlon="757.6512622833253"/>
+</metadata>
+<trk><name>RusiaV2</name>
+  <trkseg>
+    <trkpt lat="55.74982854921154" lon="757.6236248016359"></trkpt>
+    <trkpt lat="55.75067391332323" lon="757.6231741905214"></trkpt>
+    <trkpt lat="55.75159171647452" lon="757.6227235794069"></trkpt>
+    <trkpt lat="55.75234043463092" lon="757.6223373413087"></trkpt>
+    <trkpt lat="55.75290800172179" lon="757.6219725608828"></trkpt>
+    <trkpt lat="55.753813676784816" lon="757.6202988624574"></trkpt>
+    <trkpt lat="55.75433292100332" lon="757.6193547248841"></trkpt>
+    <trkpt lat="55.75471933081944" lon="757.61860370636"></trkpt>
+    <trkpt lat="55.75500913566936" lon="757.6189041137695"></trkpt>
+    <trkpt lat="55.75523856298178" lon="757.6194834709169"></trkpt>
+    <trkpt lat="55.75596306142435" lon="757.6205348968507"></trkpt>
+    <trkpt lat="55.756301156092" lon="757.6211571693422"></trkpt>
+    <trkpt lat="55.75671169567689" lon="757.6218223571777"></trkpt>
+    <trkpt lat="55.75717052892255" lon="757.6225519180299"></trkpt>
+    <trkpt lat="55.75760520807073" lon="757.6232171058657"></trkpt>
+    <trkpt lat="55.75807610501415" lon="757.6238822937013"></trkpt>
+    <trkpt lat="55.75846247774684" lon="757.624397277832"></trkpt>
+    <trkpt lat="55.758691884745716" lon="757.6246547698975"></trkpt>
+    <trkpt lat="55.758909216447236" lon="757.6249337196351"></trkpt>
+    <trkpt lat="55.75918691630331" lon="757.625448703766"></trkpt>
+    <trkpt lat="55.7593921714477" lon="757.6258563995362"></trkpt>
+    <trkpt lat="55.75877640277355" lon="757.6268219947816"></trkpt>
+    <trkpt lat="55.75851077406926" lon="757.6272082328798"></trkpt>
+    <trkpt lat="55.75782254582805" lon="757.6282811164857"></trkpt>
+    <trkpt lat="55.757110156435466" lon="757.6293969154359"></trkpt>
+    <trkpt lat="55.756590949188755" lon="757.6300406455995"></trkpt>
+    <trkpt lat="55.75694111297445" lon="757.6309204101564"></trkpt>
+    <trkpt lat="55.757339571389195" lon="757.6321864128114"></trkpt>
+    <trkpt lat="55.75754483625653" lon="757.6343107223511"></trkpt>
+    <trkpt lat="55.75662717317445" lon="757.6348042488099"></trkpt>
+    <trkpt lat="55.75647020232677" lon="757.6337742805482"></trkpt>
+    <trkpt lat="55.75614418393223" lon="757.6330661773682"></trkpt>
+    <trkpt lat="55.75608380985639" lon="757.6328516006471"></trkpt>
+    <trkpt lat="55.75576986315555" lon="757.6332592964174"></trkpt>
+    <trkpt lat="55.75412763923149" lon="757.6349115371705"></trkpt>
+  </trkseg>
+</trk></gpx>
