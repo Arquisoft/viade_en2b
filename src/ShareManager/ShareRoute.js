@@ -9,6 +9,7 @@ import { loadSpecificUserRoutesFiles } from "RouteManager/ListSpecificUserRoutes
 import {
   createContentAcl,
   createContentAclMedia,
+  createContentAclComments
 } from "data-access/FileManager/AclCreator";
 /**
  * Function that allows a user to share a route with a friend.
@@ -93,23 +94,29 @@ export async function ShareWith(route, profileFriend, profileAuthor) {
     // if exists set permission to other user -> read && write
     // if x exists ???
 
+    console.log('PERMISSIONS COMMENTS');
     const urlComments = webIdAuthor + 'viade/comments/' + routeName;
 
+    console.log(urlComments);
+    
     // trying with normal name
     // just try to add the permission
     try {
       let permissionRead = await setPermissionsTo("READ", urlComments, profileFriend);
       let permissionWrite = await setPermissionsTo("WRITE", urlComments, profileFriend);
 
+      console.log(permissionRead);
+      console.log(permissionWrite);
       if (!permissionRead && !permissionWrite) {
 
         //trying with name of the route formatted nameRouteComments.jsonld
 
         const nameFormatComments = routeName.split('.');
-
         var nameFormatted = nameFormatComments[nameFormatComments.length -2] + 'Comments.' + nameFormatComments[nameFormatComments.length -1];
 
         const urlF = webIdAuthor + 'viade/comments/' + nameFormatted;
+
+        createContentAclComments(urlF, nameFormatted);
         let permissionReadF = setPermissionsTo("READ", urlF, profileFriend);
         let permissionWriteF = setPermissionsTo("WRITE", urlF, profileFriend);
 
