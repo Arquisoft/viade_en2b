@@ -9,7 +9,7 @@ import MapContainer from "components/map_components/MapContainer.js";
 import { HashRouter as Router, Link } from "react-router-dom";
 import DropzonePage from "./DropzonePage";
 import SaveRoutePage from "./SaveRoutePage";
-
+import * as groupcache from "caches/friendGroupCache/FriendGroupCache";
 import * as routecache from "caches/routeCache/RouteCache";
 import * as cache from "caches/friendCache/FriendCache";
 
@@ -20,6 +20,7 @@ import UserDropdown from "../spec_components/UserDropdown";
 
 const MainPage = () => {
   cache.default.loadFriends();
+  groupcache.default.getGroups(() => {});
 
   const [showDropzone, setShowDropzone] = useState(false);
 
