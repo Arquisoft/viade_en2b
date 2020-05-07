@@ -15,6 +15,12 @@ export default {
   },
 };
 
+async function createFolderCheck(){
+
+  //if 
+
+}
+
 async function createFolders() {
   let session = await auth.currentSession();
   if (!session || session.webId === undefined || session.webId === null) {

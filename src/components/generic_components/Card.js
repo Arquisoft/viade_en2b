@@ -39,7 +39,9 @@ class CardLayout extends Component {
                   position="bottom center"
                 />
               </Link>
-
+              <span className="spacespan" hidden={linkHide}>
+                {" "}
+              </span>
               <a
                 className={this.props.externalClassName}
                 hidden={externalHide}
@@ -55,7 +57,9 @@ class CardLayout extends Component {
                   position="bottom center"
                 />
               </a>
-
+              <span className="spacespan" hidden={externalHide}>
+                {" "}
+              </span>
               <Link
                 className={this.props.detailsClassName}
                 hidden={detailsHide}
@@ -69,6 +73,9 @@ class CardLayout extends Component {
                   position="bottom center"
                 />
               </Link>
+              <span className="spacespan" hidden={detailsHide}>
+                {" "}
+              </span>
               <Link
                 className="linkRoute"
                 hidden={shareHide}

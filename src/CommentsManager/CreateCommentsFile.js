@@ -48,6 +48,8 @@ export default class CreateCommentsFile {
         JSON.stringify(emptyCommentFile),
         "text/plain"
       );
+
+      
       return url;
     } catch (error) {
       console.log("The comments file couldn't be created");

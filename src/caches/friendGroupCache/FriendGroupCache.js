@@ -13,6 +13,9 @@ export default {
       return this.groups;
     }
   },
+  getLoadedGroups() {
+    return this.groups;
+  },
   clear() {
     this.groups = [];
   },
